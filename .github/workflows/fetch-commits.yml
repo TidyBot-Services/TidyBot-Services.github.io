@@ -23,6 +23,7 @@ jobs:
         env:
           ORG_NAME: ${{ github.repository_owner }}
         with:
+          github-token: ${{ secrets.PAT_TOKEN }}
           script: |
             const fs = require('fs');
             const org = process.env.ORG_NAME;
@@ -109,9 +110,12 @@ jobs:
             console.log(`Total entries: ${entries.length}`);
 
       - name: Commit and push if changed
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add logs/entries.json
           git diff --staged --quiet || git commit -m "Update timeline entries"
+          git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git
           git push
