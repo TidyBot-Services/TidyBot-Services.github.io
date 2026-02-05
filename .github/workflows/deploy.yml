@@ -34,6 +34,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: List files to deploy
+        run: |
+          echo "Files in root:"
+          ls -la
+          echo ""
+          echo "Files in logs/:"
+          ls -la logs/
+          echo ""
+          echo "Content of entries.json:"
+          head -20 logs/entries.json
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

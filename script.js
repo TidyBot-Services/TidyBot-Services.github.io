@@ -10,8 +10,16 @@ let activityLog = [];
 // Load entries from JSON file
 async function loadActivityLog() {
     try {
-        const response = await fetch('logs/entries.json');
+        // Try relative path first, then absolute
+        let response = await fetch('./logs/entries.json');
+
+        if (!response.ok) {
+            console.error('Failed to fetch entries:', response.status, response.statusText);
+            throw new Error(`HTTP ${response.status}`);
+        }
+
         const entries = await response.json();
+        console.log(`Loaded ${entries.length} entries from JSON`);
 
         // Add ID to each entry
         activityLog = entries.map((entry, index) => ({
@@ -23,7 +31,16 @@ async function loadActivityLog() {
         return activityLog;
     } catch (error) {
         console.error('Failed to load activity log:', error);
-        // Fallback to empty array
+
+        // Fallback: show error message in UI
+        const container = document.querySelector('.events-viewport');
+        if (container) {
+            container.innerHTML = `<div style="color: var(--color-warning); padding: 2rem; font-family: var(--font-mono);">
+                Failed to load entries. Check console for details.<br>
+                Error: ${error.message}
+            </div>`;
+        }
+
         activityLog = [];
         return activityLog;
     }
@@ -48,20 +65,8 @@ let currentIndex = 0;
 let isAnimating = false;
 let renderedRange = { start: 0, end: 0 };
 
-// DOM Elements
-const elements = {
-    entryNumber: document.querySelector('.current-phase'),
-    entryType: document.querySelector('.phase-title-text'),
-    counterCurrent: document.querySelector('.counter-current'),
-    eventsSlider: document.querySelector('.events-slider'),
-    eventsViewport: document.querySelector('.events-viewport'),
-    timelineBar: document.querySelector('.timeline-bar'),
-    timelineNodes: document.querySelector('.timeline-nodes'),
-    cardsRow: document.querySelector('.cards-row'),
-    prevBtn: document.querySelector('.nav-btn.prev'),
-    nextBtn: document.querySelector('.nav-btn.next'),
-    robot: document.querySelector('.robot')
-};
+// DOM Elements - initialized after DOM ready
+let elements = {};
 
 // Initialize
 function init() {
@@ -540,6 +545,25 @@ function initParallax() {
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize DOM elements
+    elements = {
+        entryNumber: document.querySelector('.current-phase'),
+        entryType: document.querySelector('.phase-title-text'),
+        counterCurrent: document.querySelector('.counter-current'),
+        eventsSlider: document.querySelector('.events-slider'),
+        eventsViewport: document.querySelector('.events-viewport'),
+        timelineBar: document.querySelector('.timeline-bar'),
+        timelineNodes: document.querySelector('.timeline-nodes'),
+        cardsRow: document.querySelector('.cards-row'),
+        prevBtn: document.querySelector('.nav-btn.prev'),
+        nextBtn: document.querySelector('.nav-btn.next'),
+        robot: document.querySelector('.robot')
+    };
+
+    console.log('DOM elements:', elements);
+    console.log('cardsRow exists:', !!elements.cardsRow);
+    console.log('timelineNodes exists:', !!elements.timelineNodes);
+
     // Initialize background first (doesn't depend on data)
     initHoneycomb();
     initParallax();
