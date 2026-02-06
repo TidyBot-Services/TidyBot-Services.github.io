@@ -130,5 +130,17 @@
     "sha": "39c5013",
     "repo": "tidybot-agent-server",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-06 18:10",
+    "type": "feature",
+    "title": "Hide direct command API from docs, render SDK docs as HTML",
+    "description": "Commit by Tidybot in tidybot-agent-server",
+    "files": [
+      "tidybot-agent-server/"
+    ],
+    "sha": "7367e05",
+    "repo": "tidybot-agent-server",
+    "author": "Tidybot"
   }
 ]
