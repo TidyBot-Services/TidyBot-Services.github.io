@@ -1,0 +1,89 @@
+# Fetch repos from TidybotArmy org and update frontend timeline
+name: Fetch Frontend Repos
+
+on:
+  # Run daily
+  schedule:
+    - cron: '0 0 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-repos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch org repos
+        uses: actions/github-script@v7
+        env:
+          ORG_NAME: TidybotArmy
+        with:
+          github-token: ${{ secrets.PAT_TOKEN_FRONTEND }}
+          script: |
+            const fs = require('fs');
+            const org = process.env.ORG_NAME;
+
+            console.log(`Fetching repos from ${org}...`);
+
+            // Fetch all repos in the org
+            const repos = await github.paginate(github.rest.repos.listForOrg, {
+              org: org,
+              type: 'all',
+              per_page: 100
+            });
+
+            console.log(`Found ${repos.length} repos in ${org}`);
+
+            // Map to timeline-friendly format, sorted by creation time (oldest first)
+            const entries = repos
+              .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
+              .map((repo, index) => ({
+                id: String(index + 1).padStart(3, '0'),
+                name: repo.name,
+                description: repo.description || 'No description',
+                created_at: repo.created_at,
+                updated_at: repo.updated_at,
+                html_url: repo.html_url,
+                language: repo.language || 'Unknown',
+                stars: repo.stargazers_count,
+                is_private: repo.private,
+                default_branch: repo.default_branch
+              }));
+
+            // Write repos.json
+            fs.writeFileSync('logs/repos.json', JSON.stringify(entries, null, 2));
+            console.log(`Wrote ${entries.length} repos to logs/repos.json`);
+
+      - name: Commit and push if changed
+        id: commit
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN_FRONTEND }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add logs/repos.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            git commit -m "Update frontend repos"
+            git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git
+            git push
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger page rebuild
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${PAT_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/dispatches \
+            -d '{"event_type":"update-timeline"}'

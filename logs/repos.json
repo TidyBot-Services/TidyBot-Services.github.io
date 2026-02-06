@@ -1,0 +1,26 @@
+[
+  {
+    "id": "001",
+    "name": "tidybot-web-dashboard",
+    "description": "Real-time web dashboard for monitoring TidyBot fleet status and task assignments",
+    "created_at": "2025-11-15T09:30:00Z",
+    "updated_at": "2026-02-04T14:22:00Z",
+    "html_url": "https://github.com/TidybotArmy/tidybot-web-dashboard",
+    "language": "TypeScript",
+    "stars": 3,
+    "is_private": false,
+    "default_branch": "main"
+  },
+  {
+    "id": "002",
+    "name": "tidybot-nav-ui",
+    "description": "Navigation and control interface for manual TidyBot operation with 3D viewport",
+    "created_at": "2026-01-08T16:45:00Z",
+    "updated_at": "2026-02-06T10:05:00Z",
+    "html_url": "https://github.com/TidybotArmy/tidybot-nav-ui",
+    "language": "React",
+    "stars": 1,
+    "is_private": false,
+    "default_branch": "main"
+  }
+]

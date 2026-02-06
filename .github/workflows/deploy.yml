@@ -10,9 +10,9 @@ on:
   # Run when called by other workflows (from other repos)
   repository_dispatch:
     types: [update-timeline]
-  # Run after fetch-commits completes
+  # Run after fetch workflows complete
   workflow_run:
-    workflows: ["Fetch Org Commits"]
+    workflows: ["Fetch Org Commits", "Fetch Frontend Repos"]
     types: [completed]
 
 permissions:
@@ -44,6 +44,9 @@ jobs:
           echo ""
           echo "Content of entries.json:"
           head -20 logs/entries.json
+          echo ""
+          echo "Content of repos.json:"
+          head -20 logs/repos.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

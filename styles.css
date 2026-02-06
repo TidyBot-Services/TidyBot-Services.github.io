@@ -303,10 +303,53 @@ body {
 }
 
 /* ============================================
-   TIMELINE CONTAINER
+   TIMELINE ROWS
    ============================================ */
-.timeline-container {
-    padding: 4rem 0;
+.timeline-row {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.timeline-row:last-of-type {
+    border-bottom: none;
+}
+
+.row-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.row-label {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-warning);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+}
+
+.row-repo {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-gray);
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--color-border);
+    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+
+.row-empty {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-gray);
+    text-align: center;
+    padding: 3rem 0;
+    letter-spacing: 0.05em;
+    border: 1px dashed var(--color-border);
+    margin-bottom: 2rem;
 }
 
 /* ============================================
@@ -748,6 +791,92 @@ body {
 }
 
 /* ============================================
+   REPO CARDS (Frontend row)
+   ============================================ */
+.repo-meta {
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    margin-bottom: 1.25rem;
+}
+
+.repo-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.repo-meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.repo-meta-label::before {
+    content: "◈ ";
+    color: #00d4ff;
+}
+
+.repo-meta-value {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-text-soft);
+}
+
+.repo-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    background: transparent;
+    border: 1px solid #00d4ff;
+    color: #00d4ff;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-smooth);
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+
+.repo-link-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #00d4ff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--duration-fast) var(--ease-smooth);
+    z-index: -1;
+}
+
+.repo-link-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.repo-link-btn:hover {
+    color: var(--color-bg);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.repo-link-btn svg {
+    transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.repo-link-btn:hover svg {
+    transform: translate(2px, -2px);
+}
+
+/* ============================================
    NAVIGATION
    ============================================ */
 .timeline-nav {
@@ -961,6 +1090,103 @@ body {
 @keyframes wheelSpin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+/* Alt robot (frontend) - little bipedal mech with visor */
+.robot-alt {
+    animation: robotAltBounce 0.6s ease-in-out infinite !important;
+}
+
+@keyframes robotAltBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+    25% { transform: translateX(-50%) translateY(-2px) rotate(-2deg); }
+    75% { transform: translateX(-50%) translateY(-2px) rotate(2deg); }
+}
+
+.robot-alt-flag {
+    width: 1px;
+    height: 8px;
+    background: var(--color-warning);
+    margin: 0 auto 0;
+    position: relative;
+}
+
+.robot-alt-flag::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1px;
+    width: 6px;
+    height: 4px;
+    background: #00d4ff;
+    clip-path: polygon(0 0, 100% 25%, 0 100%);
+    animation: flagWave 1s ease-in-out infinite;
+}
+
+@keyframes flagWave {
+    0%, 100% { transform: skewY(0deg); }
+    50% { transform: skewY(-5deg); }
+}
+
+.robot-alt-head {
+    width: 14px;
+    height: 10px;
+    background: #1a1a2e;
+    border: 1.5px solid #00d4ff;
+    border-radius: 2px 2px 0 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+    position: relative;
+}
+
+.robot-alt-visor {
+    width: 10px;
+    height: 3px;
+    background: #00d4ff;
+    border-radius: 1px;
+    box-shadow: 0 0 8px #00d4ff;
+    animation: visorScan 2s ease-in-out infinite;
+}
+
+@keyframes visorScan {
+    0%, 100% { opacity: 1; width: 10px; }
+    50% { opacity: 0.6; width: 6px; }
+}
+
+.robot-alt-body {
+    width: 10px;
+    height: 8px;
+    background: #1a1a2e;
+    border: 1.5px solid #00d4ff;
+    border-top: none;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.robot-alt-chest {
+    width: 4px;
+    height: 4px;
+    border: 1px solid #00d4ff;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: chestPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes chestPulse {
+    0%, 100% { opacity: 0.4; box-shadow: none; }
+    50% { opacity: 1; box-shadow: 0 0 5px #00d4ff; }
+}
+
+/* Alt robot wheels inherit from base .robot-wheel but sit relative to alt body */
+.robot-alt .robot-wheel {
+    border-color: #00d4ff;
+    background: rgba(0, 212, 255, 0.3);
 }
 
 .progress-total {
