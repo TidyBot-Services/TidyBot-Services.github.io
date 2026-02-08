@@ -166,5 +166,29 @@
     "sha": "068ea22",
     "repo": "gripper_server",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-08 05:04",
+    "type": "setup",
+    "title": "Initial commit: Tidybot OpenClaw workspace templates",
+    "description": "Commit by tonylitianyu in tidybot-templates",
+    "files": [
+      "tidybot-templates/"
+    ],
+    "sha": "9e67593",
+    "repo": "tidybot-templates",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-08 05:35",
+    "type": "setup",
+    "title": "added setup",
+    "description": "Commit by tonylitianyu in tidybot-templates",
+    "files": [
+      "tidybot-templates/"
+    ],
+    "sha": "3dc2978",
+    "repo": "tidybot-templates",
+    "author": "tonylitianyu"
   }
 ]
