@@ -101,7 +101,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, transparent 30%, var(--color-bg) 75%);
+    background: radial-gradient(ellipse at 50% 50%, transparent 50%, var(--color-bg) 90%);
     pointer-events: none;
 }
 
