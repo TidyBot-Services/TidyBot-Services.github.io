@@ -792,6 +792,30 @@
     "author": "tonylitianyu"
   },
   {
+    "timestamp": "2026-02-10 18:46",
+    "type": "feature",
+    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
+    "description": "Commit by tonylitianyu in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "7c971d1",
+    "repo": "Tidybot-Universe",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-10 19:12",
+    "type": "feature",
+    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
+    "description": "Commit by Tidybot in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "4090d82",
+    "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
     "timestamp": "2026-02-10 19:12",
     "type": "feature",
     "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
@@ -837,6 +861,42 @@
     ],
     "sha": "4150187",
     "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-10 21:04",
+    "type": "feature",
+    "title": "Add display section and validate endpoint to system guide",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "bbe3195",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-10 21:05",
+    "type": "fix",
+    "title": "Fix outdated org refs and docs link in workspace templates",
+    "description": "Commit by Tidybot in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "465d01f",
+    "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-10 21:13",
+    "type": "feature",
+    "title": "Add port table and face/camera links to service dashboard",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "f9e2a36",
+    "repo": "agent_server",
     "author": "Tidybot"
   }
 ]
