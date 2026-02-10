@@ -1,6 +1,6 @@
 // ============================================
-// TIDYBOT ARMY — HEX GALLERY TIMELINE
-// Two galleries (backend / frontend) with
+// TIDYBOT UNIVERSE — HEX GALLERY
+// Two galleries (services / skills) with
 // scattered hexes, popup overlay detail view
 // ============================================
 
@@ -12,7 +12,10 @@ const typeConfig = {
     test:     { label: 'Testing',  color: '#00d4ff' },
     docs:     { label: 'Docs',     color: '#6b6b7b' },
     deploy:   { label: 'Deploy',   color: '#ff6b00' },
-    repo:     { label: 'Repo',     color: '#00d4ff' }
+    repo:     { label: 'Repo',     color: '#00d4ff' },
+    hardware_service: { label: 'Hardware', color: '#ff3b30' },
+    agent_service:    { label: 'Agent',    color: '#9d4edd' },
+    software_service: { label: 'Software', color: '#ffd700' }
 };
 
 const HEX_SIZES = {
@@ -46,20 +49,16 @@ let layoutConfig = getLayoutConfig();
 // DATA LOADING
 // ============================================
 
-async function loadActivityLog() {
-    try {
-        const r = await fetch('./logs/entries.json');
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return await r.json();
-    } catch (e) {
-        console.error('Failed to load entries:', e);
-        return [];
-    }
+function classifyServiceRepo(name) {
+    const n = name.toLowerCase();
+    if (/arm|gripper|mocap|base/.test(n)) return 'hardware_service';
+    if (/agent/.test(n)) return 'agent_service';
+    return 'software_service';
 }
 
-async function loadRepos() {
+async function loadRepos(file) {
     try {
-        const r = await fetch('./logs/repos.json');
+        const r = await fetch(file);
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const repos = await r.json();
         return repos.map((repo, i) => ({
@@ -87,6 +86,14 @@ async function loadRepos() {
     }
 }
 
+async function loadServices() {
+    const repos = await loadRepos('./logs/services.json');
+    return repos.map(repo => ({
+        ...repo,
+        type: classifyServiceRepo(repo.title)
+    }));
+}
+
 function prepareEntries(entries) {
     const sorted = [...entries].sort((a, b) => {
         const tA = a.timestamp ? a.timestamp.replace(' ', 'T') : '';
@@ -112,6 +119,7 @@ function getHexSizeClass(entry, index, cfg) {
             else size = 'md';
             break;
         case 'setup': case 'repo': case 'refactor':
+        case 'hardware_service': case 'agent_service': case 'software_service':
             if (hash < 10) size = 'xl';
             else if (hash < 30) size = 'lg';
             else if (hash < 65) size = 'md';
@@ -720,13 +728,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     initHoneycomb();
     initParallax();
 
-    const [commits, repos] = await Promise.all([loadActivityLog(), loadRepos()]);
+    const [skills, services] = await Promise.all([
+        loadRepos('./logs/repos.json'),
+        loadServices()
+    ]);
 
-    // Backend: all commits
-    initGallery('backend', prepareEntries(commits));
+    // Services: repos from TidyBot-Services org
+    initGallery('backend', prepareEntries(services));
 
-    // Frontend: repos
-    initGallery('frontend', prepareEntries(repos));
+    // Skills: repos from tidybot-skills org
+    initGallery('frontend', prepareEntries(skills));
 
     setupGlobalEvents();
     tick();
@@ -737,9 +748,12 @@ window.TidyBotTimeline = {
     openEntry: (gallery, index) => openPopup(gallery, index),
     getGallery: (name) => galleries[name],
     reload: async () => {
-        const [commits, repos] = await Promise.all([loadActivityLog(), loadRepos()]);
-        galleries.backend && (galleries.backend.entries = prepareEntries(commits));
-        galleries.frontend && (galleries.frontend.entries = prepareEntries(repos));
+        const [skills, services] = await Promise.all([
+            loadRepos('./logs/repos.json'),
+            loadServices()
+        ]);
+        galleries.backend && (galleries.backend.entries = prepareEntries(services));
+        galleries.frontend && (galleries.frontend.entries = prepareEntries(skills));
         for (const n in galleries) renderGallery(n);
     }
 };
