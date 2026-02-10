@@ -515,20 +515,32 @@ function setupGalleryEvents(name) {
     // Touch
     g.viewport.addEventListener('touchstart', (e) => {
         g.dragging = true;
+        g.touchLocked = false;
         dragMoved = false;
         g.dragX = e.touches[0].clientX;
+        g.dragY = e.touches[0].clientY;
         g.dragScroll = g.scrollTarget;
     }, { passive: true });
 
     g.viewport.addEventListener('touchmove', (e) => {
         if (!g.dragging) return;
         const dx = g.dragX - e.touches[0].clientX;
-        if (Math.abs(dx) > 4) dragMoved = true;
+        const dy = g.dragY - e.touches[0].clientY;
+
+        // First significant movement decides: horizontal = gallery scroll, vertical = page scroll
+        if (!g.touchLocked && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+            g.touchLocked = true;
+            g.touchHorizontal = Math.abs(dx) > Math.abs(dy);
+        }
+
+        if (!g.touchLocked || !g.touchHorizontal) return; // let vertical scroll through
+
         e.preventDefault();
+        dragMoved = true;
         g.scrollTarget = clamp(g.dragScroll + dx, 0, g.scrollMax);
     }, { passive: false });
 
-    g.viewport.addEventListener('touchend', () => { g.dragging = false; });
+    g.viewport.addEventListener('touchend', () => { g.dragging = false; g.touchLocked = false; });
 
     // Click
     g.viewport.addEventListener('click', (e) => {
