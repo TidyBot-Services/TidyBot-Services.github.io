@@ -21,7 +21,7 @@ const typeConfig = {
 const HEX_SIZES = {
     xl: { w: 270, h: 310 },
     lg: { w: 210, h: 242 },
-    md: { w: 170, h: 196 },
+    md: { w: 190, h: 219 },
     sm: { w: 175, h: 202 },
     xs: { w: 155, h: 178 }
 };
