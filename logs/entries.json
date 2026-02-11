@@ -1186,5 +1186,65 @@
     "sha": "d33720c",
     "repo": "camera_realsense_service",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-11 20:48",
+    "type": "docs",
+    "title": "Rewrite README for humans",
+    "description": "Commit by Claude in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "5ccf1dc",
+    "repo": "agent_server",
+    "author": "Claude"
+  },
+  {
+    "timestamp": "2026-02-11 22:14",
+    "type": "docs",
+    "title": "Split README into human overview and agent guide",
+    "description": "Commit by Claude in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "5e3e842",
+    "repo": "agent_server",
+    "author": "Claude"
+  },
+  {
+    "timestamp": "2026-02-11 22:17",
+    "type": "docs",
+    "title": "Rename AGENT_GUIDE.md to README_DETAILED.md",
+    "description": "Commit by Claude in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "f615cc9",
+    "repo": "agent_server",
+    "author": "Claude"
+  },
+  {
+    "timestamp": "2026-02-11 22:18",
+    "type": "feature",
+    "title": "Update TidyBot Universe link to new landing page URL",
+    "description": "Commit by Claude in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "21ee6f7",
+    "repo": "agent_server",
+    "author": "Claude"
+  },
+  {
+    "timestamp": "2026-02-11 22:19",
+    "type": "docs",
+    "title": "Merge pull request #1 from TidyBot-Services/claude/improve-readme-0S0dU",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "13ababf",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
   }
 ]
