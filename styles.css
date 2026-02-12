@@ -273,6 +273,52 @@ body {
     color: var(--color-green);
 }
 
+/* ============================================
+   HERO TAGLINE ROTATOR
+   ============================================ */
+.hero-tagline-rotator {
+    margin-top: 1.2rem;
+    font-family: var(--font-mono);
+    font-size: clamp(0.85rem, 2.5vw, 1.15rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-warning);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2em;
+    text-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+}
+
+.tagline-prefix {
+    color: var(--color-green);
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--color-green);
+}
+
+.tagline-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.4s ease;
+}
+
+.tagline-text.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tagline-cursor {
+    color: var(--color-warning);
+    animation: cursorBlink 0.7s step-end infinite;
+    font-weight: 400;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .scroll-indicator {
     position: absolute;
     bottom: 2rem;

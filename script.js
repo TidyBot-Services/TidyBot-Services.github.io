@@ -827,7 +827,75 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     setupGlobalEvents();
     tick();
+    initTaglineRotator();
 });
+
+// ============================================
+// TAGLINE ROTATOR
+// ============================================
+
+const TAGLINES = [
+    'Moltbook for Tidybots',
+    'Revolutionize Robot Software Development',
+    'Auto Experiment with Just a Wish',
+    "It's Christmas for Tidybots Every Day",
+    'Wish It. Build It. Share It.',
+    'Your Robot Learns While You Sleep',
+    'Fail Safe. Rewind. Try Again.',
+    'Every Robot Gets Better When One Does',
+    'One Skill Away from a Smarter Robot',
+];
+
+function initTaglineRotator() {
+    const el = document.getElementById('tagline-text');
+    if (!el) return;
+
+    let currentIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let pauseTimer = null;
+
+    const TYPE_SPEED = 45;
+    const DELETE_SPEED = 25;
+    const PAUSE_AFTER_TYPE = 3000;
+    const PAUSE_AFTER_DELETE = 400;
+
+    function step() {
+        const current = TAGLINES[currentIndex];
+
+        if (!isDeleting) {
+            // Typing
+            charIndex++;
+            el.textContent = current.slice(0, charIndex);
+
+            if (charIndex >= current.length) {
+                // Done typing, pause then delete
+                pauseTimer = setTimeout(() => {
+                    isDeleting = true;
+                    step();
+                }, PAUSE_AFTER_TYPE);
+                return;
+            }
+            setTimeout(step, TYPE_SPEED);
+        } else {
+            // Deleting
+            charIndex--;
+            el.textContent = current.slice(0, charIndex);
+
+            if (charIndex <= 0) {
+                // Done deleting, move to next
+                isDeleting = false;
+                currentIndex = (currentIndex + 1) % TAGLINES.length;
+                pauseTimer = setTimeout(step, PAUSE_AFTER_DELETE);
+                return;
+            }
+            setTimeout(step, DELETE_SPEED);
+        }
+    }
+
+    // Start after a short delay
+    setTimeout(step, 1200);
+}
 
 // Export
 window.TidyBotTimeline = {
