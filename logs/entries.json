@@ -1282,5 +1282,41 @@
     "sha": "8d18adc",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-12 21:46",
+    "type": "feature",
+    "title": "change base height",
+    "description": "Commit by tonylitianyu in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "bf176dc",
+    "repo": "Tidybot-Universe",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-12 22:02",
+    "type": "feature",
+    "title": "Add raw URLs for catalog.json and wishlist.json in MISSION.md",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "225cee2",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-12 22:36",
+    "type": "feature",
+    "title": "Clarify agent vs skill code boundary in MISSION.md",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "06703b6",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
