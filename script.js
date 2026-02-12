@@ -844,6 +844,8 @@ const TAGLINES = [
     'Fail Safe. Rewind. Try Again.',
     'Every Robot Gets Better When One Does',
     'One Skill Away from a Smarter Robot',
+    'Slurm Server for your Tidybot',
+    'Automate 90 % of your Experiments',
 ];
 
 function initTaglineRotator() {
