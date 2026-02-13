@@ -1354,5 +1354,41 @@
     "sha": "d380b85",
     "repo": "agent_server",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-13 03:14",
+    "type": "fix",
+    "title": "Fix monitoring section to reference /code/status instead of /code/result",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "357cb84",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-13 03:52",
+    "type": "feature",
+    "title": "Return max_duration_s and idle_timeout_s in lease grant responses",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "4e8dfb0",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-13 03:55",
+    "type": "feature",
+    "title": "Include error and stop_reason in /code/status response",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "f245f7f",
+    "repo": "agent_server",
+    "author": "Tidybot"
   }
 ]
