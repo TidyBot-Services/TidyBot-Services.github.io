@@ -1402,5 +1402,101 @@
     "sha": "d50a22c",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-14 00:06",
+    "type": "setup",
+    "title": "Initial commit",
+    "description": "Commit by qifei-c in yolo-service",
+    "files": [
+      "yolo-service/"
+    ],
+    "sha": "d77e32c",
+    "repo": "yolo-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-14 00:07",
+    "type": "feature",
+    "title": "Add basic FastAPI YOLO implementation",
+    "description": "Commit by qifei-c in yolo-service",
+    "files": [
+      "yolo-service/"
+    ],
+    "sha": "77af124",
+    "repo": "yolo-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-14 00:28",
+    "type": "feature",
+    "title": "Increase face visualization size from 280px to 420px",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "4cc477a",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-14 00:30",
+    "type": "feature",
+    "title": "Add auth, mocap, execution recording, arm error handling, YOLO masks",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "f1b15f8",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-14 00:32",
+    "type": "feature",
+    "title": "Add I/O lock for thread-safe Modbus register access",
+    "description": "Commit by Tidybot in gripper_robotiq_service",
+    "files": [
+      "gripper_robotiq_service/"
+    ],
+    "sha": "03776f9",
+    "repo": "gripper_robotiq_service",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-14 00:32",
+    "type": "fix",
+    "title": "Fix WebSocket concurrent send race, add wrist cam with 180° rotation",
+    "description": "Commit by Tidybot in camera_realsense_service",
+    "files": [
+      "camera_realsense_service/"
+    ],
+    "sha": "7e3e69c",
+    "repo": "camera_realsense_service",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-14 00:32",
+    "type": "feature",
+    "title": "Open gripper before rewind, add go_home, record mocap/odom poses",
+    "description": "Commit by Tidybot in agent_system_logger",
+    "files": [
+      "agent_system_logger/"
+    ],
+    "sha": "191a26e",
+    "repo": "agent_system_logger",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-14 02:26",
+    "type": "feature",
+    "title": "Full service: GPU inference, health endpoint, client SDK, docs",
+    "description": "Commit by qifei-c in yolo-service",
+    "files": [
+      "yolo-service/"
+    ],
+    "sha": "b15a378",
+    "repo": "yolo-service",
+    "author": "qifei-c"
   }
 ]
