@@ -898,5 +898,41 @@
     "sha": "b15a378",
     "repo": "yolo-service",
     "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-14 02:51",
+    "type": "feature",
+    "title": "Publish yolo-detection v0.2.0 to catalog (detection + segmentation)",
+    "description": "Commit by qifei-c in backend_wishlist",
+    "files": [
+      "backend_wishlist/"
+    ],
+    "sha": "eab2bdb",
+    "repo": "backend_wishlist",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-14 02:51",
+    "type": "feature",
+    "title": "v0.2.0: segmentation masks, updated client SDK, full API docs",
+    "description": "Commit by qifei-c in yolo-service",
+    "files": [
+      "yolo-service/"
+    ],
+    "sha": "e94501a",
+    "repo": "yolo-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-14 04:26",
+    "type": "fix",
+    "title": "Fix stale timeline URLs to point to new landing page",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "bdc7366",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
