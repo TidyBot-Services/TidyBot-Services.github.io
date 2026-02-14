@@ -246,7 +246,7 @@ function renderGallery(name) {
     html += `<div class="gallery-line" style="top:${lineY}px;"></div>`;
 
     // Robot at end of line
-    const robotType = name === 'frontend' ? 'cyan' : 'purple';
+    const robotType = name === 'skills' ? 'cyan' : 'purple';
     const robotX = totalW - cfg.padX * 0.6;
     html += createRobotHTML(robotType, robotX, lineY);
 
@@ -865,13 +865,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { agents, nonAgents } = splitAgentServices(services);
 
     // Skills: repos from tidybot-skills org
-    initGallery('frontend', prepareEntries(skills));
+    initGallery('skills', prepareEntries(skills));
 
     // Agents: repos with "agent" in the name (the glue between skills and services)
     renderAgents(prepareEntries(agents));
 
     // Services: remaining repos from TidyBot-Services org
-    initGallery('backend', prepareEntries(nonAgents));
+    initGallery('services', prepareEntries(nonAgents));
 
     setupGlobalEvents();
     tick();
@@ -957,9 +957,9 @@ window.TidyBotTimeline = {
             loadServices()
         ]);
         const { agents, nonAgents } = splitAgentServices(services);
-        galleries.frontend && (galleries.frontend.entries = prepareEntries(skills));
+        galleries.skills && (galleries.skills.entries = prepareEntries(skills));
         renderAgents(prepareEntries(agents));
-        galleries.backend && (galleries.backend.entries = prepareEntries(nonAgents));
+        galleries.services && (galleries.services.entries = prepareEntries(nonAgents));
         for (const n in galleries) renderGallery(n);
     }
 };

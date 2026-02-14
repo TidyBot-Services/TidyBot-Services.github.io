@@ -3,12 +3,12 @@
     "timestamp": "2026-02-03 16:59",
     "type": "feature",
     "title": "first commit with robotiq",
-    "description": "Commit by tonylitianyu in gripper_server",
+    "description": "Commit by tonylitianyu in gripper_robotiq_service",
     "files": [
-      "gripper_server/"
+      "gripper_robotiq_service/"
     ],
     "sha": "1f98910",
-    "repo": "gripper_server",
+    "repo": "gripper_robotiq_service",
     "author": "tonylitianyu"
   },
   {
@@ -39,48 +39,48 @@
     "timestamp": "2026-02-05 05:41",
     "type": "feature",
     "title": "Add .gitignore and improve log visibility",
-    "description": "Commit by Tidybot in gripper_server",
+    "description": "Commit by Tidybot in gripper_robotiq_service",
     "files": [
-      "gripper_server/"
+      "gripper_robotiq_service/"
     ],
     "sha": "1e4a362",
-    "repo": "gripper_server",
+    "repo": "gripper_robotiq_service",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-05 05:44",
     "type": "test",
     "title": "Remove old trajectory.py, add test and utility files",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "a27cbd4",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-05 18:59",
     "type": "feature",
     "title": "Add rewind SDK and smooth arm interpolation",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "fa19a4e",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-05 19:16",
     "type": "feature",
     "title": "Add arm.go_home() method for moving to home position",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "e5f58b0",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
@@ -99,72 +99,72 @@
     "timestamp": "2026-02-05 19:52",
     "type": "deploy",
     "title": "Add auto-reset to home on lease release",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "551aae8",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-05 20:17",
     "type": "feature",
     "title": "Add --no-dashboard flag to disable web dashboard GUI",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "8e79699",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-06 06:08",
     "type": "test",
     "title": "Add code execution history, lease queue test, and move tests to tests/",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "39c5013",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-06 18:10",
     "type": "feature",
     "title": "Hide direct command API from docs, render SDK docs as HTML",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "7367e05",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-07 05:23",
     "type": "feature",
     "title": "Add Cartesian arm control, velocity tracking, wrench data, and monitors",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "1fdef3d",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-07 05:23",
     "type": "feature",
     "title": "Migrate print statements to logging module",
-    "description": "Commit by Tidybot in gripper_server",
+    "description": "Commit by Tidybot in gripper_robotiq_service",
     "files": [
-      "gripper_server/"
+      "gripper_robotiq_service/"
     ],
     "sha": "068ea22",
-    "repo": "gripper_server",
+    "repo": "gripper_robotiq_service",
     "author": "Tidybot"
   },
   {
@@ -231,180 +231,24 @@
     "timestamp": "2026-02-08 06:22",
     "type": "feature",
     "title": "Add YOLO, display, code executor improvements, and 3cm move tolerance",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "605580a",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-08 16:53",
     "type": "feature",
     "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "22123ee",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
@@ -519,18 +363,6 @@
     "timestamp": "2026-02-09 16:11",
     "type": "test",
     "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in tidybot-agent-server",
-    "files": [
-      "tidybot-agent-server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "tidybot-agent-server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
     "description": "Commit by Tidybot in agent_server",
     "files": [
       "agent_server/"
@@ -552,135 +384,15 @@
     "author": "Tidybot"
   },
   {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-09 17:10",
     "type": "feature",
     "title": "Lower minimum motion duration from 2.0s to 0.5s for faster small moves",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "6417f0a",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
@@ -699,12 +411,12 @@
     "timestamp": "2026-02-09 18:51",
     "type": "feature",
     "title": "Preserve scroll positions in code execution dashboard during polling",
-    "description": "Commit by Tidybot in tidybot-agent-server",
+    "description": "Commit by Tidybot in agent_server",
     "files": [
-      "tidybot-agent-server/"
+      "agent_server/"
     ],
     "sha": "6d9fd17",
-    "repo": "tidybot-agent-server",
+    "repo": "agent_server",
     "author": "Tidybot"
   },
   {
@@ -770,7 +482,7 @@
   {
     "timestamp": "2026-02-10 18:46",
     "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
+    "title": "Merge branch 'master' of https://github.com/TidyBot-Services/Tidybot-Universe",
     "description": "Commit by tonylitianyu in Tidybot-Universe",
     "files": [
       "Tidybot-Universe/"
@@ -778,318 +490,6 @@
     "sha": "7c971d1",
     "repo": "Tidybot-Universe",
     "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 18:46",
-    "type": "feature",
-    "title": "Merge branch 'master' of https://github.com/TidyBotArmy-Backend/tidybot-template",
-    "description": "Commit by tonylitianyu in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c971d1",
-    "repo": "Tidybot-Universe",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-10 19:12",
-    "type": "feature",
-    "title": "Add agent server safety section, wishlists, hardware flexibility, services dev w",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4090d82",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
   },
   {
     "timestamp": "2026-02-10 19:12",

@@ -53,8 +53,8 @@ jobs:
               console.log('No existing entries, starting fresh');
             }
 
-            // Get existing timestamps to avoid duplicates
-            const existingTimestamps = new Set(entries.map(e => e.timestamp + e.title));
+            // Deduplicate by sha:repo (unique commit identity)
+            const existingKeys = new Set(entries.map(e => e.sha + ':' + e.repo));
 
             // Fetch repos in the org
             const repos = await github.paginate(github.rest.repos.listForOrg, {
@@ -101,19 +101,20 @@ jobs:
                   else if (msgLower.includes('deploy') || msgLower.includes('release')) type = 'deploy';
                   else if (msgLower.includes('setup') || msgLower.includes('init') || msgLower.includes('config')) type = 'setup';
 
-                  const key = timestamp + message;
-                  if (!existingTimestamps.has(key)) {
+                  const sha7 = commit.sha.slice(0, 7);
+                  const key = sha7 + ':' + repo.name;
+                  if (!existingKeys.has(key)) {
                     entries.push({
                       timestamp: timestamp,
                       type: type,
                       title: message.slice(0, 80),
                       description: `Commit by ${commit.commit.author.name} in ${repo.name}`,
                       files: [`${repo.name}/`],
-                      sha: commit.sha.slice(0, 7),
+                      sha: sha7,
                       repo: repo.name,
                       author: commit.commit.author.name
                     });
-                    existingTimestamps.add(key);
+                    existingKeys.add(key);
                     console.log(`Added: ${message.slice(0, 50)}...`);
                   }
                 }
@@ -121,6 +122,29 @@ jobs:
                 console.log(`Error fetching commits for ${repo.name}: ${e.message}`);
               }
             }
+
+            // Normalize legacy repo names
+            const REPO_RENAMES = {
+              'tidybot-agent-server': 'agent_server',
+              'gripper_server': 'gripper_robotiq_service'
+            };
+            for (const e of entries) {
+              const canonical = REPO_RENAMES[e.repo];
+              if (canonical) {
+                e.description = e.description.replace(`in ${e.repo}`, `in ${canonical}`);
+                e.files = e.files.map(f => f.replace(`${e.repo}/`, `${canonical}/`));
+                e.repo = canonical;
+              }
+            }
+
+            // Deduplicate again after renames (in case old + new name entries coexist)
+            const seen = new Set();
+            entries = entries.filter(e => {
+              const k = e.sha + ':' + e.repo;
+              if (seen.has(k)) return false;
+              seen.add(k);
+              return true;
+            });
 
             // Sort by timestamp (newest last)
             entries.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
