@@ -51,7 +51,7 @@ let layoutConfig = getLayoutConfig();
 
 function classifyServiceRepo(name) {
     const n = name.toLowerCase();
-    if (/arm|gripper|mocap|base/.test(n)) return 'hardware_service';
+    if (/arm|gripper|mocap|base|camera/.test(n)) return 'hardware_service';
     if (/agent/.test(n)) return 'agent_service';
     return 'software_service';
 }
