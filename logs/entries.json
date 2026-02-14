@@ -934,5 +934,53 @@
     "sha": "bdc7366",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-14 04:54",
+    "type": "fix",
+    "title": "Fix monitoring tips: use /code/status for live output, add token cost warnings",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "1a57b90",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-14 04:56",
+    "type": "feature",
+    "title": "Add token-conscious monitoring guidance to MISSION.md",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "aba302d",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-14 04:57",
+    "type": "fix",
+    "title": "Fix /code/status param names to match implementation (stdout_offset/stderr_offse",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "f50587d",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-14 04:57",
+    "type": "fix",
+    "title": "Fix /code/status param names in MISSION.md to match actual API",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "2bdd319",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
