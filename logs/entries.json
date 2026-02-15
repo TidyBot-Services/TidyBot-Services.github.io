@@ -1378,5 +1378,53 @@
     "sha": "42ab2b5",
     "repo": "services_wishlist",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-15 08:59",
+    "type": "feature",
+    "title": "mark nav-mapping-service as building",
+    "description": "Commit by Selina Wan in services_wishlist",
+    "files": [
+      "services_wishlist/"
+    ],
+    "sha": "b0bfeb8",
+    "repo": "services_wishlist",
+    "author": "Selina Wan"
+  },
+  {
+    "timestamp": "2026-02-15 09:02",
+    "type": "feature",
+    "title": "Mark nav-mapping-service as done",
+    "description": "Commit by Selina Wan in services_wishlist",
+    "files": [
+      "services_wishlist/"
+    ],
+    "sha": "ef49be6",
+    "repo": "services_wishlist",
+    "author": "Selina Wan"
+  },
+  {
+    "timestamp": "2026-02-15 09:02",
+    "type": "feature",
+    "title": "Add nav-mapping-service to catalog",
+    "description": "Commit by Selina Wan in services_wishlist",
+    "files": [
+      "services_wishlist/"
+    ],
+    "sha": "0d30f55",
+    "repo": "services_wishlist",
+    "author": "Selina Wan"
+  },
+  {
+    "timestamp": "2026-02-15 09:02",
+    "type": "setup",
+    "title": "Initial nav-mapping-service: occupancy grid, A* planning, frontier detection",
+    "description": "Commit by qifei-c in nav-mapping-service",
+    "files": [
+      "nav-mapping-service/"
+    ],
+    "sha": "4dab179",
+    "repo": "nav-mapping-service",
+    "author": "qifei-c"
   }
 ]
