@@ -1438,5 +1438,29 @@
     "sha": "267cf2e",
     "repo": "services_wishlist",
     "author": "Selina Wan"
+  },
+  {
+    "timestamp": "2026-02-15 16:29",
+    "type": "feature",
+    "title": "Add -L flag to curl instruction for following redirects",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c846fbe",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-15 16:40",
+    "type": "feature",
+    "title": "Show required request bodies in lease workflow steps",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "a85c108",
+    "repo": "agent_server",
+    "author": "Tidybot"
   }
 ]
