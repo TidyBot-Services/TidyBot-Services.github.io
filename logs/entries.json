@@ -1366,5 +1366,17 @@
     "sha": "79be2eb",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-15 08:18",
+    "type": "feature",
+    "title": "Request: raw depth SDK access + navigation/mapping service",
+    "description": "Commit by Yifei Simon Shao in services_wishlist",
+    "files": [
+      "services_wishlist/"
+    ],
+    "sha": "42ab2b5",
+    "repo": "services_wishlist",
+    "author": "Yifei Simon Shao"
   }
 ]
