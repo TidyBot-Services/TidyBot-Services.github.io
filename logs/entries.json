@@ -1342,5 +1342,29 @@
     "sha": "5ebb993",
     "repo": "agent_server",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-15 06:07",
+    "type": "feature",
+    "title": "Improve guide docs: auth, X-Lease-Id, idle tips, frame filenames",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "8deb649",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-15 06:07",
+    "type": "feature",
+    "title": "Add web_fetch LAN note to ROBOT.md template",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "79be2eb",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
