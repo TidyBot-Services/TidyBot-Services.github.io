@@ -1306,5 +1306,41 @@
     "sha": "042454b",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-14 23:36",
+    "type": "feature",
+    "title": "Split skill-dev and skill-publish, add stats reset on code change",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "f452da7",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-14 23:43",
+    "type": "feature",
+    "title": "Update guide: recorded frames, recording endpoints",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "89f7924",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-15 00:03",
+    "type": "feature",
+    "title": "Auto-populate state_observation endpoints from FastAPI route introspection",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "5ebb993",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
   }
 ]
