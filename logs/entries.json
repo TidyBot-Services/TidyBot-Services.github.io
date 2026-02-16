@@ -1474,5 +1474,185 @@
     "sha": "4737a8d",
     "repo": "Tidybot-Universe",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-16 00:46",
+    "type": "feature",
+    "title": "Add client SDK spec for sandbox-compatible service clients",
+    "description": "Commit by Tidybot in services_wishlist",
+    "files": [
+      "services_wishlist/"
+    ],
+    "sha": "2090d50",
+    "repo": "services_wishlist",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-16 01:07",
+    "type": "feature",
+    "title": "rewrite client.py for sandbox compatibility (urllib)",
+    "description": "Commit by qifei-c in grounded-sam2-service",
+    "files": [
+      "grounded-sam2-service/"
+    ],
+    "sha": "589babb",
+    "repo": "grounded-sam2-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 01:07",
+    "type": "feature",
+    "title": "rewrite client.py for sandbox compatibility (urllib)",
+    "description": "Commit by qifei-c in graspgen-service",
+    "files": [
+      "graspgen-service/"
+    ],
+    "sha": "7f7d31d",
+    "repo": "graspgen-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 01:07",
+    "type": "feature",
+    "title": "rewrite client.py for sandbox compatibility (urllib)",
+    "description": "Commit by qifei-c in foundation-stereo-service",
+    "files": [
+      "foundation-stereo-service/"
+    ],
+    "sha": "219ca81",
+    "repo": "foundation-stereo-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 01:07",
+    "type": "feature",
+    "title": "rewrite client.py for sandbox compatibility (urllib)",
+    "description": "Commit by qifei-c in nav-mapping-service",
+    "files": [
+      "nav-mapping-service/"
+    ],
+    "sha": "cdd7ca3",
+    "repo": "nav-mapping-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 01:08",
+    "type": "feature",
+    "title": "add usage fields to grounded-sam2, graspgen, foundation-stereo, nav-mapping",
+    "description": "Commit by qifei-c in services_wishlist",
+    "files": [
+      "services_wishlist/"
+    ],
+    "sha": "fb597f1",
+    "repo": "services_wishlist",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 01:49",
+    "type": "feature",
+    "title": "rename service client import path: services → service_clients",
+    "description": "Commit by Tidybot in services_wishlist",
+    "files": [
+      "services_wishlist/"
+    ],
+    "sha": "b282574",
+    "repo": "services_wishlist",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-16 01:55",
+    "type": "fix",
+    "title": "fix: update import path from services to service_clients",
+    "description": "Commit by qifei-c in grounded-sam2-service",
+    "files": [
+      "grounded-sam2-service/"
+    ],
+    "sha": "23745ae",
+    "repo": "grounded-sam2-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 01:55",
+    "type": "fix",
+    "title": "fix: update import path from services to service_clients",
+    "description": "Commit by qifei-c in graspgen-service",
+    "files": [
+      "graspgen-service/"
+    ],
+    "sha": "ec86f77",
+    "repo": "graspgen-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 01:55",
+    "type": "fix",
+    "title": "fix: update import path from services to service_clients",
+    "description": "Commit by qifei-c in foundation-stereo-service",
+    "files": [
+      "foundation-stereo-service/"
+    ],
+    "sha": "deb30b4",
+    "repo": "foundation-stereo-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 01:55",
+    "type": "fix",
+    "title": "fix: update import path from services to service_clients",
+    "description": "Commit by qifei-c in nav-mapping-service",
+    "files": [
+      "nav-mapping-service/"
+    ],
+    "sha": "01905b3",
+    "repo": "nav-mapping-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 02:03",
+    "type": "docs",
+    "title": "docs: update README for urllib client and service_clients import path",
+    "description": "Commit by qifei-c in grounded-sam2-service",
+    "files": [
+      "grounded-sam2-service/"
+    ],
+    "sha": "7b34b88",
+    "repo": "grounded-sam2-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 02:03",
+    "type": "docs",
+    "title": "docs: update README for urllib client and service_clients import path",
+    "description": "Commit by qifei-c in graspgen-service",
+    "files": [
+      "graspgen-service/"
+    ],
+    "sha": "fc0262d",
+    "repo": "graspgen-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 02:03",
+    "type": "docs",
+    "title": "docs: update README for urllib client and service_clients import path",
+    "description": "Commit by qifei-c in foundation-stereo-service",
+    "files": [
+      "foundation-stereo-service/"
+    ],
+    "sha": "7443020",
+    "repo": "foundation-stereo-service",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-16 02:03",
+    "type": "docs",
+    "title": "docs: update README for urllib client and service_clients import path",
+    "description": "Commit by qifei-c in nav-mapping-service",
+    "files": [
+      "nav-mapping-service/"
+    ],
+    "sha": "95aa03e",
+    "repo": "nav-mapping-service",
+    "author": "qifei-c"
   }
 ]
