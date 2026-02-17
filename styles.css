@@ -147,7 +147,7 @@ body {
         var(--color-bg) 20px
     );
     padding: 0.4rem 0;
-    z-index: 100;
+    z-index: 1100;
     overflow: hidden;
     border-bottom: 2px solid var(--color-warning);
     box-shadow: 0 0 30px rgba(255, 107, 0, 0.4);
