@@ -607,6 +607,7 @@ body {
     position: relative;
     z-index: 1001;
     width: 65%;
+    margin: 0 auto;
     padding-bottom: 36.5625%; /* 65% * 56.25% = 16:9 */
     border: 1px solid var(--color-border);
     overflow: hidden;
