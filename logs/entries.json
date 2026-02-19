@@ -1966,5 +1966,65 @@
     "sha": "2ea223b",
     "repo": "grounded-sam2",
     "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-19 16:39",
+    "type": "feature",
+    "title": "Regenerate CLAUDE.md: fix state schema, add missing endpoints and SDK modules",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "efe18b3",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 16:39",
+    "type": "feature",
+    "title": "Regenerate service dev CLAUDE.md: add catalog workflow and current services",
+    "description": "Commit by Tidybot in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c7dd966",
+    "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 16:39",
+    "type": "feature",
+    "title": "Regenerate CLAUDE.md: add CLI args, IR stream names, client methods, dashboard",
+    "description": "Commit by Tidybot in camera_realsense_service",
+    "files": [
+      "camera_realsense_service/"
+    ],
+    "sha": "19634d1",
+    "repo": "camera_realsense_service",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 18:48",
+    "type": "setup",
+    "title": "Remove dead controller service definition (qp_arm_only.py doesn't exist)",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "6e1b2eb",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 18:48",
+    "type": "feature",
+    "title": "Mark INFRARED enum value as deprecated in favor of LEFT/RIGHT variants",
+    "description": "Commit by Tidybot in camera_realsense_service",
+    "files": [
+      "camera_realsense_service/"
+    ],
+    "sha": "43d52a8",
+    "repo": "camera_realsense_service",
+    "author": "Tidybot"
   }
 ]
