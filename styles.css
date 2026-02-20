@@ -147,7 +147,7 @@ body {
         var(--color-bg) 20px
     );
     padding: 0.4rem 0;
-    z-index: 100;
+    z-index: 1100;
     overflow: hidden;
     border-bottom: 2px solid var(--color-warning);
     box-shadow: 0 0 30px rgba(255, 107, 0, 0.4);
@@ -596,6 +596,36 @@ body {
 }
 
 /* ============================================
+   DEMO VIDEO SECTION
+   ============================================ */
+.demo-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.demo-video-wrapper {
+    position: relative;
+    z-index: 1001;
+    width: 65%;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--color-bg-secondary);
+}
+
+.demo-video-wrapper video {
+    display: block;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .demo-video-wrapper {
+        width: 100%;
+    }
+}
+
+/* ============================================
    HEX GALLERY TIMELINE
    ============================================ */
 .gallery-section {
@@ -679,6 +709,18 @@ button.gallery-wishlist {
     color: var(--color-gray);
     letter-spacing: 0.08em;
     margin-left: auto;
+}
+
+.gallery-blurb {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-soft);
+    letter-spacing: 0.03em;
+    line-height: 1.7;
+    margin-top: -0.75rem;
+    margin-bottom: 1.5rem;
+    max-width: 640px;
+    opacity: 0.85;
 }
 
 /* ============================================

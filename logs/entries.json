@@ -1882,5 +1882,173 @@
     "sha": "f0cd01b",
     "repo": ".github",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-17 19:47",
+    "type": "setup",
+    "title": "Add wishlist-monitor cron job to setup.sh + BOOTSTRAP.md fallback",
+    "description": "Commit by qifei-c in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "b71fb7c",
+    "repo": "Tidybot-Universe",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-17 19:52",
+    "type": "setup",
+    "title": "Flesh out service agent setup with full workspace customizations",
+    "description": "Commit by qifei-c in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "877db4c",
+    "repo": "Tidybot-Universe",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-17 20:33",
+    "type": "setup",
+    "title": "Add agent-server-setup with catalog sync, replace backend/frontend terminology",
+    "description": "Commit by Tidybot in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "eeb9a63",
+    "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-17 20:37",
+    "type": "docs",
+    "title": "Remove manual setup section from agent-server-setup README",
+    "description": "Commit by Tidybot in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "22bc3d9",
+    "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-17 20:43",
+    "type": "docs",
+    "title": "Remove tagline and ecosystem diagram from README",
+    "description": "Commit by Tidybot in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "d81ca67",
+    "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 00:08",
+    "type": "feature",
+    "title": "Add grounded-sam2 service to catalog",
+    "description": "Commit by Selina Wan in services_wishlist",
+    "files": [
+      "services_wishlist/"
+    ],
+    "sha": "a5e08bb",
+    "repo": "services_wishlist",
+    "author": "Selina Wan"
+  },
+  {
+    "timestamp": "2026-02-19 00:08",
+    "type": "setup",
+    "title": "Initial: Grounded SAM 2 service with FastAPI + client SDK",
+    "description": "Commit by qifei-c in grounded-sam2",
+    "files": [
+      "grounded-sam2/"
+    ],
+    "sha": "2ea223b",
+    "repo": "grounded-sam2",
+    "author": "qifei-c"
+  },
+  {
+    "timestamp": "2026-02-19 16:39",
+    "type": "feature",
+    "title": "Regenerate CLAUDE.md: fix state schema, add missing endpoints and SDK modules",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "efe18b3",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 16:39",
+    "type": "feature",
+    "title": "Regenerate service dev CLAUDE.md: add catalog workflow and current services",
+    "description": "Commit by Tidybot in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c7dd966",
+    "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 16:39",
+    "type": "feature",
+    "title": "Regenerate CLAUDE.md: add CLI args, IR stream names, client methods, dashboard",
+    "description": "Commit by Tidybot in camera_realsense_service",
+    "files": [
+      "camera_realsense_service/"
+    ],
+    "sha": "19634d1",
+    "repo": "camera_realsense_service",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 18:48",
+    "type": "setup",
+    "title": "Remove dead controller service definition (qp_arm_only.py doesn't exist)",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "6e1b2eb",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-19 18:48",
+    "type": "feature",
+    "title": "Mark INFRARED enum value as deprecated in favor of LEFT/RIGHT variants",
+    "description": "Commit by Tidybot in camera_realsense_service",
+    "files": [
+      "camera_realsense_service/"
+    ],
+    "sha": "43d52a8",
+    "repo": "camera_realsense_service",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-20 02:05",
+    "type": "feature",
+    "title": "Add mocap-corrected closed-loop base control",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "782ebbd",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-20 02:05",
+    "type": "feature",
+    "title": "Add mocap correction to rewind orchestrator",
+    "description": "Commit by Tidybot in agent_system_logger",
+    "files": [
+      "agent_system_logger/"
+    ],
+    "sha": "53ee62b",
+    "repo": "agent_system_logger",
+    "author": "Tidybot"
   }
 ]
