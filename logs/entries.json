@@ -2026,5 +2026,29 @@
     "sha": "43d52a8",
     "repo": "camera_realsense_service",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-20 02:05",
+    "type": "feature",
+    "title": "Add mocap-corrected closed-loop base control",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "782ebbd",
+    "repo": "agent_server",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-20 02:05",
+    "type": "feature",
+    "title": "Add mocap correction to rewind orchestrator",
+    "description": "Commit by Tidybot in agent_system_logger",
+    "files": [
+      "agent_system_logger/"
+    ],
+    "sha": "53ee62b",
+    "repo": "agent_system_logger",
+    "author": "Tidybot"
   }
 ]
