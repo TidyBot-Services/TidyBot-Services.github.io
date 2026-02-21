@@ -627,7 +627,7 @@ function setupGlobalEvents() {
     document.getElementById('popup-backdrop').addEventListener('click', closePopup);
     document.getElementById('popup-close').addEventListener('click', closePopup);
 
-    // Global wheel: block browser-back gesture & route horizontal to galleries
+    // Global wheel: block browser-back gesture & route horizontal to galleries / tree
     window.addEventListener('wheel', (e) => {
         const ax = Math.abs(e.deltaX);
         const ay = Math.abs(e.deltaY);
@@ -637,6 +637,16 @@ function setupGlobalEvents() {
 
         // This is a horizontal-dominant gesture — always block browser back
         e.preventDefault();
+
+        // Check if cursor is within the tree viewport
+        const treeVp = document.getElementById('skills-tree');
+        if (treeVp && treeVp.style.display !== 'none') {
+            const treeRect = treeVp.getBoundingClientRect();
+            if (e.clientY >= treeRect.top && e.clientY <= treeRect.bottom) {
+                treeVp.scrollLeft += e.deltaX;
+                return;
+            }
+        }
 
         // Find if cursor is within a gallery section
         for (const name in galleries) {
