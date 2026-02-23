@@ -47,7 +47,7 @@
     "name": "pick-up-object",
     "description": "IBVS visual servoing to pick up objects from the ground",
     "created_at": "2026-02-11T02:23:10Z",
-    "updated_at": "2026-02-21T21:01:51Z",
+    "updated_at": "2026-02-23T04:03:11Z",
     "html_url": "https://github.com/Tidybot-Skills/pick-up-object",
     "language": "Python",
     "stars": 0,
@@ -70,21 +70,14 @@
     ],
     "dependencies": [],
     "service_dependencies": [],
-    "sdk_functions": [
-      "yolo.segment_camera",
-      "arm.move_delta",
-      "arm.move_to",
-      "gripper.close",
-      "sensors.get_depth_image",
-      "display.show_status"
-    ]
+    "sdk_functions": []
   },
   {
     "id": "004",
     "name": "center-object",
     "description": "Center object in wrist camera using base movement",
     "created_at": "2026-02-13T17:31:41Z",
-    "updated_at": "2026-02-21T21:01:50Z",
+    "updated_at": "2026-02-23T04:03:08Z",
     "html_url": "https://github.com/Tidybot-Skills/center-object",
     "language": "Python",
     "stars": 0,
@@ -96,17 +89,14 @@
     "trial_images": [],
     "dependencies": [],
     "service_dependencies": [],
-    "sdk_functions": [
-      "yolo.segment_camera",
-      "base.move_delta"
-    ]
+    "sdk_functions": []
   },
   {
     "id": "005",
     "name": "find-and-pick-up",
     "description": "Find and pick up objects by chaining center-object and pick-up-object",
     "created_at": "2026-02-13T18:36:16Z",
-    "updated_at": "2026-02-21T21:01:52Z",
+    "updated_at": "2026-02-23T04:03:09Z",
     "html_url": "https://github.com/Tidybot-Skills/find-and-pick-up",
     "language": "Python",
     "stars": 0,
@@ -116,21 +106,16 @@
     "total_trials": 2,
     "institutions_tested": 1,
     "trial_images": [],
-    "dependencies": [
-      "center-object",
-      "pick-up-object"
-    ],
+    "dependencies": [],
     "service_dependencies": [],
-    "sdk_functions": [
-      "display.show_status"
-    ]
+    "sdk_functions": []
   },
   {
     "id": "006",
     "name": "place-object",
     "description": "Visual servoing place skill: raise-and-look-around with mask-only detection",
     "created_at": "2026-02-14T17:03:45Z",
-    "updated_at": "2026-02-21T21:01:51Z",
+    "updated_at": "2026-02-23T04:03:12Z",
     "html_url": "https://github.com/Tidybot-Skills/place-object",
     "language": "Python",
     "stars": 0,
@@ -142,21 +127,14 @@
     "trial_images": [],
     "dependencies": [],
     "service_dependencies": [],
-    "sdk_functions": [
-      "yolo.segment_camera",
-      "arm.move_delta",
-      "arm.move_to",
-      "gripper.open",
-      "sensors.get_depth_image",
-      "display.show_status"
-    ]
+    "sdk_functions": []
   },
   {
     "id": "007",
     "name": "pick-and-place",
     "description": "Combined pick-and-place skill: IBVS pick + visual servo place",
     "created_at": "2026-02-14T17:03:47Z",
-    "updated_at": "2026-02-21T21:01:53Z",
+    "updated_at": "2026-02-23T04:03:10Z",
     "html_url": "https://github.com/Tidybot-Skills/pick-and-place",
     "language": "Python",
     "stars": 0,
@@ -166,21 +144,16 @@
     "total_trials": 20,
     "institutions_tested": 1,
     "trial_images": [],
-    "dependencies": [
-      "pick-up-object",
-      "place-object"
-    ],
+    "dependencies": [],
     "service_dependencies": [],
-    "sdk_functions": [
-      "display.show_status"
-    ]
+    "sdk_functions": []
   },
   {
     "id": "008",
     "name": "visuomotor-keypoint-joint-policy",
     "description": "Learned diffusion policy: semantic keypoint tracking (CleanDIFT + CoTracker) → joint angle commands for Franka Panda",
     "created_at": "2026-02-18T01:08:57Z",
-    "updated_at": "2026-02-21T21:01:54Z",
+    "updated_at": "2026-02-23T04:04:12Z",
     "html_url": "https://github.com/Tidybot-Skills/visuomotor-keypoint-joint-policy",
     "language": "Python",
     "stars": 0,
@@ -192,9 +165,6 @@
     "trial_images": [],
     "dependencies": [],
     "service_dependencies": [],
-    "sdk_functions": [
-      "arm.move_to",
-      "arm.get_joint_positions"
-    ]
+    "sdk_functions": []
   }
 ]
