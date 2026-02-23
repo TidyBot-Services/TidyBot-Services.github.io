@@ -2218,5 +2218,17 @@
     "sha": "144ede8",
     "repo": "sim",
     "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-23 20:52",
+    "type": "setup",
+    "title": "Replace forks with upstream submodules + tidyverse setup script",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "af2d139",
+    "repo": "sim",
+    "author": "tonylitianyu"
   }
 ]
