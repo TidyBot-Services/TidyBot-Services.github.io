@@ -2170,5 +2170,41 @@
     "sha": "6f64d2c",
     "repo": "agent_server",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-02-23 03:54",
+    "type": "feature",
+    "title": "Update skills to tidybot-* naming convention, strip robot-specific info",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c8a7d2e",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-23 04:12",
+    "type": "feature",
+    "title": "Sync workspace templates with new skill structure",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "fd0e839",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-23 04:27",
+    "type": "docs",
+    "title": "Document tb-/dev-tb- naming convention and remote naming (drop prefix)",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "3066138",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
