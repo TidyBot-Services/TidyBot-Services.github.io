@@ -2206,5 +2206,17 @@
     "sha": "3066138",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-02-23 19:07",
+    "type": "setup",
+    "title": "Initial commit: agent server with dashboard, code execution, and camera streamin",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "144ede8",
+    "repo": "sim",
+    "author": "tonylitianyu"
   }
 ]
