@@ -107,8 +107,8 @@
     "institutions_tested": 1,
     "trial_images": [],
     "dependencies": [
-      "tb-center-object",
-      "tb-pick-up-object"
+      "center-object",
+      "pick-up-object"
     ],
     "service_dependencies": [],
     "sdk_functions": []
@@ -148,8 +148,8 @@
     "institutions_tested": 1,
     "trial_images": [],
     "dependencies": [
-      "tb-pick-up-object",
-      "tb-place-object"
+      "pick-up-object",
+      "place-object"
     ],
     "service_dependencies": [],
     "sdk_functions": []
