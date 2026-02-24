@@ -2302,5 +2302,29 @@
     "sha": "449ff61",
     "repo": "sim",
     "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-24 04:00",
+    "type": "fix",
+    "title": "Fix TidyVerse camera positions for both wrist and base cameras",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "b607f59",
+    "repo": "sim",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-24 04:37",
+    "type": "feature",
+    "title": "Add camera server and YOLO integration via SDK",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "2b2e45c",
+    "repo": "sim",
+    "author": "tonylitianyu"
   }
 ]
