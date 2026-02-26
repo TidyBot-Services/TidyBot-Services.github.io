@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-09 02:48",
-    "type": "feature",
-    "title": "Add backend collaboration workflow for new agents",
-    "description": "Commit by kaitianchao in tidybot-templates",
-    "files": [
-      "tidybot-templates/"
-    ],
-    "sha": "aff0c25",
-    "repo": "tidybot-templates",
-    "author": "kaitianchao"
-  },
-  {
     "timestamp": "2026-02-09 03:12",
     "type": "feature",
     "title": "Consolidate backend wishlist into tidybot-skill-dev skill",
@@ -2396,6 +2384,18 @@
       "sim/"
     ],
     "sha": "76cd896",
+    "repo": "sim",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-26 17:41",
+    "type": "fix",
+    "title": "Fix inverted gripper mapping, use relative imports in camera_server",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "4515352",
     "repo": "sim",
     "author": "tonylitianyu"
   }
