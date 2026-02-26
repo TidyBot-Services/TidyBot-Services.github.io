@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-02-08 06:22",
-    "type": "feature",
-    "title": "Add YOLO, display, code executor improvements, and 3cm move tolerance",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "605580a",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 16:53",
-    "type": "feature",
-    "title": "Add auto-generated system guide endpoint and document missing lease queue endpoi",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "22123ee",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-08 21:22",
-    "type": "feature",
-    "title": "added multiagent soul",
-    "description": "Commit by Selina22 in tidybot-templates",
-    "files": [
-      "tidybot-templates/"
-    ],
-    "sha": "115f193",
-    "repo": "tidybot-templates",
-    "author": "Selina22"
-  },
-  {
-    "timestamp": "2026-02-08 22:05",
-    "type": "feature",
-    "title": "update for skill building",
-    "description": "Commit by tonylitianyu in tidybot-templates",
-    "files": [
-      "tidybot-templates/"
-    ],
-    "sha": "c4f9fee",
-    "repo": "tidybot-templates",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-09 02:15",
-    "type": "setup",
-    "title": "Initialize backend wishlist repo",
-    "description": "Commit by kaitianchao in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "61443cd",
-    "repo": "services_wishlist",
-    "author": "kaitianchao"
-  },
-  {
     "timestamp": "2026-02-09 02:48",
     "type": "feature",
     "title": "Add backend collaboration workflow for new agents",
@@ -2396,6 +2336,66 @@
       "sim/"
     ],
     "sha": "3ced584",
+    "repo": "sim",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-26 02:07",
+    "type": "setup",
+    "title": "Remove robocasa/robosuite submodules, clone in setup.sh instead",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "c8d9e63",
+    "repo": "sim",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-26 02:09",
+    "type": "setup",
+    "title": "Remove all submodules, clone/symlink in setup.sh instead",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "f1e1dbd",
+    "repo": "sim",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-26 02:16",
+    "type": "feature",
+    "title": "Rename sim→sim_server, camera_server→sim_server/camera_server, tidyverse→tidybot",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "0226782",
+    "repo": "sim",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-26 02:17",
+    "type": "test",
+    "title": "Remove docs/ and test_yolo.py",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "cb31654",
+    "repo": "sim",
+    "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-26 02:18",
+    "type": "docs",
+    "title": "Update README to reflect current project structure",
+    "description": "Commit by tonylitianyu in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "76cd896",
     "repo": "sim",
     "author": "tonylitianyu"
   }
