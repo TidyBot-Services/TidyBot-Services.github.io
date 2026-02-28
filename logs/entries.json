@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-09 03:12",
-    "type": "feature",
-    "title": "Consolidate backend wishlist into tidybot-skill-dev skill",
-    "description": "Commit by kaitianchao in tidybot-templates",
-    "files": [
-      "tidybot-templates/"
-    ],
-    "sha": "4621f0e",
-    "repo": "tidybot-templates",
-    "author": "kaitianchao"
-  },
-  {
     "timestamp": "2026-02-09 03:17",
     "type": "feature",
     "title": "Add first request: camera extrinsic calibration",
@@ -2398,5 +2386,17 @@
     "sha": "4515352",
     "repo": "sim",
     "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-02-28 19:00",
+    "type": "setup",
+    "title": "Initial commit: shared files (logging_config, start_robot, sync_catalog, CLAUDE.",
+    "description": "Commit by Tidybot in common",
+    "files": [
+      "common/"
+    ],
+    "sha": "8aa79ae",
+    "repo": "common",
+    "author": "Tidybot"
   }
 ]
