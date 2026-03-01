@@ -1,101 +1,5 @@
 [
   {
-    "timestamp": "2026-02-09 03:17",
-    "type": "feature",
-    "title": "Add first request: camera extrinsic calibration",
-    "description": "Commit by kaitianchao in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "4f54566",
-    "repo": "services_wishlist",
-    "author": "kaitianchao"
-  },
-  {
-    "timestamp": "2026-02-09 15:12",
-    "type": "feature",
-    "title": "Add camera auto-reconnect and pipeline stopped detection",
-    "description": "Commit by Tidybot in camera_realsense_service",
-    "files": [
-      "camera_realsense_service/"
-    ],
-    "sha": "48b32ff",
-    "repo": "camera_realsense_service",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 15:12",
-    "type": "feature",
-    "title": "Extract ARM_HOME_Q constant and gracefully skip arm on rewind failure",
-    "description": "Commit by Tidybot in agent_system_logger",
-    "files": [
-      "agent_system_logger/"
-    ],
-    "sha": "f87caf3",
-    "repo": "agent_system_logger",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 15:48",
-    "type": "feature",
-    "title": "change read register to solve activation problem",
-    "description": "Commit by Tidybot in gripper_robotiq_service",
-    "files": [
-      "gripper_robotiq_service/"
-    ],
-    "sha": "617825a",
-    "repo": "gripper_robotiq_service",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "test",
-    "title": "Add lease queue system, SDK motion improvements, service dashboard overhaul, and",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2f4ebbb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 16:11",
-    "type": "docs",
-    "title": "Add YOLO README and capture images",
-    "description": "Commit by Tidybot in camera_realsense_service",
-    "files": [
-      "camera_realsense_service/"
-    ],
-    "sha": "9b02876",
-    "repo": "camera_realsense_service",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 17:10",
-    "type": "feature",
-    "title": "Lower minimum motion duration from 2.0s to 0.5s for faster small moves",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "6417f0a",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-09 17:18",
-    "type": "feature",
-    "title": "update frame clarification",
-    "description": "Commit by tonylitianyu in tidybot-templates",
-    "files": [
-      "tidybot-templates/"
-    ],
-    "sha": "18d1e7a",
-    "repo": "tidybot-templates",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-02-09 18:51",
     "type": "feature",
     "title": "Preserve scroll positions in code execution dashboard during polling",
@@ -2398,5 +2302,101 @@
     "sha": "8aa79ae",
     "repo": "common",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-03-01 01:23",
+    "type": "feature",
+    "title": "Restructure paths for hardware/ directory layout",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "86bf8f5",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-01 01:23",
+    "type": "feature",
+    "title": "Update paths and error messages for hardware/ directory layout",
+    "description": "Commit by Yifei Simon Shao in arm_franka_service",
+    "files": [
+      "arm_franka_service/"
+    ],
+    "sha": "ad87a79",
+    "repo": "arm_franka_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-01 01:23",
+    "type": "feature",
+    "title": "Update paths for tidybot_uni/hardware/ layout",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "4793878",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-01 01:23",
+    "type": "feature",
+    "title": "Update install path for tidybot_uni layout",
+    "description": "Commit by Yifei Simon Shao in base_tidybot_service",
+    "files": [
+      "base_tidybot_service/"
+    ],
+    "sha": "8e2a59a",
+    "repo": "base_tidybot_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-01 01:23",
+    "type": "feature",
+    "title": "Update paths for hardware/ directory layout, remove venv",
+    "description": "Commit by Yifei Simon Shao in camera_realsense_service",
+    "files": [
+      "camera_realsense_service/"
+    ],
+    "sha": "71441b0",
+    "repo": "camera_realsense_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-01 01:23",
+    "type": "fix",
+    "title": "Fix sim bridge protocols for agent_server compatibility",
+    "description": "Commit by Yifei Simon Shao in sim",
+    "files": [
+      "sim/"
+    ],
+    "sha": "711d99d",
+    "repo": "sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-01 01:23",
+    "type": "feature",
+    "title": "Update install path for tidybot_uni layout",
+    "description": "Commit by Yifei Simon Shao in system_logger",
+    "files": [
+      "system_logger/"
+    ],
+    "sha": "be71e1a",
+    "repo": "system_logger",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-01 01:23",
+    "type": "feature",
+    "title": "Restructure paths for hardware/ directory layout",
+    "description": "Commit by Yifei Simon Shao in common",
+    "files": [
+      "common/"
+    ],
+    "sha": "6159ec3",
+    "repo": "common",
+    "author": "Yifei Simon Shao"
   }
 ]
