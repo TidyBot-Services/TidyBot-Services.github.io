@@ -4,6 +4,140 @@
 // scattered hexes, popup overlay detail view
 // ============================================
 
+// ============================================
+// LOCAL vs ONLINE MODE
+// ============================================
+const IS_LOCAL = window.FORCE_LOCAL_MODE || ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+const BASE_PATH = window.location.pathname.includes('/local') ? '../' : './';
+let ws = null;
+let wsConnected = false;
+
+function initLocalMode() {
+    if (!IS_LOCAL) return;
+    document.body.classList.add('theme-local');
+
+    // Swap "Universe" → "Universe-Local" in hero title
+    const universeEl = document.getElementById('hero-universe');
+    if (universeEl) universeEl.textContent = 'Universe-Local';
+
+    // Add local banner
+    const isDemo = window.FORCE_LOCAL_MODE && !['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+    const banner = document.createElement('div');
+    banner.className = 'local-banner';
+    banner.innerHTML = isDemo
+        ? 'LOCAL DEV MODE (DEMO) <span class="ws-status" id="ws-status">WS: demo only</span>'
+        : 'LOCAL DEV MODE <span class="ws-status" id="ws-status">WS: connecting...</span>';
+    document.body.prepend(banner);
+
+    // Connect WebSocket only when actually local
+    if (!isDemo) connectWS();
+}
+
+function connectWS() {
+    const wsUrl = `ws://${window.location.hostname || 'localhost'}:8765`;
+    ws = new WebSocket(wsUrl);
+
+    ws.onopen = () => {
+        wsConnected = true;
+        const el = document.getElementById('ws-status');
+        if (el) el.textContent = 'WS: connected';
+    };
+
+    ws.onmessage = (evt) => {
+        try {
+            const msg = JSON.parse(evt.data);
+            if (msg.type === 'status_update') {
+                handleStatusUpdate(msg.payload);
+            } else if (msg.type === 'full_sync') {
+                handleFullSync(msg.payload);
+            } else if (msg.type === 'agent_message') {
+                // Live reasoning trace from agent
+                appendChatMsg(msg.entry_id, 'agent', msg.text);
+            }
+        } catch (e) {
+            console.error('[WS] parse error:', e);
+        }
+    };
+
+    ws.onclose = () => {
+        wsConnected = false;
+        const el = document.getElementById('ws-status');
+        if (el) el.textContent = 'WS: disconnected (reconnecting...)';
+        setTimeout(connectWS, 2000);
+    };
+
+    ws.onerror = () => { /* close handler will fire */ };
+}
+
+function sendWS(msg) {
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(msg));
+    }
+}
+
+function appendChatMsg(entryId, role, text) {
+    const log = document.getElementById(`chat-log-${entryId}`);
+    if (!log || !text.trim()) return;
+    const div = document.createElement('div');
+    div.className = `chat-msg chat-msg-${role}`;
+    div.innerHTML = `<span class="chat-msg-role">${role}</span><span class="chat-msg-text">${text}</span>`;
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+}
+
+// Make it global for inline onclick handlers
+window.appendChatMsg = appendChatMsg;
+window.sendWS = sendWS;
+
+function handleStatusUpdate(entry) {
+    // Update matching entry in skills gallery
+    const g = galleries.skills;
+    if (!g) return;
+    const idx = g.entries.findIndex(e => e.title === entry.name);
+    if (idx >= 0) {
+        Object.assign(g.entries[idx], {
+            status: entry.status,
+            agent_id: entry.agent_id,
+            agent_status_text: entry.agent_status_text,
+            success_rate: entry.success_rate,
+            progress_history: entry.progress_history
+        });
+    }
+    renderGallery('skills');
+    renderSkillTree(g.entries);
+}
+
+function handleFullSync(entries) {
+    const g = galleries.skills;
+    if (!g) return;
+    g.entries = prepareEntries(entries.map((repo, i) => ({
+        id: String(i + 1).padStart(3, '0'),
+        timestamp: repo.created_at ? new Date(repo.created_at).toISOString().slice(0, 16).replace('T', ' ') : '',
+        type: 'repo',
+        title: repo.name,
+        description: repo.description || 'No description',
+        language: repo.language || 'Unknown',
+        stars: repo.stars || 0,
+        html_url: repo.html_url || '',
+        updated_at: repo.updated_at ? new Date(repo.updated_at).toISOString().slice(0, 16).replace('T', ' ') : '',
+        success_rate: repo.success_rate ?? null,
+        total_trials: repo.total_trials ?? null,
+        institutions_tested: repo.institutions_tested ?? null,
+        trial_images: repo.trial_images || [],
+        dependencies: repo.dependencies || [],
+        service_dependencies: repo.service_dependencies || [],
+        sdk_functions: repo.sdk_functions || [],
+        status: repo.status || null,
+        agent_id: repo.agent_id || null,
+        agent_status_text: repo.agent_status_text || null,
+        agent_log: repo.agent_log || [],
+        progress_history: repo.progress_history || [],
+        _isRepo: true
+    })));
+    renderGallery('skills');
+    renderSkillTree(g.entries);
+}
+
 const typeConfig = {
     setup:    { label: 'Setup',    color: '#9d4edd' },
     feature:  { label: 'Feature',  color: '#39ff14' },
@@ -85,6 +219,11 @@ async function loadRepos(file) {
             dependencies: repo.dependencies || [],
             service_dependencies: repo.service_dependencies || [],
             sdk_functions: repo.sdk_functions || [],
+            status: repo.status || null,
+            agent_id: repo.agent_id || null,
+            agent_status_text: repo.agent_status_text || null,
+            agent_log: repo.agent_log || [],
+            progress_history: repo.progress_history || [],
             _isRepo: true
         }));
     } catch (e) {
@@ -94,7 +233,7 @@ async function loadRepos(file) {
 }
 
 async function loadServices() {
-    const repos = await loadRepos('./logs/services.json');
+    const repos = await loadRepos(BASE_PATH + 'logs/services.json');
     return repos.map(repo => ({
         ...repo,
         type: classifyServiceRepo(repo.title)
@@ -299,7 +438,12 @@ function renderGallery(name) {
         const hasImage = entry.image ? 'has-image' : '';
         const bgStyle = entry.image ? `background-image:url(${entry.image});` : '';
 
-        html += `<div class="hex-card hex-${hex.sizeClass}" data-gallery="${name}" data-index="${i}"
+        const statusClass = IS_LOCAL && entry.status ? `status-${entry.status}` : '';
+        const agentStatusHTML = IS_LOCAL && entry.agent_status_text
+            ? `<div class="hex-agent-status"><span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}</div>`
+            : '';
+
+        html += `<div class="hex-card hex-${hex.sizeClass} ${statusClass}" data-gallery="${name}" data-index="${i}"
             style="left:${hexLeft}px;top:${hexTop}px;width:${hex.w}px;height:${hex.h}px;
                    --float-delay:${floatDelay}s;">
             <div class="hex-border">
@@ -312,6 +456,7 @@ function renderGallery(name) {
                         <span class="hex-date">${dateStr}</span>
                         ${entry.success_rate != null ? `<span class="hex-rate"><span class="hex-rate-label">Success </span>${entry.success_rate}%</span>` : ''}
                         ${repoName ? `<span class="hex-repo">${repoName}</span>` : ''}
+                        ${agentStatusHTML}
                     </div>
                 </div>
             </div>
@@ -514,7 +659,8 @@ function openPopup(galleryName, index) {
         </div>`;
     }
 
-    document.getElementById('popup-inner').innerHTML = `
+    // Info column (shared between done and in-dev)
+    const infoHTML = `
         <div class="popup-header">
             <span class="popup-number" style="color:${typeColor};">#${entry.id}</span>
             <span class="popup-type" style="--type-color:${typeColor};">${typeLabel}</span>
@@ -531,6 +677,74 @@ function openPopup(galleryName, index) {
         ${repoMeta}
         ${repoLink}
     `;
+
+    const isInDev = IS_LOCAL && entry.status && entry.status !== 'done';
+    const isFailed = IS_LOCAL && entry.status === 'failed';
+
+    if (isInDev || isFailed) {
+        // Two-column layout: left info, right live agent chat
+        const popupCard = document.querySelector('.popup-card');
+        if (popupCard) popupCard.classList.add('popup-wide');
+
+        const statusLabel = entry.status.toUpperCase();
+        const statusColor = {studying:'#00d4ff', writing:'#9d4edd', executing:'#ff8800', debugging:'#ff3366', failed:'#ff3366'}[entry.status] || '#ff8800';
+
+        document.getElementById('popup-inner').innerHTML = `
+            <div class="popup-two-col">
+                <div class="popup-col-info">
+                    ${infoHTML}
+                    ${isFailed ? `
+                    <div class="inject-controls">
+                        <button class="inject-retry-btn" onclick="sendWS({type:'retry',skill:'${entry.title}'});">Retry</button>
+                    </div>` : ''}
+                </div>
+                <div class="popup-col-chat">
+                    <div class="chat-header">
+                        <span class="chat-status-badge" style="background:${statusColor};">${statusLabel}</span>
+                        <span class="chat-agent-label">${entry.agent_id || 'agent'}</span>
+                    </div>
+                    <div class="chat-log" id="chat-log-${entry.id}">
+                        ${(entry.agent_log || []).map(msg => {
+                            const isExperiment = /^Ran \d+/.test(msg);
+                            const cls = isExperiment ? 'chat-msg-experiment' : 'chat-msg-agent';
+                            const role = isExperiment ? 'experiment' : 'agent';
+                            return `<div class="chat-msg ${cls}">
+                                <span class="chat-msg-role">${role}</span>
+                                <span class="chat-msg-text">${msg}</span>
+                            </div>`;
+                        }).join('')}
+                    </div>
+                    <div class="chat-input-row">
+                        <input class="inject-input" id="inject-input-${entry.id}" type="text"
+                               placeholder="Send hint to agent..."
+                               onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.id}','you',this.value);this.value='';}">
+                        <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.id}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.id}','you',inp.value);inp.value='';">Send</button>
+                        <button class="inject-stop-btn" onclick="sendWS({type:'stop',agent_id:'${entry.agent_id||''}'});">Stop</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        // Single column for done skills
+        const popupCard = document.querySelector('.popup-card');
+        if (popupCard) popupCard.classList.remove('popup-wide');
+
+        let editHTML = '';
+        if (IS_LOCAL) {
+            editHTML = `
+            <div class="inject-controls">
+                <input class="inject-input" id="inject-input-${entry.id}" type="text"
+                       placeholder="Describe edit to spawn agent..."
+                       onkeydown="if(event.key==='Enter'){sendWS({type:'edit',skill:'${entry.title}',text:this.value});this.value='';}">
+                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.id}');sendWS({type:'edit',skill:'${entry.title}',text:inp.value});inp.value='';">Edit Skill</button>
+            </div>`;
+        }
+
+        document.getElementById('popup-inner').innerHTML = `
+            ${infoHTML}
+            ${editHTML}
+        `;
+    }
 
     // Wire up trial gallery thumbnail clicks
     const trialGallery = document.querySelector('.popup-trial-gallery');
@@ -555,6 +769,8 @@ function openPopup(galleryName, index) {
 
 function closePopup() {
     document.getElementById('popup-overlay').classList.remove('open');
+    const popupCard = document.querySelector('.popup-card');
+    if (popupCard) popupCard.classList.remove('popup-wide');
     if (activePopup) {
         deactivateHex(activePopup.galleryName, activePopup.index);
         activePopup = null;
@@ -1087,7 +1303,12 @@ function renderSkillTree(entries) {
             }
         }
 
-        nodesHTML += `<div class="tree-hex-card hex-lg" data-title="${entry.title}" data-entry-index="${i}"
+        const treeStatusClass = IS_LOCAL && entry.status ? `status-${entry.status}` : '';
+        const treeAgentHTML = IS_LOCAL && entry.agent_status_text
+            ? `<div class="hex-agent-status"><span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}</div>`
+            : '';
+
+        nodesHTML += `<div class="tree-hex-card hex-lg ${treeStatusClass}" data-title="${entry.title}" data-entry-index="${i}"
             style="left:${hexLeft}px;top:${hexTop}px;width:${node.w}px;height:${node.h}px;
                    --float-delay:${floatDelay}s;">
             <div class="hex-border">
@@ -1099,6 +1320,7 @@ function renderSkillTree(entries) {
                         <h3 class="hex-title">${title}</h3>
                         ${entry.success_rate != null ? `<span class="hex-rate"><span class="hex-rate-label">Success </span>${entry.success_rate}%</span>` : ''}
                         ${sdkBadgesHTML}
+                        ${treeAgentHTML}
                     </div>
                 </div>
             </div>
@@ -1218,12 +1440,14 @@ function initGallery(name, entries) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    initLocalMode();
     initHoneycomb();
     initParallax();
     initLightbox();
 
+    const skillsFile = IS_LOCAL ? BASE_PATH + 'logs/local_repos.json' : BASE_PATH + 'logs/repos.json';
     const [skills, services] = await Promise.all([
-        loadRepos('./logs/repos.json'),
+        loadRepos(skillsFile),
         loadServices()
     ]);
 
@@ -1405,8 +1629,9 @@ window.TidyBotTimeline = {
     openEntry: (gallery, index) => openPopup(gallery, index),
     getGallery: (name) => galleries[name],
     reload: async () => {
+        const skillsFile = IS_LOCAL ? BASE_PATH + 'logs/local_repos.json' : BASE_PATH + 'logs/repos.json';
         const [skills, services] = await Promise.all([
-            loadRepos('./logs/repos.json'),
+            loadRepos(skillsFile),
             loadServices()
         ]);
         const { agents, nonAgents } = splitAgentServices(services);

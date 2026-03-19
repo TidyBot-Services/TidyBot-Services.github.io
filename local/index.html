@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[X]Bot Universe-Local (Demo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script>window.FORCE_LOCAL_MODE = true;</script>
+</head>
+<body>
+    <!-- EVA-style background -->
+    <div class="honeycomb-bg"></div>
+    <div class="scanlines"></div>
+
+    <div class="smooth-scroll-wrapper">
+        <!-- Warning banner -->
+        <div class="marquee-banner">
+            <div class="marquee-track">
+                <span class="warning-text">⚠ WARNING</span>
+                <span class="separator">◈</span>
+                <span>AUTONOMOUS AGENT ACTIVE</span>
+                <span class="separator">◈</span>
+                <span>[X]BOT UNIVERSE-LOCAL</span>
+                <span class="separator">◈</span>
+                <span class="warning-text">⚠ WARNING</span>
+                <span class="separator">◈</span>
+                <span>SKILLS + SERVICES</span>
+                <span class="separator">◈</span>
+                <span>DEMO MODE</span>
+                <span class="separator">◈</span>
+                <span class="warning-text">⚠ WARNING</span>
+                <span class="separator">◈</span>
+                <span>AUTONOMOUS AGENT ACTIVE</span>
+                <span class="separator">◈</span>
+                <span>[X]BOT UNIVERSE-LOCAL</span>
+                <span class="separator">◈</span>
+                <span class="warning-text">⚠ WARNING</span>
+                <span class="separator">◈</span>
+                <span>SKILLS + SERVICES</span>
+                <span class="separator">◈</span>
+                <span>DEMO MODE</span>
+                <span class="separator">◈</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Hero Section -->
+            <header class="hero">
+                <div class="hero-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="../assets/robot-hero.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="hero-content">
+                    <span class="hero-tag">Skills + Services</span>
+                    <h1 class="hero-title" data-split-text>
+                        <span class="line"><span class="word">[X]Bot</span></span>
+                        <span class="line"><span class="word" id="hero-universe">Universe-Local</span></span>
+                    </h1>
+                    <p class="hero-subtitle">Local dev dashboard preview — monitor agent skill development, view experiment results, and inject hints in real-time</p>
+                    <div class="hero-tagline-rotator">
+                        <span class="tagline-prefix">&gt;</span>
+                        <span class="tagline-text" id="tagline-text"></span>
+                        <span class="tagline-cursor">_</span>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Scroll</span>
+                    <div class="scroll-line"></div>
+                </div>
+            </header>
+
+            <!-- Intro section -->
+            <section class="intro-section">
+                <p class="intro-text">
+                    This is a demo of the local dev dashboard. When running locally, hexes blink to show active agent development, and you can inject hints to agents in real-time.
+                    <br>
+                    <a href="../" class="intro-link">
+                        Back to main site
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                        </svg>
+                    </a>
+                </p>
+            </section>
+
+            <!-- ==============================
+                 FRONTEND GALLERY
+                 ============================== -->
+            <section class="gallery-section" data-gallery="skills">
+                <div class="gallery-header">
+                    <span class="gallery-label">Skills</span>
+                    <div class="gallery-view-toggle" id="skills-view-toggle">
+                        <button class="view-toggle-btn" data-view="timeline">Timeline</button>
+                        <button class="view-toggle-btn active" data-view="tree">Dep Tree</button>
+                    </div>
+                    <span class="gallery-count"></span>
+                </div>
+                <p class="gallery-blurb">Skills under active development by AI agents. Blinking hexes indicate in-progress work. Click to view agent reasoning and send hints.</p>
+                <div class="gallery-viewport" style="display:none;">
+                    <div class="gallery-track"></div>
+                </div>
+                <div class="gallery-nav" style="display:none;">
+                    <div class="gallery-progress">
+                        <div class="gallery-progress-fill"></div>
+                    </div>
+                    <span class="gallery-hint">
+                        <span class="hint-icon">◈</span> scroll or drag to explore
+                    </span>
+                </div>
+
+                <div class="tree-viewport" id="skills-tree">
+                    <svg class="tree-edges" id="tree-edges"></svg>
+                    <div class="tree-nodes" id="tree-nodes"></div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="timeline-footer">
+                <div class="footer-content">
+                    <span class="footer-brand">[X]Bot Universe-Local</span>
+                    <a href="https://shaoyifei96.github.io/" class="footer-contact" target="_blank" rel="noopener noreferrer">Contact: yishao@seas.upenn.edu</a>
+                    <span class="footer-year">Demo Mode</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ==============================
+         POPUP OVERLAY (shared)
+         ============================== -->
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup-backdrop" id="popup-backdrop"></div>
+        <div class="popup-card">
+            <button class="popup-close" id="popup-close">✕</button>
+            <div class="popup-inner" id="popup-inner"></div>
+        </div>
+    </div>
+
+    <!-- ==============================
+         LIGHTBOX OVERLAY
+         ============================== -->
+    <div class="lightbox-overlay" id="lightbox-overlay">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close">&#x2715;</button>
+            <img class="lightbox-img" src="" alt="">
+            <p class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- Rounded hex clip-path -->
+    <svg width="0" height="0" style="position:absolute;">
+        <defs>
+            <clipPath id="hex-clip-rounded" clipPathUnits="objectBoundingBox">
+                <path d="
+                    M 0.425 0.0375
+                    Q 0.5 0, 0.575 0.0375
+                    L 0.925 0.2125
+                    Q 1 0.25, 1 0.325
+                    L 1 0.675
+                    Q 1 0.75, 0.925 0.7875
+                    L 0.575 0.9625
+                    Q 0.5 1, 0.425 0.9625
+                    L 0.075 0.7875
+                    Q 0 0.75, 0 0.675
+                    L 0 0.325
+                    Q 0 0.25, 0.075 0.2125
+                    Z
+                "/>
+            </clipPath>
+        </defs>
+    </svg>
+
+    <script src="../script.js"></script>
+</body>
+</html>

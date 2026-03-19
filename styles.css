@@ -2695,6 +2695,309 @@ button.gallery-wishlist {
 }
 
 /* ============================================
+   LOCAL DEV THEME (warm amber/copper)
+   Activated via body.theme-local
+   ============================================ */
+
+body.theme-local {
+    --color-warning: #ffd700;
+    --color-warning-bright: #ffed4a;
+    --color-warning-dim: #ccaa00;
+}
+
+/* ---- In-development hex pulse ---- */
+@keyframes devPulse {
+    0%, 100% { filter: drop-shadow(0 0 0px transparent) brightness(1); }
+    50% { filter: drop-shadow(0 0 15px var(--dev-glow-color, #ff8800)) brightness(1.3); }
+}
+
+@keyframes devBorderPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Active dev states — pulsing glow */
+.hex-card.status-executing,
+.hex-card.status-studying,
+.hex-card.status-writing,
+.hex-card.status-debugging,
+.tree-hex-card.status-executing,
+.tree-hex-card.status-studying,
+.tree-hex-card.status-writing,
+.tree-hex-card.status-debugging {
+    animation: devPulse 2s ease-in-out infinite !important;
+}
+
+.status-executing { --dev-glow-color: #ff8800; }
+.status-studying  { --dev-glow-color: #00d4ff; }
+.status-writing   { --dev-glow-color: #9d4edd; }
+.status-debugging { --dev-glow-color: #ff3366; }
+
+.hex-card.status-executing .hex-border,
+.hex-card.status-studying .hex-border,
+.hex-card.status-writing .hex-border,
+.hex-card.status-debugging .hex-border,
+.tree-hex-card.status-executing .hex-border,
+.tree-hex-card.status-studying .hex-border,
+.tree-hex-card.status-writing .hex-border,
+.tree-hex-card.status-debugging .hex-border {
+    background: var(--dev-glow-color) !important;
+    animation: hexFloat 5s ease-in-out infinite, devBorderPulse 2s ease-in-out infinite !important;
+}
+
+/* Failed state — red border, no pulse */
+.status-failed .hex-border {
+    background: #ff3366 !important;
+}
+.status-failed {
+    filter: saturate(0.6);
+}
+
+/* Done state — green tinted border */
+.status-done .hex-border {
+    background: var(--color-green-dim) !important;
+}
+.status-done {
+    opacity: 0.75;
+}
+
+/* ---- Agent status line inside hex ---- */
+.hex-agent-status {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    color: var(--color-text-soft);
+    margin-top: 2px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hex-agent-status .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+
+.status-dot.studying   { background: #00d4ff; }
+.status-dot.writing    { background: #9d4edd; }
+.status-dot.executing  { background: #ff8800; }
+.status-dot.debugging  { background: #ff3366; }
+.status-dot.done       { background: #39ff14; }
+.status-dot.failed     { background: #ff3366; }
+
+/* ---- Inject input in popup ---- */
+.inject-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.inject-input {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.7rem;
+    outline: none;
+    transition: border-color var(--duration-fast);
+}
+
+.inject-input:focus {
+    border-color: var(--color-warning);
+    box-shadow: 0 0 8px rgba(255, 136, 0, 0.2);
+}
+
+.inject-send-btn, .inject-stop-btn, .inject-retry-btn {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.inject-send-btn {
+    color: var(--color-bg);
+    background: var(--color-warning);
+}
+.inject-send-btn:hover { box-shadow: 0 0 12px rgba(255, 136, 0, 0.5); }
+
+.inject-stop-btn {
+    color: #fff;
+    background: #ff3366;
+}
+.inject-stop-btn:hover { box-shadow: 0 0 12px rgba(255, 51, 102, 0.5); }
+
+.inject-retry-btn {
+    color: var(--color-bg);
+    background: var(--color-green);
+}
+.inject-retry-btn:hover { box-shadow: 0 0 12px rgba(57, 255, 20, 0.5); }
+
+/* ---- Two-column popup for in-dev skills ---- */
+.popup-wide {
+    max-width: 960px !important;
+}
+
+.popup-two-col {
+    display: flex;
+    gap: 1.5rem;
+    min-height: 400px;
+}
+
+.popup-col-info {
+    flex: 0 0 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    max-height: 65vh;
+}
+
+.popup-col-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--color-border);
+    padding-left: 1.5rem;
+    min-width: 0;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.chat-status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #000;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+}
+
+.chat-agent-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-text-soft);
+    flex: 1;
+}
+
+.chat-log {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.5rem 0;
+    max-height: 50vh;
+    min-height: 200px;
+}
+
+.chat-msg {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.5;
+}
+
+.chat-msg-agent {
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 2px solid var(--color-warning);
+}
+
+.chat-msg-experiment {
+    background: rgba(0, 212, 255, 0.06);
+    border-left: 2px solid #00d4ff;
+}
+
+.chat-msg-you {
+    background: rgba(57, 255, 20, 0.06);
+    border-left: 2px solid var(--color-green);
+}
+
+.chat-msg-role {
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-gray);
+}
+
+.chat-msg-text {
+    color: var(--color-text-soft);
+    word-break: break-word;
+}
+
+.chat-input-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.chat-input-row .inject-input {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .popup-two-col {
+        flex-direction: column;
+    }
+    .popup-col-info {
+        flex: none;
+        max-height: none;
+    }
+    .popup-col-chat {
+        border-left: none;
+        border-top: 1px solid var(--color-border);
+        padding-left: 0;
+        padding-top: 1rem;
+    }
+}
+
+/* ---- Local mode banner ---- */
+.local-banner {
+    background: linear-gradient(90deg, #ffd700, #ccaa00);
+    color: #000;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.3rem 1rem;
+}
+
+.local-banner .ws-status {
+    margin-left: 1rem;
+    font-weight: 400;
+}
+
+/* ============================================
    ACCESSIBILITY
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
