@@ -1,125 +1,5 @@
 [
   {
-    "timestamp": "2026-02-14 04:56",
-    "type": "feature",
-    "title": "Add token-conscious monitoring guidance to MISSION.md",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "aba302d",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-14 04:57",
-    "type": "fix",
-    "title": "Fix /code/status param names to match implementation (stdout_offset/stderr_offse",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "f50587d",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-14 04:57",
-    "type": "fix",
-    "title": "Fix /code/status param names in MISSION.md to match actual API",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "2bdd319",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-14 06:41",
-    "type": "feature",
-    "title": "Request Grounded SAM 2 for open-vocabulary detection and segmentation",
-    "description": "Commit by Tidybot in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "471fe7a",
-    "repo": "services_wishlist",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-14 06:44",
-    "type": "setup",
-    "title": "Replace full AGENTS.md copy with patch-based injection in setup.sh",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "d68ad0b",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-14 06:55",
-    "type": "feature",
-    "title": "Request GraspGen for 6-DOF grasp pose generation",
-    "description": "Commit by Tidybot in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "f9b0eb6",
-    "repo": "services_wishlist",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-14 07:02",
-    "type": "setup",
-    "title": "Initial commit: Grounded SAM 2 service with Grounding DINO + SAM 2",
-    "description": "Commit by qifei-c in grounded-sam2-service",
-    "files": [
-      "grounded-sam2-service/"
-    ],
-    "sha": "e094246",
-    "repo": "grounded-sam2-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-14 07:06",
-    "type": "docs",
-    "title": "Remove manual setup steps from OpenClaw README",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4f55fdf",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-14 07:06",
-    "type": "docs",
-    "title": "Update OpenClaw README to reflect patch-based AGENTS.md approach",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "ad1aae7",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-14 07:09",
-    "type": "setup",
-    "title": "Initial commit: GraspGen 6-DOF grasp pose generation service",
-    "description": "Commit by qifei-c in graspgen-service",
-    "files": [
-      "graspgen-service/"
-    ],
-    "sha": "89ed491",
-    "repo": "graspgen-service",
-    "author": "qifei-c"
-  },
-  {
     "timestamp": "2026-02-14 07:10",
     "type": "feature",
     "title": "Update graspgen status to building, assigned to steve",
@@ -2398,5 +2278,125 @@
     "sha": "14b67bb",
     "repo": "arm_franka_sim_service",
     "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-03-19 01:20",
+    "type": "setup",
+    "title": "Initial commit: maniskill_server",
+    "description": "Commit by TruAres in maniskill_server",
+    "files": [
+      "maniskill_server/"
+    ],
+    "sha": "7185b37",
+    "repo": "maniskill_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:20",
+    "type": "setup",
+    "title": "Initial commit: base_tidybot_maniskill_service",
+    "description": "Commit by TruAres in base_tidybot_maniskill_service",
+    "files": [
+      "base_tidybot_maniskill_service/"
+    ],
+    "sha": "f88727f",
+    "repo": "base_tidybot_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:20",
+    "type": "setup",
+    "title": "Initial commit: camera_realsense_maniskill_service",
+    "description": "Commit by TruAres in camera_realsense_maniskill_service",
+    "files": [
+      "camera_realsense_maniskill_service/"
+    ],
+    "sha": "0955d24",
+    "repo": "camera_realsense_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:20",
+    "type": "setup",
+    "title": "Initial commit: arm_franka_maniskill_service",
+    "description": "Commit by TruAres in arm_franka_maniskill_service",
+    "files": [
+      "arm_franka_maniskill_service/"
+    ],
+    "sha": "ad6503c",
+    "repo": "arm_franka_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:20",
+    "type": "setup",
+    "title": "Initial commit: gripper_robotiq_maniskill_service",
+    "description": "Commit by TruAres in gripper_robotiq_maniskill_service",
+    "files": [
+      "gripper_robotiq_maniskill_service/"
+    ],
+    "sha": "8bc2b68",
+    "repo": "gripper_robotiq_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:24",
+    "type": "feature",
+    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
+    "description": "Commit by TruAres in maniskill_server",
+    "files": [
+      "maniskill_server/"
+    ],
+    "sha": "5ff71ff",
+    "repo": "maniskill_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:24",
+    "type": "feature",
+    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
+    "description": "Commit by TruAres in base_tidybot_maniskill_service",
+    "files": [
+      "base_tidybot_maniskill_service/"
+    ],
+    "sha": "5e83dab",
+    "repo": "base_tidybot_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:24",
+    "type": "feature",
+    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
+    "description": "Commit by TruAres in camera_realsense_maniskill_service",
+    "files": [
+      "camera_realsense_maniskill_service/"
+    ],
+    "sha": "983082c",
+    "repo": "camera_realsense_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:24",
+    "type": "feature",
+    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
+    "description": "Commit by TruAres in arm_franka_maniskill_service",
+    "files": [
+      "arm_franka_maniskill_service/"
+    ],
+    "sha": "5314c35",
+    "repo": "arm_franka_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-19 01:24",
+    "type": "feature",
+    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
+    "description": "Commit by TruAres in gripper_robotiq_maniskill_service",
+    "files": [
+      "gripper_robotiq_maniskill_service/"
+    ],
+    "sha": "a883f1a",
+    "repo": "gripper_robotiq_maniskill_service",
+    "author": "TruAres"
   }
 ]
