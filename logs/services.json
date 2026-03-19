@@ -310,5 +310,65 @@
     "stars": 0,
     "is_private": false,
     "default_branch": "main"
+  },
+  {
+    "id": "027",
+    "name": "maniskill_server",
+    "description": "ManiSkill3 sim server with protocol bridges for agent_server",
+    "created_at": "2026-03-19T01:30:03Z",
+    "updated_at": "2026-03-19T01:30:21Z",
+    "html_url": "https://github.com/TidyBot-Services/maniskill_server",
+    "language": "Python",
+    "stars": 0,
+    "is_private": false,
+    "default_branch": "main"
+  },
+  {
+    "id": "028",
+    "name": "base_tidybot_maniskill_service",
+    "description": "TidyBot base RPC bridge for ManiSkill sim",
+    "created_at": "2026-03-19T01:30:03Z",
+    "updated_at": "2026-03-19T01:30:20Z",
+    "html_url": "https://github.com/TidyBot-Services/base_tidybot_maniskill_service",
+    "language": "Python",
+    "stars": 0,
+    "is_private": false,
+    "default_branch": "main"
+  },
+  {
+    "id": "029",
+    "name": "camera_realsense_maniskill_service",
+    "description": "Camera WebSocket bridge for ManiSkill sim",
+    "created_at": "2026-03-19T01:30:03Z",
+    "updated_at": "2026-03-19T01:30:20Z",
+    "html_url": "https://github.com/TidyBot-Services/camera_realsense_maniskill_service",
+    "language": "Python",
+    "stars": 0,
+    "is_private": false,
+    "default_branch": "main"
+  },
+  {
+    "id": "030",
+    "name": "arm_franka_maniskill_service",
+    "description": "Franka arm ZMQ bridge for ManiSkill sim",
+    "created_at": "2026-03-19T01:30:03Z",
+    "updated_at": "2026-03-19T01:30:19Z",
+    "html_url": "https://github.com/TidyBot-Services/arm_franka_maniskill_service",
+    "language": "Python",
+    "stars": 0,
+    "is_private": false,
+    "default_branch": "main"
+  },
+  {
+    "id": "031",
+    "name": "gripper_robotiq_maniskill_service",
+    "description": "Robotiq gripper ZMQ bridge for ManiSkill sim",
+    "created_at": "2026-03-19T01:30:04Z",
+    "updated_at": "2026-03-19T01:30:19Z",
+    "html_url": "https://github.com/TidyBot-Services/gripper_robotiq_maniskill_service",
+    "language": "Python",
+    "stars": 0,
+    "is_private": false,
+    "default_branch": "main"
   }
 ]
