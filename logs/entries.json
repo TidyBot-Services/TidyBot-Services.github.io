@@ -1,30 +1,6 @@
 [
   {
     "timestamp": "2026-02-14 07:10",
-    "type": "feature",
-    "title": "Update graspgen status to building, assigned to steve",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "07090b8",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-14 07:10",
-    "type": "feature",
-    "title": "Add graspgen service to catalog",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "b6f0ce0",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-14 07:10",
     "type": "fix",
     "title": "Fix port to 8002 (8001 taken by grounded-sam2)",
     "description": "Commit by qifei-c in graspgen-service",
@@ -2398,5 +2374,29 @@
     "sha": "a883f1a",
     "repo": "gripper_robotiq_maniskill_service",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-22 18:13",
+    "type": "deploy",
+    "title": "Remove defunct service agent, keep specs and deploy-agent",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "3c08b99",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 18:24",
+    "type": "feature",
+    "title": "Add repository map and update sim quick-start paths",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "fd43d5e",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
