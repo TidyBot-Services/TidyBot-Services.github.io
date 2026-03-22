@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-14 16:24",
-    "type": "feature",
-    "title": "Add tidybot-bundle tool for bundling skills with dependencies",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7bf70a3",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-14 16:26",
     "type": "feature",
     "title": "Mention tidybot-bundle in MISSION.md skill chaining step",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "630ee7e",
     "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 22:00",
+    "type": "feature",
+    "title": "Add fire-and-forget job queue (POST /code/submit)",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "be40f78",
+    "repo": "agent_server",
     "author": "Yifei Simon Shao"
   }
 ]
