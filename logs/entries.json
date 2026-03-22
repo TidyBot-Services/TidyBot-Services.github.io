@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-14 16:26",
-    "type": "feature",
-    "title": "Mention tidybot-bundle in MISSION.md skill chaining step",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "72983e0",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-14 16:39",
     "type": "feature",
     "title": "Rebrand: replace backend/frontend with services/skills terminology",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "be40f78",
     "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 23:01",
+    "type": "setup",
+    "title": "Add cook-all-food skill graph and skill planner setup",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c0616d2",
+    "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
   }
 ]
