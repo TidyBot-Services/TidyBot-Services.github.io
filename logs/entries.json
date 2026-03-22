@@ -1,113 +1,5 @@
 [
   {
-    "timestamp": "2026-02-14 07:10",
-    "type": "fix",
-    "title": "Fix port to 8002 (8001 taken by grounded-sam2)",
-    "description": "Commit by qifei-c in graspgen-service",
-    "files": [
-      "graspgen-service/"
-    ],
-    "sha": "735a5b0",
-    "repo": "graspgen-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-14 07:10",
-    "type": "setup",
-    "title": "Initial commit: FoundationStereo depth estimation service",
-    "description": "Commit by qifei-c in foundation-stereo-service",
-    "files": [
-      "foundation-stereo-service/"
-    ],
-    "sha": "01545b7",
-    "repo": "foundation-stereo-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-14 07:11",
-    "type": "feature",
-    "title": "Update foundation-stereo: status=building, assigned=steve",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "c82a683",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-14 07:11",
-    "type": "feature",
-    "title": "Add foundation-stereo to catalog",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "80e9486",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-14 07:13",
-    "type": "setup",
-    "title": "Add provider stub, Pointnet2 dependency, fix port to 8002, update setup",
-    "description": "Commit by qifei-c in graspgen-service",
-    "files": [
-      "graspgen-service/"
-    ],
-    "sha": "a186704",
-    "repo": "graspgen-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-14 07:15",
-    "type": "deploy",
-    "title": "Update foundation-stereo: status=deployed",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "c09755d",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-14 07:15",
-    "type": "fix",
-    "title": "Fix: use port 8003, disable xformers, weights_only=False for torch.load",
-    "description": "Commit by qifei-c in foundation-stereo-service",
-    "files": [
-      "foundation-stereo-service/"
-    ],
-    "sha": "d389500",
-    "repo": "foundation-stereo-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-14 07:31",
-    "type": "fix",
-    "title": "Fix wishlist ownership: skills = humans only, services = humans or skill agents",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "efd28d7",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-14 07:34",
-    "type": "docs",
-    "title": "Remove redundant ASCII diagram from README",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "eaec5ac",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-14 07:44",
     "type": "feature",
     "title": "Mark grounded-sam2, graspgen, foundation-stereo as done",
@@ -2397,6 +2289,114 @@
     ],
     "sha": "fd43d5e",
     "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:12",
+    "type": "fix",
+    "title": "Fix code executor to use correct Python and server URL",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "3f58faa",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:12",
+    "type": "fix",
+    "title": "Fix MessageType IDs to match hardware camera_server protocol",
+    "description": "Commit by Yifei Simon Shao in camera_realsense_robocasa_service",
+    "files": [
+      "camera_realsense_robocasa_service/"
+    ],
+    "sha": "a5ccb1d",
+    "repo": "camera_realsense_robocasa_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:12",
+    "type": "fix",
+    "title": "Fix camera bridge protocol to match hardware camera_server",
+    "description": "Commit by Yifei Simon Shao in camera_realsense_maniskill_service",
+    "files": [
+      "camera_realsense_maniskill_service/"
+    ],
+    "sha": "8b48398",
+    "repo": "camera_realsense_maniskill_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:23",
+    "type": "feature",
+    "title": "Rename package from *-sim-service to *-robocasa-service",
+    "description": "Commit by Yifei Simon Shao in arm_franka_robocasa_service",
+    "files": [
+      "arm_franka_robocasa_service/"
+    ],
+    "sha": "82b20fd",
+    "repo": "arm_franka_robocasa_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:23",
+    "type": "feature",
+    "title": "Rename package from *-sim-service to *-robocasa-service",
+    "description": "Commit by Yifei Simon Shao in gripper_robotiq_robocasa_service",
+    "files": [
+      "gripper_robotiq_robocasa_service/"
+    ],
+    "sha": "a2ea5e3",
+    "repo": "gripper_robotiq_robocasa_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:23",
+    "type": "feature",
+    "title": "Rename package from *-sim-service to *-robocasa-service",
+    "description": "Commit by Yifei Simon Shao in base_tidybot_robocasa_service",
+    "files": [
+      "base_tidybot_robocasa_service/"
+    ],
+    "sha": "f121a36",
+    "repo": "base_tidybot_robocasa_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:23",
+    "type": "feature",
+    "title": "Rename package from *-sim-service to *-robocasa-service",
+    "description": "Commit by Yifei Simon Shao in camera_realsense_robocasa_service",
+    "files": [
+      "camera_realsense_robocasa_service/"
+    ],
+    "sha": "92ff6f6",
+    "repo": "camera_realsense_robocasa_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:33",
+    "type": "feature",
+    "title": "Move source into package dir and add multi-camera support",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "54e13c8",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 19:33",
+    "type": "feature",
+    "title": "Add base_camera support, stream frames from all cameras",
+    "description": "Commit by Yifei Simon Shao in camera_realsense_maniskill_service",
+    "files": [
+      "camera_realsense_maniskill_service/"
+    ],
+    "sha": "9f43ff5",
+    "repo": "camera_realsense_maniskill_service",
     "author": "Yifei Simon Shao"
   }
 ]
