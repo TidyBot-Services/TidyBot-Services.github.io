@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-14 07:44",
-    "type": "feature",
-    "title": "Mark grounded-sam2, graspgen, foundation-stereo as done",
-    "description": "Commit by qifei-c in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "c244f57",
-    "repo": "services_wishlist",
-    "author": "qifei-c"
-  },
-  {
     "timestamp": "2026-02-14 16:24",
     "type": "feature",
     "title": "Add tidybot-bundle tool for bundling skills with dependencies",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "9f43ff5",
     "repo": "camera_realsense_maniskill_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 20:34",
+    "type": "test",
+    "title": "Add E2E test and README",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "630ee7e",
+    "repo": "maniskill_sim",
     "author": "Yifei Simon Shao"
   }
 ]
