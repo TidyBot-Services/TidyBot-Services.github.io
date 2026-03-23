@@ -1,53 +1,5 @@
 [
   {
-    "timestamp": "2026-02-14 16:39",
-    "type": "feature",
-    "title": "Rebrand: replace backend/frontend with services/skills terminology",
-    "description": "Commit by Tidybot in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "3c29fc3",
-    "repo": "services_wishlist",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-14 16:39",
-    "type": "feature",
-    "title": "Rebrand: replace backend_wishlist references with services_wishlist",
-    "description": "Commit by Tidybot in .github",
-    "files": [
-      ".github/"
-    ],
-    "sha": "4809542",
-    "repo": ".github",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-14 16:46",
-    "type": "feature",
-    "title": "Add skill clone/pull instructions to MISSION.md Step 1",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "bcafde8",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-14 17:08",
-    "type": "feature",
-    "title": "Rename backend_wishlist → services_wishlist, document online service pattern",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "fe4e05d",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-14 21:48",
     "type": "setup",
     "title": "Setup: add --fresh flag, fix camera advice, add dev skills workflow",
@@ -2364,6 +2316,18 @@
     "author": "Yifei Simon Shao"
   },
   {
+    "timestamp": "2026-03-22 20:31",
+    "type": "feature",
+    "title": "chore: exclude driver services from repo (now in TidyBot-Services org)",
+    "description": "Commit by TruAres in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "2792f74",
+    "repo": "maniskill-tidyverse",
+    "author": "TruAres"
+  },
+  {
     "timestamp": "2026-03-22 20:34",
     "type": "test",
     "title": "Add E2E test and README",
@@ -2374,6 +2338,30 @@
     "sha": "630ee7e",
     "repo": "maniskill_sim",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-22 20:35",
+    "type": "docs",
+    "title": "docs: add protocol bridge installation instructions",
+    "description": "Commit by TruAres in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "cc54258",
+    "repo": "maniskill-tidyverse",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-22 20:42",
+    "type": "setup",
+    "title": "remove wrist_camera sensor config from tidyverse agent",
+    "description": "Commit by TruAres in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "171c338",
+    "repo": "maniskill-tidyverse",
+    "author": "TruAres"
   },
   {
     "timestamp": "2026-03-22 22:00",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "c0616d2",
     "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-23 01:27",
+    "type": "test",
+    "title": "Add fire-and-forget job queue tests to E2E test",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "fa07c54",
+    "repo": "maniskill_sim",
     "author": "Yifei Simon Shao"
   }
 ]
