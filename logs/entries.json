@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-14 21:48",
-    "type": "setup",
-    "title": "Setup: add --fresh flag, fix camera advice, add dev skills workflow",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7c25be2",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-14 22:27",
     "type": "feature",
     "title": "Update HEARTBEAT.md: dev folder practice, cumulative stats, no catalog sync",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "fa07c54",
     "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-23 07:24",
+    "type": "setup",
+    "title": "Add perception-based grasp pipeline and camera configs",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "49ab711",
+    "repo": "maniskill-tidyverse",
     "author": "Yifei Simon Shao"
   }
 ]
