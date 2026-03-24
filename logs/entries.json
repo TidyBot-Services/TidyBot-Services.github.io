@@ -1,41 +1,5 @@
 [
   {
-    "timestamp": "2026-02-15 08:18",
-    "type": "feature",
-    "title": "Request: raw depth SDK access + navigation/mapping service",
-    "description": "Commit by Yifei Simon Shao in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "42ab2b5",
-    "repo": "services_wishlist",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-15 08:59",
-    "type": "feature",
-    "title": "mark nav-mapping-service as building",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "b0bfeb8",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-15 09:02",
-    "type": "feature",
-    "title": "Mark nav-mapping-service as done",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "ef49be6",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
     "timestamp": "2026-02-15 09:02",
     "type": "feature",
     "title": "Add nav-mapping-service to catalog",
@@ -2397,6 +2361,42 @@
     ],
     "sha": "01ba7ba",
     "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 06:37",
+    "type": "feature",
+    "title": "Add wb (whole-body) SDK module for coordinated base + arm motion",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "09a8c78",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 06:37",
+    "type": "test",
+    "title": "Add whole-body motion planning endpoint and tests",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "57729da",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 06:39",
+    "type": "test",
+    "title": "Update orchestrator with graph folders, review gate, eval pipeline, and tests",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "55db98b",
+    "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
   }
 ]
