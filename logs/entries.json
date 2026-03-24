@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-15 06:07",
-    "type": "feature",
-    "title": "Add web_fetch LAN note to ROBOT.md template",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "79be2eb",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-15 08:18",
     "type": "feature",
     "title": "Request: raw depth SDK access + navigation/mapping service",
@@ -2396,6 +2384,18 @@
       "maniskill-tidyverse/"
     ],
     "sha": "fcafa06",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 04:05",
+    "type": "refactor",
+    "title": "Refactor drawer pipeline: consolidate grasp logic, clean up files",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "01ba7ba",
     "repo": "maniskill-tidyverse",
     "author": "Yifei Simon Shao"
   }
