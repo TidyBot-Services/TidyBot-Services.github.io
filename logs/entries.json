@@ -1,29 +1,5 @@
 [
   {
-    "timestamp": "2026-02-15 00:03",
-    "type": "feature",
-    "title": "Auto-populate state_observation endpoints from FastAPI route introspection",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "5ebb993",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-15 06:07",
-    "type": "feature",
-    "title": "Improve guide docs: auth, X-Lease-Id, idle tips, frame filenames",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "8deb649",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-15 06:07",
     "type": "feature",
     "title": "Add web_fetch LAN note to ROBOT.md template",
@@ -2396,6 +2372,30 @@
       "maniskill-tidyverse/"
     ],
     "sha": "71a8256",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 01:25",
+    "type": "feature",
+    "title": "Add drawer opening pipeline with perception-based normal estimation",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "fb38ce1",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 01:27",
+    "type": "docs",
+    "title": "Update README: add drawer opening pipeline docs",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "fcafa06",
     "repo": "maniskill-tidyverse",
     "author": "Yifei Simon Shao"
   }
