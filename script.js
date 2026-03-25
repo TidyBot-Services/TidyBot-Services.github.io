@@ -52,7 +52,17 @@ function connectWS() {
                 handleFullSync(msg.payload);
             } else if (msg.type === 'agent_message') {
                 // Live reasoning trace from agent
-                appendChatMsg(msg.entry_id, 'agent', msg.text);
+                const role = (msg.agent_type === 'test' || msg.agent_type === 'test_writer') ? 'test' : 'agent';
+                appendChatMsg(msg.entry_id, role, msg.text);
+                // Persist to entry data so messages survive popup re-renders
+                const g = galleries.skills;
+                if (g) {
+                    const entry = g.entries.find(e => e.title === msg.entry_id || e.name === msg.entry_id);
+                    if (entry) {
+                        if (!entry.agent_log) entry.agent_log = [];
+                        entry.agent_log.push(msg.text);
+                    }
+                }
             }
         } catch (e) {
             console.error('[WS] parse error:', e);
@@ -90,21 +100,100 @@ window.appendChatMsg = appendChatMsg;
 window.sendWS = sendWS;
 
 function handleStatusUpdate(entry) {
-    // Update matching entry in skills gallery
+    // Update matching entry in skills gallery (data only)
     const g = galleries.skills;
     if (!g) return;
     const idx = g.entries.findIndex(e => e.title === entry.name);
-    if (idx >= 0) {
-        Object.assign(g.entries[idx], {
-            status: entry.status,
-            agent_id: entry.agent_id,
-            agent_status_text: entry.agent_status_text,
-            success_rate: entry.success_rate,
-            progress_history: entry.progress_history
+    if (idx < 0) return;
+
+    Object.assign(g.entries[idx], {
+        status: entry.status,
+        agent_id: entry.agent_id,
+        agent_status_text: entry.agent_status_text,
+        agent_type: entry.agent_type || g.entries[idx].agent_type,
+        success_rate: entry.success_rate,
+        progress_history: entry.progress_history
+    });
+
+    // In-place DOM update — find all hex cards matching this entry and patch them
+    const statusClasses = ['status-studying', 'status-writing', 'status-executing', 'status-debugging', 'status-failed', 'status-done', 'status-agent_done', 'status-testing'];
+    const newStatusClass = entry.status ? `status-${entry.status}` : '';
+    const agentHTML = entry.agent_status_text
+        ? `<span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}`
+        : '';
+
+    // Update gallery hex cards
+    const galleryCard = g.track?.querySelectorAll(`.hex-card[data-gallery="skills"][data-index="${idx}"]`);
+    if (galleryCard) {
+        galleryCard.forEach(card => {
+            card.classList.remove(...statusClasses);
+            if (newStatusClass) card.classList.add(newStatusClass);
+            let agentEl = card.querySelector('.hex-agent-status');
+            if (agentHTML) {
+                if (!agentEl) {
+                    agentEl = document.createElement('div');
+                    agentEl.className = 'hex-agent-status';
+                    card.querySelector('.hex-content')?.appendChild(agentEl);
+                }
+                agentEl.innerHTML = agentHTML;
+            } else if (agentEl) {
+                agentEl.remove();
+            }
         });
     }
-    renderGallery('skills');
-    renderSkillTree(g.entries);
+
+    // Update tree hex cards
+    const treeCard = document.querySelector(`.tree-hex-card[data-title="${entry.name}"]`);
+    if (treeCard) {
+        treeCard.classList.remove(...statusClasses);
+        if (newStatusClass) treeCard.classList.add(newStatusClass);
+        let agentEl = treeCard.querySelector('.hex-agent-status');
+        if (agentHTML) {
+            if (!agentEl) {
+                agentEl = document.createElement('div');
+                agentEl.className = 'hex-agent-status';
+                treeCard.querySelector('.hex-content')?.appendChild(agentEl);
+            }
+            agentEl.innerHTML = agentHTML;
+        } else if (agentEl) {
+            agentEl.remove();
+        }
+    }
+
+    // Update open popup if it's showing this skill
+    if (activePopup && activePopup.galleryName === 'skills') {
+        const popupEntry = g.entries[activePopup.index];
+        if (popupEntry && popupEntry.title === entry.name) {
+            const badge = document.querySelector('.chat-status-badge');
+            const hadTwoCol = !!document.querySelector('.popup-two-col');
+            const prevStatus = badge?.dataset.status;
+            const statusChanged = prevStatus && prevStatus !== entry.status;
+
+            // Re-render popup when: switching to/from agent_done/done/failed (buttons change),
+            // or when going from single-col to two-col
+            if (!hadTwoCol || (statusChanged && ['agent_done', 'done', 'failed', 'studying'].includes(entry.status))) {
+                // Save chat log before re-render
+                const chatLog = document.getElementById(`chat-log-${entry.name}`);
+                const savedHTML = chatLog ? chatLog.innerHTML : '';
+                openPopup('skills', activePopup.index);
+                // Restore chat log
+                const newLog = document.getElementById(`chat-log-${entry.name}`);
+                if (newLog && savedHTML) newLog.innerHTML = savedHTML;
+            } else {
+                // Just update badge text/color in place
+                if (badge) {
+                    const statusColor = {studying:'#00d4ff', writing:'#9d4edd', executing:'#ff8800', debugging:'#ff3366', failed:'#ff3366', done:'#39ff14', agent_done:'#39ff14', testing:'#00bfff'}[entry.status] || '#ff8800';
+                    badge.style.background = statusColor;
+                    badge.textContent = (entry.status || 'idle').toUpperCase().replace('AGENT_DONE', 'REVIEW');
+                    badge.dataset.status = entry.status;
+                    if (entry.status === 'agent_done') badge.classList.add('badge-blink');
+                    else badge.classList.remove('badge-blink');
+                }
+                const agentLabel = document.querySelector('.chat-agent-label');
+                if (agentLabel && entry.agent_id) agentLabel.textContent = entry.agent_id;
+            }
+        }
+    }
 }
 
 function handleFullSync(entries) {
@@ -130,6 +219,7 @@ function handleFullSync(entries) {
         status: repo.status || null,
         agent_id: repo.agent_id || null,
         agent_status_text: repo.agent_status_text || null,
+        agent_type: repo.agent_type || null,
         agent_log: repo.agent_log || [],
         progress_history: repo.progress_history || [],
         _isRepo: true
@@ -678,54 +768,88 @@ function openPopup(galleryName, index) {
         ${repoLink}
     `;
 
-    const isInDev = IS_LOCAL && entry.status && entry.status !== 'done';
+    const hasAgent = IS_LOCAL && entry.status;
     const isFailed = IS_LOCAL && entry.status === 'failed';
+    const isDone = IS_LOCAL && entry.status === 'done';
+    const isAgentDone = IS_LOCAL && entry.status === 'agent_done';
 
-    if (isInDev || isFailed) {
-        // Two-column layout: left info, right live agent chat
+    if (hasAgent) {
+        // Two-column layout: left info, right live agent chat (always in local mode)
         const popupCard = document.querySelector('.popup-card');
         if (popupCard) popupCard.classList.add('popup-wide');
 
-        const statusLabel = entry.status.toUpperCase();
-        const statusColor = {studying:'#00d4ff', writing:'#9d4edd', executing:'#ff8800', debugging:'#ff3366', failed:'#ff3366'}[entry.status] || '#ff8800';
+        const statusLabel = (entry.status || 'idle').toUpperCase().replace('AGENT_DONE', 'REVIEW');
+        const statusColor = {studying:'#00d4ff', writing:'#9d4edd', executing:'#ff8800', debugging:'#ff3366', failed:'#ff3366', done:'#39ff14', agent_done:'#39ff14', testing:'#00bfff'}[entry.status] || '#ff8800';
+
+        const actionHTML = isFailed ? `
+            <div class="inject-controls">
+                <button class="inject-retry-btn" onclick="sendWS({type:'retry',skill:'${entry.title}'});">Retry</button>
+            </div>` : isDone ? `
+            <div class="inject-controls">
+                <input class="inject-input" id="inject-edit-${entry.title}" type="text"
+                       placeholder="Describe edit to spawn agent..."
+                       onkeydown="if(event.key==='Enter'){document.getElementById('chat-log-${entry.title}').innerHTML='';sendWS({type:'edit',skill:'${entry.title}',text:this.value});this.value='';}">
+                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-edit-${entry.title}');document.getElementById('chat-log-${entry.title}').innerHTML='';sendWS({type:'edit',skill:'${entry.title}',text:inp.value});inp.value='';">Edit Skill</button>
+            </div>` : '';
+
+        // Build bottom controls based on state
+        let chatInputHTML = '';
+        if (isDone) {
+            // Fully done — no input row
+            chatInputHTML = '';
+        } else if (isAgentDone) {
+            // Agent thinks it's done — show hint input + Test + Done buttons
+            chatInputHTML = `<div class="chat-input-row">
+                <input class="inject-input" id="inject-input-${entry.title}" type="text"
+                       placeholder="Send follow-up hint..."
+                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.title}','you',this.value);this.value='';}">
+                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.title}','you',inp.value);inp.value='';">Send</button>
+                <button class="inject-test-btn" onclick="document.getElementById('chat-log-${entry.title}').innerHTML='';sendWS({type:'test',skill:'${entry.title}'});">Test</button>
+                <button class="inject-done-btn" onclick="sendWS({type:'confirm_done',skill:'${entry.title}',agent_id:'${entry.agent_id||''}'});">Done</button>
+            </div>`;
+        } else {
+            // Active — show hint input + Stop button (cyan for test agent, red for dev)
+            const isTestAgent = entry.agent_type === 'test';
+            const stopBtnClass = isTestAgent ? 'inject-test-btn' : 'inject-stop-btn';
+            const stopLabel = isTestAgent ? 'Stop Test' : 'Stop';
+            chatInputHTML = `<div class="chat-input-row">
+                <input class="inject-input" id="inject-input-${entry.title}" type="text"
+                       placeholder="Send hint to agent..."
+                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.title}','you',this.value);this.value='';}">
+                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.title}','you',inp.value);inp.value='';">Send</button>
+                <button class="${stopBtnClass}" onclick="sendWS({type:'stop',agent_id:'${entry.agent_id||''}'});">${stopLabel}</button>
+            </div>`;
+        }
 
         document.getElementById('popup-inner').innerHTML = `
             <div class="popup-two-col">
                 <div class="popup-col-info">
                     ${infoHTML}
-                    ${isFailed ? `
-                    <div class="inject-controls">
-                        <button class="inject-retry-btn" onclick="sendWS({type:'retry',skill:'${entry.title}'});">Retry</button>
-                    </div>` : ''}
+                    ${actionHTML}
                 </div>
                 <div class="popup-col-chat">
                     <div class="chat-header">
-                        <span class="chat-status-badge" style="background:${statusColor};">${statusLabel}</span>
+                        <span class="chat-status-badge${isAgentDone ? ' badge-blink' : ''}" data-status="${entry.status}" style="background:${statusColor};">${statusLabel}</span>
                         <span class="chat-agent-label">${entry.agent_id || 'agent'}</span>
                     </div>
-                    <div class="chat-log" id="chat-log-${entry.id}">
+                    <div class="chat-log" id="chat-log-${entry.title}">
                         ${(entry.agent_log || []).map(msg => {
                             const isExperiment = /^Ran \d+/.test(msg);
-                            const cls = isExperiment ? 'chat-msg-experiment' : 'chat-msg-agent';
-                            const role = isExperiment ? 'experiment' : 'agent';
+                            const isTest = entry.agent_type === 'test' || entry.agent_type === 'test_writer';
+                            const cls = isExperiment ? 'chat-msg-experiment' : isTest ? 'chat-msg-test' : 'chat-msg-agent';
+                            const role = isExperiment ? 'experiment' : isTest ? 'test' : 'agent';
                             return `<div class="chat-msg ${cls}">
                                 <span class="chat-msg-role">${role}</span>
                                 <span class="chat-msg-text">${msg}</span>
                             </div>`;
                         }).join('')}
                     </div>
-                    <div class="chat-input-row">
-                        <input class="inject-input" id="inject-input-${entry.id}" type="text"
-                               placeholder="Send hint to agent..."
-                               onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.id}','you',this.value);this.value='';}">
-                        <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.id}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.id}','you',inp.value);inp.value='';">Send</button>
-                        <button class="inject-stop-btn" onclick="sendWS({type:'stop',agent_id:'${entry.agent_id||''}'});">Stop</button>
-                    </div>
+                    ${chatInputHTML}
                 </div>
             </div>
         `;
     } else {
-        // Single column for done skills
+        // Single column for skills with no agent activity
         const popupCard = document.querySelector('.popup-card');
         if (popupCard) popupCard.classList.remove('popup-wide');
 

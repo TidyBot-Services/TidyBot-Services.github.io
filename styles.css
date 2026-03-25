@@ -2721,10 +2721,12 @@ body.theme-local {
 .hex-card.status-studying,
 .hex-card.status-writing,
 .hex-card.status-debugging,
+.hex-card.status-testing,
 .tree-hex-card.status-executing,
 .tree-hex-card.status-studying,
 .tree-hex-card.status-writing,
-.tree-hex-card.status-debugging {
+.tree-hex-card.status-debugging,
+.tree-hex-card.status-testing {
     animation: devPulse 2s ease-in-out infinite !important;
 }
 
@@ -2732,28 +2734,47 @@ body.theme-local {
 .status-studying  { --dev-glow-color: #00d4ff; }
 .status-writing   { --dev-glow-color: #9d4edd; }
 .status-debugging { --dev-glow-color: #ff3366; }
+.status-testing   { --dev-glow-color: #00bfff; }
 
 .hex-card.status-executing .hex-border,
 .hex-card.status-studying .hex-border,
 .hex-card.status-writing .hex-border,
 .hex-card.status-debugging .hex-border,
+.hex-card.status-testing .hex-border,
 .tree-hex-card.status-executing .hex-border,
 .tree-hex-card.status-studying .hex-border,
 .tree-hex-card.status-writing .hex-border,
-.tree-hex-card.status-debugging .hex-border {
+.tree-hex-card.status-debugging .hex-border,
+.tree-hex-card.status-testing .hex-border {
     background: var(--dev-glow-color) !important;
     animation: hexFloat 5s ease-in-out infinite, devBorderPulse 2s ease-in-out infinite !important;
 }
 
-/* Failed state — red border, no pulse */
-.status-failed .hex-border {
-    background: #ff3366 !important;
+/* Failed state — red border, blinking */
+.status-failed { --dev-glow-color: #ff3366; }
+.hex-card.status-failed,
+.tree-hex-card.status-failed {
+    animation: devPulse 2s ease-in-out infinite !important;
 }
-.status-failed {
-    filter: saturate(0.6);
+.hex-card.status-failed .hex-border,
+.tree-hex-card.status-failed .hex-border {
+    background: #ff3366 !important;
+    animation: hexFloat 5s ease-in-out infinite, devBorderPulse 2s ease-in-out infinite !important;
 }
 
-/* Done state — green tinted border */
+/* Agent-done state — green blinking, needs user review */
+.status-agent_done { --dev-glow-color: #39ff14; }
+.hex-card.status-agent_done,
+.tree-hex-card.status-agent_done {
+    animation: devPulse 2s ease-in-out infinite !important;
+}
+.hex-card.status-agent_done .hex-border,
+.tree-hex-card.status-agent_done .hex-border {
+    background: #39ff14 !important;
+    animation: hexFloat 5s ease-in-out infinite, devBorderPulse 2s ease-in-out infinite !important;
+}
+
+/* Done state — green tinted border, no pulse */
 .status-done .hex-border {
     background: var(--color-green-dim) !important;
 }
@@ -2816,7 +2837,7 @@ body.theme-local {
     box-shadow: 0 0 8px rgba(255, 136, 0, 0.2);
 }
 
-.inject-send-btn, .inject-stop-btn, .inject-retry-btn {
+.inject-send-btn, .inject-stop-btn, .inject-retry-btn, .inject-test-btn {
     font-family: var(--font-mono);
     font-size: 0.6rem;
     font-weight: 600;
@@ -2840,11 +2861,38 @@ body.theme-local {
 }
 .inject-stop-btn:hover { box-shadow: 0 0 12px rgba(255, 51, 102, 0.5); }
 
-.inject-retry-btn {
+.inject-test-btn {
+    color: var(--color-bg);
+    background: #00d4ff;
+}
+.inject-test-btn:hover { box-shadow: 0 0 12px rgba(0, 212, 255, 0.5); }
+
+.inject-retry-btn, .inject-done-btn {
     color: var(--color-bg);
     background: var(--color-green);
 }
-.inject-retry-btn:hover { box-shadow: 0 0 12px rgba(57, 255, 20, 0.5); }
+.inject-retry-btn:hover, .inject-done-btn:hover { box-shadow: 0 0 12px rgba(57, 255, 20, 0.5); }
+
+.inject-done-btn {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+/* Blinking badge for agent_done review state */
+.badge-blink {
+    animation: badgeBlink 1s ease-in-out infinite;
+}
+@keyframes badgeBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
 
 /* ---- Two-column popup for in-dev skills ---- */
 .popup-wide {
@@ -2926,6 +2974,11 @@ body.theme-local {
 .chat-msg-agent {
     background: rgba(255, 255, 255, 0.04);
     border-left: 2px solid var(--color-warning);
+}
+
+.chat-msg-test {
+    background: rgba(0, 191, 255, 0.06);
+    border-left: 2px solid #00bfff;
 }
 
 .chat-msg-experiment {
