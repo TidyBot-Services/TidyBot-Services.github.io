@@ -1,53 +1,5 @@
 [
   {
-    "timestamp": "2026-02-16 01:07",
-    "type": "feature",
-    "title": "rewrite client.py for sandbox compatibility (urllib)",
-    "description": "Commit by qifei-c in grounded-sam2-service",
-    "files": [
-      "grounded-sam2-service/"
-    ],
-    "sha": "589babb",
-    "repo": "grounded-sam2-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-16 01:07",
-    "type": "feature",
-    "title": "rewrite client.py for sandbox compatibility (urllib)",
-    "description": "Commit by qifei-c in graspgen-service",
-    "files": [
-      "graspgen-service/"
-    ],
-    "sha": "7f7d31d",
-    "repo": "graspgen-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-16 01:07",
-    "type": "feature",
-    "title": "rewrite client.py for sandbox compatibility (urllib)",
-    "description": "Commit by qifei-c in foundation-stereo-service",
-    "files": [
-      "foundation-stereo-service/"
-    ],
-    "sha": "219ca81",
-    "repo": "foundation-stereo-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-16 01:07",
-    "type": "feature",
-    "title": "rewrite client.py for sandbox compatibility (urllib)",
-    "description": "Commit by qifei-c in nav-mapping-service",
-    "files": [
-      "nav-mapping-service/"
-    ],
-    "sha": "cdd7ca3",
-    "repo": "nav-mapping-service",
-    "author": "qifei-c"
-  },
-  {
     "timestamp": "2026-02-16 01:08",
     "type": "feature",
     "title": "add usage fields to grounded-sam2, graspgen, foundation-stereo, nav-mapping",
@@ -2397,6 +2349,54 @@
     ],
     "sha": "d7c3f4b",
     "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-25 18:27",
+    "type": "feature",
+    "title": "Save uncommitted changes",
+    "description": "Commit by Yifei Simon Shao in common",
+    "files": [
+      "common/"
+    ],
+    "sha": "d1826f8",
+    "repo": "common",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-25 18:30",
+    "type": "feature",
+    "title": "Update execution recorder and server",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "b64ec93",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-25 18:30",
+    "type": "feature",
+    "title": "Update skills: reorganize and add detect-target",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "9c5199c",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-25 18:30",
+    "type": "feature",
+    "title": "Update camera client",
+    "description": "Commit by Yifei Simon Shao in camera_realsense_service",
+    "files": [
+      "camera_realsense_service/"
+    ],
+    "sha": "ae229d3",
+    "repo": "camera_realsense_service",
     "author": "Yifei Simon Shao"
   }
 ]
