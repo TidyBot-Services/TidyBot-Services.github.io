@@ -1,89 +1,5 @@
 [
   {
-    "timestamp": "2026-02-15 09:02",
-    "type": "feature",
-    "title": "Add nav-mapping-service to catalog",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "0d30f55",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-15 09:02",
-    "type": "setup",
-    "title": "Initial nav-mapping-service: occupancy grid, A* planning, frontier detection",
-    "description": "Commit by qifei-c in nav-mapping-service",
-    "files": [
-      "nav-mapping-service/"
-    ],
-    "sha": "4dab179",
-    "repo": "nav-mapping-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-15 14:00",
-    "type": "feature",
-    "title": "mark nav-mapping-service as done",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "267cf2e",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-15 16:29",
-    "type": "feature",
-    "title": "Add -L flag to curl instruction for following redirects",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "c846fbe",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-15 16:40",
-    "type": "feature",
-    "title": "Show required request bodies in lease workflow steps",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "a85c108",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-15 17:08",
-    "type": "setup",
-    "title": "Add agent server to ecosystem table and setup instructions",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4737a8d",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-16 00:46",
-    "type": "feature",
-    "title": "Add client SDK spec for sandbox-compatible service clients",
-    "description": "Commit by Tidybot in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "2090d50",
-    "repo": "services_wishlist",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-16 01:07",
     "type": "feature",
     "title": "rewrite client.py for sandbox compatibility (urllib)",
@@ -2397,6 +2313,90 @@
     ],
     "sha": "55db98b",
     "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 16:10",
+    "type": "feature",
+    "title": "Add skip_filter param to perceive_objects (default True for backward compat)",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "01bb659",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 16:10",
+    "type": "feature",
+    "title": "Add /perceive endpoint and default to rgb+depth+segmentation",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "c02107d",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-24 16:20",
+    "type": "feature",
+    "title": "Add logging to plan/ik/perceive commands",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "6e292c6",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-25 00:26",
+    "type": "feature",
+    "title": "Add plan/dev mode gates, autonomous mode, and submit_and_wait script",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "e9572d3",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-25 01:34",
+    "type": "feature",
+    "title": "Make maniskill_tidyverse a proper Python package",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "1e8a50a",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-25 01:34",
+    "type": "feature",
+    "title": "Use maniskill_tidyverse package imports, remove sys.path hacks",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "e42bd82",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-25 01:41",
+    "type": "setup",
+    "title": "Declare all deps in setup.py, remove sys.path hacks from all files",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "d7c3f4b",
+    "repo": "maniskill-tidyverse",
     "author": "Yifei Simon Shao"
   }
 ]
