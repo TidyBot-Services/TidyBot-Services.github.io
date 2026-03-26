@@ -65,7 +65,7 @@
     "dependencies": ["navigate-reach", "grasp-handle"],
     "service_dependencies": [],
     "sdk_functions": ["planner.plan_to_pose", "gripper.close", "arm.move_linear"],
-    "status": "review",
+    "status": "agent_done",
     "agent_id": "solver_4",
     "agent_status_text": "Awaiting human confirmation — 75% success rate across 8 trials",
     "agent_log": [
