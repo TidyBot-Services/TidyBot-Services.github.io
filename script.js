@@ -8,7 +8,7 @@
 // LOCAL vs ONLINE MODE
 // ============================================
 const IS_LOCAL = window.FORCE_LOCAL_MODE || ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
-const BASE_PATH = window.location.pathname.includes('/local') ? '../' : './';
+const BASE_PATH = (window.location.pathname.includes('/local') || window.location.pathname.includes('/updates')) ? '../' : './';
 let ws = null;
 let wsConnected = false;
 

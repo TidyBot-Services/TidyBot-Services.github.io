@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[X]Bot Universe — Updates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- EVA-style background -->
+    <div class="honeycomb-bg"></div>
+    <div class="scanlines"></div>
+
+    <!-- Site Navigation -->
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="../" class="site-nav-tab">Home</a>
+            <a href="../local/" class="site-nav-tab">Local Demo</a>
+            <a href="./" class="site-nav-tab active">Updates</a>
+        </div>
+    </nav>
+
+    <div class="smooth-scroll-wrapper">
+        <!-- Warning banner -->
+        <div class="marquee-banner">
+            <div class="marquee-track">
+                <span class="warning-text">⚠ WARNING</span>
+                <span class="separator">◈</span>
+                <span>DEVELOPMENT LOG</span>
+                <span class="separator">◈</span>
+                <span>[X]BOT UNIVERSE</span>
+                <span class="separator">◈</span>
+                <span class="warning-text">⚠ WARNING</span>
+                <span class="separator">◈</span>
+                <span>SELF-ITERATION PIPELINE</span>
+                <span class="separator">◈</span>
+                <span>115 TASKS QUEUED</span>
+                <span class="separator">◈</span>
+                <span class="warning-text">⚠ WARNING</span>
+                <span class="separator">◈</span>
+                <span>DEVELOPMENT LOG</span>
+                <span class="separator">◈</span>
+                <span>[X]BOT UNIVERSE</span>
+                <span class="separator">◈</span>
+                <span class="warning-text">⚠ WARNING</span>
+                <span class="separator">◈</span>
+                <span>SELF-ITERATION PIPELINE</span>
+                <span class="separator">◈</span>
+                <span>115 TASKS QUEUED</span>
+                <span class="separator">◈</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Hero Section -->
+            <header class="hero" style="min-height: 40vh;">
+                <div class="hero-content">
+                    <span class="hero-tag">Development Log</span>
+                    <h1 class="hero-title" data-split-text>
+                        <span class="line"><span class="word">Updates</span></span>
+                    </h1>
+                    <p class="hero-subtitle">Building autonomous skill development across 115 RoboCasa kitchen tasks. Strategy: Incremental Comparison — solve tasks one by one, reusing and growing a shared skill library.</p>
+                </div>
+            </header>
+
+            <!-- ==============================
+                 STRATEGY OVERVIEW
+                 ============================== -->
+            <!-- ==============================
+                 DETAILED TIMELINE
+                 ============================== -->
+            <section class="updates-section gallery-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">Timeline</span>
+                    <span class="gallery-count">Detailed Progress</span>
+                </div>
+
+                <div class="updates-timeline">
+
+                    <!-- Entry: Full Autonomy -->
+                    <div class="update-entry status-planned">
+                        <span class="update-status-badge planned">PLANNED</span>
+                        <div class="update-date">GOAL</div>
+                        <h3 class="update-title">Full Self-Iteration Loop</h3>
+                        <div class="update-body">
+                            <p>The end state: start the system, walk away, come back to find skills developed across all 115 tasks with a growing shared skill library.</p>
+                            <ul>
+                                <li>Single command: <code>python3 task_sequencer.py --strategy incremental</code></li>
+                                <li>Autonomous mode throughout — no human review gates</li>
+                                <li>Skill library grows organically as tasks are solved</li>
+                                <li>Dashboard shows progress across all tasks in real-time</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: Task Sequencer -->
+                    <div class="update-entry status-planned">
+                        <span class="update-status-badge planned">PLANNED</span>
+                        <div class="update-date">NEXT</div>
+                        <h3 class="update-title">Task Sequencer (Meta-Orchestrator)</h3>
+                        <div class="update-body">
+                            <p>The top-level loop that drives autonomous iteration across all 115 tasks.</p>
+                            <ul>
+                                <li>Maintains ordered task queue (single-stage first, then multi-stage)</li>
+                                <li>For each task: switch sim, create graph, run orchestrator, extract skills</li>
+                                <li>Progress tracking: <code>task_progress.json</code> with solved tasks and success rates</li>
+                                <li>Incremental comparison: before each task, compare with prior solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: Cross-Task Planner Context -->
+                    <div class="update-entry status-planned">
+                        <span class="update-status-badge planned">PLANNED</span>
+                        <div class="update-date">NEXT</div>
+                        <h3 class="update-title">Cross-Task Planner Context</h3>
+                        <div class="update-body">
+                            <p>Core of Strategy 2: when planning task N, the planner sees solutions from tasks 1..N-1 and can identify commonalities.</p>
+                            <ul>
+                                <li>Feed existing skill catalog to planner system prompt</li>
+                                <li>Analyze task source (<code>_check_success()</code>, <code>_get_obj_cfgs()</code>) for structural comparison</li>
+                                <li>Planner decides: reuse existing skill, adapt it, or build new</li>
+                                <li>Auto-graph creation from task analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: Task Switching -->
+                    <div class="update-entry status-planned">
+                        <span class="update-status-badge planned">PLANNED</span>
+                        <div class="update-date">NEXT</div>
+                        <h3 class="update-title">Runtime Task Switching in Sim</h3>
+                        <div class="update-body">
+                            <p>Currently the sim loads one task at startup (<code>--task</code> flag). Need a <code>POST /task/switch</code> endpoint to change environments without restarting the process.</p>
+                            <ul>
+                                <li>Add <code>POST /task/switch</code> to sim server HTTP API</li>
+                                <li>Teardown current env, create new one, restart bridges</li>
+                                <li>Enables the task sequencer to drive multi-task runs</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: Shared Skill Library -->
+                    <div class="update-entry status-wip">
+                        <span class="update-status-badge wip">IN PROGRESS</span>
+                        <div class="update-date">MAR 26, 2026</div>
+                        <h3 class="update-title">Shared Skill Library Across Task Graphs</h3>
+                        <div class="update-body">
+                            <p>Currently skills are siloed inside each graph's <code>skills/</code> directory. Building a shared library so skills from task 1 are available when solving task 2.</p>
+                            <ul>
+                                <li>Top-level <code>skills/</code> directory that persists across graphs</li>
+                                <li>Import mechanism: graphs can reference shared skills by name</li>
+                                <li>Extraction: after a task is solved, reusable skills are promoted to shared library</li>
+                                <li>Discovery: planner agent can browse existing skills before decomposing new tasks</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: Dashboard -->
+                    <div class="update-entry status-done">
+                        <span class="update-status-badge done">DONE</span>
+                        <div class="update-date">MAR 25, 2026</div>
+                        <h3 class="update-title">Live Dashboard with Agent Chat</h3>
+                        <div class="update-body">
+                            <p>Real-time hex gallery showing skill development progress. Each hex blinks to show active agent work.</p>
+                            <ul>
+                                <li>Dependency tree visualization with SVG edges</li>
+                                <li>Status-colored nodes: studying (cyan), writing (purple), done (green), failed (red)</li>
+                                <li>Click a hex to see agent reasoning trace + inject hints in real-time</li>
+                                <li>Review gate confirmation: click to promote "review" skills to "done"</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: Autonomous Mode -->
+                    <div class="update-entry status-done">
+                        <span class="update-status-badge done">DONE</span>
+                        <div class="update-date">MAR 25, 2026</div>
+                        <h3 class="update-title">Autonomous Mode & Auto-Test Generation</h3>
+                        <div class="update-body">
+                            <p>Two key features that reduce human involvement in the pipeline.</p>
+                            <ul>
+                                <li><strong>Autonomous mode</strong> (<code>--autonomous</code>): skips review gate, auto-promotes completed skills</li>
+                                <li><strong>Auto-test for root skills</strong>: when <code>task_env</code> is set in graph.json, the root skill automatically gets a test that calls <code>GET /task/success</code></li>
+                                <li>Sub-skills still need test_writer agent to define success criteria</li>
+                                <li>Full cascade: leaf skills start immediately, compose upward</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: Agent Orchestrator -->
+                    <div class="update-entry status-done">
+                        <span class="update-status-badge done">DONE</span>
+                        <div class="update-date">MAR 23, 2026</div>
+                        <h3 class="update-title">Agent Orchestrator with Dev Pipeline</h3>
+                        <div class="update-body">
+                            <p>Orchestrator manages a dependency tree of skills. AI agents (Claude Code) develop each skill through a structured pipeline.</p>
+                            <ul>
+                                <li>Pipeline: planner designs tree, dev agents implement, mechanical tests validate</li>
+                                <li>Auto-spawn: when all dependencies are "done", downstream skills auto-start</li>
+                                <li>WebSocket bridge to dashboard for real-time monitoring</li>
+                                <li>Graph format with <code>task_env</code> metadata links to sim tasks</li>
+                                <li><code>submit_and_wait.py</code> lets agents test code via the agent server</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: Sim Server -->
+                    <div class="update-entry status-done">
+                        <span class="update-status-badge done">DONE</span>
+                        <div class="update-date">MAR 21, 2026</div>
+                        <h3 class="update-title">ManiSkill Sim Server with HTTP API</h3>
+                        <div class="update-body">
+                            <p>Sim server exposes the same protocol bridges as real hardware (ZMQ arm, RPC base, WebSocket camera) so the agent server connects transparently.</p>
+                            <ul>
+                                <li>Physics loop at 20 Hz with bridge threads</li>
+                                <li>HTTP API on port 5500: <code>/task/success</code>, <code>/task/info</code>, <code>/reset</code>, <code>/plan</code>, <code>/perceive</code></li>
+                                <li><code>/task/success</code> calls the task's <code>_check_success()</code> — no custom test code needed</li>
+                                <li>Auto-reset on episode end, manual reset via <code>POST /reset</code></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: RoboCasa Tasks -->
+                    <div class="update-entry status-done">
+                        <span class="update-status-badge done">DONE</span>
+                        <div class="update-date">MAR 20, 2026</div>
+                        <h3 class="update-title">115 RoboCasa Tasks Ported to ManiSkill</h3>
+                        <div class="update-body">
+                            <p>All RoboCasa kitchen tasks ported to ManiSkill3/SAPIEN with the TidyVerse robot (Franka Panda + mobile base). Each task has a <code>_check_success()</code> method for automated evaluation.</p>
+                            <ul>
+                                <li>32 single-stage tasks (pick-and-place, doors, drawers, stove, sink, microwave, coffee)</li>
+                                <li>83 multi-stage tasks across 19 categories (cooking, cleaning, organizing, etc.)</li>
+                                <li>Success utilities: gripper distance, object-in-receptacle, fixture state, uprightness checks</li>
+                                <li>Gymnasium-registered — <code>gym.make("RoboCasa-Pn-P-Counter-To-Cab-v0")</code></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Entry: OpenClaw Skills Reference -->
+                    <div class="update-entry status-done">
+                        <span class="update-status-badge done">DONE</span>
+                        <div class="update-date">MAR 02, 2026</div>
+                        <h3 class="update-title">OpenClaw Skills Reference (Prior Work)</h3>
+                        <div class="update-body">
+                            <p>Previously developed skills from OpenClaw sessions, available as reference for the sim pipeline.</p>
+                            <ul>
+                                <li><code>tb-pick-up-object</code> — IBVS visual servoing pick (78% success rate on hardware)</li>
+                                <li><code>tb-place-object</code> — depth-based placement</li>
+                                <li><code>tb-find-and-pick-up</code> — chained center + pick pipeline</li>
+                                <li><code>tb-pick-and-place</code> — full IBVS pick + raise-look-around place</li>
+                                <li>These were on real hardware — sim equivalents use <code>robot_sdk</code> instead of raw API calls</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==============================
+                 COMPONENT STATUS TABLE
+                 ============================== -->
+            <section class="gallery-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">Components</span>
+                    <span class="gallery-count">Infrastructure Status</span>
+                </div>
+
+                <div class="updates-summary">
+                    <div class="updates-summary-list">
+                        <div class="update-summary-item planned">
+                            <span class="update-summary-status planned">PLANNED</span>
+                            <span class="update-summary-title">Task progress tracking across all 115 tasks</span>
+                        </div>
+                        <div class="update-summary-item planned">
+                            <span class="update-summary-status planned">PLANNED</span>
+                            <span class="update-summary-title">Task sequencer (meta-orchestrator)</span>
+                        </div>
+                        <div class="update-summary-item planned">
+                            <span class="update-summary-status planned">PLANNED</span>
+                            <span class="update-summary-title">Auto-graph creation from task analysis</span>
+                        </div>
+                        <div class="update-summary-item planned">
+                            <span class="update-summary-status planned">PLANNED</span>
+                            <span class="update-summary-title">Cross-task planner context (Strategy 2 core)</span>
+                        </div>
+                        <div class="update-summary-item planned">
+                            <span class="update-summary-status planned">PLANNED</span>
+                            <span class="update-summary-title">Runtime task switching (<code>POST /task/switch</code>)</span>
+                        </div>
+                        <div class="update-summary-item wip">
+                            <span class="update-summary-status wip">IN PROGRESS</span>
+                            <span class="update-summary-title">Shared skill library across task graphs</span>
+                        </div>
+                        <div class="update-summary-item done">
+                            <span class="update-summary-status done">DONE</span>
+                            <span class="update-summary-title">Live dashboard with real-time agent monitoring</span>
+                        </div>
+                        <div class="update-summary-item done">
+                            <span class="update-summary-status done">DONE</span>
+                            <span class="update-summary-title">Auto-test generation for root skills via <code>task_env</code></span>
+                        </div>
+                        <div class="update-summary-item done">
+                            <span class="update-summary-status done">DONE</span>
+                            <span class="update-summary-title">Autonomous mode (skip review gate)</span>
+                        </div>
+                        <div class="update-summary-item done">
+                            <span class="update-summary-status done">DONE</span>
+                            <span class="update-summary-title">Agent orchestrator with dependency-based auto-spawn</span>
+                        </div>
+                        <div class="update-summary-item done">
+                            <span class="update-summary-status done">DONE</span>
+                            <span class="update-summary-title">Agent server with code execution API</span>
+                        </div>
+                        <div class="update-summary-item done">
+                            <span class="update-summary-status done">DONE</span>
+                            <span class="update-summary-title">ManiSkill sim server + HTTP API (<code>/task/success</code>)</span>
+                        </div>
+                        <div class="update-summary-item done">
+                            <span class="update-summary-status done">DONE</span>
+                            <span class="update-summary-title">115 RoboCasa tasks with <code>_check_success()</code></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="timeline-footer">
+                <div class="footer-content">
+                    <span class="footer-brand">[X]Bot Universe</span>
+                    <a href="https://shaoyifei96.github.io/" class="footer-contact" target="_blank" rel="noopener noreferrer">Contact: yishao@seas.upenn.edu</a>
+                    <span class="footer-year">Development Log</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Rounded hex clip-path -->
+    <svg width="0" height="0" style="position:absolute;">
+        <defs>
+            <clipPath id="hex-clip-rounded" clipPathUnits="objectBoundingBox">
+                <path d="
+                    M 0.425 0.0375
+                    Q 0.5 0, 0.575 0.0375
+                    L 0.925 0.2125
+                    Q 1 0.25, 1 0.325
+                    L 1 0.675
+                    Q 1 0.75, 0.925 0.7875
+                    L 0.575 0.9625
+                    Q 0.5 1, 0.425 0.9625
+                    L 0.075 0.7875
+                    Q 0 0.75, 0 0.675
+                    L 0 0.325
+                    Q 0 0.25, 0.075 0.2125
+                    Z
+                "/>
+            </clipPath>
+        </defs>
+    </svg>
+
+    <script src="../script.js"></script>
+</body>
+</html>
