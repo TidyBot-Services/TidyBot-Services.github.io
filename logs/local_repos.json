@@ -65,11 +65,17 @@
     "dependencies": ["navigate-reach", "grasp-handle"],
     "service_dependencies": [],
     "sdk_functions": ["planner.plan_to_pose", "gripper.close", "arm.move_linear"],
-    "status": "done",
-    "agent_id": null,
-    "agent_status_text": null,
-    "agent_log": [],
-    "progress_history": []
+    "status": "review",
+    "agent_id": "solver_4",
+    "agent_status_text": "Awaiting human confirmation — 75% success rate across 8 trials",
+    "agent_log": [
+      "Studying pull-drawer-open. Depends on navigate-reach + grasp-handle.",
+      "Wrote solve() v1: grasp handle, linear pull 0.3m backward.",
+      "Ran 10 seeds: 6/10 pass. Some drawers stuck — pull distance too short.",
+      "Wrote solve() v2: adaptive pull distance based on drawer depth, added re-grasp on slip.",
+      "Ran 8 seeds: 6/8 pass. Marking as ready for review."
+    ],
+    "progress_history": [3, 5, 6, 6, 8, 8]
   },
   {
     "id": "sc-004",
