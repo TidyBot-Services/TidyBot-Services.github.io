@@ -2694,17 +2694,6 @@ button.gallery-wishlist {
     }
 }
 
-/* ============================================
-   LOCAL DEV THEME (warm amber/copper)
-   Activated via body.theme-local
-   ============================================ */
-
-body.theme-local {
-    --color-warning: #ffd700;
-    --color-warning-bright: #ffed4a;
-    --color-warning-dim: #ccaa00;
-}
-
 /* ---- In-development hex pulse ---- */
 @keyframes devPulse {
     0%, 100% { filter: drop-shadow(0 0 0px transparent) brightness(1); }
@@ -3030,24 +3019,6 @@ body.theme-local {
         padding-left: 0;
         padding-top: 1rem;
     }
-}
-
-/* ---- Local mode banner ---- */
-.local-banner {
-    background: linear-gradient(90deg, #ffd700, #ccaa00);
-    color: #000;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 0.3rem 1rem;
-}
-
-.local-banner .ws-status {
-    margin-left: 1rem;
-    font-weight: 400;
 }
 
 /* ============================================

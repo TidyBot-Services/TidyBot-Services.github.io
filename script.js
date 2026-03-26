@@ -5,32 +5,22 @@
 // ============================================
 
 // ============================================
-// LOCAL vs ONLINE MODE
+// LOCAL DEMO PAGE DETECTION
 // ============================================
-const IS_LOCAL = window.FORCE_LOCAL_MODE || ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+// IS_LOCAL_PAGE: true when on the /local/ tab (shows status badges, loads graph data)
+// IS_LOCAL_SERVER: true when running on localhost (enables WebSocket to orchestrator)
+const IS_LOCAL_PAGE = window.location.pathname.includes('/local');
+const IS_LOCAL_SERVER = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+const IS_LOCAL = IS_LOCAL_PAGE;
 const BASE_PATH = (window.location.pathname.includes('/local') || window.location.pathname.includes('/updates')) ? '../' : './';
 let ws = null;
 let wsConnected = false;
 
 function initLocalMode() {
-    if (!IS_LOCAL) return;
-    document.body.classList.add('theme-local');
+    if (!IS_LOCAL_PAGE) return;
 
-    // Swap "Universe" → "Universe-Local" in hero title
-    const universeEl = document.getElementById('hero-universe');
-    if (universeEl) universeEl.textContent = 'Universe-Local';
-
-    // Add local banner
-    const isDemo = window.FORCE_LOCAL_MODE && !['localhost', '127.0.0.1', ''].includes(window.location.hostname);
-    const banner = document.createElement('div');
-    banner.className = 'local-banner';
-    banner.innerHTML = isDemo
-        ? 'LOCAL DEV MODE (DEMO) <span class="ws-status" id="ws-status">WS: demo only</span>'
-        : 'LOCAL DEV MODE <span class="ws-status" id="ws-status">WS: connecting...</span>';
-    document.body.prepend(banner);
-
-    // Connect WebSocket only when actually local
-    if (!isDemo) connectWS();
+    // Connect WebSocket only when actually running locally
+    if (IS_LOCAL_SERVER) connectWS();
 }
 
 function connectWS() {
