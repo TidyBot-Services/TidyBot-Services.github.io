@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-16 02:03",
-    "type": "docs",
-    "title": "docs: update README for urllib client and service_clients import path",
-    "description": "Commit by qifei-c in nav-mapping-service",
-    "files": [
-      "nav-mapping-service/"
-    ],
-    "sha": "95aa03e",
-    "repo": "nav-mapping-service",
-    "author": "qifei-c"
-  },
-  {
     "timestamp": "2026-02-16 03:57",
     "type": "feature",
     "title": "feat: update grounded-sam2 to v0.2.0 — add /visualize endpoint",
@@ -2396,6 +2384,18 @@
       "maniskill-robocasa-tasks/"
     ],
     "sha": "23feccd",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-27 16:55",
+    "type": "fix",
+    "title": "Fix object placement for SAPIEN: settling algorithm, stove/cabinet issues",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "8b129a7",
     "repo": "maniskill-robocasa-tasks",
     "author": "TruAres"
   }
