@@ -1752,20 +1752,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     initParallax();
     initLightbox();
 
-    const skillsFile = IS_LOCAL ? BASE_PATH + 'logs/local_repos.json' : BASE_PATH + 'logs/repos.json';
-    const [skills, services] = await Promise.all([
-        loadRepos(skillsFile),
-        loadServices()
-    ]);
-
+    const services = await loadServices();
     const { agents, nonAgents } = splitAgentServices(services);
 
-    // Skills: repos from Tidybot-Skills org
-    const preparedSkills = prepareEntries(skills);
-    initGallery('skills', preparedSkills);
-
-    // Render the tree view (hidden initially)
-    renderSkillTree(preparedSkills);
+    // Skills: on local mode, init empty gallery first so WS full_sync can populate it,
+    // then wait briefly for orchestrator data before falling back to JSON file.
+    if (IS_LOCAL && IS_LOCAL_SERVER) {
+        initGallery('skills', prepareEntries([]));
+        // Wait for WS full_sync to arrive with live data
+        const gotSync = await new Promise(resolve => {
+            const check = setInterval(() => {
+                if (galleries.skills && galleries.skills.entries.length > 0) {
+                    clearInterval(check);
+                    resolve(true);
+                }
+            }, 100);
+            setTimeout(() => { clearInterval(check); resolve(false); }, 2000);
+        });
+        if (!gotSync) {
+            // Fallback to JSON if orchestrator didn't respond
+            const skills = await loadRepos(BASE_PATH + 'logs/local_repos.json');
+            const preparedSkills = prepareEntries(skills);
+            initGallery('skills', preparedSkills);
+            renderSkillTree(preparedSkills);
+        }
+    } else {
+        const skillsFile = IS_LOCAL ? BASE_PATH + 'logs/local_repos.json' : BASE_PATH + 'logs/repos.json';
+        const skills = await loadRepos(skillsFile);
+        const preparedSkills = prepareEntries(skills);
+        initGallery('skills', preparedSkills);
+        renderSkillTree(preparedSkills);
+    }
 
     // Toggle between timeline and tree views
     const toggle = document.getElementById('skills-view-toggle');
