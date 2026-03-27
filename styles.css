@@ -2805,28 +2805,38 @@ button.gallery-wishlist {
     animation: hexFloat 5s ease-in-out infinite, devBorderPulse 2s ease-in-out infinite !important;
 }
 
-/* Failed state — red border, blinking */
+/* Needs-attention blink — sharp on/off instead of smooth pulse */
+@keyframes attentionBlink {
+    0%, 100% { filter: brightness(1); opacity: 1; }
+    50% { filter: brightness(1.5); opacity: 0.6; }
+}
+@keyframes attentionBorderBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Failed state — red, sharp blink */
 .status-failed { --dev-glow-color: #ff3366; }
 .hex-card.status-failed,
 .tree-hex-card.status-failed {
-    animation: devPulse 2s ease-in-out infinite !important;
+    animation: attentionBlink 1s steps(2, end) infinite !important;
 }
 .hex-card.status-failed .hex-border,
 .tree-hex-card.status-failed .hex-border {
     background: #ff3366 !important;
-    animation: hexFloat 5s ease-in-out infinite, devBorderPulse 2s ease-in-out infinite !important;
+    animation: hexFloat 5s ease-in-out infinite, attentionBorderBlink 1s steps(2, end) infinite !important;
 }
 
-/* Agent-done state — green blinking, needs user review */
-.status-agent_done { --dev-glow-color: #39ff14; }
-.hex-card.status-agent_done,
-.tree-hex-card.status-agent_done {
-    animation: devPulse 2s ease-in-out infinite !important;
+/* Agent-done / review state — green, sharp blink (needs user action) */
+.status-agent_done, .status-review { --dev-glow-color: #39ff14; }
+.hex-card.status-agent_done, .hex-card.status-review,
+.tree-hex-card.status-agent_done, .tree-hex-card.status-review {
+    animation: attentionBlink 1s steps(2, end) infinite !important;
 }
-.hex-card.status-agent_done .hex-border,
-.tree-hex-card.status-agent_done .hex-border {
+.hex-card.status-agent_done .hex-border, .hex-card.status-review .hex-border,
+.tree-hex-card.status-agent_done .hex-border, .tree-hex-card.status-review .hex-border {
     background: #39ff14 !important;
-    animation: hexFloat 5s ease-in-out infinite, devBorderPulse 2s ease-in-out infinite !important;
+    animation: hexFloat 5s ease-in-out infinite, attentionBorderBlink 1s steps(2, end) infinite !important;
 }
 
 /* Done state — green tinted border, no pulse */

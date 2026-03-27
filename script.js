@@ -174,7 +174,7 @@ function handleStatusUpdate(entry) {
             } else {
                 // Just update badge text/color in place
                 if (badge) {
-                    const statusColor = {studying:'#00d4ff', writing:'#9d4edd', executing:'#ff8800', debugging:'#ff3366', failed:'#ff3366', done:'#39ff14', agent_done:'#39ff14', testing:'#00bfff'}[entry.status] || '#ff8800';
+                    const statusColor = {studying:'#00d4ff', writing:'#9d4edd', executing:'#ff8800', debugging:'#ff3366', failed:'#ff3366', done:'#39ff14', agent_done:'#39ff14', review:'#39ff14', testing:'#00bfff'}[entry.status] || '#ff8800';
                     badge.style.background = statusColor;
                     badge.textContent = (entry.status || 'idle').toUpperCase().replace('AGENT_DONE', 'REVIEW');
                     badge.dataset.status = entry.status;
@@ -939,7 +939,8 @@ function openPopup(galleryName, index) {
     const hasAgent = IS_LOCAL && entry.status;
     const isFailed = IS_LOCAL && entry.status === 'failed';
     const isDone = IS_LOCAL && entry.status === 'done';
-    const isAgentDone = IS_LOCAL && entry.status === 'agent_done';
+    const isAgentDone = IS_LOCAL && (entry.status === 'agent_done' || entry.status === 'review');
+    const needsAttention = isAgentDone || isFailed;
 
     if (hasAgent) {
         // Two-column layout: left info, right live agent chat (always in local mode)
@@ -947,7 +948,7 @@ function openPopup(galleryName, index) {
         if (popupCard) popupCard.classList.add('popup-wide');
 
         const statusLabel = (entry.status || 'idle').toUpperCase().replace('AGENT_DONE', 'REVIEW');
-        const statusColor = {studying:'#00d4ff', writing:'#9d4edd', executing:'#ff8800', debugging:'#ff3366', failed:'#ff3366', done:'#39ff14', agent_done:'#39ff14', testing:'#00bfff'}[entry.status] || '#ff8800';
+        const statusColor = {studying:'#00d4ff', writing:'#9d4edd', executing:'#ff8800', debugging:'#ff3366', failed:'#ff3366', done:'#39ff14', agent_done:'#39ff14', review:'#39ff14', testing:'#00bfff'}[entry.status] || '#ff8800';
 
         const actionHTML = isFailed ? `
             <div class="inject-controls">
@@ -997,7 +998,7 @@ function openPopup(galleryName, index) {
                 </div>
                 <div class="popup-col-chat">
                     <div class="chat-header">
-                        <span class="chat-status-badge${isAgentDone ? ' badge-blink' : ''}" data-status="${entry.status}" style="background:${statusColor};">${statusLabel}</span>
+                        <span class="chat-status-badge${needsAttention ? ' badge-blink' : ''}" data-status="${entry.status}" style="background:${statusColor};">${statusLabel}</span>
                         <span class="chat-agent-label">${entry.agent_id || 'agent'}</span>
                     </div>
                     <div class="chat-log" id="chat-log-${entry.title}">
