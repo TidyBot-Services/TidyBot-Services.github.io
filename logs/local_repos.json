@@ -155,15 +155,11 @@
     "dependencies": ["pull-drawer-open", "swing-cabinet-open", "navigate-reach"],
     "service_dependencies": [],
     "sdk_functions": [],
-    "status": "studying",
-    "agent_id": "solver_2",
-    "agent_status_text": "Reading framework docs + existing skills before writing solve()",
-    "agent_log": [
-      "Starting open-all-fixtures. This composes pull-drawer-open + swing-cabinet-open.",
-      "Reading pull-drawer-open SKILL.md to understand interface.",
-      "Reading swing-cabinet-open SKILL.md. Note: swing skill still under development."
-    ],
-    "progress_history": [1, 2, 3]
+    "status": "planned",
+    "agent_id": null,
+    "agent_status_text": "Waiting for dependencies: pull-drawer-open, swing-cabinet-open",
+    "agent_log": [],
+    "progress_history": []
   },
   {
     "id": "sc-007",
@@ -183,16 +179,10 @@
     "dependencies": ["collision-free-pick-place"],
     "service_dependencies": [],
     "sdk_functions": ["planner.plan_to_pose", "gripper.open"],
-    "status": "failed",
-    "agent_id": "solver_3",
-    "agent_status_text": "FAILED after 10/10 experiments -- collision with cabinet every time",
-    "agent_log": [
-      "Studying place-object-on-counter. Depends on collision-free-pick-place.",
-      "Wrote solve() v1: plan to counter surface, open gripper, retract.",
-      "Ran 10 seeds: 0/10 pass. Arm collides with upper cabinet on every layout.",
-      "Wrote solve() v2: approach from below counter level, added cabinet clearance check.",
-      "Ran 10 seeds: 0/10 pass. Lower zone blocked by objects on counter. Max attempts reached."
-    ],
-    "progress_history": [2, 2, 2, 2, 2]
+    "status": "planned",
+    "agent_id": null,
+    "agent_status_text": "Waiting for dependency: collision-free-pick-place",
+    "agent_log": [],
+    "progress_history": []
   }
 ]
