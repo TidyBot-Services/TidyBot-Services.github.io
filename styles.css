@@ -619,6 +619,71 @@ body {
     width: 100%;
 }
 
+/* Install Section */
+.install-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.install-code-block {
+    position: relative;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.install-code-block pre {
+    margin: 0;
+}
+
+.install-code-block code {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-green);
+    white-space: pre;
+}
+
+.install-copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-soft);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+}
+
+.install-copy-btn:hover {
+    background: var(--color-card-hover);
+    color: var(--color-text);
+    border-color: var(--color-green-dim);
+}
+
+.install-steps {
+    color: var(--color-text-soft);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    margin: 0.75rem 0;
+}
+
+.install-steps code {
+    color: var(--color-warning-bright);
+    background: var(--color-bg-secondary);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
 @media (max-width: 600px) {
     .demo-video-wrapper {
         width: 100%;
