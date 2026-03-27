@@ -613,28 +613,29 @@ function tick() {
 // ============================================
 
 async function fetchLatestExecution(skillName) {
-    // Fetch recordings list, find latest one matching this skill's holder pattern
+    // Find the latest job for this skill via holder pattern, then fetch its recording
     try {
-        const resp = await fetch(`${AGENT_SERVER}/code/recordings`);
+        // Try skill-specific holder patterns: "dev:<skill>" or just the skill name
+        const resp = await fetch(`${AGENT_SERVER}/code/jobs`);
         if (!resp.ok) return null;
         const data = await resp.json();
-        const ids = data.recordings || [];
-        if (ids.length === 0) return null;
+        const jobs = data.jobs || [];
 
-        // Try the most recent recordings, return first one with frames
-        for (const execId of ids.slice(0, 10)) {
-            try {
-                const meta = await fetch(`${AGENT_SERVER}/code/recordings/${execId}`);
-                if (!meta.ok) continue;
-                const rec = await meta.json();
-                // API returns frames in timeline[].frame, raw metadata has frames[]
-                const frames = rec.frames || (rec.timeline || []).map(t => t.frame);
-                if (frames.length > 0) {
-                    return { execution_id: execId, frames, ...rec };
-                }
-            } catch (e) { continue; }
-        }
-        return null;
+        // Find latest completed job whose holder matches this skill
+        const match = jobs.find(j =>
+            j.execution_id && j.status === 'completed' &&
+            (j.holder === `dev:${skillName}` || j.holder === skillName || (j.holder || '').includes(skillName))
+        );
+
+        const execId = match ? match.execution_id : null;
+        if (!execId) return null;
+
+        const meta = await fetch(`${AGENT_SERVER}/code/recordings/${execId}`);
+        if (!meta.ok) return null;
+        const rec = await meta.json();
+        const frames = rec.frames || (rec.timeline || []).map(t => t.frame);
+        if (frames.length === 0) return null;
+        return { execution_id: execId, frames, ...rec };
     } catch (e) {
         return null;
     }
