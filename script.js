@@ -10,7 +10,7 @@
 // IS_LOCAL_PAGE: true when on the /local/ tab (shows status badges, loads graph data)
 // IS_LOCAL_SERVER: true when running on localhost (enables WebSocket to orchestrator)
 const IS_LOCAL_PAGE = window.location.pathname.includes('/local');
-const IS_LOCAL_SERVER = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+const IS_LOCAL_SERVER = ['localhost', '127.0.0.1', ''].includes(window.location.hostname) || /^(10|172\.(1[6-9]|2\d|3[01])|192\.168)\./.test(window.location.hostname);
 const IS_LOCAL = IS_LOCAL_PAGE;
 const BASE_PATH = (window.location.pathname.includes('/local') || window.location.pathname.includes('/updates')) ? '../' : './';
 const AGENT_SERVER = `http://${window.location.hostname || 'localhost'}:8080`;
@@ -1747,7 +1747,6 @@ function initGallery(name, entries) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    initLocalMode();
     initHoneycomb();
     initParallax();
     initLightbox();
@@ -1756,9 +1755,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { agents, nonAgents } = splitAgentServices(services);
 
     // Skills: on local mode, init empty gallery first so WS full_sync can populate it,
-    // then wait briefly for orchestrator data before falling back to JSON file.
+    // then connect WS and wait briefly for orchestrator data before falling back to JSON file.
     if (IS_LOCAL && IS_LOCAL_SERVER) {
         initGallery('skills', prepareEntries([]));
+        initLocalMode(); // Connect WS after gallery exists so full_sync isn't dropped
         // Wait for WS full_sync to arrive with live data
         const gotSync = await new Promise(resolve => {
             const check = setInterval(() => {
@@ -1777,6 +1777,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             renderSkillTree(preparedSkills);
         }
     } else {
+        initLocalMode(); // For non-local-server local pages (no-op for main site)
         const skillsFile = IS_LOCAL ? BASE_PATH + 'logs/local_repos.json' : BASE_PATH + 'logs/repos.json';
         const skills = await loadRepos(skillsFile);
         const preparedSkills = prepareEntries(skills);
