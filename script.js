@@ -13,8 +13,10 @@ const IS_LOCAL_PAGE = window.location.pathname.includes('/local');
 const IS_LOCAL_SERVER = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
 const IS_LOCAL = IS_LOCAL_PAGE;
 const BASE_PATH = (window.location.pathname.includes('/local') || window.location.pathname.includes('/updates')) ? '../' : './';
+const AGENT_SERVER = `http://${window.location.hostname || 'localhost'}:8080`;
 let ws = null;
 let wsConnected = false;
+let _execAutoplayTimer = null;
 
 function initLocalMode() {
     if (!IS_LOCAL_PAGE) return;
@@ -607,6 +609,180 @@ function tick() {
 }
 
 // ============================================
+// EXECUTION VIEWER
+// ============================================
+
+async function fetchLatestExecution(skillName) {
+    // Fetch recordings list, find latest one matching this skill's holder pattern
+    try {
+        const resp = await fetch(`${AGENT_SERVER}/code/recordings`);
+        if (!resp.ok) return null;
+        const data = await resp.json();
+        const ids = data.recordings || [];
+        if (ids.length === 0) return null;
+
+        // Try the most recent recordings, return first one with frames
+        for (const execId of ids.slice(0, 10)) {
+            try {
+                const meta = await fetch(`${AGENT_SERVER}/code/recordings/${execId}`);
+                if (!meta.ok) continue;
+                const rec = await meta.json();
+                // API returns frames in timeline[].frame, raw metadata has frames[]
+                const frames = rec.frames || (rec.timeline || []).map(t => t.frame);
+                if (frames.length > 0) {
+                    return { execution_id: execId, frames, ...rec };
+                }
+            } catch (e) { continue; }
+        }
+        return null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function buildExecViewerHTML(execData) {
+    if (!execData || !execData.frames || execData.frames.length === 0) return '';
+    const execId = execData.execution_id;
+    const frames = execData.frames;
+    const cameras = execData.cameras || [];
+    const frameUrl = (f) => `${AGENT_SERVER}/code/recordings/${execId}/frames/${f}`;
+
+    // Group frames by camera
+    const camGroups = {};
+    for (const f of frames) {
+        // Frame format: 0000_camera_name.jpg
+        const match = f.match(/^\d+_(.+)\.jpg$/);
+        const cam = match ? match[1] : 'unknown';
+        if (!camGroups[cam]) camGroups[cam] = [];
+        camGroups[cam].push(f);
+    }
+
+    const camNames = Object.keys(camGroups);
+    const defaultCam = camNames[0] || '';
+    const defaultFrames = camGroups[defaultCam] || [];
+
+    // Camera tab buttons
+    const camTabs = camNames.length > 1
+        ? `<div class="exec-cam-tabs">${camNames.map((c, i) =>
+            `<button class="exec-cam-tab${i === 0 ? ' active' : ''}" data-cam="${c}">${c.replace(/_/g, ' ')}</button>`
+        ).join('')}</div>`
+        : '';
+
+    const duration = execData.duration ? `${execData.duration.toFixed(1)}s` : '';
+
+    return `<div class="popup-trial-gallery exec-viewer" data-exec-id="${execId}">
+        <span class="popup-files-label">Latest Execution ${duration ? `<span class="exec-duration">(${duration})</span>` : ''}</span>
+        ${camTabs}
+        <div class="trial-hero exec-hero">
+            <img class="trial-hero-img exec-hero-img" src="${frameUrl(defaultFrames[0])}" alt="Execution frame">
+            <span class="trial-counter exec-counter">1 / ${defaultFrames.length}</span>
+            <div class="exec-controls">
+                <button class="exec-play-btn" title="Play/Pause">▶</button>
+            </div>
+        </div>
+        <div class="exec-progress-bar"><div class="exec-progress-fill"></div></div>
+        <div class="trial-strip exec-strip">
+            ${defaultFrames.slice(0, 20).map((f, i) =>
+                `<div class="trial-thumb${i === 0 ? ' active' : ''}" data-index="${i}" style="background-image:url(${frameUrl(f)});"></div>`
+            ).join('')}
+        </div>
+    </div>`;
+}
+
+function wireExecViewer(execData) {
+    const viewer = document.querySelector('.exec-viewer');
+    if (!viewer || !execData) return;
+
+    const execId = execData.execution_id;
+    const frames = execData.frames;
+    const frameUrl = (f) => `${AGENT_SERVER}/code/recordings/${execId}/frames/${f}`;
+
+    // Group frames by camera
+    const camGroups = {};
+    for (const f of frames) {
+        const match = f.match(/^\d+_(.+)\.jpg$/);
+        const cam = match ? match[1] : 'unknown';
+        if (!camGroups[cam]) camGroups[cam] = [];
+        camGroups[cam].push(f);
+    }
+
+    let currentCam = Object.keys(camGroups)[0] || '';
+    let currentFrames = camGroups[currentCam] || [];
+    let currentIdx = 0;
+    let playing = false;
+
+    const heroImg = viewer.querySelector('.exec-hero-img');
+    const counter = viewer.querySelector('.exec-counter');
+    const playBtn = viewer.querySelector('.exec-play-btn');
+    const progressFill = viewer.querySelector('.exec-progress-fill');
+    const strip = viewer.querySelector('.exec-strip');
+
+    function showFrame(idx) {
+        currentIdx = idx;
+        heroImg.src = frameUrl(currentFrames[idx]);
+        counter.textContent = `${idx + 1} / ${currentFrames.length}`;
+        if (progressFill) progressFill.style.width = `${((idx + 1) / currentFrames.length) * 100}%`;
+        // Update thumb highlights
+        strip.querySelectorAll('.trial-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+    }
+
+    function play() {
+        playing = true;
+        playBtn.textContent = '⏸';
+        advance();
+    }
+
+    function pause() {
+        playing = false;
+        playBtn.textContent = '▶';
+        if (_execAutoplayTimer) { clearTimeout(_execAutoplayTimer); _execAutoplayTimer = null; }
+    }
+
+    function advance() {
+        if (!playing) return;
+        currentIdx = (currentIdx + 1) % currentFrames.length;
+        showFrame(currentIdx);
+        _execAutoplayTimer = setTimeout(advance, 200);
+    }
+
+    function switchCam(cam) {
+        currentCam = cam;
+        currentFrames = camGroups[cam] || [];
+        currentIdx = 0;
+        // Rebuild strip
+        strip.innerHTML = currentFrames.slice(0, 20).map((f, i) =>
+            `<div class="trial-thumb${i === 0 ? ' active' : ''}" data-index="${i}" style="background-image:url(${frameUrl(f)});"></div>`
+        ).join('');
+        // Re-wire thumb clicks
+        strip.querySelectorAll('.trial-thumb').forEach(t => {
+            t.addEventListener('click', () => { pause(); showFrame(parseInt(t.dataset.index, 10)); });
+        });
+        showFrame(0);
+        counter.textContent = `1 / ${currentFrames.length}`;
+    }
+
+    // Wire controls
+    playBtn.addEventListener('click', () => playing ? pause() : play());
+
+    // Wire camera tabs
+    viewer.querySelectorAll('.exec-cam-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            viewer.querySelectorAll('.exec-cam-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            switchCam(tab.dataset.cam);
+        });
+    });
+
+    // Wire thumb clicks
+    strip.querySelectorAll('.trial-thumb').forEach(t => {
+        t.addEventListener('click', () => { pause(); showFrame(parseInt(t.dataset.index, 10)); });
+    });
+
+    // Auto-play on load
+    play();
+}
+
+// ============================================
 // POPUP
 // ============================================
 
@@ -748,6 +924,7 @@ function openPopup(galleryName, index) {
         </div>
         ${imageHTML}
         ${trialHTML}
+        <div class="exec-viewer-slot"></div>
         <h2 class="popup-title">${entry.title}</h2>
         <p class="popup-desc">${entry.description}</p>
         ${filesHTML}
@@ -879,9 +1056,24 @@ function openPopup(galleryName, index) {
     }
 
     document.getElementById('popup-overlay').classList.add('open');
+
+    // Async: load latest execution frames into the viewer slot
+    if (IS_LOCAL) {
+        const slot = document.querySelector('.exec-viewer-slot');
+        if (slot) {
+            fetchLatestExecution(entry.title).then(execData => {
+                if (execData && slot.isConnected) {
+                    slot.innerHTML = buildExecViewerHTML(execData);
+                    wireExecViewer(execData);
+                }
+            });
+        }
+    }
 }
 
 function closePopup() {
+    // Stop any running autoplay
+    if (_execAutoplayTimer) { clearTimeout(_execAutoplayTimer); _execAutoplayTimer = null; }
     document.getElementById('popup-overlay').classList.remove('open');
     const popupCard = document.querySelector('.popup-card');
     if (popupCard) popupCard.classList.remove('popup-wide');

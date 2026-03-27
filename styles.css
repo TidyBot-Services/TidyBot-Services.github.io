@@ -1591,6 +1591,72 @@ button.gallery-wishlist {
     box-shadow: 0 0 8px rgba(255, 107, 0, 0.4);
 }
 
+/* Execution viewer */
+.exec-viewer-slot:empty { display: none; }
+
+.exec-cam-tabs {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.exec-cam-tab {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.5rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    color: var(--color-gray);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.exec-cam-tab:hover { color: var(--color-text); border-color: var(--color-warning-dim); }
+.exec-cam-tab.active { color: var(--color-warning); border-color: var(--color-warning); background: rgba(255, 107, 0, 0.08); }
+
+.exec-hero { position: relative; }
+
+.exec-controls {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.5rem;
+    display: flex;
+    gap: 0.3rem;
+}
+
+.exec-play-btn {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    background: rgba(10, 10, 12, 0.75);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: border-color var(--duration-fast);
+}
+.exec-play-btn:hover { border-color: var(--color-warning); }
+
+.exec-progress-bar {
+    height: 2px;
+    background: var(--color-bg-secondary);
+    border: none;
+    margin: 0;
+}
+
+.exec-progress-fill {
+    height: 100%;
+    background: var(--color-warning);
+    width: 0%;
+    transition: width 0.15s linear;
+}
+
+.exec-duration {
+    color: var(--color-gray);
+    font-size: 0.55rem;
+}
+
 .popup-title {
     font-family: var(--font-display);
     font-size: 1.3rem;
