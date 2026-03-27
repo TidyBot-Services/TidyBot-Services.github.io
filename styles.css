@@ -2772,34 +2772,20 @@ button.gallery-wishlist {
 }
 
 /* Active dev states — pulsing glow */
-.hex-card.status-executing,
-.hex-card.status-studying,
+/* Active dev states — slow breathing pulse */
 .hex-card.status-writing,
-.hex-card.status-debugging,
 .hex-card.status-testing,
-.tree-hex-card.status-executing,
-.tree-hex-card.status-studying,
 .tree-hex-card.status-writing,
-.tree-hex-card.status-debugging,
 .tree-hex-card.status-testing {
     animation: devPulse 10s ease-in-out infinite !important;
 }
 
-.status-executing { --dev-glow-color: #ff8800; }
-.status-studying  { --dev-glow-color: #00d4ff; }
 .status-writing   { --dev-glow-color: #9d4edd; }
-.status-debugging { --dev-glow-color: #ff3366; }
 .status-testing   { --dev-glow-color: #00bfff; }
 
-.hex-card.status-executing .hex-border,
-.hex-card.status-studying .hex-border,
 .hex-card.status-writing .hex-border,
-.hex-card.status-debugging .hex-border,
 .hex-card.status-testing .hex-border,
-.tree-hex-card.status-executing .hex-border,
-.tree-hex-card.status-studying .hex-border,
 .tree-hex-card.status-writing .hex-border,
-.tree-hex-card.status-debugging .hex-border,
 .tree-hex-card.status-testing .hex-border {
     background: var(--dev-glow-color) !important;
     animation: hexFloat 5s ease-in-out infinite, devBorderPulse 10s ease-in-out infinite !important;
@@ -2859,10 +2845,9 @@ button.gallery-wishlist {
     vertical-align: middle;
 }
 
-.status-dot.studying   { background: #00d4ff; }
+.status-dot.review     { background: #39ff14; }
 .status-dot.writing    { background: #9d4edd; }
-.status-dot.executing  { background: #ff8800; }
-.status-dot.debugging  { background: #ff3366; }
+.status-dot.planned    { background: #666; }
 .status-dot.done       { background: #39ff14; }
 .status-dot.failed     { background: #ff3366; }
 
