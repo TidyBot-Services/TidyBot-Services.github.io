@@ -1,53 +1,5 @@
 [
   {
-    "timestamp": "2026-02-16 08:03",
-    "type": "setup",
-    "title": "Initial: GR-ConvNet v2 grasp detection service with FastAPI",
-    "description": "Commit by qifei-c in lightweight-grasp-service",
-    "files": [
-      "lightweight-grasp-service/"
-    ],
-    "sha": "1270db8",
-    "repo": "lightweight-grasp-service",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-16 08:04",
-    "type": "feature",
-    "title": "Mark lightweight-grasp-net as done",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "0601b89",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-16 08:04",
-    "type": "feature",
-    "title": "Add lightweight-grasp-net service",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "e90bf85",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-16 20:26",
-    "type": "docs",
-    "title": "Add banner image to README",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "6beb031",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-16 20:26",
     "type": "docs",
     "title": "Add banner image to org profile README",
@@ -2398,5 +2350,53 @@
     "sha": "7c643f6",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:45",
+    "type": "test",
+    "title": "Add _site/ to gitignore, update graph state from test session",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "7e4b096",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:46",
+    "type": "feature",
+    "title": "Gitignore machine-specific URDF mesh symlinks",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "c17b60a",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:48",
+    "type": "fix",
+    "title": "Fix setup.sh: move URDF symlinks after pip install (needs mani_skill)",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "0a9c0af",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 23:19",
+    "type": "fix",
+    "title": "Fix cupcake/pot/pan placement: avoid sink overlap, fixture collision, pan stacki",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "584a602",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
   }
 ]
