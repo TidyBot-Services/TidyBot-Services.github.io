@@ -65,15 +65,15 @@
     "dependencies": ["navigate-reach", "grasp-handle"],
     "service_dependencies": [],
     "sdk_functions": ["planner.plan_to_pose", "gripper.close", "arm.move_linear"],
-    "status": "agent_done",
-    "agent_id": "solver_4",
-    "agent_status_text": "Awaiting human confirmation — 75% success rate across 8 trials",
+    "status": "review",
+    "agent_id": "agent-a1b2c3d4",
+    "agent_status_text": "Dev complete — waiting for review",
     "agent_log": [
-      "Studying pull-drawer-open. Depends on navigate-reach + grasp-handle.",
-      "Wrote solve() v1: grasp handle, linear pull 0.3m backward.",
-      "Ran 10 seeds: 6/10 pass. Some drawers stuck — pull distance too short.",
-      "Wrote solve() v2: adaptive pull distance based on drawer depth, added re-grasp on slip.",
-      "Ran 8 seeds: 6/8 pass. Marking as ready for review."
+      "Reading SDK docs and existing skills.",
+      "Wrote scripts/main.py v1: grasp handle, linear pull 0.3m backward.",
+      "Submitted code — 6/10 pass. Pull distance too short for deep drawers.",
+      "Wrote v2: adaptive pull distance based on drawer depth, re-grasp on slip.",
+      "Submitted code — 6/8 pass. Dev complete — waiting for review."
     ],
     "progress_history": [3, 5, 6, 6, 8, 8]
   },
@@ -88,24 +88,23 @@
     "stars": 0,
     "is_private": false,
     "default_branch": "main",
-    "success_rate": 60,
-    "total_trials": 5,
-    "institutions_tested": 1,
+    "success_rate": null,
+    "total_trials": 0,
+    "institutions_tested": 0,
     "trial_images": [],
     "dependencies": ["navigate-reach", "grasp-handle"],
     "service_dependencies": [],
     "sdk_functions": ["planner.plan_to_pose", "gripper.close", "arm.move_arc"],
-    "status": "executing",
-    "agent_id": "solver_0",
-    "agent_status_text": "Experiment 5/10: arc trajectory with 45deg swing angle",
+    "status": "writing",
+    "agent_id": "agent-e5f6g7h8",
+    "agent_status_text": "Developing...",
     "agent_log": [
-      "Studying swing-cabinet-open task. Handle requires front grasp + arc pull.",
-      "Wrote solve() v1: navigate to cabinet, grasp handle, arc trajectory 30deg.",
-      "Ran 10 seeds: 2/10 pass. Main failure: arc radius too small, gripper collides with cabinet frame.",
-      "Wrote solve() v2: increased arc radius 0.15 -> 0.22m, added 45deg swing angle.",
-      "Running 10 seeds..."
+      "Reading SDK docs at /docs/guide/html.",
+      "Wrote scripts/main.py v1: navigate to cabinet, grasp handle, arc trajectory 30deg.",
+      "Submitted code — 2/10 pass. Arc radius too small, gripper collides with frame.",
+      "Writing v2 with increased arc radius and 45deg swing angle."
     ],
-    "progress_history": [2, 3, 3, 5, 5, 5, 8, 8, 10, 10, 12, 12]
+    "progress_history": [2, 3, 3, 5, 5]
   },
   {
     "id": "sc-005",
@@ -125,15 +124,15 @@
     "dependencies": ["navigate-reach"],
     "service_dependencies": [],
     "sdk_functions": ["planner.plan_to_pose", "gripper.open", "gripper.close"],
-    "status": "debugging",
-    "agent_id": "solver_1",
-    "agent_status_text": "Experiment 6/10: IK failed at wrist joint limit (3x in a row)",
+    "status": "failed",
+    "agent_id": "agent-i9j0k1l2",
+    "agent_status_text": "Failed after 3 attempts",
     "agent_log": [
-      "Studying collision-free-pick-place. Need motion planner to avoid obstacles.",
-      "Wrote solve() v1: plan path with mplib, pick object, plan to target, place.",
-      "Ran 10 seeds: 4/10 pass. Failures all on tall counters — IK fails at wrist joint limit.",
-      "Wrote solve() v2: adjusted IK seed pose, tried whole-body planning.",
-      "Ran 10 seeds: 4/10 pass. Same wrist limit on tall counters. 3 consecutive failures on seed 2,3,5."
+      "Reading SDK docs and existing skills.",
+      "Wrote scripts/main.py v1: plan path with mplib, pick, plan to target, place.",
+      "Submitted code — 4/10 pass. IK fails at wrist joint limit on tall counters.",
+      "Wrote v2: adjusted IK seed pose, tried whole-body planning.",
+      "Submitted code — 4/10 pass. Same wrist limit. Max attempts reached."
     ],
     "progress_history": [2, 4, 6, 6, 6]
   },
@@ -157,7 +156,7 @@
     "sdk_functions": [],
     "status": "planned",
     "agent_id": null,
-    "agent_status_text": "Waiting for dependencies: pull-drawer-open, swing-cabinet-open",
+    "agent_status_text": null,
     "agent_log": [],
     "progress_history": []
   },
@@ -181,7 +180,7 @@
     "sdk_functions": ["planner.plan_to_pose", "gripper.open"],
     "status": "planned",
     "agent_id": null,
-    "agent_status_text": "Waiting for dependency: collision-free-pick-place",
+    "agent_status_text": null,
     "agent_log": [],
     "progress_history": []
   }
