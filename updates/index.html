@@ -143,6 +143,22 @@
                         </div>
                     </div>
 
+                    <!-- Entry: Pipeline & Dashboard Updates -->
+                    <div class="update-entry status-done">
+                        <span class="update-status-badge done">DONE</span>
+                        <div class="update-date">MAR 26, 2026</div>
+                        <h3 class="update-title">Ground-Truth Test Loop & Execution Viewer</h3>
+                        <div class="update-body">
+                            <p>Wired the root skill's auto-generated test into the pipeline and added a camera frame viewer to the dashboard.</p>
+                            <ul>
+                                <li><strong>Root skill test loop</strong>: after dev completes, runs ground-truth test via sim's <code>_check_success()</code>. Retries dev up to 3 times on failure, then sends to review.</li>
+                                <li><strong>Execution frame viewer</strong>: skill popup shows auto-scrolling camera frames from the latest execution, matched to the skill via job holder. Supports camera tab switching and play/pause.</li>
+                                <li><strong>RoboCasa tasks repo</strong>: extracted task definitions (single-stage + multi-stage) into <a href="https://github.com/TidyBot-Services/maniskill-robocasa-tasks">maniskill-robocasa-tasks</a></li>
+                                <li>Simplified pipeline statuses to: planned, writing, testing, review, failed, done</li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <!-- Entry: Shared Skill Library -->
                     <div class="update-entry status-wip">
                         <span class="update-status-badge wip">IN PROGRESS</span>
@@ -185,7 +201,7 @@
                             <ul>
                                 <li><strong>Autonomous mode</strong> (<code>--autonomous</code>): skips review gate, auto-promotes completed skills</li>
                                 <li><strong>Auto-test for root skills</strong>: when <code>task_env</code> is set in graph.json, the root skill automatically gets a test that calls <code>GET /task/success</code></li>
-                                <li>Sub-skills still need test_writer agent to define success criteria</li>
+                                <li>Sub-skills skip testing entirely — dev agent goes straight to review</li>
                                 <li>Full cascade: leaf skills start immediately, compose upward</li>
                             </ul>
                         </div>
