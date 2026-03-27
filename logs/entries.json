@@ -1,101 +1,5 @@
 [
   {
-    "timestamp": "2026-02-16 07:01",
-    "type": "feature",
-    "title": "Add .gitignore, remove pycache",
-    "description": "Commit by qifei-c in realsense-slam",
-    "files": [
-      "realsense-slam/"
-    ],
-    "sha": "6324437",
-    "repo": "realsense-slam",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-16 07:01",
-    "type": "setup",
-    "title": "Initial: RealSense SLAM service with Open3D ICP + OpenCV",
-    "description": "Commit by qifei-c in realsense-slam",
-    "files": [
-      "realsense-slam/"
-    ],
-    "sha": "39bee03",
-    "repo": "realsense-slam",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-16 07:02",
-    "type": "feature",
-    "title": "Add realsense-slam service (done)",
-    "description": "Commit by qifei-c in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "5a9ceb5",
-    "repo": "services_wishlist",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-16 07:15",
-    "type": "feature",
-    "title": "Add lightweight RGB-D grasp detection service request",
-    "description": "Commit by Yifei Simon Shao in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "1bf429b",
-    "repo": "services_wishlist",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-16 07:59",
-    "type": "feature",
-    "title": "Mark lightweight-grasp-net and local-obstacle-avoidance as building",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "faf091c",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-16 08:03",
-    "type": "feature",
-    "title": "Mark local-obstacle-avoidance as done",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "fad44cc",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-16 08:03",
-    "type": "feature",
-    "title": "Add local-obstacle-avoidance service",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "d2c9bd1",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
-    "timestamp": "2026-02-16 08:03",
-    "type": "setup",
-    "title": "Initial: local obstacle avoidance with DWA",
-    "description": "Commit by qifei-c in local-obstacle-avoidance-service",
-    "files": [
-      "local-obstacle-avoidance-service/"
-    ],
-    "sha": "ea0148a",
-    "repo": "local-obstacle-avoidance-service",
-    "author": "qifei-c"
-  },
-  {
     "timestamp": "2026-02-16 08:03",
     "type": "setup",
     "title": "Initial: GR-ConvNet v2 grasp detection service with FastAPI",
@@ -2396,6 +2300,102 @@
       "Tidybot-Universe/"
     ],
     "sha": "fe24339",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:26",
+    "type": "setup",
+    "title": "Initial: franka arm ZMQ protocol package",
+    "description": "Commit by Yifei Simon Shao in franka-protocol",
+    "files": [
+      "franka-protocol/"
+    ],
+    "sha": "2876198",
+    "repo": "franka-protocol",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:27",
+    "type": "feature",
+    "title": "Import clients from protocol packages, remove sys.path hacks",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "b4aa51a",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:27",
+    "type": "setup",
+    "title": "Use protocol packages instead of hardware repos in setup",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "a0aa580",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:27",
+    "type": "setup",
+    "title": "Delegate config constants to franka_protocol package",
+    "description": "Commit by Yifei Simon Shao in arm_franka_maniskill_service",
+    "files": [
+      "arm_franka_maniskill_service/"
+    ],
+    "sha": "2ae6c87",
+    "repo": "arm_franka_maniskill_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:27",
+    "type": "setup",
+    "title": "Delegate config constants to gripper_protocol package",
+    "description": "Commit by Yifei Simon Shao in gripper_robotiq_maniskill_service",
+    "files": [
+      "gripper_robotiq_maniskill_service/"
+    ],
+    "sha": "c69ba03",
+    "repo": "gripper_robotiq_maniskill_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:27",
+    "type": "setup",
+    "title": "Initial: gripper ZMQ protocol package",
+    "description": "Commit by Yifei Simon Shao in gripper-protocol",
+    "files": [
+      "gripper-protocol/"
+    ],
+    "sha": "4b05c07",
+    "repo": "gripper-protocol",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:27",
+    "type": "setup",
+    "title": "Initial: camera WebSocket protocol package",
+    "description": "Commit by Yifei Simon Shao in camera-protocol",
+    "files": [
+      "camera-protocol/"
+    ],
+    "sha": "d3d0950",
+    "repo": "camera-protocol",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-27 22:34",
+    "type": "feature",
+    "title": "Clone website repo for dashboard, fix serve path",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "7c643f6",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
   }
