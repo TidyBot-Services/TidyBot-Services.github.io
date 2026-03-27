@@ -2804,13 +2804,13 @@ button.gallery-wishlist {
 }
 
 /* Agent-done / review state — green, same pulse */
-.status-agent_done, .status-review { --dev-glow-color: #39ff14; }
-.hex-card.status-agent_done, .hex-card.status-review,
-.tree-hex-card.status-agent_done, .tree-hex-card.status-review {
+.status-review { --dev-glow-color: #39ff14; }
+.hex-card.status-review,
+.tree-hex-card.status-review {
     animation: devPulse 2.5s ease-in-out infinite !important;
 }
-.hex-card.status-agent_done .hex-border, .hex-card.status-review .hex-border,
-.tree-hex-card.status-agent_done .hex-border, .tree-hex-card.status-review .hex-border {
+.hex-card.status-review .hex-border,
+.tree-hex-card.status-review .hex-border {
     background: #39ff14 !important;
     animation: hexFloat 5s ease-in-out infinite, devBorderPulse 2.5s ease-in-out infinite !important;
 }
@@ -2925,7 +2925,7 @@ button.gallery-wishlist {
     transition: all var(--duration-fast);
 }
 
-/* Blinking badge for agent_done review state */
+/* Blinking badge for review state */
 .badge-blink {
     animation: badgeBlink 1s ease-in-out infinite;
 }

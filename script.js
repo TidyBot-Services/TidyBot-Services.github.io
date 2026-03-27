@@ -108,7 +108,7 @@ function handleStatusUpdate(entry) {
     });
 
     // In-place DOM update — find all hex cards matching this entry and patch them
-    const statusClasses = ['status-writing', 'status-testing', 'status-review', 'status-failed', 'status-done', 'status-agent_done', 'status-planned'];
+    const statusClasses = ['status-writing', 'status-testing', 'status-review', 'status-failed', 'status-done', 'status-planned'];
     const newStatusClass = entry.status ? `status-${entry.status}` : '';
     const agentHTML = entry.agent_status_text
         ? `<span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}`
@@ -163,7 +163,7 @@ function handleStatusUpdate(entry) {
 
             // Re-render popup when: switching to/from agent_done/done/failed (buttons change),
             // or when going from single-col to two-col
-            if (!hadTwoCol || (statusChanged && ['agent_done', 'review', 'done', 'failed'].includes(entry.status))) {
+            if (!hadTwoCol || (statusChanged && ['review', 'done', 'failed'].includes(entry.status))) {
                 // Save chat log before re-render
                 const chatLog = document.getElementById(`chat-log-${entry.name}`);
                 const savedHTML = chatLog ? chatLog.innerHTML : '';
@@ -174,11 +174,11 @@ function handleStatusUpdate(entry) {
             } else {
                 // Just update badge text/color in place
                 if (badge) {
-                    const statusColor = {writing:'#9d4edd', testing:'#00bfff', review:'#39ff14', agent_done:'#39ff14', done:'#39ff14', failed:'#ff3366', planned:'#666'}[entry.status] || '#ff8800';
+                    const statusColor = {writing:'#9d4edd', testing:'#00bfff', review:'#39ff14', done:'#39ff14', failed:'#ff3366', planned:'#666'}[entry.status] || '#ff8800';
                     badge.style.background = statusColor;
                     badge.textContent = (entry.status || 'idle').toUpperCase().replace('AGENT_DONE', 'REVIEW');
                     badge.dataset.status = entry.status;
-                    if (entry.status === 'agent_done') badge.classList.add('badge-blink');
+                    if (entry.status === 'review') badge.classList.add('badge-blink');
                     else badge.classList.remove('badge-blink');
                 }
                 const agentLabel = document.querySelector('.chat-agent-label');
@@ -939,7 +939,7 @@ function openPopup(galleryName, index) {
     const hasAgent = IS_LOCAL && entry.status;
     const isFailed = IS_LOCAL && entry.status === 'failed';
     const isDone = IS_LOCAL && entry.status === 'done';
-    const isAgentDone = IS_LOCAL && (entry.status === 'agent_done' || entry.status === 'review');
+    const isAgentDone = IS_LOCAL && entry.status === 'review';
     const needsAttention = isAgentDone || isFailed;
 
     if (hasAgent) {
@@ -948,7 +948,7 @@ function openPopup(galleryName, index) {
         if (popupCard) popupCard.classList.add('popup-wide');
 
         const statusLabel = (entry.status || 'idle').toUpperCase().replace('AGENT_DONE', 'REVIEW');
-        const statusColor = {writing:'#9d4edd', testing:'#00bfff', review:'#39ff14', agent_done:'#39ff14', done:'#39ff14', failed:'#ff3366', planned:'#666'}[entry.status] || '#ff8800';
+        const statusColor = {writing:'#9d4edd', testing:'#00bfff', review:'#39ff14', done:'#39ff14', failed:'#ff3366', planned:'#666'}[entry.status] || '#ff8800';
 
         const actionHTML = isFailed ? `
             <div class="inject-controls">
