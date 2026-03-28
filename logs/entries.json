@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-02-16 20:29",
-    "type": "feature",
-    "title": "Crop banner image — remove top 15%",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "f2446b1",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-16 20:29",
-    "type": "feature",
-    "title": "Crop banner image — remove top 15%",
-    "description": "Commit by Yifei Simon Shao in .github",
-    "files": [
-      ".github/"
-    ],
-    "sha": "f0cd01b",
-    "repo": ".github",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-17 19:47",
-    "type": "setup",
-    "title": "Add wishlist-monitor cron job to setup.sh + BOOTSTRAP.md fallback",
-    "description": "Commit by qifei-c in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "b71fb7c",
-    "repo": "Tidybot-Universe",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-17 19:52",
-    "type": "setup",
-    "title": "Flesh out service agent setup with full workspace customizations",
-    "description": "Commit by qifei-c in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "877db4c",
-    "repo": "Tidybot-Universe",
-    "author": "qifei-c"
-  },
-  {
-    "timestamp": "2026-02-17 20:33",
-    "type": "setup",
-    "title": "Add agent-server-setup with catalog sync, replace backend/frontend terminology",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "eeb9a63",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-17 20:37",
     "type": "docs",
     "title": "Remove manual setup section from agent-server-setup README",
@@ -2398,5 +2338,65 @@
     "sha": "3f975c9",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-28 03:17",
+    "type": "test",
+    "title": "Add tidybot-bundle, use it in test runner and dev agent prompts",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "7fcd645",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-28 03:18",
+    "type": "test",
+    "title": "Reduce test trials to 1, add agent-developed skills",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "86901b3",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-28 03:19",
+    "type": "feature",
+    "title": "Add __pycache__/ to gitignore",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "26869c8",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-28 03:49",
+    "type": "setup",
+    "title": "Move website repo to workspace root, add claude-agent-sdk to setup",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c79740a",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-28 04:48",
+    "type": "fix",
+    "title": "Fix robot base placement: recompute pose after fixture refs are set",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "1e04728",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
   }
 ]
