@@ -191,31 +191,44 @@ function handleStatusUpdate(entry) {
 function handleFullSync(entries) {
     const g = galleries.skills;
     if (!g) return;
-    g.entries = prepareEntries(entries.map((repo, i) => ({
-        id: String(i + 1).padStart(3, '0'),
-        timestamp: repo.created_at ? new Date(repo.created_at).toISOString().slice(0, 16).replace('T', ' ') : '',
-        type: 'repo',
-        title: repo.name,
-        description: repo.description || 'No description',
-        language: repo.language || 'Unknown',
-        stars: repo.stars || 0,
-        html_url: repo.html_url || '',
-        updated_at: repo.updated_at ? new Date(repo.updated_at).toISOString().slice(0, 16).replace('T', ' ') : '',
-        success_rate: repo.success_rate ?? null,
-        total_trials: repo.total_trials ?? null,
-        institutions_tested: repo.institutions_tested ?? null,
-        trial_images: repo.trial_images || [],
-        dependencies: repo.dependencies || [],
-        service_dependencies: repo.service_dependencies || [],
-        sdk_functions: repo.sdk_functions || [],
-        status: repo.status || null,
-        agent_id: repo.agent_id || null,
-        agent_status_text: repo.agent_status_text || null,
-        agent_type: repo.agent_type || null,
-        agent_log: repo.agent_log || [],
-        progress_history: repo.progress_history || [],
-        _isRepo: true
-    })));
+    // Build map of existing in-memory agent_log to preserve live WS messages
+    const prevLogs = {};
+    if (g.entries) {
+        for (const e of g.entries) {
+            if (e.agent_log && e.agent_log.length) prevLogs[e.title] = e.agent_log;
+        }
+    }
+    g.entries = prepareEntries(entries.map((repo, i) => {
+        const serverLog = repo.agent_log || [];
+        const prevLog = prevLogs[repo.name] || [];
+        // Keep whichever log is longer (live WS accumulates more than server persists)
+        const mergedLog = prevLog.length > serverLog.length ? prevLog : serverLog;
+        return {
+            id: String(i + 1).padStart(3, '0'),
+            timestamp: repo.created_at ? new Date(repo.created_at).toISOString().slice(0, 16).replace('T', ' ') : '',
+            type: 'repo',
+            title: repo.name,
+            description: repo.description || 'No description',
+            language: repo.language || 'Unknown',
+            stars: repo.stars || 0,
+            html_url: repo.html_url || '',
+            updated_at: repo.updated_at ? new Date(repo.updated_at).toISOString().slice(0, 16).replace('T', ' ') : '',
+            success_rate: repo.success_rate ?? null,
+            total_trials: repo.total_trials ?? null,
+            institutions_tested: repo.institutions_tested ?? null,
+            trial_images: repo.trial_images || [],
+            dependencies: repo.dependencies || [],
+            service_dependencies: repo.service_dependencies || [],
+            sdk_functions: repo.sdk_functions || [],
+            status: repo.status || null,
+            agent_id: repo.agent_id || null,
+            agent_status_text: repo.agent_status_text || null,
+            agent_type: repo.agent_type || null,
+            agent_log: mergedLog,
+            progress_history: repo.progress_history || [],
+            _isRepo: true
+        };
+    }));
     renderGallery('skills');
     renderSkillTree(g.entries);
 }
