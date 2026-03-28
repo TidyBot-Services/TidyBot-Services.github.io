@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-16 20:26",
-    "type": "docs",
-    "title": "Add banner image to org profile README",
-    "description": "Commit by Yifei Simon Shao in .github",
-    "files": [
-      ".github/"
-    ],
-    "sha": "993a32b",
-    "repo": ".github",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-16 20:29",
     "type": "feature",
     "title": "Crop banner image — remove top 15%",
@@ -2398,5 +2386,17 @@
     "sha": "584a602",
     "repo": "maniskill-robocasa-tasks",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-28 02:52",
+    "type": "fix",
+    "title": "Fix sim health check and add claude-agent-sdk dependency note",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "3f975c9",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
