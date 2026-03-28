@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-17 20:37",
-    "type": "docs",
-    "title": "Remove manual setup section from agent-server-setup README",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "22bc3d9",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-17 20:43",
     "type": "docs",
     "title": "Remove tagline and ecosystem diagram from README",
@@ -2396,6 +2384,18 @@
       "maniskill-robocasa-tasks/"
     ],
     "sha": "1e04728",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-28 05:24",
+    "type": "fix",
+    "title": "Fix door state methods for SAPIEN and _reset_internal guard",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "9d4715a",
     "repo": "maniskill-robocasa-tasks",
     "author": "TruAres"
   }
