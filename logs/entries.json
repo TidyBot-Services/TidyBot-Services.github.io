@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-19 00:08",
-    "type": "setup",
-    "title": "Initial: Grounded SAM 2 service with FastAPI + client SDK",
-    "description": "Commit by qifei-c in grounded-sam2",
-    "files": [
-      "grounded-sam2/"
-    ],
-    "sha": "2ea223b",
-    "repo": "grounded-sam2",
-    "author": "qifei-c"
-  },
-  {
     "timestamp": "2026-02-19 16:39",
     "type": "feature",
     "title": "Regenerate CLAUDE.md: fix state schema, add missing endpoints and SDK modules",
@@ -2396,6 +2384,18 @@
       "maniskill-robocasa-tasks/"
     ],
     "sha": "0d78570",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-29 04:53",
+    "type": "fix",
+    "title": "Fix _reset_internal not being called: add base method to Kitchen",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "39e5882",
     "repo": "maniskill-robocasa-tasks",
     "author": "TruAres"
   }
