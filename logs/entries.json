@@ -1,29 +1,5 @@
 [
   {
-    "timestamp": "2026-02-17 20:43",
-    "type": "docs",
-    "title": "Remove tagline and ecosystem diagram from README",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "d81ca67",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-19 00:08",
-    "type": "feature",
-    "title": "Add grounded-sam2 service to catalog",
-    "description": "Commit by Selina Wan in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "a5e08bb",
-    "repo": "services_wishlist",
-    "author": "Selina Wan"
-  },
-  {
     "timestamp": "2026-02-19 00:08",
     "type": "setup",
     "title": "Initial: Grounded SAM 2 service with FastAPI + client SDK",
@@ -2396,6 +2372,30 @@
       "maniskill-robocasa-tasks/"
     ],
     "sha": "9d4715a",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-29 00:24",
+    "type": "fix",
+    "title": "Fix stove/knob SAPIEN patches, add evaluate checks, consolidate stove utils",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "f76458d",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-29 00:44",
+    "type": "feature",
+    "title": "Add SAPIEN patches for sink, coffee machine, and microwave",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "0d78570",
     "repo": "maniskill-robocasa-tasks",
     "author": "TruAres"
   }
