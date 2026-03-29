@@ -217,6 +217,7 @@ function handleFullSync(entries) {
             total_trials: repo.total_trials ?? null,
             institutions_tested: repo.institutions_tested ?? null,
             trial_images: repo.trial_images || [],
+            image: (repo.trial_images && repo.trial_images.length > 0) ? repo.trial_images[0] : null,
             dependencies: repo.dependencies || [],
             service_dependencies: repo.service_dependencies || [],
             sdk_functions: repo.sdk_functions || [],
@@ -310,7 +311,8 @@ async function loadRepos(file) {
             success_rate: repo.success_rate ?? null,
             total_trials: repo.total_trials ?? null,
             institutions_tested: repo.institutions_tested ?? null,
-            trial_images: repo.trial_images || [],
+            trial_images: (repo.trial_images || []).map(u => u.startsWith('http') ? u : BASE_PATH + u),
+            image: (repo.trial_images && repo.trial_images.length > 0) ? (repo.trial_images[0].startsWith('http') ? repo.trial_images[0] : BASE_PATH + repo.trial_images[0]) : null,
             dependencies: repo.dependencies || [],
             service_dependencies: repo.service_dependencies || [],
             sdk_functions: repo.sdk_functions || [],
@@ -796,6 +798,85 @@ function wireExecViewer(execData) {
     play();
 }
 
+function wireStaticExecViewer(viewer, imgUrls) {
+    // Group URLs by camera name (parsed from filename)
+    const camGroups = {};
+    for (const url of imgUrls) {
+        const fname = url.split('/').pop();
+        const m = fname.match(/^\d+_(.+)\.jpg$/) || fname.match(/^[a-z]_\d+_(.+)\.jpg$/);
+        const cam = m ? m[1] : 'unknown';
+        if (!camGroups[cam]) camGroups[cam] = [];
+        camGroups[cam].push(url);
+    }
+
+    let currentCam = Object.keys(camGroups)[0] || '';
+    let currentFrames = camGroups[currentCam] || [];
+    let currentIdx = 0;
+    let playing = false;
+
+    const heroImg = viewer.querySelector('.exec-hero-img');
+    const counter = viewer.querySelector('.exec-counter');
+    const playBtn = viewer.querySelector('.exec-play-btn');
+    const progressFill = viewer.querySelector('.exec-progress-fill');
+    const strip = viewer.querySelector('.exec-strip');
+
+    function showFrame(idx) {
+        currentIdx = idx;
+        heroImg.src = currentFrames[idx];
+        counter.textContent = `${idx + 1} / ${currentFrames.length}`;
+        if (progressFill) progressFill.style.width = `${((idx + 1) / currentFrames.length) * 100}%`;
+        strip.querySelectorAll('.trial-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+    }
+
+    function play() {
+        playing = true;
+        playBtn.textContent = '\u23f8';
+        advance();
+    }
+
+    function pause() {
+        playing = false;
+        playBtn.textContent = '\u25b6';
+        if (_execAutoplayTimer) { clearTimeout(_execAutoplayTimer); _execAutoplayTimer = null; }
+    }
+
+    function advance() {
+        if (!playing) return;
+        currentIdx = (currentIdx + 1) % currentFrames.length;
+        showFrame(currentIdx);
+        _execAutoplayTimer = setTimeout(advance, 200);
+    }
+
+    function switchCam(cam) {
+        currentCam = cam;
+        currentFrames = camGroups[cam] || [];
+        currentIdx = 0;
+        strip.innerHTML = currentFrames.slice(0, 20).map((f, i) =>
+            `<div class="trial-thumb${i === 0 ? ' active' : ''}" data-index="${i}" style="background-image:url(${f});"></div>`
+        ).join('');
+        strip.querySelectorAll('.trial-thumb').forEach(t => {
+            t.addEventListener('click', () => { pause(); showFrame(parseInt(t.dataset.index, 10)); });
+        });
+        showFrame(0);
+    }
+
+    playBtn.addEventListener('click', () => playing ? pause() : play());
+
+    viewer.querySelectorAll('.exec-cam-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            viewer.querySelectorAll('.exec-cam-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            switchCam(tab.dataset.cam);
+        });
+    });
+
+    strip.querySelectorAll('.trial-thumb').forEach(t => {
+        t.addEventListener('click', () => { pause(); showFrame(parseInt(t.dataset.index, 10)); });
+    });
+
+    play();
+}
+
 // ============================================
 // POPUP
 // ============================================
@@ -904,29 +985,69 @@ function openPopup(galleryName, index) {
     let trialHTML = '';
     if (entry.trial_images && entry.trial_images.length > 0) {
         const imgs = entry.trial_images;
-        // Split into wrist (first half) and base (second half) rows
-        const half = Math.ceil(imgs.length / 2);
-        const wristImgs = imgs.slice(0, half);
-        const baseImgs = imgs.slice(half);
+        // Check if images follow execution frame naming (NNNN_camera.jpg)
+        const isExecFrames = imgs.some(u => /\d{4}_\w+_camera/.test(u) || /\d{4}_\w+\.jpg/.test(u.split('/').pop()));
+        if (isExecFrames) {
+            // Render as exec viewer with camera tabs and play button
+            const camGroups = {};
+            for (const url of imgs) {
+                const fname = url.split('/').pop();
+                const m = fname.match(/^\d+_(.+)\.jpg$/) || fname.match(/^[a-z]_\d+_(.+)\.jpg$/);
+                const cam = m ? m[1] : 'unknown';
+                if (!camGroups[cam]) camGroups[cam] = [];
+                camGroups[cam].push(url);
+            }
+            const camNames = Object.keys(camGroups);
+            const defaultCam = camNames[0] || '';
+            const defaultFrames = camGroups[defaultCam] || [];
+            const camTabs = camNames.length > 1
+                ? `<div class="exec-cam-tabs">${camNames.map((c, i) =>
+                    `<button class="exec-cam-tab${i === 0 ? ' active' : ''}" data-cam="${c}">${c.replace(/_/g, ' ')}</button>`
+                ).join('')}</div>` : '';
+            trialHTML = `<div class="popup-trial-gallery exec-viewer" data-static-exec="true">
+                <span class="popup-files-label">Execution Recording</span>
+                ${camTabs}
+                <div class="trial-hero exec-hero">
+                    <img class="trial-hero-img exec-hero-img" src="${defaultFrames[0]}" alt="Execution frame">
+                    <span class="trial-counter exec-counter">1 / ${defaultFrames.length}</span>
+                    <div class="exec-controls">
+                        <button class="exec-play-btn" title="Play/Pause">▶</button>
+                    </div>
+                </div>
+                <div class="exec-progress-bar"><div class="exec-progress-fill"></div></div>
+                <div class="trial-strip exec-strip">
+                    ${defaultFrames.slice(0, 20).map((f, i) =>
+                        `<div class="trial-thumb${i === 0 ? ' active' : ''}" data-index="${i}" style="background-image:url(${f});"></div>`
+                    ).join('')}
+                </div>
+            </div>`;
+            // Stash grouped data on entry for wireup
+            entry._staticExecData = { frames: imgs, cameras: camNames.map(c => ({name: c})) };
+        } else {
+            // Split into wrist (first half) and base (second half) rows
+            const half = Math.ceil(imgs.length / 2);
+            const wristImgs = imgs.slice(0, half);
+            const baseImgs = imgs.slice(half);
 
-        const makeRow = (list, offset) => list.map((url, i) =>
-            `<div class="trial-thumb${offset + i === 0 ? ' active' : ''}" data-index="${offset + i}" style="background-image:url(${url});"></div>`
-        ).join('');
+            const makeRow = (list, offset) => list.map((url, i) =>
+                `<div class="trial-thumb${offset + i === 0 ? ' active' : ''}" data-index="${offset + i}" style="background-image:url(${url});"></div>`
+            ).join('');
 
-        const wristRow = wristImgs.length > 0
-            ? `<span class="trial-row-label">Wrist Cam</span><div class="trial-strip">${makeRow(wristImgs, 0)}</div>` : '';
-        const baseRow = baseImgs.length > 0
-            ? `<span class="trial-row-label">Base Cam</span><div class="trial-strip">${makeRow(baseImgs, half)}</div>` : '';
+            const wristRow = wristImgs.length > 0
+                ? `<span class="trial-row-label">Wrist Cam</span><div class="trial-strip">${makeRow(wristImgs, 0)}</div>` : '';
+            const baseRow = baseImgs.length > 0
+                ? `<span class="trial-row-label">Base Cam</span><div class="trial-strip">${makeRow(baseImgs, half)}</div>` : '';
 
-        trialHTML = `<div class="popup-trial-gallery">
-            <span class="popup-files-label">Successful Trial</span>
-            <div class="trial-hero">
-                <img class="trial-hero-img" src="${imgs[0]}" alt="Trial photo 1">
-                <span class="trial-counter">1 / ${imgs.length}</span>
-            </div>
-            ${wristRow}
-            ${baseRow}
-        </div>`;
+            trialHTML = `<div class="popup-trial-gallery">
+                <span class="popup-files-label">Successful Trial</span>
+                <div class="trial-hero">
+                    <img class="trial-hero-img" src="${imgs[0]}" alt="Trial photo 1">
+                    <span class="trial-counter">1 / ${imgs.length}</span>
+                </div>
+                ${wristRow}
+                ${baseRow}
+            </div>`;
+        }
     }
 
     // Info column (shared between done and in-dev)
@@ -1052,22 +1173,27 @@ function openPopup(galleryName, index) {
         `;
     }
 
-    // Wire up trial gallery thumbnail clicks
+    // Wire up trial gallery / static exec viewer
     const trialGallery = document.querySelector('.popup-trial-gallery');
     if (trialGallery) {
-        const heroImg = trialGallery.querySelector('.trial-hero-img');
-        const counter = trialGallery.querySelector('.trial-counter');
-        const thumbs = trialGallery.querySelectorAll('.trial-thumb');
-        thumbs.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                const idx = parseInt(thumb.dataset.index, 10);
-                heroImg.src = entry.trial_images[idx];
-                heroImg.alt = `Trial photo ${idx + 1}`;
-                counter.textContent = `${idx + 1} / ${entry.trial_images.length}`;
-                thumbs.forEach(t => t.classList.remove('active'));
-                thumb.classList.add('active');
+        if (trialGallery.dataset.staticExec && entry._staticExecData) {
+            // Wire as exec viewer using static image URLs
+            wireStaticExecViewer(trialGallery, entry.trial_images);
+        } else {
+            const heroImg = trialGallery.querySelector('.trial-hero-img');
+            const counter = trialGallery.querySelector('.trial-counter');
+            const thumbs = trialGallery.querySelectorAll('.trial-thumb');
+            thumbs.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    const idx = parseInt(thumb.dataset.index, 10);
+                    heroImg.src = entry.trial_images[idx];
+                    heroImg.alt = `Trial photo ${idx + 1}`;
+                    counter.textContent = `${idx + 1} / ${entry.trial_images.length}`;
+                    thumbs.forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
             });
-        });
+        }
     }
 
     document.getElementById('popup-overlay').classList.add('open');

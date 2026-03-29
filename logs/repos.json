@@ -13,7 +13,7 @@
     "success_rate": 0,
     "total_trials": 0,
     "institutions_tested": 0,
-    "trial_images": [],
+    "trial_images": ["images/skills/base_06.jpg"],
     "dependencies": [],
     "service_dependencies": [],
     "sdk_functions": [
@@ -35,7 +35,7 @@
     "success_rate": 100,
     "total_trials": 1,
     "institutions_tested": 1,
-    "trial_images": [],
+    "trial_images": ["images/skills/wrist_01.jpg"],
     "dependencies": [],
     "service_dependencies": [],
     "sdk_functions": [
@@ -86,7 +86,7 @@
     "success_rate": 100,
     "total_trials": 2,
     "institutions_tested": 1,
-    "trial_images": [],
+    "trial_images": ["images/skills/wrist_02.jpg"],
     "dependencies": [],
     "service_dependencies": [],
     "sdk_functions": []
@@ -105,7 +105,7 @@
     "success_rate": 100,
     "total_trials": 2,
     "institutions_tested": 1,
-    "trial_images": [],
+    "trial_images": ["images/skills/wrist_03.jpg"],
     "dependencies": [
       "center-object",
       "pick-up-object"
@@ -127,7 +127,7 @@
     "success_rate": 0,
     "total_trials": 0,
     "institutions_tested": 0,
-    "trial_images": [],
+    "trial_images": ["images/skills/base_07.jpg"],
     "dependencies": [],
     "service_dependencies": [],
     "sdk_functions": []
@@ -146,7 +146,7 @@
     "success_rate": 85,
     "total_trials": 20,
     "institutions_tested": 1,
-    "trial_images": [],
+    "trial_images": ["images/skills/wrist_04.jpg"],
     "dependencies": [
       "pick-up-object",
       "place-object"
@@ -168,7 +168,7 @@
     "success_rate": 0,
     "total_trials": 0,
     "institutions_tested": 0,
-    "trial_images": [],
+    "trial_images": ["images/skills/base_08.jpg"],
     "dependencies": [],
     "service_dependencies": [],
     "sdk_functions": []
