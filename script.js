@@ -1074,7 +1074,8 @@ function openPopup(galleryName, index) {
     const isFailed = IS_LOCAL && entry.status === 'failed';
     const isDone = IS_LOCAL && entry.status === 'done';
     const isAgentDone = IS_LOCAL && entry.status === 'review';
-    const needsAttention = isAgentDone || isFailed;
+    const isActive = entry.status === 'writing' || entry.status === 'testing';
+    const needsAttention = isAgentDone || isFailed || isActive;
 
     if (hasAgent) {
         // Two-column layout: left info, right live agent chat (always in local mode)
@@ -1097,11 +1098,25 @@ function openPopup(galleryName, index) {
 
         // Build bottom controls based on state
         let chatInputHTML = '';
-        if (isDone) {
-            // Fully done — no input row
-            chatInputHTML = '';
+        const hasAgent = !!entry.agent_id;
+        const killBtn = hasAgent
+            ? `<button class="inject-stop-btn" style="background:#600;border-color:#900;" onclick="if(confirm('Kill agent? Session will be destroyed.')){sendWS({type:'kill',agent_id:'${entry.agent_id||''}'});}">Kill</button>`
+            : '';
+        const spawnBtn = `<button class="inject-retry-btn" onclick="sendWS({type:'retry',skill:'${entry.title}'});">Spawn Agent</button>`;
+        if (!hasAgent) {
+            // No live agent — show Spawn button
+            chatInputHTML = `<div class="chat-input-row">${spawnBtn}</div>`;
+        } else if (isDone) {
+            // Confirmed done, agent alive — hint + kill
+            chatInputHTML = `<div class="chat-input-row">
+                <input class="inject-input" id="inject-input-${entry.title}" type="text"
+                       placeholder="Send hint to agent..."
+                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.title}','you',this.value);this.value='';}">
+                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.title}','you',inp.value);inp.value='';">Send</button>
+                ${killBtn}
+            </div>`;
         } else if (isAgentDone) {
-            // Agent thinks it's done — show hint input + Test + Done buttons
+            // Review — hint + Test + Done + Kill
             chatInputHTML = `<div class="chat-input-row">
                 <input class="inject-input" id="inject-input-${entry.title}" type="text"
                        placeholder="Send follow-up hint..."
@@ -1109,18 +1124,20 @@ function openPopup(galleryName, index) {
                 <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.title}','you',inp.value);inp.value='';">Send</button>
                 <button class="inject-test-btn" onclick="document.getElementById('chat-log-${entry.title}').innerHTML='';sendWS({type:'test',skill:'${entry.title}'});">Test</button>
                 <button class="inject-done-btn" onclick="sendWS({type:'confirm_done',skill:'${entry.title}',agent_id:'${entry.agent_id||''}'});">Done</button>
+                ${killBtn}
             </div>`;
         } else {
-            // Active — show hint input + Stop button (cyan for test agent, red for dev)
+            // Active — hint + Stop + Kill
             const isTestAgent = entry.agent_type === 'test';
             const stopBtnClass = isTestAgent ? 'inject-test-btn' : 'inject-stop-btn';
-            const stopLabel = isTestAgent ? 'Stop Test' : 'Stop';
+            const stopLabel = isTestAgent ? 'Stop Test' : 'Pause';
             chatInputHTML = `<div class="chat-input-row">
                 <input class="inject-input" id="inject-input-${entry.title}" type="text"
                        placeholder="Send hint to agent..."
                        onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.title}','you',this.value);this.value='';}">
                 <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.title}','you',inp.value);inp.value='';">Send</button>
                 <button class="${stopBtnClass}" onclick="sendWS({type:'stop',agent_id:'${entry.agent_id||''}'});">${stopLabel}</button>
+                ${killBtn}
             </div>`;
         }
 
