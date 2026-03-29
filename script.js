@@ -44,7 +44,7 @@ function connectWS() {
                 handleFullSync(msg.payload);
             } else if (msg.type === 'agent_message') {
                 // Live reasoning trace from agent
-                const role = (msg.agent_type === 'test' || msg.agent_type === 'test_writer') ? 'test' : 'agent';
+                const role = msg.agent_type === 'user' ? 'user' : (msg.agent_type === 'test' || msg.agent_type === 'test_writer') ? 'test' : 'agent';
                 appendChatMsg(msg.entry_id, role, msg.text);
                 // Persist to entry data so messages survive popup re-renders
                 const g = galleries.skills;
@@ -52,7 +52,7 @@ function connectWS() {
                     const entry = g.entries.find(e => e.title === msg.entry_id || e.name === msg.entry_id);
                     if (entry) {
                         if (!entry.agent_log) entry.agent_log = [];
-                        entry.agent_log.push(msg.text);
+                        entry.agent_log.push({text: msg.text, role});
                     }
                 }
             }
@@ -1154,13 +1154,14 @@ function openPopup(galleryName, index) {
                     </div>
                     <div class="chat-log" id="chat-log-${entry.title}">
                         ${(entry.agent_log || []).map(msg => {
-                            const isExperiment = /^Ran \d+/.test(msg);
-                            const isTest = entry.agent_type === 'test' || entry.agent_type === 'test_writer';
-                            const cls = isExperiment ? 'chat-msg-experiment' : isTest ? 'chat-msg-test' : 'chat-msg-agent';
-                            const role = isExperiment ? 'experiment' : isTest ? 'test' : 'agent';
+                            const text = typeof msg === 'string' ? msg : msg.text;
+                            const savedRole = typeof msg === 'object' ? msg.role : null;
+                            const isExperiment = /^Ran \d+/.test(text);
+                            const role = isExperiment ? 'experiment' : savedRole || ((entry.agent_type === 'test' || entry.agent_type === 'test_writer') ? 'test' : 'agent');
+                            const cls = `chat-msg-${role}`;
                             return `<div class="chat-msg ${cls}">
                                 <span class="chat-msg-role">${role}</span>
-                                <span class="chat-msg-text">${msg}</span>
+                                <span class="chat-msg-text">${text}</span>
                             </div>`;
                         }).join('')}
                     </div>
