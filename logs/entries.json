@@ -1,89 +1,5 @@
 [
   {
-    "timestamp": "2026-02-19 16:39",
-    "type": "feature",
-    "title": "Regenerate CLAUDE.md: fix state schema, add missing endpoints and SDK modules",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "efe18b3",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-19 16:39",
-    "type": "feature",
-    "title": "Regenerate service dev CLAUDE.md: add catalog workflow and current services",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "c7dd966",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-19 16:39",
-    "type": "feature",
-    "title": "Regenerate CLAUDE.md: add CLI args, IR stream names, client methods, dashboard",
-    "description": "Commit by Tidybot in camera_realsense_service",
-    "files": [
-      "camera_realsense_service/"
-    ],
-    "sha": "19634d1",
-    "repo": "camera_realsense_service",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-19 18:48",
-    "type": "setup",
-    "title": "Remove dead controller service definition (qp_arm_only.py doesn't exist)",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "6e1b2eb",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-19 18:48",
-    "type": "feature",
-    "title": "Mark INFRARED enum value as deprecated in favor of LEFT/RIGHT variants",
-    "description": "Commit by Tidybot in camera_realsense_service",
-    "files": [
-      "camera_realsense_service/"
-    ],
-    "sha": "43d52a8",
-    "repo": "camera_realsense_service",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-20 02:05",
-    "type": "feature",
-    "title": "Add mocap-corrected closed-loop base control",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "782ebbd",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-20 02:05",
-    "type": "feature",
-    "title": "Add mocap correction to rewind orchestrator",
-    "description": "Commit by Tidybot in agent_system_logger",
-    "files": [
-      "agent_system_logger/"
-    ],
-    "sha": "53ee62b",
-    "repo": "agent_system_logger",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-20 04:12",
     "type": "feature",
     "title": "Workspace boundary hull, mocap-only safety monitor, fast reset-to-home",
@@ -2398,5 +2314,89 @@
     "sha": "39e5882",
     "repo": "maniskill-robocasa-tasks",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-29 20:09",
+    "type": "fix",
+    "title": "Fix sim reset on lease release: replace aiohttp with urllib",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "2c29027",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-29 20:09",
+    "type": "feature",
+    "title": "Update orchestrator: grasp guidance, agent lifecycle, skill deprecation",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c503e9e",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-29 20:09",
+    "type": "fix",
+    "title": "Fix sim auto-reset on truncation and camera frame caching",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "39d0482",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-29 20:11",
+    "type": "test",
+    "title": "Require exactly 2 successful test runs before declaring skill done",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "754865d",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-29 20:43",
+    "type": "fix",
+    "title": "Fix pause race condition, add paused status mapping, persist chat roles, show us",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "e1c3d77",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-29 20:54",
+    "type": "fix",
+    "title": "Fix agent lifecycle: proper cleanup, exit_event, deduplicate completion logic",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "3857dc4",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-29 20:58",
+    "type": "refactor",
+    "title": "Refactor pick-object lift logic and log test results",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "bc3aaa5",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
