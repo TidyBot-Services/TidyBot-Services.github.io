@@ -2,30 +2,6 @@
   {
     "timestamp": "2026-02-20 22:05",
     "type": "feature",
-    "title": "Add base collision detection, safety-stops code execution, mocap velocity fix",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "746ddab",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-20 22:05",
-    "type": "feature",
-    "title": "Add shared command state tracking for cross-process collision detection",
-    "description": "Commit by Tidybot in base_tidybot_service",
-    "files": [
-      "base_tidybot_service/"
-    ],
-    "sha": "49c6126",
-    "repo": "base_tidybot_service",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-20 22:05",
-    "type": "feature",
     "title": "Dual-threshold collision detection and rewind cancellation support",
     "description": "Commit by Tidybot in agent_system_logger",
     "files": [
@@ -2398,5 +2374,29 @@
     "sha": "5470da1",
     "repo": "maniskill-robocasa-tasks",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-30 08:49",
+    "type": "feature",
+    "title": "Increase base velocity threshold to 0.05 to filter sim jitter",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "681b632",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-30 08:49",
+    "type": "fix",
+    "title": "Fix recording paths, normalize log format, cache session logs",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "441f18d",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
