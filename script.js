@@ -189,7 +189,14 @@ function handleStatusUpdate(entry) {
     }
 }
 
-function handleFullSync(entries) {
+function handleFullSync(payload) {
+    // Support both old (array) and new ({entries, agents}) payload formats
+    const entries = Array.isArray(payload) ? payload : (payload.entries || []);
+    const agentsList = Array.isArray(payload) ? [] : (payload.agents || []);
+
+    // Render agents list
+    renderAgentsList(agentsList);
+
     const g = galleries.skills;
     if (!g) return;
     // Build map of existing in-memory agent_log to preserve live WS messages
@@ -233,6 +240,33 @@ function handleFullSync(entries) {
     }));
     renderGallery('skills');
     renderSkillTree(g.entries);
+}
+
+const agentStatusColors = {
+    starting: '#ffd700',
+    running:  '#9d4edd',
+    done:     '#39ff14',
+    stopped:  '#6b6b7b',
+    error:    '#ff3366',
+};
+
+function renderAgentsList(agentsList) {
+    const container = document.getElementById('agents-list');
+    if (!container) return;
+    if (!agentsList.length) {
+        container.innerHTML = '<div class="agents-empty">No active agents</div>';
+        return;
+    }
+    container.innerHTML = agentsList.map(a => {
+        const color = agentStatusColors[a.status] || '#6b6b7b';
+        return `<div class="agent-row">
+            <span class="agent-dot" style="background:${color}"></span>
+            <span class="agent-id">${a.agent_id}</span>
+            <span class="agent-skill">${a.skill}</span>
+            <span class="agent-type">${a.agent_type}</span>
+            <span class="agent-status" style="color:${color}">${a.status}</span>
+        </div>`;
+    }).join('');
 }
 
 const typeConfig = {
