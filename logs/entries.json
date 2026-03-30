@@ -1,41 +1,5 @@
 [
   {
-    "timestamp": "2026-02-21 03:12",
-    "type": "docs",
-    "title": "Add multi-user known issues section to README",
-    "description": "Commit by Tidybot in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "a81ea4f",
-    "repo": "services_wishlist",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-21 22:44",
-    "type": "feature",
-    "title": "Add context-injection skills and slim down ROBOT.md/MISSION.md",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "f37532c",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-22 18:29",
-    "type": "fix",
-    "title": "Fix get_mocap_pose() returning None on first call (ZMQ slow-joiner race)",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "a3d9593",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-22 18:31",
     "type": "feature",
     "title": "Add gitignore for runtime artifacts, mark SafetyEnvelope as deprecated",
@@ -2397,6 +2361,42 @@
     ],
     "sha": "c75f715",
     "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-30 20:26",
+    "type": "feature",
+    "title": "Add place-object skill, update graph with 3-skill dependency tree",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "21e070c",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-30 20:26",
+    "type": "feature",
+    "title": "Add mocap bridge support and expose arm_base in perceive response",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "e94f551",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-30 20:26",
+    "type": "feature",
+    "title": "Remove local-frame conversion, report base pose in world frame",
+    "description": "Commit by Yifei Simon Shao in base_tidybot_maniskill_service",
+    "files": [
+      "base_tidybot_maniskill_service/"
+    ],
+    "sha": "164a664",
+    "repo": "base_tidybot_maniskill_service",
     "author": "Yifei Simon Shao"
   }
 ]
