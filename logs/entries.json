@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-20 04:12",
-    "type": "feature",
-    "title": "Add bounds property, skip arm rewind when disconnected",
-    "description": "Commit by Tidybot in agent_system_logger",
-    "files": [
-      "agent_system_logger/"
-    ],
-    "sha": "3c231b6",
-    "repo": "agent_system_logger",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-20 22:05",
     "type": "feature",
     "title": "Add base collision detection, safety-stops code execution, mocap velocity fix",
@@ -2396,6 +2384,18 @@
       "maniskill-robocasa-tasks/"
     ],
     "sha": "b85ced7",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-03-30 03:54",
+    "type": "fix",
+    "title": "Fix Navigate-Kitchen _check_success: use world pose instead of qpos",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "5470da1",
     "repo": "maniskill-robocasa-tasks",
     "author": "TruAres"
   }
