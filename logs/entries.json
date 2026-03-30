@@ -2,18 +2,6 @@
   {
     "timestamp": "2026-02-20 04:12",
     "type": "feature",
-    "title": "Workspace boundary hull, mocap-only safety monitor, fast reset-to-home",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "b8e89df",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-20 04:12",
-    "type": "feature",
     "title": "Add bounds property, skip arm rewind when disconnected",
     "description": "Commit by Tidybot in agent_system_logger",
     "files": [
@@ -2398,5 +2386,17 @@
     "sha": "bc3aaa5",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-30 01:04",
+    "type": "fix",
+    "title": "Fix MuJoCo API remnants and SAPIEN compatibility issues",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "b85ced7",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
   }
 ]
