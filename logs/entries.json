@@ -1,29 +1,5 @@
 [
   {
-    "timestamp": "2026-02-20 22:05",
-    "type": "feature",
-    "title": "Dual-threshold collision detection and rewind cancellation support",
-    "description": "Commit by Tidybot in agent_system_logger",
-    "files": [
-      "agent_system_logger/"
-    ],
-    "sha": "c1387a4",
-    "repo": "agent_system_logger",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-20 22:08",
-    "type": "feature",
-    "title": "Record state data at 10 Hz during code execution, enable auto-rewind on startup",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "ffef5c7",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-21 03:12",
     "type": "docs",
     "title": "Add multi-user known issues section to README",
@@ -2396,6 +2372,30 @@
       "Tidybot-Universe/"
     ],
     "sha": "441f18d",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-30 18:52",
+    "type": "feature",
+    "title": "Add obstacle hint to arm timeout errors, add get_arm_base_world to sensors",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "4e7c9ce",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-30 18:52",
+    "type": "feature",
+    "title": "Add evaluator pipeline, simplify pick-object, prefer Angled45 grasp",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c75f715",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
   }
