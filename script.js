@@ -44,7 +44,8 @@ function connectWS() {
                 handleFullSync(msg.payload);
             } else if (msg.type === 'agent_message') {
                 // Live reasoning trace from agent
-                const role = msg.agent_type === 'user' ? 'user' : (msg.agent_type === 'test' || msg.agent_type === 'test_writer') ? 'test' : 'agent';
+                if (msg.agent_type === 'user') return;  // already appended locally as 'you'
+                const role = msg.agent_type === 'evaluator' ? 'evaluator' : 'agent';
                 appendChatMsg(msg.entry_id, role, msg.text);
                 // Persist to entry data so messages survive popup re-renders
                 const g = galleries.skills;
@@ -1157,7 +1158,7 @@ function openPopup(galleryName, index) {
                             const text = typeof msg === 'string' ? msg : msg.text;
                             const savedRole = typeof msg === 'object' ? msg.role : null;
                             const isExperiment = /^Ran \d+/.test(text);
-                            const role = isExperiment ? 'experiment' : savedRole || ((entry.agent_type === 'test' || entry.agent_type === 'test_writer') ? 'test' : 'agent');
+                            const role = isExperiment ? 'experiment' : savedRole || 'agent';
                             const cls = `chat-msg-${role}`;
                             return `<div class="chat-msg ${cls}">
                                 <span class="chat-msg-role">${role}</span>

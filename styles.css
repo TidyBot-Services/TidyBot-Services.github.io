@@ -3066,6 +3066,11 @@ button.gallery-wishlist {
     border-left: 2px solid var(--color-warning);
 }
 
+.chat-msg-evaluator {
+    background: rgba(157, 78, 221, 0.06);
+    border-left: 2px solid #9d4edd;
+}
+
 .chat-msg-test {
     background: rgba(0, 191, 255, 0.06);
     border-left: 2px solid #00bfff;
