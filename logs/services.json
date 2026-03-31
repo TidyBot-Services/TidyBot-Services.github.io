@@ -376,7 +376,7 @@
     "name": "gripper_robotiq_maniskill_service",
     "description": "Robotiq gripper ZMQ bridge for ManiSkill sim",
     "created_at": "2026-03-19T01:30:04Z",
-    "updated_at": "2026-03-27T22:27:17Z",
+    "updated_at": "2026-03-31T16:01:29Z",
     "html_url": "https://github.com/TidyBot-Services/gripper_robotiq_maniskill_service",
     "language": "Python",
     "stars": 0,
