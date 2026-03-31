@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-22 18:31",
-    "type": "feature",
-    "title": "Add gitignore for runtime artifacts, mark SafetyEnvelope as deprecated",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "6f64d2c",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-23 03:54",
     "type": "feature",
     "title": "Update skills to tidybot-* naming convention, strip robot-specific info",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "164a664",
     "repo": "base_tidybot_maniskill_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-31 16:01",
+    "type": "feature",
+    "title": "Block gripper bridge commands until sim physics settles",
+    "description": "Commit by Yifei Simon Shao in gripper_robotiq_maniskill_service",
+    "files": [
+      "gripper_robotiq_maniskill_service/"
+    ],
+    "sha": "3211e6a",
+    "repo": "gripper_robotiq_maniskill_service",
     "author": "Yifei Simon Shao"
   }
 ]
