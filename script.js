@@ -746,7 +746,7 @@ function buildExecViewerHTML(execData) {
         </div>
         <div class="exec-progress-bar"><div class="exec-progress-fill"></div></div>
         <div class="trial-strip exec-strip">
-            ${defaultFrames.map((f, i) =>
+            ${defaultFrames.slice(0, 20).map((f, i) =>
                 `<div class="trial-thumb${i === 0 ? ' active' : ''}" data-index="${i}" style="background-image:url(${frameUrl(f)});"></div>`
             ).join('')}
         </div>
@@ -814,7 +814,7 @@ function wireExecViewer(execData) {
         currentFrames = camGroups[cam] || [];
         currentIdx = 0;
         // Rebuild strip
-        strip.innerHTML = currentFrames.map((f, i) =>
+        strip.innerHTML = currentFrames.slice(0, 20).map((f, i) =>
             `<div class="trial-thumb${i === 0 ? ' active' : ''}" data-index="${i}" style="background-image:url(${frameUrl(f)});"></div>`
         ).join('');
         // Re-wire thumb clicks
