@@ -705,7 +705,7 @@ body {
     flex-shrink: 0;
 }
 .agent-id {
-    color: var(--color-muted);
+    color: var(--color-text-soft);
     min-width: 120px;
 }
 .agent-skill {
@@ -714,7 +714,7 @@ body {
     font-weight: 500;
 }
 .agent-type {
-    color: var(--color-muted);
+    color: var(--color-text-soft);
     min-width: 80px;
 }
 .agent-status {
