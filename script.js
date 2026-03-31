@@ -44,9 +44,9 @@ function connectWS() {
                 handleFullSync(msg.payload);
             } else if (msg.type === 'agent_message') {
                 // Live reasoning trace from agent
-                if (msg.agent_type === 'user') return;  // already appended locally as 'you'
-                const role = msg.agent_type === 'evaluator' ? 'evaluator' : 'agent';
-                appendChatMsg(msg.entry_id, role, msg.text);
+                const isUser = msg.agent_type === 'user';
+                const role = isUser ? 'you' : (msg.agent_type === 'evaluator' ? 'evaluator' : 'agent');
+                if (!isUser) appendChatMsg(msg.entry_id, role, msg.text);  // user msgs already appended locally
                 // Persist to entry data so messages survive popup re-renders
                 const g = galleries.skills;
                 if (g) {
@@ -88,8 +88,21 @@ function appendChatMsg(entryId, role, text) {
     log.scrollTop = log.scrollHeight;
 }
 
+function appendAndPersistChat(entryId, role, text) {
+    appendChatMsg(entryId, role, text);
+    const g = galleries.skills;
+    if (g) {
+        const entry = g.entries.find(e => e.title === entryId || e.name === entryId);
+        if (entry) {
+            if (!entry.agent_log) entry.agent_log = [];
+            entry.agent_log.push({text, role});
+        }
+    }
+}
+
 // Make it global for inline onclick handlers
 window.appendChatMsg = appendChatMsg;
+window.appendAndPersistChat = appendAndPersistChat;
 window.sendWS = sendWS;
 
 function handleStatusUpdate(entry) {
@@ -1146,8 +1159,8 @@ function openPopup(galleryName, index) {
             chatInputHTML = `<div class="chat-input-row">
                 <input class="inject-input" id="inject-input-${entry.title}" type="text"
                        placeholder="Send hint to agent..."
-                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.title}','you',this.value);this.value='';}">
-                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.title}','you',inp.value);inp.value='';">Send</button>
+                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendAndPersistChat('${entry.title}','you',this.value);this.value='';}">
+                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendAndPersistChat('${entry.title}','you',inp.value);inp.value='';">Send</button>
                 ${killBtn}
             </div>`;
         } else if (isAgentDone) {
@@ -1155,8 +1168,8 @@ function openPopup(galleryName, index) {
             chatInputHTML = `<div class="chat-input-row">
                 <input class="inject-input" id="inject-input-${entry.title}" type="text"
                        placeholder="Send follow-up hint..."
-                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.title}','you',this.value);this.value='';}">
-                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.title}','you',inp.value);inp.value='';">Send</button>
+                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendAndPersistChat('${entry.title}','you',this.value);this.value='';}">
+                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendAndPersistChat('${entry.title}','you',inp.value);inp.value='';">Send</button>
                 <button class="inject-test-btn" onclick="document.getElementById('chat-log-${entry.title}').innerHTML='';sendWS({type:'test',skill:'${entry.title}'});">Test</button>
                 <button class="inject-done-btn" onclick="sendWS({type:'confirm_done',skill:'${entry.title}',agent_id:'${entry.agent_id||''}'});">Done</button>
                 ${killBtn}
@@ -1169,8 +1182,8 @@ function openPopup(galleryName, index) {
             chatInputHTML = `<div class="chat-input-row">
                 <input class="inject-input" id="inject-input-${entry.title}" type="text"
                        placeholder="Send hint to agent..."
-                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendChatMsg('${entry.title}','you',this.value);this.value='';}">
-                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendChatMsg('${entry.title}','you',inp.value);inp.value='';">Send</button>
+                       onkeydown="if(event.key==='Enter'){sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:this.value});appendAndPersistChat('${entry.title}','you',this.value);this.value='';}">
+                <button class="inject-send-btn" onclick="const inp=document.getElementById('inject-input-${entry.title}');sendWS({type:'inject',agent_id:'${entry.agent_id||''}',text:inp.value});appendAndPersistChat('${entry.title}','you',inp.value);inp.value='';">Send</button>
                 <button class="${stopBtnClass}" onclick="sendWS({type:'stop',agent_id:'${entry.agent_id||''}'});">${stopLabel}</button>
                 ${killBtn}
             </div>`;
