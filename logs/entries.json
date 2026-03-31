@@ -1,77 +1,5 @@
 [
   {
-    "timestamp": "2026-02-23 03:54",
-    "type": "feature",
-    "title": "Update skills to tidybot-* naming convention, strip robot-specific info",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "c8a7d2e",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-23 04:12",
-    "type": "feature",
-    "title": "Sync workspace templates with new skill structure",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "fd0e839",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-23 04:27",
-    "type": "docs",
-    "title": "Document tb-/dev-tb- naming convention and remote naming (drop prefix)",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "3066138",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-23 19:07",
-    "type": "setup",
-    "title": "Initial commit: agent server with dashboard, code execution, and camera streamin",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "144ede8",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-23 20:52",
-    "type": "setup",
-    "title": "Replace forks with upstream submodules + tidyverse setup script",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "af2d139",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-23 20:55",
-    "type": "docs",
-    "title": "Add README and requirements.txt",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "1c0d6f6",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-02-23 21:31",
     "type": "setup",
     "title": "Prompt before downloading RoboCasa assets in setup.sh",
@@ -2397,6 +2325,78 @@
     ],
     "sha": "3211e6a",
     "repo": "gripper_robotiq_maniskill_service",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-31 19:03",
+    "type": "fix",
+    "title": "Fix kill button: set skill to failed, clean up eval state",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "50f3478",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-31 19:08",
+    "type": "fix",
+    "title": "Fix execution timeline: map frames to timestamps by frame index",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "e5cda9d",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-31 19:08",
+    "type": "feature",
+    "title": "Update xbot-dev monitoring URLs, increase eval timeout, sync graph state",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "0ce9aaa",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-31 19:08",
+    "type": "feature",
+    "title": "Untrack realsense2_description symlink (already in .gitignore)",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "39c276f",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-31 19:08",
+    "type": "feature",
+    "title": "Save planning world visualization after each motion plan",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "c11d40b",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-31 19:09",
+    "type": "feature",
+    "title": "Gitignore agent_sessions.jsonl (runtime state)",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "acb9c78",
+    "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
   }
 ]
