@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-23 21:31",
-    "type": "setup",
-    "title": "Prompt before downloading RoboCasa assets in setup.sh",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "c91f626",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-02-23 21:52",
     "type": "setup",
     "title": "Add conda install for llvmlite/numba in setup.sh",
@@ -2396,6 +2384,18 @@
       "Tidybot-Universe/"
     ],
     "sha": "acb9c78",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-03-31 20:07",
+    "type": "feature",
+    "title": "Gitignore graphs/ directory (runtime skill state, not source)",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "98b15d1",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
   }
