@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-02-23 21:52",
-    "type": "setup",
-    "title": "Add conda install for llvmlite/numba in setup.sh",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "430f4a5",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-23 22:00",
-    "type": "feature",
-    "title": "Use explicit cd/cd.. instead of subshell for asset download",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "931a828",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-23 22:00",
-    "type": "feature",
-    "title": "Run kitchen asset download from within robocasa directory",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "bbee4c4",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-23 22:09",
-    "type": "fix",
-    "title": "Fix eye_in_hand camera position for TidyVerse",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "449ff61",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-24 04:00",
-    "type": "fix",
-    "title": "Fix TidyVerse camera positions for both wrist and base cameras",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "b607f59",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-02-24 04:37",
     "type": "feature",
     "title": "Add camera server and YOLO integration via SDK",
@@ -2397,6 +2337,66 @@
     ],
     "sha": "98b15d1",
     "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-01 01:41",
+    "type": "feature",
+    "title": "Semantic object names in perception + task prompt API",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "7f4fe1d",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-01 01:41",
+    "type": "feature",
+    "title": "Semantic object names in perception + task prompt API",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "c763a78",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-01 01:41",
+    "type": "feature",
+    "title": "Semantic object names in perception + task prompt API",
+    "description": "Commit by Yifei Simon Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "a6cb6fd",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-01 01:41",
+    "type": "feature",
+    "title": "Semantic object names in perception + task prompt API",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "bf2346a",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-01 01:41",
+    "type": "feature",
+    "title": "Semantic object names in perception + task prompt API",
+    "description": "Commit by Yifei Simon Shao in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "5a5474a",
+    "repo": "maniskill-robocasa-tasks",
     "author": "Yifei Simon Shao"
   }
 ]
