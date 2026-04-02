@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-24 04:37",
-    "type": "feature",
-    "title": "Add camera server and YOLO integration via SDK",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "2b2e45c",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-02-24 17:31",
     "type": "fix",
     "title": "Fix incorrect SDK docs in READMEs",
@@ -2398,5 +2386,17 @@
     "sha": "5a5474a",
     "repo": "maniskill-robocasa-tasks",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-02 04:18",
+    "type": "feature",
+    "title": "chore: remove large fbx file from git, add to gitignore",
+    "description": "Commit by tonylitianyu in websim",
+    "files": [
+      "websim/"
+    ],
+    "sha": "951af46",
+    "repo": "websim",
+    "author": "tonylitianyu"
   }
 ]
