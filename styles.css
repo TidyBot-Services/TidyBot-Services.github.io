@@ -1262,6 +1262,23 @@ button.gallery-wishlist {
     font-size: 0.5rem;
 }
 
+/* Target validation dots */
+.hex-target-dots {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin-top: 2px;
+}
+.target-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.target-dot.pass { background: var(--color-green, #4caf50); }
+.target-dot.fail { background: var(--color-red, #f44336); }
+.target-dot.pending { background: #555; }
+
 /* ============================================
    GALLERY ROBOTS (on the timeline line)
    ============================================ */

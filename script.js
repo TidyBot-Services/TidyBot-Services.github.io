@@ -246,6 +246,7 @@ function handleFullSync(payload) {
             agent_id: repo.agent_id || null,
             agent_status_text: repo.agent_status_text || null,
             agent_type: repo.agent_type || null,
+            target_results: repo.target_results || null,
             agent_log: mergedLog,
             progress_history: repo.progress_history || [],
             _isRepo: true
@@ -367,6 +368,7 @@ async function loadRepos(file) {
             status: repo.status || null,
             agent_id: repo.agent_id || null,
             agent_status_text: repo.agent_status_text || null,
+            target_results: repo.target_results || null,
             agent_log: repo.agent_log || [],
             progress_history: repo.progress_history || [],
             _isRepo: true
@@ -600,6 +602,7 @@ function renderGallery(name) {
                         <h3 class="hex-title">${titleDisplay}</h3>
                         <span class="hex-date">${dateStr}</span>
                         ${entry.success_rate != null ? `<span class="hex-rate"><span class="hex-rate-label">Success </span>${entry.success_rate}%</span>` : ''}
+                        ${entry.target_results ? `<div class="hex-target-dots">${Object.entries(entry.target_results).map(([n,r]) => `<span class="target-dot ${r.passed ? 'pass' : 'fail'}" title="${n}: ${r.passed ? 'PASS' : 'FAIL'}"></span>`).join('')}</div>` : ''}
                         ${repoName ? `<span class="hex-repo">${repoName}</span>` : ''}
                         ${agentStatusHTML}
                     </div>
@@ -1016,6 +1019,23 @@ function openPopup(galleryName, index) {
                     <span class="popup-stat-value">${entry.institutions_tested ?? '—'}</span>
                     <span class="popup-stat-label">Institutions</span>
                 </div>
+            </div>`;
+        }
+        // Per-target validation results
+        if (entry.target_results && Object.keys(entry.target_results).length > 0) {
+            repoMeta += `<div class="popup-target-results">
+                <h4 style="margin:12px 0 6px;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.05em;">Target Validation</h4>
+                <table style="width:100%;font-size:12px;border-collapse:collapse;">
+                    <tr style="color:#666;"><th style="text-align:left;padding:4px 8px;">Target</th><th style="text-align:center;padding:4px 8px;">Status</th></tr>
+                    ${Object.entries(entry.target_results).map(([name, r]) =>
+                        `<tr style="border-top:1px solid #222;">
+                            <td style="padding:4px 8px;color:#c9d1d9;">${name}</td>
+                            <td style="padding:4px 8px;text-align:center;">
+                                <span style="color:${r.passed ? '#4caf50' : '#f44336'};font-weight:600;">${r.passed ? 'PASS' : 'FAIL'}</span>
+                            </td>
+                        </tr>`
+                    ).join('')}
+                </table>
             </div>`;
         }
     }
@@ -1832,6 +1852,7 @@ function renderSkillTree(entries) {
                         <span class="hex-type" style="color:${typeColor};">${typeLabel}</span>
                         <h3 class="hex-title">${title}</h3>
                         ${entry.success_rate != null ? `<span class="hex-rate"><span class="hex-rate-label">Success </span>${entry.success_rate}%</span>` : ''}
+                        ${entry.target_results ? `<div class="hex-target-dots">${Object.entries(entry.target_results).map(([n,r]) => `<span class="target-dot ${r.passed ? 'pass' : 'fail'}" title="${n}: ${r.passed ? 'PASS' : 'FAIL'}"></span>`).join('')}</div>` : ''}
                         ${sdkBadgesHTML}
                         ${treeAgentHTML}
                     </div>
