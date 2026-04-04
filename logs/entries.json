@@ -2,18 +2,6 @@
   {
     "timestamp": "2026-02-25 03:32",
     "type": "feature",
-    "title": "Add Apache 2.0 license",
-    "description": "Commit by Yifei Simon Shao in .github",
-    "files": [
-      ".github/"
-    ],
-    "sha": "827da9b",
-    "repo": ".github",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 03:32",
-    "type": "feature",
     "title": "Change default port to 8081, replace hardcoded IPs with env vars, add Apache 2.0",
     "description": "Commit by Yifei Simon Shao in sim",
     "files": [
@@ -2398,5 +2386,17 @@
     "sha": "ee98ea8",
     "repo": "maniskill_sim",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-04 22:40",
+    "type": "feature",
+    "title": "Tighten cabinet success check and remove cabinet distractor",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "5b0d19f",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
   }
 ]
