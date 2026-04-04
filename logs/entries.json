@@ -1,53 +1,5 @@
 [
   {
-    "timestamp": "2026-02-24 17:31",
-    "type": "fix",
-    "title": "Fix incorrect SDK docs in READMEs",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "eb6c2c7",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-24 17:31",
-    "type": "feature",
-    "title": "Update clone URL to TidyBot-Services org",
-    "description": "Commit by Tidybot in arm_franka_service",
-    "files": [
-      "arm_franka_service/"
-    ],
-    "sha": "30f9495",
-    "repo": "arm_franka_service",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-24 17:31",
-    "type": "fix",
-    "title": "Fix getting started install flow",
-    "description": "Commit by Tidybot in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "091af45",
-    "repo": "Tidybot-Universe",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-02-24 17:38",
-    "type": "feature",
-    "title": "Merge recording timeline into single endpoint",
-    "description": "Commit by Tidybot in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "ee1cbea",
-    "repo": "agent_server",
-    "author": "Tidybot"
-  },
-  {
     "timestamp": "2026-02-25 03:32",
     "type": "feature",
     "title": "Replace hardcoded YOLO IP with YOLO_SERVER_URL env var, add Apache 2.0 license",
@@ -2398,5 +2350,53 @@
     "sha": "951af46",
     "repo": "websim",
     "author": "tonylitianyu"
+  },
+  {
+    "timestamp": "2026-04-04 19:47",
+    "type": "feature",
+    "title": "Dashboard: show job queue instead of lease queue",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "fb0e969",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-04 20:36",
+    "type": "feature",
+    "title": "Add --port-offset for multi-instance agent server",
+    "description": "Commit by Yifei Simon Shao in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "85d8d3c",
+    "repo": "agent_server",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-04 20:36",
+    "type": "test",
+    "title": "Multi-target sim testing: orchestrator + graph format",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "243a32f",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-04 20:36",
+    "type": "feature",
+    "title": "Add --port-offset for running multiple sim instances",
+    "description": "Commit by Yifei Simon Shao in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "4a69ee9",
+    "repo": "maniskill_sim",
+    "author": "Yifei Simon Shao"
   }
 ]
