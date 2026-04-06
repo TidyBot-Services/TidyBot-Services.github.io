@@ -1,41 +1,5 @@
 [
   {
-    "timestamp": "2026-02-25 03:32",
-    "type": "feature",
-    "title": "Change default port to 8081, replace hardcoded IPs with env vars, add Apache 2.0",
-    "description": "Commit by Yifei Simon Shao in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "11acd4a",
-    "repo": "sim",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 04:57",
-    "type": "deploy",
-    "title": "Replace service agent with deploy-agent architecture",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "901ce08",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 04:59",
-    "type": "deploy",
-    "title": "Add deploy-agent code to service-agent-setup",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "13cf81e",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-25 05:06",
     "type": "feature",
     "title": "Add external GPU services section to docs and guide",
@@ -2397,6 +2361,42 @@
     ],
     "sha": "5b0d19f",
     "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-06 04:07",
+    "type": "feature",
+    "title": "Add frames list to recording detail API response",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "9258a54",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-06 04:07",
+    "type": "fix",
+    "title": "Orchestrator: session resume, LESSONS.md, eval timeout, debug improvements",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "401b0d1",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-06 04:07",
+    "type": "fix",
+    "title": "Sim debug commands: gripper open/close, teleport, draw_axes",
+    "description": "Commit by TruAres in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "e880ae4",
+    "repo": "maniskill_sim",
     "author": "TruAres"
   }
 ]
