@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-25 05:06",
-    "type": "feature",
-    "title": "Add external GPU services section to docs and guide",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "f3797be",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-02-25 05:55",
     "type": "docs",
     "title": "Add status note to README",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "e880ae4",
     "repo": "maniskill_sim",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-07 15:17",
+    "type": "feature",
+    "title": "Wait for arm to physically converge before returning from go_home",
+    "description": "Commit by TruAres in system_logger",
+    "files": [
+      "system_logger/"
+    ],
+    "sha": "a7e4d53",
+    "repo": "system_logger",
     "author": "TruAres"
   }
 ]
