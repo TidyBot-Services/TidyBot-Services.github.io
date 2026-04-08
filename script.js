@@ -758,7 +758,8 @@ function buildExecViewerHTML(execData) {
 }
 
 function wireExecViewer(execData) {
-    const viewer = document.querySelector('.exec-viewer');
+    const slot = document.querySelector('.exec-viewer-slot');
+    const viewer = slot ? slot.querySelector('.exec-viewer') : document.querySelectorAll('.exec-viewer')[document.querySelectorAll('.exec-viewer').length - 1];
     if (!viewer || !execData) return;
 
     const execId = execData.execution_id;
