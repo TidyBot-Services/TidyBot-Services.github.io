@@ -247,39 +247,72 @@
 
     <script src="../script.js"></script>
     <script>
-      // Align the Session Demo hex with the same x-column as the dep-tree's
-      // root hex. The tree is rendered async by script.js, so we poll briefly.
+      // Align the Session Demo hex with the dep-tree's root hex (same column,
+      // same size). The tree is rendered async + may re-render after data
+      // loads, so we (a) poll until a root exists, (b) keep re-measuring for
+      // a few seconds, and (c) install a ResizeObserver on the root for any
+      // later layout changes.
       (function alignSessionDemo() {
         const hex = document.querySelector('.session-demo-hex');
         const treeViewport = document.getElementById('skills-tree');
         if (!hex || !treeViewport) return;
-        let tries = 0;
-        function tick() {
-          tries++;
-          // Find the root tree node = node with smallest top (highest layer up)
+
+        let observedRoot = null;
+        const ro = window.ResizeObserver
+          ? new ResizeObserver(() => measure())
+          : null;
+
+        function findRoot() {
           const cards = treeViewport.querySelectorAll('.hex-card, .tree-hex-card');
-          if (!cards.length) {
-            if (tries < 60) return setTimeout(tick, 150);
-            return;
-          }
+          if (!cards.length) return null;
           let root = cards[0];
           let minTop = Infinity;
           cards.forEach(c => {
             const t = parseFloat(c.style.top) || c.offsetTop;
             if (t < minTop) { minTop = t; root = c; }
           });
-          // Copy the root's actual measured size + center it on the same column
+          return root;
+        }
+
+        function measure() {
+          const root = findRoot();
+          if (!root) return false;
+          if (ro && root !== observedRoot) {
+            if (observedRoot) ro.unobserve(observedRoot);
+            ro.observe(root);
+            observedRoot = root;
+          }
           const treeRect = treeViewport.getBoundingClientRect();
           const rootRect = root.getBoundingClientRect();
-          const rootW = rootRect.width;
-          const rootH = rootRect.height;
-          const rootCenterX = (rootRect.left - treeRect.left) + rootW / 2;
-          hex.style.width = rootW + 'px';
-          hex.style.height = rootH + 'px';
-          hex.style.left = (rootCenterX - rootW / 2) + 'px';
+          const w = rootRect.width;
+          const h = rootRect.height;
+          if (!w || !h) return false;
+          const cx = (rootRect.left - treeRect.left) + w / 2;
+          hex.style.width = w + 'px';
+          hex.style.height = h + 'px';
+          hex.style.left = (cx - w / 2) + 'px';
+          return true;
         }
-        setTimeout(tick, 200);
-        window.addEventListener('resize', () => setTimeout(tick, 100));
+
+        // Initial poll: find a root, then keep re-measuring for a few seconds
+        let tries = 0;
+        function pollUntilFound() {
+          if (measure()) {
+            // Found it — but tree may still be re-rendering. Re-measure for 4s.
+            let n = 0;
+            const reMeasure = setInterval(() => {
+              measure();
+              if (++n > 20) clearInterval(reMeasure);
+            }, 200);
+            return;
+          }
+          if (++tries < 60) setTimeout(pollUntilFound, 150);
+        }
+        setTimeout(pollUntilFound, 200);
+
+        window.addEventListener('resize', () => setTimeout(measure, 100));
+        // Catch any post-load layout shifts (font load, lazy data, etc.)
+        window.addEventListener('load', () => setTimeout(measure, 100));
       })();
     </script>
 </body>
