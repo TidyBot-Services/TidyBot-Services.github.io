@@ -1,42 +1,6 @@
 [
   {
     "timestamp": "2026-02-25 05:55",
-    "type": "feature",
-    "title": "Add service.yaml manifest",
-    "description": "Commit by Yifei Simon Shao in realsense-slam",
-    "files": [
-      "realsense-slam/"
-    ],
-    "sha": "c1017af",
-    "repo": "realsense-slam",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "feature",
-    "title": "Add service.yaml manifest",
-    "description": "Commit by Yifei Simon Shao in local-obstacle-avoidance-service",
-    "files": [
-      "local-obstacle-avoidance-service/"
-    ],
-    "sha": "8a56d8c",
-    "repo": "local-obstacle-avoidance-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "feature",
-    "title": "Add service.yaml manifest",
-    "description": "Commit by Yifei Simon Shao in lightweight-grasp-service",
-    "files": [
-      "lightweight-grasp-service/"
-    ],
-    "sha": "23fedc4",
-    "repo": "lightweight-grasp-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
     "type": "docs",
     "title": "Add status note to README",
     "description": "Commit by Yifei Simon Shao in grounded-sam2",
@@ -2292,6 +2256,18 @@
     "author": "TruAres"
   },
   {
+    "timestamp": "2026-04-07 16:02",
+    "type": "feature",
+    "title": "Expose EE world pose and arm_base quaternion in perceive endpoint",
+    "description": "Commit by Selina22 in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "7d95c30",
+    "repo": "maniskill_sim",
+    "author": "Selina22"
+  },
+  {
     "timestamp": "2026-04-08 03:03",
     "type": "feature",
     "title": "Add kitchen-ground-truth reference graph",
@@ -2398,5 +2374,29 @@
     "sha": "1c6284e",
     "repo": "camera_realsense_robocasa_service",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 21:57",
+    "type": "feature",
+    "title": "PnPCounterToStove: drop intermediate plate receptacle",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "216610e",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 22:09",
+    "type": "feature",
+    "title": "Add GraspGen grasp pose generation tool to robot_sdk",
+    "description": "Commit by Selina22 in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "7341e18",
+    "repo": "agent_server",
+    "author": "Selina22"
   }
 ]
