@@ -78,12 +78,46 @@ function sendWS(msg) {
     }
 }
 
+function escapeHTML(s) {
+    return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+// Wrap chat text with inline keyword highlighting.
+// Order matters: backticks first (so we don't double-wrap inside <code>),
+// then keyword classes on the remaining text.
+const KW_FAIL_RE     = /\b(fail(?:ed|s|ing|ure)?|error(?:s)?|killed|crash(?:ed|es)?|broken|wrong|never|cannot|can'?t|missed|miss|exception|timeout|stuck|drop(?:ped)?|lost|outside|❌|⚠️)\b/gi;
+const KW_SUCCESS_RE  = /\b(success(?:ful(?:ly)?)?|succeed(?:s|ed)?|perfect(?:ly)?|great|excellent|works?|working|fixed|fix|correct|passed|pass|done|✓|✅)\b/gi;
+const KW_WARN_RE     = /\b(but|however|issue(?:s)?|problem(?:s)?|warning|careful|note|caveat)\b/gi;
+
+function highlightChatText(raw) {
+    // 1. escape HTML
+    let s = escapeHTML(raw);
+    // 2. wrap `backticked` text first (and protect from kw replace)
+    const codeSlots = [];
+    s = s.replace(/`([^`]+)`/g, (_m, inner) => {
+        codeSlots.push(inner);
+        return `\u0000C${codeSlots.length - 1}\u0000`;
+    });
+    // 3. apply keyword classes (fail wins over success wins over warn)
+    s = s.replace(KW_FAIL_RE, '<span class="kw-fail">$1</span>');
+    s = s.replace(KW_SUCCESS_RE, '<span class="kw-success">$1</span>');
+    s = s.replace(KW_WARN_RE, '<span class="kw-warn">$1</span>');
+    // 4. restore code slots as <code>
+    s = s.replace(/\u0000C(\d+)\u0000/g, (_m, i) => `<code>${codeSlots[+i]}</code>`);
+    return s;
+}
+
 function appendChatMsg(entryId, role, text) {
     const log = document.getElementById(`chat-log-${entryId}`);
     if (!log || !text.trim()) return;
     const div = document.createElement('div');
     div.className = `chat-msg chat-msg-${role}`;
-    div.innerHTML = `<span class="chat-msg-role">${role}</span><span class="chat-msg-text">${text}</span>`;
+    div.innerHTML = `<span class="chat-msg-role">${escapeHTML(role)}</span><span class="chat-msg-text">${highlightChatText(text)}</span>`;
     log.appendChild(div);
     log.scrollTop = log.scrollHeight;
 }
@@ -1230,8 +1264,8 @@ function openPopup(galleryName, index) {
                             const role = isExperiment ? 'experiment' : savedRole || 'agent';
                             const cls = `chat-msg-${role}`;
                             return `<div class="chat-msg ${cls}">
-                                <span class="chat-msg-role">${role}</span>
-                                <span class="chat-msg-text">${text}</span>
+                                <span class="chat-msg-role">${escapeHTML(role)}</span>
+                                <span class="chat-msg-text">${highlightChatText(text)}</span>
                             </div>`;
                         }).join('')}
                     </div>
