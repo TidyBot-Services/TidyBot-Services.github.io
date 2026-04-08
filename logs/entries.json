@@ -3,30 +3,6 @@
     "timestamp": "2026-02-25 05:55",
     "type": "feature",
     "title": "Add service.yaml manifest",
-    "description": "Commit by Yifei Simon Shao in foundation-stereo-service",
-    "files": [
-      "foundation-stereo-service/"
-    ],
-    "sha": "3810def",
-    "repo": "foundation-stereo-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "feature",
-    "title": "Add service.yaml manifest",
-    "description": "Commit by Yifei Simon Shao in nav-mapping-service",
-    "files": [
-      "nav-mapping-service/"
-    ],
-    "sha": "550a2e4",
-    "repo": "nav-mapping-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "feature",
-    "title": "Add service.yaml manifest",
     "description": "Commit by Yifei Simon Shao in realsense-slam",
     "files": [
       "realsense-slam/"
@@ -2397,6 +2373,30 @@
     ],
     "sha": "bb24f95",
     "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 21:44",
+    "type": "feature",
+    "title": "Camera backend: detect dead bridge and reconnect",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "c30edfb",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 21:44",
+    "type": "feature",
+    "title": "Mark connection broken when recv loop exits",
+    "description": "Commit by TruAres in camera_realsense_robocasa_service",
+    "files": [
+      "camera_realsense_robocasa_service/"
+    ],
+    "sha": "1c6284e",
+    "repo": "camera_realsense_robocasa_service",
     "author": "TruAres"
   }
 ]
