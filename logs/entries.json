@@ -1,29 +1,5 @@
 [
   {
-    "timestamp": "2026-02-25 05:55",
-    "type": "docs",
-    "title": "Add status note to README",
-    "description": "Commit by Yifei Simon Shao in grounded-sam2",
-    "files": [
-      "grounded-sam2/"
-    ],
-    "sha": "3828588",
-    "repo": "grounded-sam2",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 22:08",
-    "type": "feature",
-    "title": "Add sim server with Franka, gripper, camera, and base bridges",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "3ced584",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-02-26 02:07",
     "type": "setup",
     "title": "Remove robocasa/robosuite submodules, clone in setup.sh instead",
@@ -2397,6 +2373,30 @@
     ],
     "sha": "7341e18",
     "repo": "agent_server",
+    "author": "Selina22"
+  },
+  {
+    "timestamp": "2026-04-08 23:37",
+    "type": "setup",
+    "title": "Add service-server-setup: auto-discover ML services on remote GPU servers",
+    "description": "Commit by Selina22 in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "f46f37b",
+    "repo": "Tidybot-Universe",
+    "author": "Selina22"
+  },
+  {
+    "timestamp": "2026-04-08 23:48",
+    "type": "fix",
+    "title": "Fix HTML docs page: escape descriptions to prevent comment injection",
+    "description": "Commit by Selina22 in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "6ebaae1",
+    "repo": "Tidybot-Universe",
     "author": "Selina22"
   }
 ]
