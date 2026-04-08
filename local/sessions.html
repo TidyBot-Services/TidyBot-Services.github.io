@@ -14,18 +14,20 @@
 <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
 
 <style>
-  /* Override hex-card absolute positioning so we can grid-lay them */
+  /* Override hex-card absolute positioning so we can grid-lay them.
+     Sizes match dashboard HEX_SIZES.sm (175x202) which is what the
+     responsive dep-tree typically renders at. */
   .sessions-grid .hex-card {
     position: relative;
-    width: 200px;
-    height: 220px;
+    width: 175px;
+    height: 202px;
     opacity: 1;
     transform: none;
   }
   .sessions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
-    gap: 1.5rem 1rem;
+    grid-template-columns: repeat(auto-fill, 175px);
+    gap: 1.25rem 0.75rem;
     justify-content: center;
     padding: 2rem var(--container-padding) 4rem;
   }
@@ -258,6 +260,31 @@
     margin-top: 0.4rem;
     letter-spacing: 0.05em;
   }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.9rem;
+    margin-bottom: 0.9rem;
+    transition: all var(--duration-fast) var(--ease-smooth);
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  }
+  .back-btn:hover {
+    color: var(--color-warning);
+    border-color: var(--color-warning);
+    background: rgba(255, 107, 0, 0.08);
+    box-shadow: 0 0 12px rgba(255, 107, 0, 0.25);
+  }
+  .back-btn svg { display: block; }
 </style>
 </head>
 <body>
@@ -267,8 +294,7 @@
 <nav class="site-nav">
   <div class="site-nav-inner">
     <a href="../" class="site-nav-tab">Home</a>
-    <a href="./" class="site-nav-tab">Local Demo</a>
-    <a href="sessions.html" class="site-nav-tab active">Sessions</a>
+    <a href="./" class="site-nav-tab active">Local Demo</a>
     <a href="../updates/" class="site-nav-tab">Updates</a>
   </div>
 </nav>
@@ -298,6 +324,12 @@
 </div>
 
 <div class="page-header">
+  <a href="./" class="back-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    Back to Local Demo
+  </a>
   <h1>Agent Sessions <span class="graph-name" id="graph-name">—</span></h1>
   <p id="page-sub">Loading sessions…</p>
 </div>
@@ -469,14 +501,20 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 async function load() {
+  // Try sample_sessions/ first (works on github.io and dashboard repo localhost),
+  // fall back to graphs/<name>/agent_sessions.jsonl (live local dev under claude-code/)
+  const candidates = [
+    `sample_sessions/${graph}.jsonl`,
+    `graphs/${graph}/agent_sessions.jsonl`,
+  ];
+  let dataPath = candidates[0];
+  let r = null;
   try {
-    // Auto-pick data source: github.io public uses sample_sessions/, local dev uses graphs/
-    const isPublic = location.hostname.endsWith('github.io');
-    const dataPath = isPublic
-      ? `sample_sessions/${graph}.jsonl`
-      : `graphs/${graph}/agent_sessions.jsonl`;
-    const r = await fetch(dataPath);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    for (const p of candidates) {
+      const resp = await fetch(p);
+      if (resp.ok) { r = resp; dataPath = p; break; }
+    }
+    if (!r) throw new Error('HTTP 404 (no data file found)');
     const text = await r.text();
     sessions = text.trim().split('\n').filter(Boolean).map(l => JSON.parse(l));
     document.getElementById('page-sub').textContent =

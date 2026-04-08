@@ -8,6 +8,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <style>
+      /* Session Demo section — static hex grid (overrides dep-tree absolute positioning) */
+      .session-demo-grid {
+          position: relative;
+          padding: 2rem 0 3rem;
+          min-height: 280px;
+      }
+      .session-demo-hex {
+          position: absolute;
+          top: 2rem;
+          left: 0;            /* set dynamically from root tree-hex by inline script */
+          width: 210px;       /* matches HEX_SIZES.lg used by dep-tree */
+          height: 242px;
+          opacity: 1;
+          transform: none;
+          text-decoration: none;
+          --type-color: var(--color-test);
+      }
+      .session-demo-hex .hex-title {
+          color: var(--color-text);
+          font-size: 0.85rem;
+      }
+    </style>
     <!-- Local demo: detected via /local/ path, loads local_repos.json -->
     <!-- When served locally, WebSocket connects to orchestrator at ws://localhost:8765 -->
 </head>
@@ -21,7 +44,6 @@
         <div class="site-nav-inner">
             <a href="../" class="site-nav-tab">Home</a>
             <a href="./" class="site-nav-tab active">Local Demo</a>
-            <a href="sessions.html" class="site-nav-tab">Sessions</a>
             <a href="../updates/" class="site-nav-tab">Updates</a>
         </div>
     </nav>
@@ -141,6 +163,31 @@
                 </div>
             </section>
 
+            <!-- ==============================
+                 SESSION DEMO
+                 ============================== -->
+            <section class="gallery-section" id="session-demo-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">Session Demo</span>
+                    <span class="gallery-count">1 demo</span>
+                </div>
+                <p class="gallery-blurb">Click a hex to view the full agent chat history (dev + evaluator) for that skill development run.</p>
+                <div class="session-demo-grid">
+                    <a href="sessions.html?graph=pnp-counter-to-sink" class="hex-card visible session-demo-hex" data-type="dev">
+                        <div class="hex-border">
+                            <div class="hex-inner">
+                                <div class="hex-bg pattern-1"></div>
+                                <div class="hex-content">
+                                    <div class="hex-type">SESSION</div>
+                                    <div class="hex-title">counter-to-sink</div>
+                                    <div class="hex-date">16 sessions</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
             <!-- Footer -->
             <footer class="timeline-footer">
                 <div class="footer-content">
@@ -199,5 +246,41 @@
     </svg>
 
     <script src="../script.js"></script>
+    <script>
+      // Align the Session Demo hex with the same x-column as the dep-tree's
+      // root hex. The tree is rendered async by script.js, so we poll briefly.
+      (function alignSessionDemo() {
+        const hex = document.querySelector('.session-demo-hex');
+        const treeViewport = document.getElementById('skills-tree');
+        if (!hex || !treeViewport) return;
+        let tries = 0;
+        function tick() {
+          tries++;
+          // Find the root tree node = node with smallest top (highest layer up)
+          const cards = treeViewport.querySelectorAll('.hex-card, .tree-hex-card');
+          if (!cards.length) {
+            if (tries < 60) return setTimeout(tick, 150);
+            return;
+          }
+          let root = cards[0];
+          let minTop = Infinity;
+          cards.forEach(c => {
+            const t = parseFloat(c.style.top) || c.offsetTop;
+            if (t < minTop) { minTop = t; root = c; }
+          });
+          // Copy the root's actual measured size + center it on the same column
+          const treeRect = treeViewport.getBoundingClientRect();
+          const rootRect = root.getBoundingClientRect();
+          const rootW = rootRect.width;
+          const rootH = rootRect.height;
+          const rootCenterX = (rootRect.left - treeRect.left) + rootW / 2;
+          hex.style.width = rootW + 'px';
+          hex.style.height = rootH + 'px';
+          hex.style.left = (rootCenterX - rootW / 2) + 'px';
+        }
+        setTimeout(tick, 200);
+        window.addEventListener('resize', () => setTimeout(tick, 100));
+      })();
+    </script>
 </body>
 </html>
