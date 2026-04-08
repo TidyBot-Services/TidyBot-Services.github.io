@@ -247,6 +247,7 @@ function handleFullSync(payload) {
             agent_status_text: repo.agent_status_text || null,
             agent_type: repo.agent_type || null,
             target_results: repo.target_results || null,
+            task_env: repo.task_env || null,
             agent_log: mergedLog,
             progress_history: repo.progress_history || [],
             _isRepo: true
@@ -1814,7 +1815,10 @@ function renderSkillTree(entries) {
         const entry = node.entry;
         const hexLeft = node.x - node.w / 2;
         const hexTop = node.y - node.h / 2;
-        const typeColor = typeConfig[entry.type]?.color || '#ff6b00';
+        const baseTypeColor = typeConfig[entry.type]?.color || '#ff6b00';
+        // Skills with a ground-truth test get the hardware-red tint (same as
+        // hardware_service repos on the home page) to mark them as live-validated.
+        const typeColor = entry.task_env ? '#ff3b30' : baseTypeColor;
         const typeLabel = typeConfig[entry.type]?.label || entry.type;
         const title = entry.title || 'Untitled';
         const floatDelay = ((i * 0.7) % 5).toFixed(1);
