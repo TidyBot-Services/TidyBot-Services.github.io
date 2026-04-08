@@ -1,78 +1,6 @@
 [
   {
     "timestamp": "2026-02-25 05:55",
-    "type": "docs",
-    "title": "Add status note to README",
-    "description": "Commit by Yifei Simon Shao in gripper_robotiq_service",
-    "files": [
-      "gripper_robotiq_service/"
-    ],
-    "sha": "d7f7693",
-    "repo": "gripper_robotiq_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "docs",
-    "title": "Add status note to README",
-    "description": "Commit by Yifei Simon Shao in base_tidybot_service",
-    "files": [
-      "base_tidybot_service/"
-    ],
-    "sha": "fceb59c",
-    "repo": "base_tidybot_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "docs",
-    "title": "Add status note to README",
-    "description": "Commit by Yifei Simon Shao in camera_realsense_service",
-    "files": [
-      "camera_realsense_service/"
-    ],
-    "sha": "6a45443",
-    "repo": "camera_realsense_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "feature",
-    "title": "Add service.yaml manifest",
-    "description": "Commit by Yifei Simon Shao in yolo-service",
-    "files": [
-      "yolo-service/"
-    ],
-    "sha": "ba5d82c",
-    "repo": "yolo-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "feature",
-    "title": "Add service.yaml manifest",
-    "description": "Commit by Yifei Simon Shao in grounded-sam2-service",
-    "files": [
-      "grounded-sam2-service/"
-    ],
-    "sha": "98395c2",
-    "repo": "grounded-sam2-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
-    "type": "feature",
-    "title": "Add service.yaml manifest",
-    "description": "Commit by Yifei Simon Shao in graspgen-service",
-    "files": [
-      "graspgen-service/"
-    ],
-    "sha": "9c8b811",
-    "repo": "graspgen-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-02-25 05:55",
     "type": "feature",
     "title": "Add service.yaml manifest",
     "description": "Commit by Yifei Simon Shao in foundation-stereo-service",
@@ -2398,5 +2326,77 @@
     "sha": "ed4af71",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-08 20:01",
+    "type": "feature",
+    "title": "Merge org/main into sim-integration (perception + gitignore updates)",
+    "description": "Commit by TruAres in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "a12888b",
+    "repo": "maniskill-tidyverse",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 20:01",
+    "type": "feature",
+    "title": "cuRobo: OBB base validator + tidyverse agent tuning",
+    "description": "Commit by TruAres in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "ae8ca0d",
+    "repo": "maniskill-tidyverse",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 20:08",
+    "type": "feature",
+    "title": "cuRobo: rectangular OBB base validator + SAPIEN viz",
+    "description": "Commit by TruAres in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "4a57a3a",
+    "repo": "maniskill_sim",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 20:11",
+    "type": "feature",
+    "title": "orchestrator: split WORKSPACE_DIR / PROJECT_DIR for SDK cwd",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "f4c2f46",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 20:11",
+    "type": "feature",
+    "title": "obj_inside_of: widen fixture bounds for sink/cabinet placement",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "a054e68",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-08 20:20",
+    "type": "feature",
+    "title": "graphs/pnp-counter-to-sink: add reference graph",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "bb24f95",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
   }
 ]
