@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-02-26 02:18",
-    "type": "docs",
-    "title": "Update README to reflect current project structure",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "76cd896",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-02-26 17:41",
     "type": "fix",
     "title": "Fix inverted gripper mapping, use relative imports in camera_server",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "b383da7",
     "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-09 03:51",
+    "type": "feature",
+    "title": "Sim planner: switch ACM from relaxed to strict",
+    "description": "Commit by TruAres in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "7362876",
+    "repo": "maniskill_sim",
     "author": "TruAres"
   }
 ]
