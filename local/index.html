@@ -30,6 +30,65 @@
           color: var(--color-text);
           font-size: 0.85rem;
       }
+
+      /* Video showcase section — 3 hex cards in a row, aligned with session-demo */
+      .video-showcase-grid {
+          display: flex;
+          justify-content: flex-start;
+          gap: 6rem;
+          padding: 2rem 0 3rem;
+          flex-wrap: wrap;
+      }
+      .video-hex {
+          position: relative !important;
+          opacity: 1 !important;
+          transform: none !important;
+          text-decoration: none;
+          cursor: pointer;
+          flex-shrink: 0;
+          transition: transform 0.2s ease, filter 0.2s ease;
+          --type-color: var(--color-highlight, #00e5ff);
+      }
+      .video-hex:hover {
+          transform: scale(1.05) !important;
+          filter: brightness(1.2);
+      }
+      .video-hex .hex-type {
+          color: var(--color-highlight, #00e5ff);
+      }
+      .video-hex .hex-title {
+          color: var(--color-text);
+          font-size: 0.85rem;
+      }
+      .video-hex .hex-date {
+          color: var(--color-text-dim, #888);
+          font-size: 0.7rem;
+      }
+
+      /* Video inside popup card */
+      .popup-video-wrapper {
+          width: 100%;
+      }
+      .popup-video-wrapper video {
+          width: 100%;
+          border-radius: 4px;
+          display: block;
+      }
+      .popup-video-title {
+          font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: #00e5ff;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          margin-bottom: 1rem;
+          padding-bottom: 0.75rem;
+          border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+      }
+      /* Wider popup for video */
+      .popup-overlay.video-mode .popup-card {
+          max-width: 840px;
+      }
     </style>
     <!-- Local demo: detected via /local/ path, loads local_repos.json -->
     <!-- When served locally, WebSocket connects to orchestrator at ws://localhost:8765 -->
@@ -188,6 +247,55 @@
                 </div>
             </section>
 
+            <!-- ==============================
+                 VIDEO SHOWCASE
+                 ============================== -->
+            <section class="gallery-section" id="video-showcase-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">Task Demos</span>
+                    <span class="gallery-count">3 tasks</span>
+                </div>
+                <p class="gallery-blurb">Pick-and-place task recordings from the ManiSkill simulator. Click a hex to play the video.</p>
+                <div class="video-showcase-grid">
+                    <div class="hex-card visible video-hex" data-video="videos/counter-to-sink.mp4" data-type="dev">
+                        <div class="hex-border">
+                            <div class="hex-inner">
+                                <div class="hex-bg pattern-1"></div>
+                                <div class="hex-content">
+                                    <div class="hex-type">TASK</div>
+                                    <div class="hex-title">counter-to-sink</div>
+                                    <div class="hex-date">PnP demo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hex-card visible video-hex" data-video="videos/sink-to-counter.mp4" data-type="dev">
+                        <div class="hex-border">
+                            <div class="hex-inner">
+                                <div class="hex-bg pattern-2"></div>
+                                <div class="hex-content">
+                                    <div class="hex-type">TASK</div>
+                                    <div class="hex-title">sink-to-counter</div>
+                                    <div class="hex-date">PnP demo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hex-card visible video-hex" data-video="videos/counter-to-stove.mp4" data-type="dev">
+                        <div class="hex-border">
+                            <div class="hex-inner">
+                                <div class="hex-bg pattern-3"></div>
+                                <div class="hex-content">
+                                    <div class="hex-type">TASK</div>
+                                    <div class="hex-title">counter-to-stove</div>
+                                    <div class="hex-date">PnP demo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Footer -->
             <footer class="timeline-footer">
                 <div class="footer-content">
@@ -313,6 +421,73 @@
         window.addEventListener('resize', () => setTimeout(measure, 100));
         // Catch any post-load layout shifts (font load, lazy data, etc.)
         window.addEventListener('load', () => setTimeout(measure, 100));
+      })();
+
+      // Match video hex sizes to session-demo hex
+      (function matchVideoHexSize() {
+        const sessionHex = document.querySelector('.session-demo-hex');
+        const videoHexes = document.querySelectorAll('.video-hex');
+        if (!sessionHex || !videoHexes.length) return;
+
+        function sync() {
+          const w = sessionHex.offsetWidth;
+          const h = sessionHex.offsetHeight;
+          if (w > 50 && h > 50) {
+            videoHexes.forEach(vh => {
+              vh.style.width = w + 'px';
+              vh.style.height = h + 'px';
+            });
+          }
+        }
+
+        let tries = 0;
+        function poll() { sync(); if (++tries < 40) setTimeout(poll, 250); }
+        setTimeout(poll, 500);
+        window.addEventListener('resize', () => setTimeout(sync, 150));
+      })();
+
+      // Video showcase — click hex to play video in popup-card
+      (function videoShowcase() {
+        const overlay = document.getElementById('popup-overlay');
+        const backdrop = document.getElementById('popup-backdrop');
+        const inner = document.getElementById('popup-inner');
+        const closeBtn = document.getElementById('popup-close');
+        if (!overlay || !inner) return;
+
+        let activeVideo = null;
+
+        function openVideo(src, name) {
+          inner.innerHTML = `
+            <div class="popup-video-title">${name}</div>
+            <div class="popup-video-wrapper">
+              <video controls autoplay>
+                <source src="${src}" type="video/mp4">
+              </video>
+            </div>
+          `;
+          activeVideo = inner.querySelector('video');
+          overlay.classList.add('open', 'video-mode');
+        }
+
+        function closeVideo() {
+          if (activeVideo) { activeVideo.pause(); activeVideo = null; }
+          overlay.classList.remove('open', 'video-mode');
+          inner.innerHTML = '';
+        }
+
+        document.querySelectorAll('.video-hex').forEach(hex => {
+          hex.addEventListener('click', () => {
+            const src = hex.getAttribute('data-video');
+            const name = hex.querySelector('.hex-title')?.textContent || '';
+            openVideo(src, name);
+          });
+        });
+
+        closeBtn.addEventListener('click', closeVideo);
+        backdrop.addEventListener('click', closeVideo);
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape' && overlay.classList.contains('video-mode')) closeVideo();
+        });
       })();
     </script>
 </body>
