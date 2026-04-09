@@ -1,53 +1,5 @@
 [
   {
-    "timestamp": "2026-02-26 17:41",
-    "type": "fix",
-    "title": "Fix inverted gripper mapping, use relative imports in camera_server",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "4515352",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-02-28 19:00",
-    "type": "setup",
-    "title": "Initial commit: shared files (logging_config, start_robot, sync_catalog, CLAUDE.",
-    "description": "Commit by Tidybot in common",
-    "files": [
-      "common/"
-    ],
-    "sha": "8aa79ae",
-    "repo": "common",
-    "author": "Tidybot"
-  },
-  {
-    "timestamp": "2026-03-01 01:23",
-    "type": "feature",
-    "title": "Restructure paths for hardware/ directory layout",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "86bf8f5",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-01 01:23",
-    "type": "feature",
-    "title": "Update paths and error messages for hardware/ directory layout",
-    "description": "Commit by Yifei Simon Shao in arm_franka_service",
-    "files": [
-      "arm_franka_service/"
-    ],
-    "sha": "ad87a79",
-    "repo": "arm_franka_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-01 01:23",
     "type": "feature",
     "title": "Update paths for tidybot_uni/hardware/ layout",
@@ -2398,5 +2350,53 @@
     "sha": "7362876",
     "repo": "maniskill_sim",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-09 21:06",
+    "type": "feature",
+    "title": "Auto-activate gripper on server startup",
+    "description": "Commit by Tidybot in gripper_robotiq_service",
+    "files": [
+      "gripper_robotiq_service/"
+    ],
+    "sha": "98452d4",
+    "repo": "gripper_robotiq_service",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-04-09 21:06",
+    "type": "setup",
+    "title": "Add setup-hardware.sh for physical robot setup",
+    "description": "Commit by Tidybot in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "df2bca4",
+    "repo": "Tidybot-Universe",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-04-09 21:06",
+    "type": "feature",
+    "title": "Add pyproject.toml to make common an installable package",
+    "description": "Commit by Tidybot in common",
+    "files": [
+      "common/"
+    ],
+    "sha": "1625daa",
+    "repo": "common",
+    "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-04-09 21:13",
+    "type": "fix",
+    "title": "Fix mocap health reporting, add display to SDK docs, update guide modules",
+    "description": "Commit by Tidybot in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "8aff0a6",
+    "repo": "agent_server",
+    "author": "Tidybot"
   }
 ]
