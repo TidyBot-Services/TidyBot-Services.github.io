@@ -151,6 +151,56 @@
             </section>
 
             <!-- ==============================
+                 SUPPORTED ROBOTS
+                 ============================== -->
+            <section class="robots-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">Supported Robots</span>
+                </div>
+                <div class="robots-grid">
+                    <!-- TidyBot -->
+                    <div class="robot-card" data-robot="tidybot">
+                        <div class="robot-viewer">
+                            <canvas class="robot-canvas"></canvas>
+                        </div>
+                        <div class="robot-info">
+                            <span class="robot-name">TidyBot</span>
+                        </div>
+                    </div>
+                    <!-- XLeRobot -->
+                    <div class="robot-card" data-robot="xlerobot">
+                        <div class="robot-viewer">
+                            <canvas class="robot-canvas"></canvas>
+                        </div>
+                        <div class="robot-info">
+                            <span class="robot-name">XLeRobot</span>
+                        </div>
+                    </div>
+                    <!-- Fourier GR1 -->
+                    <div class="robot-card" data-robot="gr1">
+                        <div class="robot-viewer">
+                            <canvas class="robot-canvas"></canvas>
+                        </div>
+                        <div class="robot-info">
+                            <span class="robot-name">Fourier GR1</span>
+                        </div>
+                    </div>
+                    <!-- More Coming Soon -->
+                    <div class="robot-card coming-soon" data-robot="placeholder">
+                        <div class="robot-viewer">
+                            <canvas class="robot-canvas"></canvas>
+                            <div class="robot-coming-soon">
+                                <span>MORE ROBOTS COMING SOON</span>
+                            </div>
+                        </div>
+                        <div class="robot-info">
+                            <span class="robot-name">---</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==============================
                  DEMO VIDEO
                  ============================== -->
             <section class="demo-section">
@@ -394,6 +444,15 @@
     </svg>
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="robot-viewer.js"></script>
     <script src="wishlist.js"></script>
     <script src="script.js"></script>
 </body>
