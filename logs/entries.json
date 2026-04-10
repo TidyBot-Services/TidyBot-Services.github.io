@@ -2,18 +2,6 @@
   {
     "timestamp": "2026-03-01 01:23",
     "type": "feature",
-    "title": "Update paths for tidybot_uni/hardware/ layout",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "4793878",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-01 01:23",
-    "type": "feature",
     "title": "Update install path for tidybot_uni layout",
     "description": "Commit by Yifei Simon Shao in base_tidybot_service",
     "files": [
@@ -2398,5 +2386,17 @@
     "sha": "8aff0a6",
     "repo": "agent_server",
     "author": "Tidybot"
+  },
+  {
+    "timestamp": "2026-04-10 05:05",
+    "type": "fix",
+    "title": "Fix evaluator for remote/hardware agent servers",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "ccc970d",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
