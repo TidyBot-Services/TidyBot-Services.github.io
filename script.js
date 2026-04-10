@@ -1081,11 +1081,6 @@ function openPopup(galleryName, index) {
         repoLink = `<a href="${entry.html_url}" target="_blank" rel="noopener noreferrer" class="popup-repo-link">View Repo →</a>`;
     }
 
-    let imageHTML = '';
-    if (entry.image) {
-        imageHTML = `<div class="popup-image"><img src="${entry.image}" alt="${entry.title}"></div>`;
-    }
-
     let trialHTML = '';
     if (entry.trial_images && entry.trial_images.length > 0) {
         const imgs = entry.trial_images;
@@ -1161,7 +1156,6 @@ function openPopup(galleryName, index) {
             <span class="popup-type" style="--type-color:${typeColor};">${typeLabel}</span>
             <span class="popup-date">${entry.timestamp || ''}</span>
         </div>
-        ${imageHTML}
         ${trialHTML}
         <div class="exec-viewer-slot"></div>
         <h2 class="popup-title">${entry.title}</h2>
