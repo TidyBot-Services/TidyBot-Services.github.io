@@ -1,89 +1,5 @@
 [
   {
-    "timestamp": "2026-03-01 01:23",
-    "type": "feature",
-    "title": "Update install path for tidybot_uni layout",
-    "description": "Commit by Yifei Simon Shao in base_tidybot_service",
-    "files": [
-      "base_tidybot_service/"
-    ],
-    "sha": "8e2a59a",
-    "repo": "base_tidybot_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-01 01:23",
-    "type": "feature",
-    "title": "Update paths for hardware/ directory layout, remove venv",
-    "description": "Commit by Yifei Simon Shao in camera_realsense_service",
-    "files": [
-      "camera_realsense_service/"
-    ],
-    "sha": "71441b0",
-    "repo": "camera_realsense_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-01 01:23",
-    "type": "fix",
-    "title": "Fix sim bridge protocols for agent_server compatibility",
-    "description": "Commit by Yifei Simon Shao in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "711d99d",
-    "repo": "sim",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-01 01:23",
-    "type": "feature",
-    "title": "Update install path for tidybot_uni layout",
-    "description": "Commit by Yifei Simon Shao in system_logger",
-    "files": [
-      "system_logger/"
-    ],
-    "sha": "be71e1a",
-    "repo": "system_logger",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-01 01:23",
-    "type": "feature",
-    "title": "Restructure paths for hardware/ directory layout",
-    "description": "Commit by Yifei Simon Shao in common",
-    "files": [
-      "common/"
-    ],
-    "sha": "6159ec3",
-    "repo": "common",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-01 19:22",
-    "type": "feature",
-    "title": "Add simulator docs to OpenClaw workspace templates",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "53f6192",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-01 19:22",
-    "type": "feature",
-    "title": "Relax arm convergence tolerances for sim",
-    "description": "Commit by Yifei Simon Shao in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "52a4e13",
-    "repo": "sim",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-02 15:10",
     "type": "fix",
     "title": "Fix broken link: replace non-existent arm-sweep with pick-and-place",
@@ -2398,5 +2314,89 @@
     "sha": "ccc970d",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-14 18:34",
+    "type": "feature",
+    "title": "Add env_idx parameter for multi-env parallel simulation",
+    "description": "Commit by TruAres in base_tidybot_maniskill_service",
+    "files": [
+      "base_tidybot_maniskill_service/"
+    ],
+    "sha": "80f83b0",
+    "repo": "base_tidybot_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-14 18:34",
+    "type": "feature",
+    "title": "Add env_idx parameter for multi-env parallel simulation",
+    "description": "Commit by TruAres in camera_realsense_maniskill_service",
+    "files": [
+      "camera_realsense_maniskill_service/"
+    ],
+    "sha": "d012988",
+    "repo": "camera_realsense_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-14 18:34",
+    "type": "feature",
+    "title": "Add env_idx parameter for multi-env parallel simulation",
+    "description": "Commit by TruAres in arm_franka_maniskill_service",
+    "files": [
+      "arm_franka_maniskill_service/"
+    ],
+    "sha": "a4b12f1",
+    "repo": "arm_franka_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-14 18:34",
+    "type": "feature",
+    "title": "Add env_idx parameter for multi-env parallel simulation",
+    "description": "Commit by TruAres in gripper_robotiq_maniskill_service",
+    "files": [
+      "gripper_robotiq_maniskill_service/"
+    ],
+    "sha": "51c1b6e",
+    "repo": "gripper_robotiq_maniskill_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-14 18:35",
+    "type": "setup",
+    "title": "Support LOG_DIR env var for multi-instance setups",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "e31640b",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-14 18:35",
+    "type": "feature",
+    "title": "Add multi-env parallel simulation support (--num-envs N)",
+    "description": "Commit by TruAres in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "c938d3c",
+    "repo": "maniskill_sim",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-14 18:36",
+    "type": "feature",
+    "title": "Orchestrator: parallel multi-target dev agents",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "813c66d",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
   }
 ]
