@@ -14,6 +14,8 @@ const IS_LOCAL_SERVER = ['localhost', '127.0.0.1', ''].includes(window.location.
 const IS_LOCAL = IS_LOCAL_PAGE;
 const BASE_PATH = (window.location.pathname.includes('/local') || window.location.pathname.includes('/updates')) ? '../' : './';
 const AGENT_SERVER = `http://${window.location.hostname || 'localhost'}:8080`;
+let _activeServer = AGENT_SERVER;  // current target's agent server (switched by target tabs)
+let _activeTargetName = '';        // current target name for tab re-selection after popup rebuild
 let ws = null;
 let wsConnected = false;
 let _execAutoplayTimer = null;
@@ -151,6 +153,7 @@ function handleStatusUpdate(entry) {
         agent_id: entry.agent_id,
         agent_status_text: entry.agent_status_text,
         agent_type: entry.agent_type || g.entries[idx].agent_type,
+        target_agents: entry.target_agents || g.entries[idx].target_agents,
         success_rate: entry.success_rate,
         progress_history: entry.progress_history
     });
@@ -158,47 +161,43 @@ function handleStatusUpdate(entry) {
     // In-place DOM update — find all hex cards matching this entry and patch them
     const statusClasses = ['status-writing', 'status-testing', 'status-review', 'status-failed', 'status-done', 'status-planned'];
     const newStatusClass = entry.status ? `status-${entry.status}` : '';
-    const agentHTML = entry.agent_status_text
-        ? `<span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}`
-        : '';
+    // Build per-target or single agent HTML
+    let agentHTML = '';
+    const ta = entry.target_agents || g.entries[idx].target_agents;
+    if (ta && Object.keys(ta).length > 1) {
+        agentHTML = Object.entries(ta).map(([tname, a]) => {
+            const c = agentStatusColors[a.status] || '#6b6b7b';
+            return `<div class="hex-target-agent"><span class="status-dot" style="background:${c}"></span><span class="target-label">${tname}</span> <span style="color:${c}">${a.status}</span></div>`;
+        }).join('');
+    } else if (entry.agent_status_text) {
+        agentHTML = `<span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}`;
+    }
+
+    // Determine container class based on multi-target or single
+    const isMultiTarget = ta && Object.keys(ta).length > 1;
+    const agentContainerClass = isMultiTarget ? 'hex-target-agents' : 'hex-agent-status';
+
+    function _patchAgentEl(card) {
+        card.classList.remove(...statusClasses);
+        if (newStatusClass) card.classList.add(newStatusClass);
+        // Remove old agent elements (both types)
+        card.querySelector('.hex-agent-status')?.remove();
+        card.querySelector('.hex-target-agents')?.remove();
+        if (agentHTML) {
+            const el = document.createElement('div');
+            el.className = agentContainerClass;
+            el.innerHTML = agentHTML;
+            card.querySelector('.hex-content')?.appendChild(el);
+        }
+    }
 
     // Update gallery hex cards
     const galleryCard = g.track?.querySelectorAll(`.hex-card[data-gallery="skills"][data-index="${idx}"]`);
-    if (galleryCard) {
-        galleryCard.forEach(card => {
-            card.classList.remove(...statusClasses);
-            if (newStatusClass) card.classList.add(newStatusClass);
-            let agentEl = card.querySelector('.hex-agent-status');
-            if (agentHTML) {
-                if (!agentEl) {
-                    agentEl = document.createElement('div');
-                    agentEl.className = 'hex-agent-status';
-                    card.querySelector('.hex-content')?.appendChild(agentEl);
-                }
-                agentEl.innerHTML = agentHTML;
-            } else if (agentEl) {
-                agentEl.remove();
-            }
-        });
-    }
+    if (galleryCard) galleryCard.forEach(_patchAgentEl);
 
     // Update tree hex cards
     const treeCard = document.querySelector(`.tree-hex-card[data-title="${entry.name}"]`);
-    if (treeCard) {
-        treeCard.classList.remove(...statusClasses);
-        if (newStatusClass) treeCard.classList.add(newStatusClass);
-        let agentEl = treeCard.querySelector('.hex-agent-status');
-        if (agentHTML) {
-            if (!agentEl) {
-                agentEl = document.createElement('div');
-                agentEl.className = 'hex-agent-status';
-                treeCard.querySelector('.hex-content')?.appendChild(agentEl);
-            }
-            agentEl.innerHTML = agentHTML;
-        } else if (agentEl) {
-            agentEl.remove();
-        }
-    }
+    if (treeCard) _patchAgentEl(treeCard);
 
     // Update open popup if it's showing this skill
     if (activePopup && activePopup.galleryName === 'skills') {
@@ -281,6 +280,8 @@ function handleFullSync(payload) {
             agent_status_text: repo.agent_status_text || null,
             agent_type: repo.agent_type || null,
             target_results: repo.target_results || null,
+            target_agents: repo.target_agents || null,
+            target_trial_images: repo.target_trial_images || null,
             task_env: repo.task_env || null,
             agent_log: mergedLog,
             progress_history: repo.progress_history || [],
@@ -308,10 +309,12 @@ function renderAgentsList(agentsList) {
     }
     container.innerHTML = agentsList.map(a => {
         const color = agentStatusColors[a.status] || '#6b6b7b';
+        const targetLabel = a.target ? `<span class="agent-target">${a.target}</span>` : '';
         return `<div class="agent-row">
             <span class="agent-dot" style="background:${color}"></span>
             <span class="agent-id">${a.agent_id}</span>
             <span class="agent-skill">${a.skill}</span>
+            ${targetLabel}
             <span class="agent-type">${a.agent_type}</span>
             <span class="agent-status" style="color:${color}">${a.status}</span>
         </div>`;
@@ -404,6 +407,8 @@ async function loadRepos(file) {
             agent_id: repo.agent_id || null,
             agent_status_text: repo.agent_status_text || null,
             target_results: repo.target_results || null,
+            target_agents: repo.target_agents || null,
+            target_trial_images: repo.target_trial_images || null,
             agent_log: repo.agent_log || [],
             progress_history: repo.progress_history || [],
             _isRepo: true
@@ -621,9 +626,16 @@ function renderGallery(name) {
         const bgStyle = entry.image ? `background-image:url(${entry.image});` : '';
 
         const statusClass = IS_LOCAL && entry.status ? `status-${entry.status}` : '';
-        const agentStatusHTML = IS_LOCAL && entry.agent_status_text
-            ? `<div class="hex-agent-status"><span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}</div>`
-            : '';
+        let agentStatusHTML = '';
+        if (IS_LOCAL && entry.target_agents && Object.keys(entry.target_agents).length > 1) {
+            // Multi-target: show per-target status lines
+            agentStatusHTML = `<div class="hex-target-agents">${Object.entries(entry.target_agents).map(([tname, ta]) => {
+                const c = agentStatusColors[ta.status] || '#6b6b7b';
+                return `<div class="hex-target-agent"><span class="status-dot" style="background:${c}"></span><span class="target-label">${tname}</span> <span style="color:${c}">${ta.status}</span></div>`;
+            }).join('')}</div>`;
+        } else if (IS_LOCAL && entry.agent_status_text) {
+            agentStatusHTML = `<div class="hex-agent-status"><span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}</div>`;
+        }
 
         html += `<div class="hex-card hex-${hex.sizeClass} ${statusClass}" data-gallery="${name}" data-index="${i}"
             style="left:${hexLeft}px;top:${hexTop}px;width:${hex.w}px;height:${hex.h}px;
@@ -717,7 +729,7 @@ async function fetchLatestExecution(skillName) {
     // Find the latest job for this skill via holder pattern, then fetch its recording
     try {
         // Try skill-specific holder patterns: "dev:<skill>" or just the skill name
-        const resp = await fetch(`${AGENT_SERVER}/code/jobs`);
+        const resp = await fetch(`${_activeServer}/code/jobs`);
         if (!resp.ok) return null;
         const data = await resp.json();
         const jobs = data.jobs || [];
@@ -731,15 +743,76 @@ async function fetchLatestExecution(skillName) {
         const execId = match ? match.execution_id : null;
         if (!execId) return null;
 
-        const meta = await fetch(`${AGENT_SERVER}/code/recordings/${execId}`);
+        const meta = await fetch(`${_activeServer}/code/recordings/${execId}`);
         if (!meta.ok) return null;
         const rec = await meta.json();
         const frames = rec.frames || (rec.timeline || []).map(t => t.frame);
         if (frames.length === 0) return null;
-        return { execution_id: execId, frames, ...rec };
+        return { execution_id: execId, frames, ...rec, _serverUrl: _activeServer };
     } catch (e) {
         return null;
     }
+}
+
+// Fetch latest execution from a specific agent server (for multi-target tab switching)
+async function fetchLatestExecutionFromServer(serverUrl, skillName) {
+    try {
+        const resp = await fetch(`${serverUrl}/code/jobs`);
+        if (!resp.ok) return null;
+        const data = await resp.json();
+        const jobs = data.jobs || [];
+        const match = jobs.find(j =>
+            j.execution_id && j.status === 'completed' &&
+            (j.holder === `dev:${skillName}` || j.holder === skillName || (j.holder || '').includes(skillName))
+        );
+        const execId = match ? match.execution_id : null;
+        if (!execId) return null;
+        const meta = await fetch(`${serverUrl}/code/recordings/${execId}`);
+        if (!meta.ok) return null;
+        const rec = await meta.json();
+        const frames = rec.frames || [];
+        if (frames.length === 0) return null;
+        rec._serverUrl = serverUrl; // stash for frame URL building
+        return { execution_id: execId, frames, ...rec, _serverUrl: serverUrl };
+    } catch (e) { return null; }
+}
+
+function buildExecViewerHTMLForServer(execData, serverUrl) {
+    if (!execData || !execData.frames || execData.frames.length === 0) return '';
+    const execId = execData.execution_id;
+    const frames = execData.frames;
+    const cameras = execData.cameras || [];
+    const frameUrl = (f) => `${serverUrl}/code/recordings/${execId}/frames/${f}`;
+
+    const camGroups = {};
+    for (const f of frames) {
+        const match = f.match(/^\d+_(.+)\.jpg$/);
+        const cam = match ? match[1] : 'unknown';
+        if (!camGroups[cam]) camGroups[cam] = [];
+        camGroups[cam].push(f);
+    }
+    const camNames = Object.keys(camGroups);
+    const defaultCam = camNames[0] || '';
+    const defaultFrames = camGroups[defaultCam] || [];
+    const camTabs = camNames.length > 1
+        ? `<div class="exec-cam-tabs">${camNames.map((c, i) =>
+            `<button class="exec-cam-tab${i === 0 ? ' active' : ''}" data-cam="${c}">${c.replace(/_/g, ' ')}</button>`
+        ).join('')}</div>` : '';
+    return `<div class="popup-trial-gallery exec-viewer" data-exec-id="${execId}">
+        <span class="popup-files-label">Latest Execution</span>
+        ${camTabs}
+        <div class="trial-hero exec-hero">
+            <img class="trial-hero-img exec-hero-img" src="${frameUrl(defaultFrames[0])}" alt="Execution frame">
+            <span class="trial-counter exec-counter">1 / ${defaultFrames.length}</span>
+            <div class="exec-controls"><button class="exec-play-btn" title="Play/Pause">▶</button></div>
+        </div>
+        <div class="exec-progress-bar"><div class="exec-progress-fill"></div></div>
+        <div class="trial-strip exec-strip">
+            ${defaultFrames.slice(0, 20).map((f, i) =>
+                `<div class="trial-thumb${i === 0 ? ' active' : ''}" data-index="${i}" style="background-image:url(${frameUrl(f)});"></div>`
+            ).join('')}
+        </div>
+    </div>`;
 }
 
 function buildExecViewerHTML(execData) {
@@ -747,7 +820,8 @@ function buildExecViewerHTML(execData) {
     const execId = execData.execution_id;
     const frames = execData.frames;
     const cameras = execData.cameras || [];
-    const frameUrl = (f) => `${AGENT_SERVER}/code/recordings/${execId}/frames/${f}`;
+    const _server = execData._serverUrl || _activeServer;
+    const frameUrl = (f) => `${_server}/code/recordings/${execId}/frames/${f}`;
 
     // Group frames by camera
     const camGroups = {};
@@ -791,14 +865,18 @@ function buildExecViewerHTML(execData) {
     </div>`;
 }
 
-function wireExecViewer(execData) {
-    const slot = document.querySelector('.exec-viewer-slot');
-    const viewer = slot ? slot.querySelector('.exec-viewer') : document.querySelectorAll('.exec-viewer')[document.querySelectorAll('.exec-viewer').length - 1];
+function wireExecViewer(execData, targetViewer) {
+    let viewer = targetViewer;
+    if (!viewer) {
+        const slot = document.querySelector('.exec-viewer-slot');
+        viewer = slot ? slot.querySelector('.exec-viewer') : document.querySelectorAll('.exec-viewer')[document.querySelectorAll('.exec-viewer').length - 1];
+    }
     if (!viewer || !execData) return;
 
     const execId = execData.execution_id;
     const frames = execData.frames;
-    const frameUrl = (f) => `${AGENT_SERVER}/code/recordings/${execId}/frames/${f}`;
+    const serverUrl = execData._serverUrl || _activeServer;
+    const frameUrl = (f) => `${serverUrl}/code/recordings/${execId}/frames/${f}`;
 
     // Group frames by camera
     const camGroups = {};
@@ -1239,6 +1317,19 @@ function openPopup(galleryName, index) {
             </div>`;
         }
 
+        // Build target tabs if multiple targets
+        const ta = entry.target_agents;
+        const multiTarget = ta && Object.keys(ta).length > 1;
+        let targetTabsHTML = '';
+        if (multiTarget) {
+            targetTabsHTML = `<div class="chat-target-tabs">${Object.entries(ta).map(([tname, a], i) => {
+                const c = agentStatusColors[a.status] || '#6b6b7b';
+                return `<button class="chat-target-tab${i === 0 ? ' active' : ''}" data-target="${tname}" data-agent-id="${a.agent_id}" style="border-bottom-color:${c};">
+                    <span class="status-dot" style="background:${c}"></span>${tname}
+                </button>`;
+            }).join('')}</div>`;
+        }
+
         document.getElementById('popup-inner').innerHTML = `
             <div class="popup-two-col">
                 <div class="popup-col-info">
@@ -1246,6 +1337,7 @@ function openPopup(galleryName, index) {
                     ${actionHTML}
                 </div>
                 <div class="popup-col-chat">
+                    ${targetTabsHTML}
                     <div class="chat-header">
                         <span class="chat-status-badge${needsAttention ? ' badge-blink' : ''}" data-status="${entry.status}" style="background:${statusColor};">${statusLabel}</span>
                         <span class="chat-agent-label">${entry.agent_id || 'agent'}</span>
@@ -1267,6 +1359,68 @@ function openPopup(galleryName, index) {
                 </div>
             </div>
         `;
+
+        // Wire up target tab switching — simple approach:
+        // Set _activeServer, swap entry data, and re-open popup
+        if (multiTarget) {
+            // On initial open, select tab matching _activeTargetName (if set)
+            if (_activeTargetName) {
+                document.querySelectorAll('.chat-target-tab').forEach(t => {
+                    t.classList.toggle('active', t.dataset.target === _activeTargetName);
+                });
+            }
+
+            document.querySelectorAll('.chat-target-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetName = tab.dataset.target;
+                    const agentId = tab.dataset.agentId;
+                    const targetInfo = ta[targetName];
+                    if (!targetInfo) return;
+
+                    // 1. Set global active server so all video code uses this target
+                    _activeServer = targetInfo.agent_server || AGENT_SERVER;
+                    _activeTargetName = targetName;
+
+                    // 2. Update entry data with this target's agent info
+                    const g = galleries.skills;
+                    if (g && activePopup) {
+                        const e = g.entries[activePopup.index];
+                        if (e) {
+                            e.agent_id = agentId;
+                            e.agent_log = targetInfo.agent_log || [];
+                            e.agent_status_text = targetInfo.status;
+
+                            // Fetch this target's trial images and rebuild
+                            fetch(`${_activeServer}/code/recordings`)
+                                .then(r => r.json())
+                                .then(data => {
+                                    const recs = data.recordings || data;
+                                    if (recs && recs.length) {
+                                        return fetch(`${_activeServer}/code/recordings/${recs[0]}`).then(r => r.json());
+                                    }
+                                })
+                                .then(recData => {
+                                    if (recData) {
+                                        let frames = (recData.frames || []).filter(f => f.endsWith('.jpg'));
+                                        if (frames.length > 20) {
+                                            const step = frames.length / 20;
+                                            frames = Array.from({length: 20}, (_, i) => frames[Math.floor(i * step)]);
+                                        }
+                                        e.trial_images = frames.map(f => `${_activeServer}/code/recordings/${recData.execution_id}/frames/${f}`);
+                                        e.image = e.trial_images[0] || null;
+                                        e._staticExecData = null;
+                                    }
+                                    // 3. Re-open popup (rebuilds everything with _activeServer)
+                                    openPopup('skills', activePopup.index);
+                                })
+                                .catch(() => {
+                                    openPopup('skills', activePopup.index);
+                                });
+                        }
+                    }
+                });
+            });
+        }
     } else {
         // Single column for skills with no agent activity
         const popupCard = document.querySelector('.popup-card');
@@ -1870,9 +2024,15 @@ function renderSkillTree(entries) {
         }
 
         const treeStatusClass = IS_LOCAL && entry.status ? `status-${entry.status}` : '';
-        const treeAgentHTML = IS_LOCAL && entry.agent_status_text
-            ? `<div class="hex-agent-status"><span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}</div>`
-            : '';
+        let treeAgentHTML = '';
+        if (IS_LOCAL && entry.target_agents && Object.keys(entry.target_agents).length > 1) {
+            treeAgentHTML = `<div class="hex-target-agents">${Object.entries(entry.target_agents).map(([tname, ta]) => {
+                const c = agentStatusColors[ta.status] || '#6b6b7b';
+                return `<div class="hex-target-agent"><span class="status-dot" style="background:${c}"></span><span class="target-label">${tname}</span> <span style="color:${c}">${ta.status}</span></div>`;
+            }).join('')}</div>`;
+        } else if (IS_LOCAL && entry.agent_status_text) {
+            treeAgentHTML = `<div class="hex-agent-status"><span class="status-dot ${entry.status || ''}"></span>${entry.agent_status_text}</div>`;
+        }
 
         nodesHTML += `<div class="tree-hex-card hex-lg ${treeStatusClass}" data-title="${entry.title}" data-entry-index="${i}"
             style="left:${hexLeft}px;top:${hexTop}px;width:${node.w}px;height:${node.h}px;

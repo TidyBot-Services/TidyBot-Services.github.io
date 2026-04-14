@@ -3099,6 +3099,79 @@ button.gallery-wishlist {
 .status-dot.writing    { background: #9d4edd; }
 .status-dot.planned    { background: #666; }
 .status-dot.done       { background: #39ff14; }
+
+/* Multi-target agent status inside hex card */
+.hex-target-agents {
+    font-family: var(--font-mono);
+    font-size: 0.48rem;
+    color: var(--color-text-soft);
+    margin-top: 2px;
+    line-height: 1.5;
+}
+.hex-target-agent {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.hex-target-agent .status-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.hex-target-agent .target-label {
+    color: var(--color-text-soft);
+    opacity: 0.7;
+}
+
+/* Target tabs in popup chat */
+.chat-target-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+.chat-target-tab {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid #9d4edd;
+    border-radius: 4px;
+    color: #888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s, background 0.2s;
+}
+.chat-target-tab:hover {
+    color: #ccc;
+    background: rgba(157, 78, 221, 0.15);
+}
+.chat-target-tab.active {
+    color: #fff;
+    background: rgba(157, 78, 221, 0.3);
+    border-color: #b86eec;
+}
+.chat-target-tab .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Agent target label in agents list */
+.agent-target {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.1);
+    padding: 1px 6px;
+    border-radius: 3px;
+}
 .status-dot.failed     { background: #ff3366; }
 
 /* ---- Inject input in popup ---- */
