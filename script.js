@@ -48,14 +48,24 @@ function connectWS() {
                 // Live reasoning trace from agent
                 const isUser = msg.agent_type === 'user';
                 const role = isUser ? 'you' : (msg.agent_type === 'evaluator' ? 'evaluator' : 'agent');
-                if (!isUser) appendChatMsg(msg.entry_id, role, msg.text);  // user msgs already appended locally
-                // Persist to entry data so messages survive popup re-renders
+                const msgTarget = msg.target || '';
+                // If message is target-specific, only render in DOM when that target tab is active
+                const shouldRenderDom = !msgTarget || msgTarget === _activeTargetName;
+                if (!isUser && shouldRenderDom) appendChatMsg(msg.entry_id, role, msg.text);
+                // Persist to entry data: put into target_agents[target].agent_log if target-specific,
+                // else entry.agent_log
                 const g = galleries.skills;
                 if (g) {
                     const entry = g.entries.find(e => e.title === msg.entry_id || e.name === msg.entry_id);
                     if (entry) {
-                        if (!entry.agent_log) entry.agent_log = [];
-                        entry.agent_log.push({text: msg.text, role});
+                        if (msgTarget && entry.target_agents && entry.target_agents[msgTarget]) {
+                            const ta = entry.target_agents[msgTarget];
+                            if (!ta.agent_log) ta.agent_log = [];
+                            ta.agent_log.push({text: msg.text, role});
+                        } else {
+                            if (!entry.agent_log) entry.agent_log = [];
+                            entry.agent_log.push({text: msg.text, role});
+                        }
                     }
                 }
             }
@@ -228,8 +238,12 @@ function handleStatusUpdate(entry) {
                     if (entry.status === 'review') badge.classList.add('badge-blink');
                     else badge.classList.remove('badge-blink');
                 }
-                const agentLabel = document.querySelector('.chat-agent-label');
-                if (agentLabel && entry.agent_id) agentLabel.textContent = entry.agent_id;
+                // Only update label to entry.agent_id if no target tab is selected,
+                // otherwise the label should stick to the active tab's agent
+                if (!_activeTargetName) {
+                    const agentLabel = document.querySelector('.chat-agent-label');
+                    if (agentLabel && entry.agent_id) agentLabel.textContent = entry.agent_id;
+                }
             }
         }
     }
@@ -726,54 +740,43 @@ function tick() {
 // ============================================
 
 async function fetchLatestExecution(skillName) {
-    // Find the latest job for this skill via holder pattern, then fetch its recording
-    try {
-        // Try skill-specific holder patterns: "dev:<skill>" or just the skill name
-        const resp = await fetch(`${_activeServer}/code/jobs`);
-        if (!resp.ok) return null;
-        const data = await resp.json();
-        const jobs = data.jobs || [];
-
-        // Find latest completed job whose holder matches this skill
-        const match = jobs.find(j =>
-            j.execution_id && j.status === 'completed' &&
-            (j.holder === `dev:${skillName}` || j.holder === skillName || (j.holder || '').includes(skillName))
-        );
-
-        const execId = match ? match.execution_id : null;
-        if (!execId) return null;
-
-        const meta = await fetch(`${_activeServer}/code/recordings/${execId}`);
-        if (!meta.ok) return null;
-        const rec = await meta.json();
-        const frames = rec.frames || (rec.timeline || []).map(t => t.frame);
-        if (frames.length === 0) return null;
-        return { execution_id: execId, frames, ...rec, _serverUrl: _activeServer };
-    } catch (e) {
-        return null;
-    }
+    // Delegates to the target-aware variant (uses _activeServer)
+    return fetchLatestExecutionFromServer(_activeServer, skillName);
 }
 
-// Fetch latest execution from a specific agent server (for multi-target tab switching)
+// Fetch latest substantial execution from a specific agent server.
+// Prefers executions with more frames (filters out short exploratory --no-eval runs).
 async function fetchLatestExecutionFromServer(serverUrl, skillName) {
     try {
         const resp = await fetch(`${serverUrl}/code/jobs`);
         if (!resp.ok) return null;
         const data = await resp.json();
         const jobs = data.jobs || [];
-        const match = jobs.find(j =>
+        const candidates = jobs.filter(j =>
             j.execution_id && j.status === 'completed' &&
             (j.holder === `dev:${skillName}` || j.holder === skillName || (j.holder || '').includes(skillName))
         );
-        const execId = match ? match.execution_id : null;
-        if (!execId) return null;
-        const meta = await fetch(`${serverUrl}/code/recordings/${execId}`);
-        if (!meta.ok) return null;
-        const rec = await meta.json();
-        const frames = rec.frames || [];
-        if (frames.length === 0) return null;
-        rec._serverUrl = serverUrl; // stash for frame URL building
-        return { execution_id: execId, frames, ...rec, _serverUrl: serverUrl };
+        if (!candidates.length) return null;
+
+        // Fetch meta for the 5 most recent candidates in parallel, pick the one with most frames
+        const topN = candidates.slice(0, 5);
+        const metas = await Promise.all(topN.map(j =>
+            fetch(`${serverUrl}/code/recordings/${j.execution_id}`)
+                .then(r => r.ok ? r.json() : null)
+                .catch(() => null)
+        ));
+
+        let best = null;
+        for (let i = 0; i < metas.length; i++) {
+            const rec = metas[i];
+            if (!rec) continue;
+            const frames = (rec.frames || []).filter(f => f.endsWith('.jpg'));
+            if (frames.length === 0) continue;
+            if (!best || frames.length > best._frameCount) {
+                best = { ...rec, execution_id: topN[i].execution_id, _frameCount: frames.length, _serverUrl: serverUrl };
+            }
+        }
+        return best;
     } catch (e) { return null; }
 }
 
@@ -1390,15 +1393,9 @@ function openPopup(galleryName, index) {
                             e.agent_log = targetInfo.agent_log || [];
                             e.agent_status_text = targetInfo.status;
 
-                            // Fetch this target's trial images and rebuild
-                            fetch(`${_activeServer}/code/recordings`)
-                                .then(r => r.json())
-                                .then(data => {
-                                    const recs = data.recordings || data;
-                                    if (recs && recs.length) {
-                                        return fetch(`${_activeServer}/code/recordings/${recs[0]}`).then(r => r.json());
-                                    }
-                                })
+                            // Fetch the latest execution for THIS skill on THIS target's server
+                            // (matches by holder=dev:<skill> and prefers recordings with >20 frames)
+                            fetchLatestExecutionFromServer(_activeServer, entry.title)
                                 .then(recData => {
                                     if (recData) {
                                         let frames = (recData.frames || []).filter(f => f.endsWith('.jpg'));
@@ -1410,7 +1407,6 @@ function openPopup(galleryName, index) {
                                         e.image = e.trial_images[0] || null;
                                         e._staticExecData = null;
                                     }
-                                    // 3. Re-open popup (rebuilds everything with _activeServer)
                                     openPopup('skills', activePopup.index);
                                 })
                                 .catch(() => {

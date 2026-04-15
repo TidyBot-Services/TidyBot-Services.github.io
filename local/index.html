@@ -30,6 +30,81 @@
           color: var(--color-text);
           font-size: 0.85rem;
       }
+      /* Dynamic live session hexes (added via JS for non-pnp-counter-to-sink graphs) */
+      .session-demo-hex.live-session {
+          --type-color: var(--color-purple-bright, #9d4edd);
+      }
+      .session-demo-hex.live-session .hex-content::before {
+          content: "● LIVE";
+          position: absolute;
+          top: 8px;
+          right: 12px;
+          font-family: var(--font-mono);
+          font-size: 0.55rem;
+          color: var(--color-purple-bright, #9d4edd);
+          letter-spacing: 0.1em;
+          animation: live-blink 1.5s ease-in-out infinite;
+      }
+      @keyframes live-blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
+      }
+      /* Border pulse animation while the task is actively developing */
+      .session-demo-hex.live-session.developing .hex-border {
+          animation: hex-border-pulse 2s ease-in-out infinite;
+      }
+      @keyframes hex-border-pulse {
+          0%, 100% {
+              filter: drop-shadow(0 0 4px var(--color-purple-bright, #9d4edd))
+                      drop-shadow(0 0 8px rgba(157, 78, 221, 0.4));
+          }
+          50% {
+              filter: drop-shadow(0 0 16px var(--color-purple-bright, #9d4edd))
+                      drop-shadow(0 0 32px rgba(157, 78, 221, 0.7));
+          }
+      }
+      /* Per-env breakdown inside the live hex */
+      .session-demo-hex.live-session .env-list {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          margin-top: 6px;
+          align-items: center;
+          font-family: var(--font-mono);
+          font-size: 0.6rem;
+          line-height: 1.2;
+      }
+      .session-demo-hex.live-session .env-row {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          color: var(--color-text-soft, #aaa);
+      }
+      .session-demo-hex.live-session .env-dot {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background: var(--env-color, #9d4edd);
+          clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+          box-shadow: 0 0 6px var(--env-color, #9d4edd);
+      }
+      .session-demo-hex.live-session .env-name {
+          color: var(--env-color, #9d4edd);
+          font-weight: 600;
+      }
+      .session-demo-hex.live-session .env-count {
+          color: var(--color-text, #fff);
+          font-weight: 700;
+          min-width: 20px;
+          text-align: right;
+      }
+      .session-demo-hex.live-session .env-total {
+          margin-top: 4px;
+          font-family: var(--font-mono);
+          font-size: 0.55rem;
+          color: var(--color-text-soft, #888);
+          opacity: 0.7;
+      }
 
       /* Video showcase section — 3 hex cards in a row, aligned with session-demo */
       .video-showcase-grid {
@@ -488,6 +563,175 @@
         document.addEventListener('keydown', e => {
           if (e.key === 'Escape' && overlay.classList.contains('video-mode')) closeVideo();
         });
+      })();
+
+      // === Live session hexes ===
+      // For graphs OTHER than the static `pnp-counter-to-sink` one, dynamically add
+      // a new hex to the Session Demo grid each time a new session arrives.
+      // Counts update live; click navigates to sessions.html for that graph.
+      (function liveSessionDemo() {
+        const STATIC_GRAPH = 'pnp-counter-to-sink';  // do not touch this hex
+        const grid = document.querySelector('.session-demo-grid');
+        if (!grid) return;
+
+        const liveHexes = new Map();  // graph_name -> {hex, count}
+
+        function getStaticHexLayout() {
+          const staticHex = grid.querySelector('.session-demo-hex:not(.live-session)');
+          if (!staticHex) return { left: 0, width: 210, top: 32 };
+          return {
+            left: parseFloat(staticHex.style.left) || 0,
+            width: staticHex.offsetWidth || parseFloat(staticHex.style.width) || 210,
+            top: parseFloat(staticHex.style.top) || 32,
+            height: staticHex.offsetHeight || parseFloat(staticHex.style.height) || 242,
+          };
+        }
+
+        function repositionLiveHexes() {
+          const layout = getStaticHexLayout();
+          const gap = 30;  // px between hexes
+          let i = 0;
+          for (const {hex} of liveHexes.values()) {
+            hex.style.width = layout.width + 'px';
+            hex.style.height = layout.height + 'px';
+            hex.style.top = layout.top + 'px';
+            hex.style.left = (layout.left + (i + 1) * (layout.width + gap)) + 'px';
+            i++;
+          }
+        }
+
+        // Per-env color palette (matches popup target tabs)
+        const ENV_COLORS = ['#9d4edd', '#00d4ff', '#ff8800', '#39ff14', '#ff3366', '#ffb000', '#4d7fff', '#ff40ff'];
+        function envColor(envName) {
+          const m = String(envName).match(/(\d+)/);
+          const idx = m ? parseInt(m[1], 10) : 0;
+          return ENV_COLORS[idx % ENV_COLORS.length];
+        }
+
+        function renderEnvList(entry) {
+          const container = entry.hex.querySelector('.env-list');
+          if (!container) return;
+          const envs = Array.from(entry.envCounts.keys()).sort();
+          if (envs.length === 0) {
+            // Single-env (no target field on sessions) — show simple total
+            container.innerHTML = `
+              <div class="env-row" style="--env-color:#9d4edd">
+                <span class="env-dot"></span>
+                <span class="env-count">${entry.count}</span>
+                <span style="color:var(--color-text-soft,#888); font-size:0.55rem;">sessions</span>
+              </div>`;
+            return;
+          }
+          let html = '';
+          for (const env of envs) {
+            const c = entry.envCounts.get(env);
+            const color = envColor(env);
+            html += `<div class="env-row" style="--env-color:${color}">
+              <span class="env-dot"></span>
+              <span class="env-name">${env}</span>
+              <span class="env-count">${c}</span>
+            </div>`;
+          }
+          html += `<div class="env-total">total: ${entry.count}</div>`;
+          container.innerHTML = html;
+        }
+
+        function ensureHex(graphName) {
+          if (graphName === STATIC_GRAPH) return null;
+          if (liveHexes.has(graphName)) return liveHexes.get(graphName);
+
+          const hex = document.createElement('a');
+          hex.href = `sessions.html?graph=${encodeURIComponent(graphName)}`;
+          // status-writing class triggers the same continuous purple devPulse animation
+          // as the SKILLS section's running hex.
+          hex.className = 'hex-card visible session-demo-hex live-session developing status-writing';
+          hex.dataset.type = 'dev';
+          hex.innerHTML = `
+            <div class="hex-border">
+              <div class="hex-inner">
+                <div class="hex-bg pattern-2"></div>
+                <div class="hex-content">
+                  <div class="hex-type">SESSION</div>
+                  <div class="hex-title">${graphName}</div>
+                  <div class="env-list"></div>
+                </div>
+              </div>
+            </div>
+          `;
+          grid.appendChild(hex);
+          const entry = {hex, count: 0, envCounts: new Map(), idleTimer: null};
+          liveHexes.set(graphName, entry);
+          renderEnvList(entry);
+          repositionLiveHexes();
+          return entry;
+        }
+
+        // Count unique sessions per env using session_id dedup
+        function trackSession(graphName, envName, sessionId) {
+          const entry = ensureHex(graphName);
+          if (!entry || !sessionId) return;
+          if (!entry.envSessionIds) entry.envSessionIds = new Map();  // env -> Set<session_id>
+          const env = envName || 'default';
+          if (!entry.envSessionIds.has(env)) entry.envSessionIds.set(env, new Set());
+          const already = entry.envSessionIds.get(env).has(sessionId);
+          entry.envSessionIds.get(env).add(sessionId);
+          if (!already) {
+            // New unique session — bump counts
+            entry.count++;
+            entry.envCounts.set(env, (entry.envCounts.get(env) || 0) + 1);
+            renderEnvList(entry);
+          }
+        }
+
+        // Reposition when window resizes (static hex moves)
+        window.addEventListener('resize', () => setTimeout(repositionLiveHexes, 200));
+        // Re-measure after the static hex finishes its async positioning
+        setInterval(repositionLiveHexes, 1000);
+
+        // WebSocket connection
+        function connect() {
+          const wsUrl = `ws://${location.hostname || 'localhost'}:8765`;
+          let ws;
+          try { ws = new WebSocket(wsUrl); } catch (e) { return; }
+          ws.onopen = () => console.log('[live-sessions] connected:', wsUrl);
+          ws.onmessage = (ev) => {
+            let msg; try { msg = JSON.parse(ev.data); } catch(e) { return; }
+            // On initial connect / full_sync: pre-create hex with per-env session counts
+            if (msg.type === 'full_sync' && msg.payload) {
+              const graphName = msg.payload.graph;
+              const sessionCount = msg.payload.session_count || 0;
+              const perEnv = msg.payload.per_env_session_count || {};
+              const liveSessions = msg.payload.live_sessions || [];
+              if (graphName && graphName !== STATIC_GRAPH) {
+                const entry = ensureHex(graphName);
+                if (entry) {
+                  entry.count = sessionCount;
+                  entry.envCounts = new Map(Object.entries(perEnv));
+                  // Seed envSessionIds from live_sessions so subsequent bumps dedupe
+                  entry.envSessionIds = new Map();
+                  for (const ls of liveSessions) {
+                    const env = ls.target || 'default';
+                    if (!entry.envSessionIds.has(env)) entry.envSessionIds.set(env, new Set());
+                    if (ls.session_id) entry.envSessionIds.get(env).add(ls.session_id);
+                  }
+                  renderEnvList(entry);
+                }
+              }
+              return;
+            }
+            // Each session (in-progress OR completed) — dedupe by session_id per env
+            if (msg.type === 'session_added') {
+              const s = msg.session || {};
+              const graphName = s.graph || s.skill;
+              if (!graphName || graphName === STATIC_GRAPH) return;
+              trackSession(graphName, s.target || '', s.session_id);
+              return;
+            }
+          };
+          ws.onclose = () => setTimeout(connect, 3000);
+          ws.onerror = () => { try { ws.close(); } catch(_){} };
+        }
+        connect();
       })();
     </script>
 </body>

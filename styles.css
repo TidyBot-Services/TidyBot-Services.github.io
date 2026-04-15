@@ -3377,17 +3377,20 @@ button.gallery-wishlist {
     word-break: break-word;
 }
 
-.chat-msg-text .kw-fail {
+.chat-msg-text .kw-fail,
+.msg-content .kw-fail {
     color: #ff5c5c;
     font-weight: 600;
 }
 
-.chat-msg-text .kw-success {
+.chat-msg-text .kw-success,
+.msg-content .kw-success {
     color: var(--color-green, #39ff14);
     font-weight: 600;
 }
 
-.chat-msg-text .kw-warn {
+.chat-msg-text .kw-warn,
+.msg-content .kw-warn {
     color: var(--color-warning-bright, #ffb000);
     font-weight: 600;
 }
