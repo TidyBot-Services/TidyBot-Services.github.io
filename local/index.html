@@ -11,14 +11,14 @@
     <style>
       /* Session Demo section — static hex grid (overrides dep-tree absolute positioning) */
       .session-demo-grid {
-          position: relative;
+          display: flex;
+          justify-content: flex-start;
+          gap: 6rem;
           padding: 2rem 0 3rem;
           min-height: 280px;
       }
       .session-demo-hex {
-          position: absolute;
-          top: 2rem;
-          left: 0;            /* set dynamically from root tree-hex by inline script */
+          position: relative !important;
           width: 210px;       /* matches HEX_SIZES.lg used by dep-tree */
           height: 242px;
           opacity: 1;
@@ -303,7 +303,7 @@
             <section class="gallery-section" id="session-demo-section">
                 <div class="gallery-header">
                     <span class="gallery-label">Session Demo</span>
-                    <span class="gallery-count">1 demo</span>
+                    <span class="gallery-count">2 demos</span>
                 </div>
                 <p class="gallery-blurb">Click a hex to view the full agent chat history (dev + evaluator) for that skill development run.</p>
                 <div class="session-demo-grid">
@@ -448,9 +448,9 @@
       // a few seconds, and (c) install a ResizeObserver on the root for any
       // later layout changes.
       (function alignSessionDemo() {
-        const hex = document.querySelector('.session-demo-hex');
+        const hexes = document.querySelectorAll('.session-demo-hex');
         const treeViewport = document.getElementById('skills-tree');
-        if (!hex || !treeViewport) return;
+        if (!hexes.length || !treeViewport) return;
 
         let observedRoot = null;
         const ro = window.ResizeObserver
@@ -477,15 +477,14 @@
             ro.observe(root);
             observedRoot = root;
           }
-          const treeRect = treeViewport.getBoundingClientRect();
           const rootRect = root.getBoundingClientRect();
           const w = rootRect.width;
           const h = rootRect.height;
           if (!w || !h) return false;
-          const cx = (rootRect.left - treeRect.left) + w / 2;
-          hex.style.width = w + 'px';
-          hex.style.height = h + 'px';
-          hex.style.left = (cx - w / 2) + 'px';
+          hexes.forEach(hex => {
+            hex.style.width = w + 'px';
+            hex.style.height = h + 'px';
+          });
           return true;
         }
 
