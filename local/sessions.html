@@ -390,7 +390,10 @@ marked.setOptions({
 
 function fmtTime(ts) {
   if (!ts) return '';
-  const d = new Date(ts * 1000);
+  // Accept either Unix seconds (live_sessions from WS uses time.time()) or
+  // ISO string (jsonl persisted sessions use datetime.isoformat()).
+  const d = typeof ts === 'number' ? new Date(ts * 1000) : new Date(ts);
+  if (isNaN(d.getTime())) return '';
   return d.toLocaleString('en-US', {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
 }
 
@@ -402,8 +405,14 @@ function renderGrid() {
   const grid = document.getElementById('grid');
   const filtered = sessions.filter(s => {
     // Run filter (current run only by default)
-    if (currentRunFilter === 'current' && currentRunId && s.run_id !== currentRunId) {
-      return false;
+    // Prefer explicit run_id match (if orchestrator emits it); otherwise fall
+    // back to `in_progress` as the heuristic for "current" live sessions.
+    if (currentRunFilter === 'current') {
+      if (currentRunId && s.run_id) {
+        if (s.run_id !== currentRunId) return false;
+      } else {
+        if (!s.in_progress) return false;
+      }
     }
     // Type filter
     if (currentFilter === 'all') return true;
@@ -613,7 +622,7 @@ async function load() {
   const candidates = [
     {url: `sample_sessions/${graph}.jsonl`, type: 'jsonl'},
     {url: `graphs/${graph}/agent_sessions.jsonl`, type: 'jsonl'},
-    {url: `${orchHost}/sessions/${graph}`, type: 'json'},
+    {url: `${orchHost}/sessions/${graph}`, type: 'jsonl'},
   ];
   let dataPath = candidates[0].url;
   let loaded = false;
