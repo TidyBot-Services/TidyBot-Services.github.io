@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-03-02 15:10",
-    "type": "fix",
-    "title": "Fix broken link: replace non-existent arm-sweep with pick-and-place",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "f05fae6",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-02 15:22",
     "type": "feature",
     "title": "Merge pull request #2 from TidyBot-Services/fix/audit-2026-03-02-remove-arm-swee",
@@ -2398,5 +2386,17 @@
     "sha": "813c66d",
     "repo": "Tidybot-Universe",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-23 04:00",
+    "type": "setup",
+    "title": "Add setup-client.sh for dev-laptop client installs",
+    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "a9da1c7",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Simon Shao"
   }
 ]
