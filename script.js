@@ -699,6 +699,11 @@ function renderGallery(name) {
     g.track.querySelectorAll('.hex-card').forEach((card, i) => {
         setTimeout(() => card.classList.add('visible'), i * 35);
     });
+
+    // Detect overflowing titles (run after a tick so layout settles)
+    if (typeof applyTitleMarquee === 'function') {
+        setTimeout(() => applyTitleMarquee(g.track), 50);
+    }
 }
 
 function createRobotHTML(type, x, lineY) {
