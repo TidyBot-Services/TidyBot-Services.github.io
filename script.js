@@ -392,6 +392,19 @@ const IGNORED_REPOS = [
     'Tidybot-Universe',
     '.github',                       // org meta repo
     'TidyBot-Services.github.io',    // the site itself
+    // Not "noun-shaped resources behind a uniform API" — protocol specs,
+    // utility libs, data/task definitions, upstream forks, viz tools.
+    'camera-protocol',               // protocol spec, not runtime service
+    'gripper-protocol',
+    'franka-protocol',
+    'common',                        // shared utility lib
+    'system_logger',                 // infra (runs inside agent_server)
+    'maniskill-tidyverse',           // sim adapter + cuRobo planner code
+    'maniskill-robocasa-tasks',      // task definitions (data/specs)
+    'robocasa',                      // upstream framework fork
+    'robosuite',                     // upstream framework fork
+    'grounded-sam2',                 // upstream model (service is grounded-sam2-service)
+    'websim',                        // browser sim viewer
 ];
 
 async function loadRepos(file) {
