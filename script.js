@@ -1846,20 +1846,21 @@ function applyTitleMarquee(scope) {
         // Reset
         el.classList.remove('marquee');
         el.style.removeProperty('--marquee-distance');
-        // Default .hex-title uses display:-webkit-box for line-clamp, which
-        // makes inner.scrollWidth unreliable. Temporarily switch the element
-        // to single-line nowrap to get a true natural-width measurement, then
-        // revert. (If overflow detected, .marquee class will hold it nowrap
-        // for the actual marquee effect.)
-        const savedDisplay = el.style.display;
-        const savedWhiteSpace = el.style.whiteSpace;
-        el.style.display = 'block';
-        el.style.whiteSpace = 'nowrap';
-        // Force layout
-        const overflow = inner.scrollWidth - el.clientWidth;
-        // Revert
-        el.style.display = savedDisplay;
-        el.style.whiteSpace = savedWhiteSpace;
+        // The .hex-title element is a flex item inside .hex-content (column
+        // flex with align-items:center) — it shrinks to fit its content, so
+        // el.clientWidth == content width and would always report 0 overflow.
+        // Compare instead against the visible area of the grandparent
+        // .hex-content (its clientWidth minus left/right padding).
+        const parent = el.parentElement;
+        if (!parent) return;
+        const cs = getComputedStyle(parent);
+        const padL = parseFloat(cs.paddingLeft) || 0;
+        const padR = parseFloat(cs.paddingRight) || 0;
+        const availableWidth = parent.clientWidth - padL - padR;
+        // Inner is display:inline-block so its boundingRect width is the
+        // intrinsic text width regardless of parent layout.
+        const naturalWidth = inner.getBoundingClientRect().width;
+        const overflow = naturalWidth - availableWidth;
         if (overflow > 4) {
             el.classList.add('marquee');
             el.style.setProperty('--marquee-distance', `${overflow + 8}px`);
