@@ -13,18 +13,6 @@
   },
   {
     "id": "002",
-    "name": "TidyBot-Services.github.io",
-    "description": "No description",
-    "created_at": "2026-02-05T21:06:27Z",
-    "updated_at": "2026-04-26T18:55:13Z",
-    "html_url": "https://github.com/TidyBot-Services/TidyBot-Services.github.io",
-    "language": "JavaScript",
-    "stars": 0,
-    "is_private": false,
-    "default_branch": "main"
-  },
-  {
-    "id": "003",
     "name": "arm_franka_service",
     "description": "No description",
     "created_at": "2026-02-05T22:19:05Z",
@@ -36,7 +24,7 @@
     "default_branch": "agent"
   },
   {
-    "id": "004",
+    "id": "003",
     "name": "gripper_robotiq_service",
     "description": "No description",
     "created_at": "2026-02-05T22:24:48Z",
@@ -48,31 +36,19 @@
     "default_branch": "main"
   },
   {
-    "id": "005",
-    "name": "Tidybot-Universe",
-    "description": "No description",
-    "created_at": "2026-02-08T05:04:09Z",
-    "updated_at": "2026-04-26T12:40:54Z",
-    "html_url": "https://github.com/TidyBot-Services/Tidybot-Universe",
-    "language": "Python",
-    "stars": 31,
-    "is_private": false,
-    "default_branch": "master"
-  },
-  {
-    "id": "006",
+    "id": "004",
     "name": "services_wishlist",
     "description": "Coordination hub: skill agents request services, service agents build them.",
     "created_at": "2026-02-09T00:54:08Z",
     "updated_at": "2026-03-10T04:23:48Z",
     "html_url": "https://github.com/TidyBot-Services/services_wishlist",
-    "language": "",
+    "language": "Unknown",
     "stars": 0,
     "is_private": false,
     "default_branch": "main"
   },
   {
-    "id": "007",
+    "id": "005",
     "name": "base_tidybot_service",
     "description": "Tidybot base server",
     "created_at": "2026-02-09T19:49:15Z",
@@ -84,7 +60,7 @@
     "default_branch": "master"
   },
   {
-    "id": "008",
+    "id": "006",
     "name": "camera_realsense_service",
     "description": "RealSense camera server",
     "created_at": "2026-02-09T19:49:40Z",
@@ -96,7 +72,7 @@
     "default_branch": "master"
   },
   {
-    "id": "009",
+    "id": "007",
     "name": "agent_system_logger",
     "description": "Agent system logger",
     "created_at": "2026-02-09T19:49:59Z",
@@ -108,19 +84,7 @@
     "default_branch": "master"
   },
   {
-    "id": "010",
-    "name": ".github",
-    "description": "Organization profile and community health files for TidyBot-Services",
-    "created_at": "2026-02-10T17:36:06Z",
-    "updated_at": "2026-02-25T03:32:55Z",
-    "html_url": "https://github.com/TidyBot-Services/.github",
-    "language": "",
-    "stars": 0,
-    "is_private": false,
-    "default_branch": "main"
-  },
-  {
-    "id": "011",
+    "id": "008",
     "name": "yolo-service",
     "description": "YOLO Backend Service for TidyBot",
     "created_at": "2026-02-14T00:06:42Z",
@@ -132,7 +96,7 @@
     "default_branch": "main"
   },
   {
-    "id": "012",
+    "id": "009",
     "name": "grounded-sam2-service",
     "description": "Grounded SAM 2 Backend Service for TidyBot",
     "created_at": "2026-02-14T06:59:01Z",
@@ -144,7 +108,7 @@
     "default_branch": "main"
   },
   {
-    "id": "013",
+    "id": "010",
     "name": "graspgen-service",
     "description": "GraspGen 6-DOF Grasp Pose Generation Service for TidyBot",
     "created_at": "2026-02-14T07:09:43Z",
@@ -156,7 +120,7 @@
     "default_branch": "main"
   },
   {
-    "id": "014",
+    "id": "011",
     "name": "foundation-stereo-service",
     "description": "FoundationStereo Depth Estimation Service for TidyBot",
     "created_at": "2026-02-14T07:10:59Z",
@@ -168,7 +132,7 @@
     "default_branch": "master"
   },
   {
-    "id": "015",
+    "id": "012",
     "name": "nav-mapping-service",
     "description": "No description",
     "created_at": "2026-02-15T09:02:05Z",
@@ -180,7 +144,7 @@
     "default_branch": "master"
   },
   {
-    "id": "016",
+    "id": "013",
     "name": "realsense-slam",
     "description": "No description",
     "created_at": "2026-02-16T07:01:46Z",
@@ -192,7 +156,7 @@
     "default_branch": "master"
   },
   {
-    "id": "017",
+    "id": "014",
     "name": "local-obstacle-avoidance-service",
     "description": "No description",
     "created_at": "2026-02-16T07:59:44Z",
@@ -204,7 +168,7 @@
     "default_branch": "master"
   },
   {
-    "id": "018",
+    "id": "015",
     "name": "lightweight-grasp-service",
     "description": "No description",
     "created_at": "2026-02-16T07:59:48Z",
@@ -216,7 +180,7 @@
     "default_branch": "main"
   },
   {
-    "id": "019",
+    "id": "016",
     "name": "grounded-sam2",
     "description": "No description",
     "created_at": "2026-02-19T00:05:33Z",
@@ -228,7 +192,7 @@
     "default_branch": "main"
   },
   {
-    "id": "020",
+    "id": "017",
     "name": "robosuite",
     "description": "Robosuite fork with TidyVerse robot",
     "created_at": "2026-02-23T18:49:00Z",
@@ -240,7 +204,7 @@
     "default_branch": "main"
   },
   {
-    "id": "021",
+    "id": "018",
     "name": "robocasa",
     "description": "RoboCasa fork with TidyVerse config",
     "created_at": "2026-02-23T18:49:02Z",
@@ -252,7 +216,7 @@
     "default_branch": "main"
   },
   {
-    "id": "022",
+    "id": "019",
     "name": "robocasa_sim",
     "description": "TidyBot simulation server",
     "created_at": "2026-02-23T18:49:03Z",
@@ -264,7 +228,7 @@
     "default_branch": "main"
   },
   {
-    "id": "023",
+    "id": "020",
     "name": "system_logger",
     "description": "Trajectory recording and rewind orchestration for Tidybot",
     "created_at": "2026-02-24T21:49:28Z",
@@ -276,7 +240,7 @@
     "default_branch": "master"
   },
   {
-    "id": "024",
+    "id": "021",
     "name": "common",
     "description": "Shared files for TidyBot Army (logging, startup scripts, catalog sync)",
     "created_at": "2026-02-28T19:04:34Z",
@@ -288,7 +252,7 @@
     "default_branch": "master"
   },
   {
-    "id": "025",
+    "id": "022",
     "name": "deploy-agent",
     "description": "Lightweight service deployment daemon for TidyBot GPU services",
     "created_at": "2026-03-05T16:22:07Z",
@@ -300,7 +264,7 @@
     "default_branch": "master"
   },
   {
-    "id": "026",
+    "id": "023",
     "name": "arm_franka_robocasa_service",
     "description": "No description",
     "created_at": "2026-03-11T01:40:59Z",
@@ -312,7 +276,7 @@
     "default_branch": "main"
   },
   {
-    "id": "027",
+    "id": "024",
     "name": "gripper_robotiq_robocasa_service",
     "description": "No description",
     "created_at": "2026-03-11T01:41:17Z",
@@ -324,7 +288,7 @@
     "default_branch": "main"
   },
   {
-    "id": "028",
+    "id": "025",
     "name": "base_tidybot_robocasa_service",
     "description": "No description",
     "created_at": "2026-03-11T01:41:21Z",
@@ -336,7 +300,7 @@
     "default_branch": "main"
   },
   {
-    "id": "029",
+    "id": "026",
     "name": "camera_realsense_robocasa_service",
     "description": "No description",
     "created_at": "2026-03-11T01:41:24Z",
@@ -348,7 +312,7 @@
     "default_branch": "main"
   },
   {
-    "id": "030",
+    "id": "027",
     "name": "maniskill-tidyverse",
     "description": "No description",
     "created_at": "2026-03-14T18:45:19Z",
@@ -360,7 +324,7 @@
     "default_branch": "main"
   },
   {
-    "id": "031",
+    "id": "028",
     "name": "maniskill_sim",
     "description": "ManiSkill3 sim server with protocol bridges for agent_server",
     "created_at": "2026-03-19T01:30:03Z",
@@ -372,19 +336,7 @@
     "default_branch": "main"
   },
   {
-    "id": "032",
-    "name": "camera_realsense_maniskill_service",
-    "description": "Camera WebSocket bridge for ManiSkill sim",
-    "created_at": "2026-03-19T01:30:03Z",
-    "updated_at": "2026-04-14T18:35:15Z",
-    "html_url": "https://github.com/TidyBot-Services/camera_realsense_maniskill_service",
-    "language": "Python",
-    "stars": 0,
-    "is_private": false,
-    "default_branch": "main"
-  },
-  {
-    "id": "033",
+    "id": "029",
     "name": "base_tidybot_maniskill_service",
     "description": "TidyBot base RPC bridge for ManiSkill sim",
     "created_at": "2026-03-19T01:30:03Z",
@@ -396,7 +348,19 @@
     "default_branch": "main"
   },
   {
-    "id": "034",
+    "id": "030",
+    "name": "camera_realsense_maniskill_service",
+    "description": "Camera WebSocket bridge for ManiSkill sim",
+    "created_at": "2026-03-19T01:30:03Z",
+    "updated_at": "2026-04-14T18:35:15Z",
+    "html_url": "https://github.com/TidyBot-Services/camera_realsense_maniskill_service",
+    "language": "Python",
+    "stars": 0,
+    "is_private": false,
+    "default_branch": "main"
+  },
+  {
+    "id": "031",
     "name": "arm_franka_maniskill_service",
     "description": "Franka arm ZMQ bridge for ManiSkill sim",
     "created_at": "2026-03-19T01:30:03Z",
@@ -408,7 +372,7 @@
     "default_branch": "main"
   },
   {
-    "id": "035",
+    "id": "032",
     "name": "gripper_robotiq_maniskill_service",
     "description": "Robotiq gripper ZMQ bridge for ManiSkill sim",
     "created_at": "2026-03-19T01:30:04Z",
@@ -420,7 +384,7 @@
     "default_branch": "main"
   },
   {
-    "id": "036",
+    "id": "033",
     "name": "maniskill-robocasa-tasks",
     "description": "RoboCasa kitchen task definitions for ManiSkill3/TidyVerse sim",
     "created_at": "2026-03-27T00:31:20Z",
@@ -432,7 +396,7 @@
     "default_branch": "master"
   },
   {
-    "id": "037",
+    "id": "034",
     "name": "franka-protocol",
     "description": "Franka arm ZMQ protocol — shared client, messages, and constants",
     "created_at": "2026-03-27T22:26:45Z",
@@ -444,7 +408,7 @@
     "default_branch": "master"
   },
   {
-    "id": "038",
+    "id": "035",
     "name": "gripper-protocol",
     "description": "Robotiq gripper ZMQ protocol — shared client, messages, and constants",
     "created_at": "2026-03-27T22:26:46Z",
@@ -456,7 +420,7 @@
     "default_branch": "master"
   },
   {
-    "id": "039",
+    "id": "036",
     "name": "camera-protocol",
     "description": "Camera WebSocket protocol — shared client, messages, and constants",
     "created_at": "2026-03-27T22:26:48Z",
@@ -468,7 +432,7 @@
     "default_branch": "master"
   },
   {
-    "id": "040",
+    "id": "037",
     "name": "websim",
     "description": "No description",
     "created_at": "2026-04-02T04:17:35Z",
