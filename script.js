@@ -678,7 +678,7 @@ function renderGallery(name) {
                          style="--type-color:${typeColor};${bgStyle}"></div>
                     <div class="hex-content">
                         <span class="hex-type" style="color:${typeColor};">${typeLabel}</span>
-                        <h3 class="hex-title">${titleDisplay}</h3>
+                        <h3 class="hex-title"><span class="hex-title-inner">${titleDisplay}</span></h3>
                         <span class="hex-date">${dateStr}</span>
                         ${entry.success_rate != null ? `<span class="hex-rate"><span class="hex-rate-label">Success </span>${entry.success_rate}%</span>` : ''}
                         ${entry.target_results ? `<div class="hex-target-dots">${Object.entries(entry.target_results).map(([n,r]) => `<span class="target-dot ${r.passed ? 'pass' : 'fail'}" title="${n}: ${r.passed ? 'PASS' : 'FAIL'}"></span>`).join('')}</div>` : ''}
@@ -1800,7 +1800,7 @@ function renderAgents(entries) {
                              style="--type-color:${typeColor};"></div>
                         <div class="hex-content">
                             <span class="hex-type" style="color:${typeColor};">${typeLabel}</span>
-                            <h3 class="hex-title">${entry.title}</h3>
+                            <h3 class="hex-title"><span class="hex-title-inner">${entry.title}</span></h3>
                             <span class="hex-date">${entry.language || ''}</span>
                         </div>
                     </div>
@@ -1823,7 +1823,39 @@ function renderAgents(entries) {
             if (url) window.open(url, '_blank');
         });
     });
+    applyTitleMarquee();
 }
+
+// ============================================
+// MARQUEE: scroll long hex titles on hover
+// ============================================
+// Detects per-title overflow (e.g. unbreakable underscored repo names like
+// "camera_realsense_robocasa_service") and adds .marquee class so CSS picks
+// up hover-driven scroll. Called after each render and on window resize.
+
+function applyTitleMarquee(scope) {
+    const root = scope || document;
+    root.querySelectorAll('.hex-title').forEach(el => {
+        const inner = el.querySelector('.hex-title-inner');
+        if (!inner) return;
+        // Reset to measure natural overflow
+        el.classList.remove('marquee');
+        el.style.removeProperty('--marquee-distance');
+        const overflow = inner.scrollWidth - el.clientWidth;
+        if (overflow > 4) {
+            el.classList.add('marquee');
+            // Add 8px padding so end of text doesn't sit flush against edge
+            el.style.setProperty('--marquee-distance', `${overflow + 8}px`);
+        }
+    });
+}
+
+// Re-measure on resize (hex sizes scale with viewport)
+let _marqueeResizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(_marqueeResizeTimer);
+    _marqueeResizeTimer = setTimeout(applyTitleMarquee, 150);
+});
 
 // ============================================
 // LIGHTBOX (for agent image gallery)
@@ -2057,7 +2089,7 @@ function renderSkillTree(entries) {
                          style="--type-color:${typeColor};"></div>
                     <div class="hex-content">
                         <span class="hex-type" style="color:${typeColor};">${typeLabel}</span>
-                        <h3 class="hex-title">${title}</h3>
+                        <h3 class="hex-title"><span class="hex-title-inner">${title}</span></h3>
                         ${entry.success_rate != null ? `<span class="hex-rate"><span class="hex-rate-label">Success </span>${entry.success_rate}%</span>` : ''}
                         ${entry.target_results ? `<div class="hex-target-dots">${Object.entries(entry.target_results).map(([n,r]) => `<span class="target-dot ${r.passed ? 'pass' : 'fail'}" title="${n}: ${r.passed ? 'PASS' : 'FAIL'}"></span>`).join('')}</div>` : ''}
                         ${sdkBadgesHTML}
@@ -2312,6 +2344,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     tick();
     initTaglineRotator();
     if (typeof initWishlist === 'function') initWishlist();
+    // Final marquee pass after services gallery rendered too
+    setTimeout(applyTitleMarquee, 50);
 });
 
 // ============================================

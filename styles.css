@@ -1272,11 +1272,35 @@ button.gallery-wishlist {
     font-weight: 600;
     color: var(--color-text);
     line-height: 1.35;
+    overflow: hidden;
+    margin-bottom: 0.3rem;
+    /* default: 2-line clamp for breakable text (like "Open Door"). For
+       unbreakable underscored names like "camera_realsense_robocasa_service",
+       JS adds .marquee class which switches to single-line + hover-scroll. */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: 0.3rem;
+}
+
+.hex-title.marquee {
+    display: block;
+    white-space: nowrap;
+}
+
+.hex-title-inner {
+    display: inline-block;
+    will-change: transform;
+}
+
+.hex-card:hover .hex-title.marquee .hex-title-inner,
+.hex-card.active .hex-title.marquee .hex-title-inner {
+    animation: hex-marquee 6s linear infinite;
+}
+
+@keyframes hex-marquee {
+    0%,   10%  { transform: translateX(0); }
+    50%,  60%  { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
+    100%       { transform: translateX(0); }
 }
 
 .hex-date {
