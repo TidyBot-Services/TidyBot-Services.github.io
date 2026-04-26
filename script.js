@@ -1838,13 +1838,25 @@ function applyTitleMarquee(scope) {
     root.querySelectorAll('.hex-title').forEach(el => {
         const inner = el.querySelector('.hex-title-inner');
         if (!inner) return;
-        // Reset to measure natural overflow
+        // Reset
         el.classList.remove('marquee');
         el.style.removeProperty('--marquee-distance');
+        // Default .hex-title uses display:-webkit-box for line-clamp, which
+        // makes inner.scrollWidth unreliable. Temporarily switch the element
+        // to single-line nowrap to get a true natural-width measurement, then
+        // revert. (If overflow detected, .marquee class will hold it nowrap
+        // for the actual marquee effect.)
+        const savedDisplay = el.style.display;
+        const savedWhiteSpace = el.style.whiteSpace;
+        el.style.display = 'block';
+        el.style.whiteSpace = 'nowrap';
+        // Force layout
         const overflow = inner.scrollWidth - el.clientWidth;
+        // Revert
+        el.style.display = savedDisplay;
+        el.style.whiteSpace = savedWhiteSpace;
         if (overflow > 4) {
             el.classList.add('marquee');
-            // Add 8px padding so end of text doesn't sit flush against edge
             el.style.setProperty('--marquee-distance', `${overflow + 8}px`);
         }
     });
