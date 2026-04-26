@@ -1292,8 +1292,7 @@ button.gallery-wishlist {
     will-change: transform;
 }
 
-.hex-card:hover .hex-title.marquee .hex-title-inner,
-.hex-card.active .hex-title.marquee .hex-title-inner {
+.hex-title.marquee .hex-title-inner {
     animation: hex-marquee 6s linear infinite;
 }
 

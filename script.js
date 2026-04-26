@@ -1857,13 +1857,21 @@ function applyTitleMarquee(scope) {
         const padL = parseFloat(cs.paddingLeft) || 0;
         const padR = parseFloat(cs.paddingRight) || 0;
         const availableWidth = parent.clientWidth - padL - padR;
-        // Inner is display:inline-block so its boundingRect width is the
-        // intrinsic text width regardless of parent layout.
-        const naturalWidth = inner.getBoundingClientRect().width;
+        // Default .hex-title uses -webkit-box + line-clamp:2, which wraps the
+        // inner text to the parent width — so its boundingRect reports the
+        // wrapped width, not the intrinsic single-line width. Flip to the
+        // marquee layout (display:block; white-space:nowrap) to measure, then
+        // remove it if the title actually fits. Use offsetWidth (layout box)
+        // instead of getBoundingClientRect (rendered box) so the measurement
+        // isn't shrunk by ancestor transform: scale(0.6) during the staggered
+        // entrance animation.
+        el.classList.add('marquee');
+        const naturalWidth = inner.offsetWidth;
         const overflow = naturalWidth - availableWidth;
         if (overflow > 4) {
-            el.classList.add('marquee');
             el.style.setProperty('--marquee-distance', `${overflow + 8}px`);
+        } else {
+            el.classList.remove('marquee');
         }
     });
 }
