@@ -159,6 +159,21 @@
                         </div>
                     </div>
 
+                    <!-- Entry: N-Env Parallel Dev -->
+                    <div class="update-entry status-done">
+                        <span class="update-status-badge done">DONE</span>
+                        <div class="update-date">APR 22, 2026</div>
+                        <h3 class="update-title">N-Environment Parallel Dev</h3>
+                        <div class="update-body">
+                            <p>Run independent dev agents against multiple sim + agent_server instances in parallel — each env has its own session, kitchen layout, and isolated state.</p>
+                            <ul>
+                                <li>Per-target agents prevent session collision</li>
+                                <li>Each env: own port-offset, own seed, own dev iteration loop</li>
+                                <li>Drives both validation (one code, N envs) and exploration (N codes, N envs)</li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <!-- Entry: Pipeline & Dashboard Updates -->
                     <div class="update-entry status-done">
                         <span class="update-status-badge done">DONE</span>
@@ -330,6 +345,10 @@
                         <div class="update-summary-item done">
                             <span class="update-summary-status done">DONE</span>
                             <span class="update-summary-title">Pluggable dev-agent harness (OpenClaw): run on Ollama / Gemini / Anthropic</span>
+                        </div>
+                        <div class="update-summary-item done">
+                            <span class="update-summary-status done">DONE</span>
+                            <span class="update-summary-title">N-environment parallel dev: independent agents per sim + agent_server</span>
                         </div>
                         <div class="update-summary-item done">
                             <span class="update-summary-status done">DONE</span>
