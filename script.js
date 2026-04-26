@@ -387,7 +387,12 @@ function classifyServiceRepo(name) {
     return 'software_service';
 }
 
-const IGNORED_REPOS = ['wishlist', 'services_wishlist', 'backend_wishlist', 'Tidybot-Universe'];
+const IGNORED_REPOS = [
+    'wishlist', 'services_wishlist', 'backend_wishlist',
+    'Tidybot-Universe',
+    '.github',                       // org meta repo
+    'TidyBot-Services.github.io',    // the site itself
+];
 
 async function loadRepos(file) {
     try {
