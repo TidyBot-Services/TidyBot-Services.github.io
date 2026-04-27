@@ -459,13 +459,12 @@ async function loadServices() {
     }));
 }
 
-// Only agent_server gets a "What we built" feature card (the L2 Runtime).
-// agent_system_logger lives inside it (already shown as a chip in L2);
-// deploy-agent is a GPU-services deployment utility, not part of the platform.
-// L1 orchestrator is hand-injected below since it's a file inside Tidybot-Universe,
-// not a standalone repo.
+// Whitelisted "What we built" feature cards: L2 platform (agent_server) +
+// L3 ops sidecar (deploy-agent). agent_system_logger lives inside L2 (already
+// shown as a chip in the Architecture diagram). L1 orchestrator is hand-
+// injected via MANUAL_AGENT_CARDS since it's a file inside Tidybot-Universe.
 function isAgentRepo(name) {
-    return name === 'agent_server';
+    return name === 'agent_server' || name === 'deploy-agent';
 }
 
 function splitAgentServices(services) {
@@ -1774,16 +1773,19 @@ function initParallax() {
 const AGENT_BLURBS = {
     agent_server: 'The central server between AI agents and the physical robot. Agents submit Python code that moves the arm, drives the base, and operates the gripper. Handles lease queueing, safety envelopes, trajectory recording, and a live dashboard with robot face display.',
     agent_orchestrator: 'Standalone async daemon that loads a hand-curated task graph, fans out one Claude Agent SDK client per (skill × sim target), and runs a separate evaluator agent on every recording. The brains of L1 — what dispatches, watches, and ships skills.',
+    'deploy-agent': 'Tiny FastAPI daemon that runs on every GPU compute node. Wraps Docker behind a REST API so AI agents can spin up ML/vision services (YOLO, SAM2, GraspGen, stereo, ...) on demand — picks the GPU with the most free VRAM, assigns a port in 8000–8999, and waits for the health check before returning the endpoint URL.',
 };
 
 const AGENT_TAGLINES = {
     agent_server: 'L2 · Runtime · sandbox + lease + safety + log + dashboard',
     agent_orchestrator: 'L1 · Intelligence · graph walker + agent fan-out + evaluator',
+    'deploy-agent': 'L3 · Ops · per-node Docker daemon for ML / vision services',
 };
 
 const AGENT_GLYPHS = {
     agent_server: '⌬',           // unified API hub
     agent_orchestrator: '◉',     // dispatcher / fan-out point
+    'deploy-agent': '⚙',         // ops / settings / container management
 };
 
 const AGENT_IMAGES = {
