@@ -414,14 +414,14 @@ body {
 .agents-grid {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    padding: 1rem 0;
+    gap: 1.2rem;
+    padding: 0.5rem 0;
 }
 
 .agent-item {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 1.5rem;
 }
 
 .agent-item:nth-child(even) {
@@ -4218,8 +4218,8 @@ button.gallery-wishlist {
 .platform-cards {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    gap: 0.9rem;
+    margin-top: 1rem;
 }
 
 .platform-card {
@@ -4227,9 +4227,10 @@ button.gallery-wishlist {
     --pc-accent-dim: rgba(138,61,217,0.10);
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    gap: 2rem;
-    padding: 1.6rem;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: 1.4rem;
+    padding: 1.2rem;
+    align-items: center;  /* center each column instead of stretching media to body height */
     background:
         linear-gradient(135deg, rgba(0,0,0,0.55), rgba(0,0,0,0.3));
     border: 1px solid color-mix(in srgb, var(--pc-accent) 50%, rgba(255,255,255,0.08));
@@ -4264,11 +4265,14 @@ button.gallery-wishlist {
 /* Media (left) — image or fallback pattern */
 .platform-card-media {
     position: relative;
-    aspect-ratio: 16/10;
+    width: 100%;          /* never exceed the 4fr column */
+    aspect-ratio: 16/9;
     background:
         linear-gradient(135deg, var(--pc-accent-dim), rgba(0,0,0,0.6));
     border: 1px solid color-mix(in srgb, var(--pc-accent) 35%, rgba(255,255,255,0.06));
     overflow: hidden;
+    flex-shrink: 0;
+    min-width: 0;
 }
 .platform-card-media img {
     width: 100%;
