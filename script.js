@@ -459,8 +459,13 @@ async function loadServices() {
     }));
 }
 
+// Only agent_server gets a "What we built" feature card (the L2 Runtime).
+// agent_system_logger lives inside it (already shown as a chip in L2);
+// deploy-agent is a GPU-services deployment utility, not part of the platform.
+// L1 orchestrator is hand-injected below since it's a file inside Tidybot-Universe,
+// not a standalone repo.
 function isAgentRepo(name) {
-    return /agent/i.test(name);
+    return name === 'agent_server';
 }
 
 function splitAgentServices(services) {
@@ -1768,17 +1773,17 @@ function initParallax() {
 
 const AGENT_BLURBS = {
     agent_server: 'The central server between AI agents and the physical robot. Agents submit Python code that moves the arm, drives the base, and operates the gripper. Handles lease queueing, safety envelopes, trajectory recording, and a live dashboard with robot face display.',
-    agent_system_logger: 'State recording library used by the agent server. Polls all subsystems at configurable Hz, stores unified waypoints with threshold filtering, and orchestrates coordinated rewind across arm, base, and gripper.'
+    agent_orchestrator: 'Standalone async daemon that loads a hand-curated task graph, fans out one Claude Agent SDK client per (skill × sim target), and runs a separate evaluator agent on every recording. The brains of L1 — what dispatches, watches, and ships skills.',
 };
 
 const AGENT_TAGLINES = {
     agent_server: 'L2 · Runtime · sandbox + lease + safety + log + dashboard',
-    agent_system_logger: 'L2 · Recording · unified trajectory log + rewind orchestration',
+    agent_orchestrator: 'L1 · Intelligence · graph walker + agent fan-out + evaluator',
 };
 
 const AGENT_GLYPHS = {
     agent_server: '⌬',           // unified API hub
-    agent_system_logger: '∿',    // signal / waveform
+    agent_orchestrator: '◉',     // dispatcher / fan-out point
 };
 
 const AGENT_IMAGES = {
@@ -1787,9 +1792,24 @@ const AGENT_IMAGES = {
         { src: 'images/agent_server_code_exec.png', caption: 'Code execution logs — sandboxed skill runs with live output' },
         { src: 'images/agent_server_face.png', caption: 'Robot face display — shows status and announces actions with audio' },
     ],
-    // agent_system_logger has no shipped screenshots yet — falls back to the
+    // agent_orchestrator has no shipped screenshots yet — falls back to the
     // pattern + glyph cover.
 };
+
+// Manually-injected L1 card (orchestrator lives inside Tidybot-Universe, not as
+// a standalone repo, so it isn't in services.json). Prepended to renderAgents
+// so it sits above the agent_server card.
+const MANUAL_AGENT_CARDS = [
+    {
+        title: 'agent_orchestrator',
+        description: AGENT_BLURBS.agent_orchestrator,
+        language: 'Python',
+        stars: null,
+        updated_at: null,
+        html_url: 'https://github.com/TidyBot-Services/Tidybot-Universe',
+        _manual: true,
+    },
+];
 
 function relativeFromIso(iso) {
     if (!iso) return '';
@@ -1807,12 +1827,17 @@ function renderAgents(entries) {
     const grid = document.getElementById('agents-grid');
     if (!grid) return;
 
-    grid.innerHTML = entries.map((entry) => {
+    // Prepend the manually-defined cards (orchestrator etc.) so they appear
+    // above repos auto-pulled from services.json.
+    const allEntries = MANUAL_AGENT_CARDS.concat(entries);
+
+    grid.innerHTML = allEntries.map((entry) => {
         const blurb   = AGENT_BLURBS[entry.title]   || entry.description;
         const tagline = AGENT_TAGLINES[entry.title] || `${entry.language || 'Code'} · open source`;
         const glyph   = AGENT_GLYPHS[entry.title]   || '◇';
         const images  = AGENT_IMAGES[entry.title];
         const updated = relativeFromIso(entry.updated_at);
+        const ctaText = 'View on GitHub →';
 
         const mediaHTML = images && images.length
             ? `<div class="platform-card-media">
@@ -1832,6 +1857,19 @@ function renderAgents(entries) {
                  <span class="frame-corner br"></span>
                </div>`;
 
+        // Stats vary slightly: manual cards skip the stars row (the file lives
+        // inside the Tidybot-Universe repo, so per-file stars don't make sense).
+        const statsHTML = entry._manual
+            ? `<div class="platform-card-stats">
+                 <span><span class="ic">◼</span>${entry.language || 'code'}</span>
+                 <span><span class="ic">⌬</span>part of Tidybot-Universe</span>
+               </div>`
+            : `<div class="platform-card-stats">
+                 <span><span class="ic">★</span>${entry.stars ?? 0} stars</span>
+                 <span><span class="ic">◼</span>${entry.language || 'code'}</span>
+                 ${updated ? `<span><span class="ic">↻</span>updated ${updated}</span>` : ''}
+               </div>`;
+
         return `<article class="platform-card">
             ${mediaHTML}
             <div class="platform-card-body">
@@ -1841,13 +1879,9 @@ function renderAgents(entries) {
                 </div>
                 <h3 class="platform-card-title">${entry.title}</h3>
                 <p class="platform-card-desc">${blurb}</p>
-                <div class="platform-card-stats">
-                    <span><span class="ic">★</span>${entry.stars ?? 0} stars</span>
-                    <span><span class="ic">◼</span>${entry.language || 'code'}</span>
-                    ${updated ? `<span><span class="ic">↻</span>updated ${updated}</span>` : ''}
-                </div>
+                ${statsHTML}
                 <div class="platform-card-actions">
-                    ${entry.html_url ? `<a class="platform-card-btn primary" href="${entry.html_url}" target="_blank" rel="noopener noreferrer">View on GitHub →</a>` : ''}
+                    ${entry.html_url ? `<a class="platform-card-btn primary" href="${entry.html_url}" target="_blank" rel="noopener noreferrer">${ctaText}</a>` : ''}
                 </div>
             </div>
         </article>`;
