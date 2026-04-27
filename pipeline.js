@@ -4,15 +4,27 @@
 
 const PIPELINE_CONTENT = {
     // ---------- Layer cards ----------
-    'skills': {
-        eyebrow: 'L1 · Behaviors',
-        title: 'Skills',
-        tagline: 'AI-written Python policies — code-as-policy',
-        desc: `What the robot actually does. Each skill is a Python script that an AI dev agent writes, runs in the Agent Server's sandbox, and iterates until the eval agent confirms success. Skills are the unit of progress in the project — they accumulate, get reused across tasks, and graduate from sim into hardware.`,
+    'intelligence': {
+        eyebrow: 'L1 · Authoring',
+        title: 'Intelligence',
+        tagline: 'orchestrator + AI agents — they write the Python and dispatch the work',
+        desc: `The top tier. A standalone <code>agent_orchestrator.py</code> daemon walks the task graph, fans out one Claude Agent SDK client per (skill × sim target) to write Python, and a separate evaluator agent reviews each recording. Everything in this tier is <em>episodic</em> — it spins up when a task arrives and tears down after it ships.`,
         sections: [
-            { label: 'Lives in', items: ['skills/', 'skill-agent-setup/', 'graphs/'] },
-            { label: 'Authored by', items: ['Dev agent (Claude Code / OpenClaw)', 'Eval agent', 'Humans (hand-tuning, hints)'] },
-            { label: 'Runs against', items: ['Agent Server SDK (robot_sdk)', 'Sim or hardware — same code path'] },
+            { label: 'Process', items: ['agent_orchestrator.py (separate daemon)', 'Claude Agent SDK clients (in-process)'] },
+            { label: 'Talks down to', items: ['L2 Runtime via /code/submit, /docs/guide, /code/sdk'] },
+            { label: 'Produces', items: ['Skills artifact (Python files) + verdicts'] },
+        ],
+    },
+    'skills': {
+        eyebrow: '⤓ Artifact ⤒',
+        title: 'Skills',
+        tagline: 'Python files — the artifact written by L1 and consumed by L2',
+        desc: `Skills aren't a service, they're a <strong>data channel</strong> sitting between L1 Intelligence and L2 Runtime. L1 writes Python here; L2 picks it up via <code>POST /code/submit</code> and runs it in a sandbox. Telemetry flows back the other way (recordings + logs from L2 are read by the eval agent in L1). That's why this band has a dashed border — nothing's running here, things are just passing through.`,
+        sections: [
+            { label: 'Files live in', items: ['skills/', 'skill-agent-setup/', 'graphs/<task>/'] },
+            { label: 'Written by', items: ['Dev agents (L1)', 'Humans (hand-tuning)'] },
+            { label: 'Consumed by', items: ['L2 Runtime via /code/submit'] },
+            { label: 'Telemetry flows back', items: ['recordings → eval agent (L1)', 'system_logger → eval agent (L1)'] },
         ],
     },
     'agent-server': {
@@ -39,8 +51,51 @@ const PIPELINE_CONTENT = {
         ],
     },
 
-    // (Skill chips link directly to the Skills gallery — no per-skill popup
-    // here; clicking a skill chip scrolls + highlights its hex below.)
+    // ---------- L1 Intelligence chips ----------
+    'ai-orch': {
+        eyebrow: 'L1 · Intelligence',
+        title: 'orchestrator',
+        tagline: 'Standalone daemon — walks the task graph, fans out agents, collects results.',
+        desc: `<code>agent_orchestrator.py</code>, a separate asyncio process listening on ports <strong>8765</strong> (WebSocket) and <strong>8766</strong> (HTTP). It loads the hand-curated <code>graph.json</code>, finds skills whose dependencies are <code>done</code>, spawns Claude SDK clients (one per skill × per sim target), monitors them, and triggers the evaluator after each finishes. Calls L2 Agent Server's API to submit code; never lives inside it.`,
+        sections: [
+            { label: 'Lives in', items: ['skill-agent-setup/claude-code/agent_orchestrator.py'] },
+            { label: 'Ports', items: ['8765 · WebSocket', '8766 · HTTP'] },
+            { label: 'Key fns', items: ['_auto_spawn_ready_skills()', 'spawn_agent()', 'run_multi_target_test()'] },
+        ],
+    },
+    'ai-dev': {
+        eyebrow: 'L1 · Intelligence',
+        title: 'dev agents',
+        tagline: 'Claude Agent SDK clients — write Python, talk to L2 in a tight loop.',
+        desc: `For each ready skill the orchestrator creates an <code>AgentState</code> + <code>ClaudeSDKClient</code> (in-process, not a subprocess). The dev agent reads <code>/docs/guide</code> and <code>/code/sdk</code> from L2, queries state, drafts code, submits it via <code>/code/submit</code>, watches stdout/stderr stream back, fixes bugs, and re-submits — until the skill works or budget runs out.`,
+        sections: [
+            { label: 'Mechanism', items: ['Claude Agent SDK', 'asyncio Task per agent'] },
+            { label: 'Reads from L2', items: ['/docs/guide', '/code/sdk', '/state', '/services'] },
+            { label: 'Writes to L2', items: ['/lease/acquire', '/code/submit'] },
+        ],
+    },
+    'ai-eval': {
+        eyebrow: 'L1 · Intelligence',
+        title: 'eval agents',
+        tagline: 'Separate SDK clients — review the recording, vote pass/fail.',
+        desc: `After each dev-agent attempt finishes, the orchestrator spins up a fresh evaluator (also a <code>ClaudeSDKClient</code>) that loads camera frames + system_logger trajectory from L2, judges against the task's success criteria, and writes the verdict back into <code>graph.json</code>. On pass the skill is marked <code>done</code>, downstream skills become eligible. On fail the verdict feeds back into the dev agent's next attempt.`,
+        sections: [
+            { label: 'Run by', items: ['_run_submission_eval() in agent_orchestrator.py'] },
+            { label: 'Inputs', items: ['camera frames (L3)', 'system_logger waypoints (L2)', 'agent transcript'] },
+            { label: 'Outputs', items: ['pass / fail verdict', 'targeted feedback for the dev agent'] },
+        ],
+    },
+    'ai-graph': {
+        eyebrow: 'L1 · Intelligence',
+        title: 'task graph',
+        tagline: 'Hand-curated graph.json — the input that fires up the whole pipeline.',
+        desc: `A <code>graph.json</code> file lists skill nodes with names, descriptions, dependencies, and a <code>task_env</code> for the sim. There's no LLM auto-decomposer — humans write the graph (the only part of L1 humans still touch). The orchestrator loads it, treats each skill as a node, and walks the DAG. Single-stage tasks have one root; multi-stage tasks form a DAG.`,
+        sections: [
+            { label: 'Lives in', items: ['skill-agent-setup/claude-code/graphs/<task>/graph.json'] },
+            { label: 'Schema', items: ['task_env', 'task_source', 'entries[].name', 'entries[].dependencies'] },
+            { label: 'Loaded by', items: ['agent_orchestrator.py · _load_entries()'] },
+        ],
+    },
 
     // ---------- Agent Server components ----------
     'as-sdk': {
@@ -238,14 +293,81 @@ rewind.to_tag("before_grasp")`,
         tagline: '6-DOF grasp generation from RGB-D.',
         desc: `Generates grasp candidates over an object point cloud. Primary grasp source; hand-computed orientations are the fallback.`,
     },
+
+    // ---------- Flow stages — "How a task runs" ----------
+    'flow-define': {
+        eyebrow: '[01] Author',
+        title: 'Define',
+        tagline: 'Hand-curated graph.json — no LLM decomposition.',
+        desc: `A task is a directory with a <code>graph.json</code> file: a list of skill nodes (<code>name</code>, <code>description</code>, <code>dependencies</code>) plus a <code>task_env</code> string that names the sim env (e.g. <code>RoboCasa-Pn-P-Counter-To-Sink-v0</code>). Single-stage tasks have one root skill with no deps; multi-stage tasks form a DAG. There's no LLM that auto-splits prompts — you write the graph by hand.`,
+        sections: [
+            { label: 'Lives in', items: ['skill-agent-setup/claude-code/graphs/<task>/graph.json'] },
+            { label: 'Schema', items: ['task_env', 'task_source', 'entries[].name', 'entries[].dependencies'] },
+            { label: 'Loaded by', items: ['agent_orchestrator.py · _load_entries() · L813'] },
+        ],
+    },
+    'flow-dispatch': {
+        eyebrow: '[02] Plan',
+        title: 'Dispatch',
+        tagline: 'Orchestrator finds the skills whose dependencies just unblocked.',
+        desc: `A standalone asyncio daemon (<code>agent_orchestrator.py</code>) running on ports <strong>8765</strong> (WebSocket) and <strong>8766</strong> (HTTP). On every state change it walks the DAG, finds skills whose dependencies are all <code>done</code>, and queues them for spawning. Spawning is gated by <code>dev_mode</code> — flipped on by <code>POST /xbot-start</code>.`,
+        sections: [
+            { label: 'Process', items: ['agent_orchestrator.py (separate process)'] },
+            { label: 'Ports', items: ['8765 · WebSocket', '8766 · HTTP'] },
+            { label: 'Key fns', items: ['_auto_spawn_ready_skills() · L2413', '_is_task_root() · L115'] },
+        ],
+    },
+    'flow-spawn': {
+        eyebrow: '[03] Fan-out',
+        title: 'Spawn agents',
+        tagline: 'One Claude SDK client per (skill × sim target), all in parallel.',
+        desc: `For each ready skill the orchestrator creates an <code>AgentState</code> and a <code>ClaudeSDKClient</code> — not a subprocess. When multi-target mode is on, it spawns one agent per sim instance (e.g. agent_server :8080/:8180/:8280, sim :5500/:5600/:5700) so the same skill is developed in parallel across kitchen layouts. The eval agent is a <strong>separate</strong> SDK client that runs after.`,
+        sections: [
+            { label: 'Mechanism', items: ['Claude Agent SDK (in-process)', 'asyncio Task per agent'] },
+            { label: 'Parallelism', items: ['per skill', 'per sim target', 'gated by dependency edges'] },
+            { label: 'Key fns', items: ['spawn_agent() · L1359', '_run_agent_sdk() · L1869'] },
+        ],
+    },
+    'flow-execute': {
+        eyebrow: '[04] Run',
+        title: 'Execute',
+        tagline: 'Agent → POST /code/submit → sandbox → sim or hardware.',
+        desc: `Each dev agent writes Python that imports <code>robot_sdk</code> and posts it to <code>agent_server</code>'s <code>/code/submit</code> endpoint. The server runs the code in a subprocess sandbox holding a lease, with the safety envelope checking every motion command. Stdout / stderr / video frames stream back to the orchestrator over WebSocket.`,
+        sections: [
+            { label: 'API path', items: ['POST /code/submit', 'GET /code/jobs/<id>/stream'] },
+            { label: 'Sandbox', items: ['subprocess', 'robot_sdk', 'lease + safety envelope'] },
+            { label: 'Backed by', items: ['agent_server (L2 in Architecture)'] },
+        ],
+    },
+    'flow-eval': {
+        eyebrow: '[05] Ship',
+        title: 'Eval & ship',
+        tagline: 'Eval agent reviews the recording, marks the skill done, unblocks the next.',
+        desc: `After execution finishes, the orchestrator spawns a <strong>separate evaluator agent</strong> (also a ClaudeSDKClient) that loads the camera frames + system_logger trajectory, decides pass/fail, and writes the verdict back to <code>graph.json</code>. On <code>done</code>, downstream skills with this one as a dep become eligible — back to [02] Dispatch. Multi-target verdicts are aggregated into a per-target pass-rate matrix.`,
+        sections: [
+            { label: 'Run by', items: ['_run_submission_eval() · L1002'] },
+            { label: 'Inputs', items: ['camera frames', 'system_logger waypoints', 'agent transcript'] },
+            { label: 'Effect', items: ['skill status → done', 're-trigger _auto_spawn_ready_skills()'] },
+        ],
+    },
 };
 
 // Decide which layer color/data-layer applies to a given popup id, so the
-// popup picks up the right accent (cyan/purple/red).
+// popup picks up the right accent (amber/green/purple/red).
 function popupLayerOf(id) {
+    if (id === 'intelligence' || id.startsWith('ai-')) return 'intelligence';
     if (id === 'skills' || id.startsWith('skill-')) return 'skills';
     if (id === 'agent-server' || id.startsWith('as-')) return 'agent-server';
     if (id === 'services' || id.startsWith('svc-')) return 'services';
+    if (id.startsWith('flow-')) {
+        // Match flow stages to the architecture tier they touch:
+        // define / dispatch / spawn / eval all live in L1 Intelligence;
+        // execute hits L2 Runtime → L3 Substrate.
+        if (id === 'flow-define' || id === 'flow-dispatch' ||
+            id === 'flow-spawn'  || id === 'flow-eval')      return 'intelligence';
+        if (id === 'flow-execute') return 'services';
+        return 'default';
+    }
     return 'default';
 }
 
@@ -253,6 +375,7 @@ function popupLayerOf(id) {
 // e.g. "Agent Server" + "Code Execution" → "agent_server / code_execution"
 function popupRoute(d, layer) {
     const root = {
+        'intelligence': 'intelligence',
         'skills': 'skills',
         'agent-server': 'agent_server',
         'services': 'services',
@@ -422,23 +545,33 @@ function scrollToGalleryHex(galleryName, repoName) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const stack = document.getElementById('pipeline-stack');
-    if (!stack) return;
-    stack.addEventListener('click', (e) => {
-        const layer = e.target.closest('.pipeline-layer-title');
-        if (layer) {
-            openPipelinePopup(layer.dataset.layerId);
-            return;
-        }
-        const comp = e.target.closest('.pipeline-comp');
-        if (!comp || comp.classList.contains('more')) return;
+    if (stack) {
+        stack.addEventListener('click', (e) => {
+            const layer = e.target.closest('.pipeline-layer-title');
+            if (layer) {
+                openPipelinePopup(layer.dataset.layerId);
+                return;
+            }
+            const comp = e.target.closest('.pipeline-comp');
+            if (!comp || comp.classList.contains('more')) return;
 
-        const id = comp.dataset.compId;
-        const target = CHIP_TO_GALLERY_REPO[id];
-        if (target) {
-            const ok = scrollToGalleryHex(target[0], target[1]);
-            if (ok) return;
-            // Fall through to popup if gallery isn't initialised yet
-        }
-        openPipelinePopup(id);
-    });
+            const id = comp.dataset.compId;
+            const target = CHIP_TO_GALLERY_REPO[id];
+            if (target) {
+                const ok = scrollToGalleryHex(target[0], target[1]);
+                if (ok) return;
+            }
+            openPipelinePopup(id);
+        });
+    }
+
+    // Flow stages — click any stage to open its popup
+    const flow = document.getElementById('flow-stages');
+    if (flow) {
+        flow.addEventListener('click', (e) => {
+            const stage = e.target.closest('.flow-stage');
+            if (!stage) return;
+            openPipelinePopup('flow-' + stage.dataset.flowId);
+        });
+    }
 });

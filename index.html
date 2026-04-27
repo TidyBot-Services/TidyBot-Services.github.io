@@ -258,26 +258,39 @@ gripper.<span class="tk-fn">open</span>()</pre>
             </section>
 
             <!-- ==============================
-                 PIPELINE — 3-layer architecture
+                 PIPELINE — 3-tier architecture + Skills artifact channel
                  ============================== -->
             <section class="pipeline-section gallery-section">
                 <div class="gallery-header">
                     <span class="gallery-label">Architecture</span>
-                    <span class="gallery-count">Three layers</span>
+                    <span class="gallery-count">Three running tiers · one artifact channel</span>
                 </div>
-                <p class="gallery-blurb">Skills (Python policies) run on the Agent Server (sandbox + safety + logging) which calls Services (atomic capabilities behind a uniform API). AI agents and humans sit above, writing skills.</p>
+                <p class="gallery-blurb">L1 Intelligence (orchestrator + dev/eval agents) writes Python — those <em>Skills</em> are an artifact, not a service — and submits them to L2 Runtime (Agent Server), which calls L3 Substrate (hardware drivers + sim bridges + ML services). Humans hand a task graph to L1 and step out of the loop.</p>
 
                 <div class="pipeline-writers">
-                    <span class="pipeline-writers-pill">Humans + AI Agents</span>
+                    <span class="pipeline-writers-pill">Humans</span>
                     <span class="pipeline-writers-arrow"></span>
                 </div>
 
                 <div class="pipeline-stack" id="pipeline-stack">
-                    <div class="pipeline-layer" data-layer="skills">
+                    <div class="pipeline-layer" data-layer="intelligence">
+                        <div class="pipeline-layer-title" data-layer-id="intelligence">
+                            <span class="pipeline-layer-num">L1 · Authoring</span>
+                            <span class="pipeline-layer-name">Intelligence</span>
+                            <span class="pipeline-layer-tagline">orchestrator + AI agents<br>writes Python, dispatches</span>
+                        </div>
+                        <div class="pipeline-comps">
+                            <span class="pipeline-comp" data-comp-id="ai-orch">orchestrator</span>
+                            <span class="pipeline-comp" data-comp-id="ai-dev">dev agents</span>
+                            <span class="pipeline-comp" data-comp-id="ai-eval">eval agents</span>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-layer pipeline-layer-artifact" data-layer="skills">
                         <div class="pipeline-layer-title" data-layer-id="skills">
-                            <span class="pipeline-layer-num">L1 · Behaviors</span>
+                            <span class="pipeline-layer-num">⤓ ARTIFACT ⤒</span>
                             <span class="pipeline-layer-name">Skills</span>
-                            <span class="pipeline-layer-tagline">AI-written Python<br>code-as-policy</span>
+                            <span class="pipeline-layer-tagline">Python written above<br>injected into runtime below</span>
                         </div>
                         <div class="pipeline-comps">
                             <span class="pipeline-comp" data-comp-id="skill-look-forward">look-forward</span>
@@ -334,6 +347,147 @@ gripper.<span class="tk-fn">open</span>()</pre>
             </section>
 
             <!-- ==============================
+                 FRONTEND GALLERY (Skills)
+                 ============================== -->
+            <section class="gallery-section" data-gallery="skills">
+                <div class="gallery-header">
+                    <span class="gallery-label">Skills</span>
+                    <a href="https://github.com/Tidybot-Skills" class="gallery-repo" target="_blank" rel="noopener">GitHub Org</a>
+                    <button class="gallery-wishlist" id="skills-wishlist-btn">Wishlist</button>
+                    <div class="gallery-view-toggle" id="skills-view-toggle">
+                        <button class="view-toggle-btn" data-view="timeline">Timeline</button>
+                        <button class="view-toggle-btn active" data-view="tree">Dep Tree</button>
+                    </div>
+                    <span class="gallery-count"></span>
+                </div>
+                <p class="gallery-blurb">What the robot does. Verb-shaped behaviors that run on the robot&mdash;pick, place, scan, navigate&mdash;tested with real trials and composed into dependency trees of increasingly complex tasks.</p>
+                <div class="gallery-viewport" style="display:none;">
+                    <div class="gallery-track"></div>
+                </div>
+                <div class="gallery-nav" style="display:none;">
+                    <div class="gallery-progress">
+                        <div class="gallery-progress-fill"></div>
+                    </div>
+                    <span class="gallery-hint">
+                        <span class="hint-icon">◈</span> scroll or drag to explore
+                    </span>
+                </div>
+
+                <div class="tree-viewport" id="skills-tree">
+                    <svg class="tree-edges" id="tree-edges"></svg>
+                    <div class="tree-nodes" id="tree-nodes"></div>
+                </div>
+
+                <!-- Inline Wishlist Subsection -->
+                <div class="wishlist-section" id="wishlist-section">
+                    <div class="wishlist-sub-header">
+                        <span class="wishlist-sub-title">Skill Wishlist</span>
+                        <div class="wishlist-sort-buttons">
+                            <button class="wishlist-sort-btn active" data-sort="votes">Top Voted</button>
+                            <button class="wishlist-sort-btn" data-sort="newest">Newest</button>
+                        </div>
+                        <div class="wishlist-auth" id="wishlist-auth">
+                            <button class="wishlist-signin-btn" id="wishlist-signin">Sign In to Submit Wishlist</button>
+                        </div>
+                        <button class="wishlist-suggest-btn" id="wishlist-suggest-btn" disabled>+ Suggest a Skill</button>
+                    </div>
+                    <div class="wishlist-items" id="wishlist-items">
+                        <div class="wishlist-loading" id="wishlist-loading">
+                            <span class="wishlist-spinner"></span>
+                            <span>LOADING WISHLIST DATA...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==============================
+                 FLOW — How a task runs (skill graph lifecycle)
+                 ============================== -->
+            <section class="flow-section gallery-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">How a skill ships</span>
+                    <span class="gallery-count">Lifecycle of a skill graph</span>
+                </div>
+                <p class="gallery-blurb">A <strong>task</strong> is a DAG of the <strong>skills</strong> shown above. The orchestrator walks the graph, fans out one Claude agent per (skill × sim target), each agent writes Python that the sandbox runs against the sim or hardware, and an evaluator agent reviews the recording before the skill ships into the library.</p>
+                <div class="flow-example">
+                    <span class="flow-example-label">example skill graph</span>
+                    <span class="flow-example-chip">pick-up-object</span>
+                    <span class="flow-example-arrow">→</span>
+                    <span class="flow-example-chip">place-object</span>
+                    <span class="flow-example-arrow">→</span>
+                    <span class="flow-example-chip">pick-and-place</span>
+                    <span class="flow-example-hint">↑ a graph of those skills (any of them) flows through the stages below</span>
+                </div>
+
+                <div class="flow-stages" id="flow-stages">
+                    <div class="flow-stage" data-flow-id="define">
+                        <span class="flow-stage-num">[01] AUTHOR</span>
+                        <span class="flow-stage-name">Define</span>
+                        <span class="flow-stage-desc">Hand-curated <code>graph.json</code> — skill nodes, dependencies, and the sim <code>task_env</code> they target.</span>
+                    </div>
+
+                    <div class="flow-arrow">
+                        <svg viewBox="0 0 38 24" preserveAspectRatio="none">
+                            <line class="body" x1="2" y1="12" x2="30" y2="12"/>
+                            <polygon class="head" points="30,6 38,12 30,18"/>
+                        </svg>
+                    </div>
+
+                    <div class="flow-stage" data-flow-id="dispatch">
+                        <span class="flow-stage-num">[02] PLAN</span>
+                        <span class="flow-stage-name">Dispatch</span>
+                        <span class="flow-stage-desc">Orchestrator (8765 / 8766) walks the DAG, picks skills whose dependencies are <code>done</code>, gates by <code>dev_mode</code>.</span>
+                    </div>
+
+                    <div class="flow-arrow">
+                        <svg viewBox="0 0 38 24" preserveAspectRatio="none">
+                            <line class="body" x1="2" y1="12" x2="30" y2="12"/>
+                            <polygon class="head" points="30,6 38,12 30,18"/>
+                        </svg>
+                    </div>
+
+                    <div class="flow-stage" data-flow-id="spawn">
+                        <span class="flow-stage-num">[03] FAN-OUT</span>
+                        <span class="flow-stage-name">Spawn agents</span>
+                        <span class="flow-stage-desc">Claude Agent SDK clients — <strong>one per skill × per sim target</strong>, in parallel.</span>
+                        <div class="flow-stage-fanout">
+                            <span>dev agent · target_1</span>
+                            <span>dev agent · target_2</span>
+                            <span>dev agent · target_3</span>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">
+                        <svg viewBox="0 0 38 24" preserveAspectRatio="none">
+                            <line class="body" x1="2" y1="12" x2="30" y2="12"/>
+                            <polygon class="head" points="30,6 38,12 30,18"/>
+                        </svg>
+                    </div>
+
+                    <div class="flow-stage" data-flow-id="execute">
+                        <span class="flow-stage-num">[04] RUN</span>
+                        <span class="flow-stage-name">Execute</span>
+                        <span class="flow-stage-desc">Each agent posts Python to <code>agent_server /code/submit</code>; sandbox runs it against the per-target sim or hardware.</span>
+                    </div>
+
+                    <div class="flow-arrow">
+                        <svg viewBox="0 0 38 24" preserveAspectRatio="none">
+                            <line class="body" x1="2" y1="12" x2="30" y2="12"/>
+                            <polygon class="head" points="30,6 38,12 30,18"/>
+                        </svg>
+                    </div>
+
+                    <div class="flow-stage" data-flow-id="eval">
+                        <span class="flow-stage-num">[05] SHIP</span>
+                        <span class="flow-stage-name">Eval &amp; ship</span>
+                        <span class="flow-stage-desc">Eval agent reviews the recording — pass marks the skill <code>done</code>, unblocks downstream skills in the graph.</span>
+                    </div>
+                </div>
+
+                <div class="flow-loopback"></div>
+            </section>
+
+            <!-- ==============================
                  BACKEND GALLERY
                  ============================== -->
             <section class="gallery-section" data-gallery="services">
@@ -355,6 +509,18 @@ gripper.<span class="tk-fn">open</span>()</pre>
                         <span class="hint-icon">◈</span> scroll or drag to explore
                     </span>
                 </div>
+            </section>
+
+            <!-- ==============================
+                 PLATFORM SERVICES — what we built
+                 ============================== -->
+            <section class="agents-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">What we built</span>
+                    <span class="gallery-count">Open-source · MIT</span>
+                </div>
+                <p class="gallery-blurb">The runtime + recording layer that makes the whole thing work. Both repos shipped from this group, both live in the agent_server organisation, both run unchanged on hardware and sim.</p>
+                <div class="platform-cards" id="agents-grid"></div>
             </section>
 
             <!-- ==============================
@@ -421,71 +587,6 @@ gripper.<span class="tk-fn">open</span>()</pre>
                     </div>
                     <a href="./updates/" class="updates-see-all">View all updates &rarr;</a>
                 </div>
-            </section>
-
-            <!-- ==============================
-                 FRONTEND GALLERY
-                 ============================== -->
-            <section class="gallery-section" data-gallery="skills">
-                <div class="gallery-header">
-                    <span class="gallery-label">Skills</span>
-                    <a href="https://github.com/Tidybot-Skills" class="gallery-repo" target="_blank" rel="noopener">GitHub Org</a>
-                    <button class="gallery-wishlist" id="skills-wishlist-btn">Wishlist</button>
-                    <div class="gallery-view-toggle" id="skills-view-toggle">
-                        <button class="view-toggle-btn" data-view="timeline">Timeline</button>
-                        <button class="view-toggle-btn active" data-view="tree">Dep Tree</button>
-                    </div>
-                    <span class="gallery-count"></span>
-                </div>
-                <p class="gallery-blurb">What the robot does. Verb-shaped behaviors that run on the robot&mdash;pick, place, scan, navigate&mdash;tested with real trials and composed into dependency trees of increasingly complex tasks.</p>
-                <div class="gallery-viewport" style="display:none;">
-                    <div class="gallery-track"></div>
-                </div>
-                <div class="gallery-nav" style="display:none;">
-                    <div class="gallery-progress">
-                        <div class="gallery-progress-fill"></div>
-                    </div>
-                    <span class="gallery-hint">
-                        <span class="hint-icon">◈</span> scroll or drag to explore
-                    </span>
-                </div>
-
-                <div class="tree-viewport" id="skills-tree">
-                    <svg class="tree-edges" id="tree-edges"></svg>
-                    <div class="tree-nodes" id="tree-nodes"></div>
-                </div>
-
-                <!-- Inline Wishlist Subsection -->
-                <div class="wishlist-section" id="wishlist-section">
-                    <div class="wishlist-sub-header">
-                        <span class="wishlist-sub-title">Skill Wishlist</span>
-                        <div class="wishlist-sort-buttons">
-                            <button class="wishlist-sort-btn active" data-sort="votes">Top Voted</button>
-                            <button class="wishlist-sort-btn" data-sort="newest">Newest</button>
-                        </div>
-                        <div class="wishlist-auth" id="wishlist-auth">
-                            <button class="wishlist-signin-btn" id="wishlist-signin">Sign In to Submit Wishlist</button>
-                        </div>
-                        <button class="wishlist-suggest-btn" id="wishlist-suggest-btn" disabled>+ Suggest a Skill</button>
-                    </div>
-                    <div class="wishlist-items" id="wishlist-items">
-                        <div class="wishlist-loading" id="wishlist-loading">
-                            <span class="wishlist-spinner"></span>
-                            <span>LOADING WISHLIST DATA...</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ==============================
-                 AGENTS SECTION
-                 ============================== -->
-            <section class="agents-section">
-                <div class="gallery-header">
-                    <span class="gallery-label">Platform Services</span>
-                    <span class="gallery-label" style="font-size: 0.8em; opacity: 0.6;">(Our Contribution)</span>
-                </div>
-                <div class="agents-grid" id="agents-grid"></div>
             </section>
 
             <!-- ==============================

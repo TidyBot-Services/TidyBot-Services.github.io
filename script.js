@@ -1771,64 +1771,87 @@ const AGENT_BLURBS = {
     agent_system_logger: 'State recording library used by the agent server. Polls all subsystems at configurable Hz, stores unified waypoints with threshold filtering, and orchestrates coordinated rewind across arm, base, and gripper.'
 };
 
+const AGENT_TAGLINES = {
+    agent_server: 'L2 · Runtime · sandbox + lease + safety + log + dashboard',
+    agent_system_logger: 'L2 · Recording · unified trajectory log + rewind orchestration',
+};
+
+const AGENT_GLYPHS = {
+    agent_server: '⌬',           // unified API hub
+    agent_system_logger: '∿',    // signal / waveform
+};
+
 const AGENT_IMAGES = {
     agent_server: [
         { src: 'images/agent_server_dashboard.png', caption: 'Service dashboard — robot state, map position, trajectory, and lease queue' },
         { src: 'images/agent_server_code_exec.png', caption: 'Code execution logs — sandboxed skill runs with live output' },
         { src: 'images/agent_server_face.png', caption: 'Robot face display — shows status and announces actions with audio' },
     ],
-    // agent_system_logger: [
-    //     { src: 'images/logger_1.png', caption: 'System logger dashboard' },
-    // ],
+    // agent_system_logger has no shipped screenshots yet — falls back to the
+    // pattern + glyph cover.
 };
+
+function relativeFromIso(iso) {
+    if (!iso) return '';
+    const t = new Date(iso.replace(' ', 'T'));
+    if (isNaN(t.getTime())) return '';
+    const days = Math.floor((Date.now() - t.getTime()) / 86400000);
+    if (days < 1)   return 'today';
+    if (days < 2)   return 'yesterday';
+    if (days < 30)  return `${days}d ago`;
+    if (days < 365) return `${Math.floor(days / 30)}mo ago`;
+    return `${Math.floor(days / 365)}y ago`;
+}
 
 function renderAgents(entries) {
     const grid = document.getElementById('agents-grid');
     if (!grid) return;
 
-    const hexSize = HEX_SIZES.lg;
+    grid.innerHTML = entries.map((entry) => {
+        const blurb   = AGENT_BLURBS[entry.title]   || entry.description;
+        const tagline = AGENT_TAGLINES[entry.title] || `${entry.language || 'Code'} · open source`;
+        const glyph   = AGENT_GLYPHS[entry.title]   || '◇';
+        const images  = AGENT_IMAGES[entry.title];
+        const updated = relativeFromIso(entry.updated_at);
 
-    grid.innerHTML = entries.map((entry, i) => {
-        const typeColor = typeConfig[entry.type]?.color || '#9d4edd';
-        const typeLabel = typeConfig[entry.type]?.label || 'Agent';
-        const blurb = AGENT_BLURBS[entry.title] || entry.description;
-        const patternIdx = i % 4;
-        const floatDelay = (i * 1.2).toFixed(1);
+        const mediaHTML = images && images.length
+            ? `<div class="platform-card-media">
+                 <div class="thumbs">
+                   ${images.map(img => `<img src="${img.src}" alt="${img.caption || ''}">`).join('')}
+                 </div>
+                 <span class="frame-corner tl"></span>
+                 <span class="frame-corner tr"></span>
+                 <span class="frame-corner bl"></span>
+                 <span class="frame-corner br"></span>
+               </div>`
+            : `<div class="platform-card-media no-image">
+                 <span class="glyph">${glyph}</span>
+                 <span class="frame-corner tl"></span>
+                 <span class="frame-corner tr"></span>
+                 <span class="frame-corner bl"></span>
+                 <span class="frame-corner br"></span>
+               </div>`;
 
-        return `<div class="agent-item">
-            <div class="agent-hex hex-card hex-lg visible"
-                 style="width:${hexSize.w}px;height:${hexSize.h}px;--float-delay:${floatDelay}s;position:relative;"
-                 data-url="${entry.html_url || ''}">
-                <div class="hex-border">
-                    <div class="hex-inner">
-                        <div class="hex-bg pattern-${patternIdx}"
-                             style="--type-color:${typeColor};"></div>
-                        <div class="hex-content">
-                            <span class="hex-type" style="color:${typeColor};">${typeLabel}</span>
-                            <h3 class="hex-title"><span class="hex-title-inner">${entry.title}</span></h3>
-                            <span class="hex-date">${entry.language || ''}</span>
-                        </div>
-                    </div>
+        return `<article class="platform-card">
+            ${mediaHTML}
+            <div class="platform-card-body">
+                <div class="platform-card-meta">
+                    <span class="platform-card-eyebrow">${tagline}</span>
+                    <span class="platform-card-license">MIT</span>
+                </div>
+                <h3 class="platform-card-title">${entry.title}</h3>
+                <p class="platform-card-desc">${blurb}</p>
+                <div class="platform-card-stats">
+                    <span><span class="ic">★</span>${entry.stars ?? 0} stars</span>
+                    <span><span class="ic">◼</span>${entry.language || 'code'}</span>
+                    ${updated ? `<span><span class="ic">↻</span>updated ${updated}</span>` : ''}
+                </div>
+                <div class="platform-card-actions">
+                    ${entry.html_url ? `<a class="platform-card-btn primary" href="${entry.html_url}" target="_blank" rel="noopener noreferrer">View on GitHub →</a>` : ''}
                 </div>
             </div>
-            <div class="agent-blurb">
-                <h3 class="agent-blurb-title">${entry.title}</h3>
-                <p class="agent-blurb-text">${blurb}</p>
-                ${entry.html_url ? `<a href="${entry.html_url}" target="_blank" rel="noopener noreferrer" class="popup-repo-link">View Repo →</a>` : ''}
-                ${AGENT_IMAGES[entry.title] ? `<div class="agent-thumbs">${AGENT_IMAGES[entry.title].map(img => `<img class="agent-thumb" src="${img.src}" data-caption="${img.caption}" alt="${img.caption}">`).join('')}</div>` : ''}
-            </div>
-        </div>`;
+        </article>`;
     }).join('');
-
-    // Click to open repo
-    grid.querySelectorAll('.agent-hex').forEach(hex => {
-        hex.style.cursor = 'pointer';
-        hex.addEventListener('click', () => {
-            const url = hex.dataset.url;
-            if (url) window.open(url, '_blank');
-        });
-    });
-    applyTitleMarquee();
 }
 
 // ============================================
