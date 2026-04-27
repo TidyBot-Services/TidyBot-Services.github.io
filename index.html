@@ -215,6 +215,106 @@
             </section>
 
             <!-- ==============================
+                 PIPELINE — 3-layer architecture
+                 ============================== -->
+            <section class="pipeline-section gallery-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">Architecture</span>
+                    <span class="gallery-count">Three layers</span>
+                </div>
+                <p class="gallery-blurb">Skills (Python policies) run on the Agent Server (sandbox + safety + logging) which calls Services (atomic capabilities behind a uniform API). AI agents and humans sit above, writing skills.</p>
+
+                <div class="pipeline-writers">
+                    <span class="pipeline-writers-pill">Humans + AI Agents</span>
+                    <span class="pipeline-writers-arrow"></span>
+                </div>
+
+                <div class="pipeline-stack" id="pipeline-stack">
+                    <div class="pipeline-layer" data-layer="skills">
+                        <div class="pipeline-layer-title" data-layer-id="skills">
+                            <span class="pipeline-layer-num">L1 · Behaviors</span>
+                            <span class="pipeline-layer-name">Skills</span>
+                            <span class="pipeline-layer-tagline">AI-written Python<br>code-as-policy</span>
+                        </div>
+                        <div class="pipeline-comps">
+                            <span class="pipeline-comp" data-comp-id="skill-look-forward">look-forward</span>
+                            <span class="pipeline-comp" data-comp-id="skill-count-people">count-people-in-room</span>
+                            <span class="pipeline-comp" data-comp-id="skill-pick-up">pick-up-object</span>
+                            <span class="pipeline-comp" data-comp-id="skill-center-object">center-object</span>
+                            <span class="pipeline-comp" data-comp-id="skill-place-object">place-object</span>
+                            <span class="pipeline-comp" data-comp-id="skill-find-and-pick-up">find-and-pick-up</span>
+                            <span class="pipeline-comp" data-comp-id="skill-pick-and-place">pick-and-place</span>
+                            <span class="pipeline-comp" data-comp-id="skill-visuomotor">visuomotor-keypoint-joint-policy</span>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-layer" data-layer="agent-server">
+                        <div class="pipeline-layer-title" data-layer-id="agent-server">
+                            <span class="pipeline-layer-num">L2 · Runtime</span>
+                            <span class="pipeline-layer-name">Agent Server</span>
+                            <span class="pipeline-layer-tagline">unified API<br>sandbox · safety · log</span>
+                        </div>
+                        <div class="pipeline-comps">
+                            <span class="pipeline-comp" data-comp-id="as-sdk">robot_sdk</span>
+                            <span class="pipeline-comp" data-comp-id="as-codeexec">Code Exec</span>
+                            <span class="pipeline-comp" data-comp-id="as-lease">Lease</span>
+                            <span class="pipeline-comp" data-comp-id="as-safety">Safety Envelope</span>
+                            <span class="pipeline-comp" data-comp-id="as-logger">System Logger</span>
+                            <span class="pipeline-comp" data-comp-id="as-rewind">Rewind</span>
+                            <span class="pipeline-comp" data-comp-id="as-dashboard">Dashboard</span>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-layer" data-layer="services">
+                        <div class="pipeline-layer-title" data-layer-id="services">
+                            <span class="pipeline-layer-num">L3 · Substrate</span>
+                            <span class="pipeline-layer-name">Services</span>
+                            <span class="pipeline-layer-tagline">atomic capabilities<br>HW · sim · ML</span>
+                        </div>
+                        <div class="pipeline-comps">
+                            <span class="pipeline-comp" data-comp-id="svc-arm">arm_franka</span>
+                            <span class="pipeline-comp" data-comp-id="svc-base">base_tidybot</span>
+                            <span class="pipeline-comp" data-comp-id="svc-gripper">gripper_robotiq</span>
+                            <span class="pipeline-comp" data-comp-id="svc-camera">camera_realsense</span>
+                            <span class="pipeline-comp" data-comp-id="svc-maniskill-sim">maniskill_sim</span>
+                            <span class="pipeline-comp" data-comp-id="svc-robocasa-sim">robocasa_sim</span>
+                            <span class="pipeline-comp" data-comp-id="svc-maniskill-bridge">ManiSkill bridges</span>
+                            <span class="pipeline-comp" data-comp-id="svc-robocasa-bridge">RoboCasa bridges</span>
+                            <span class="pipeline-comp" data-comp-id="svc-yolo">YOLO</span>
+                            <span class="pipeline-comp" data-comp-id="svc-sam2">SAM2</span>
+                            <span class="pipeline-comp" data-comp-id="svc-graspgen">GraspGen</span>
+                            <span class="pipeline-comp" data-comp-id="svc-nav">nav-mapping</span>
+                            <span class="pipeline-comp" data-comp-id="svc-obstacle">obstacle-avoidance</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==============================
+                 BACKEND GALLERY
+                 ============================== -->
+            <section class="gallery-section" data-gallery="services">
+                <div class="gallery-header">
+                    <span class="gallery-label">Services</span>
+                    <a href="https://github.com/TidyBot-Services/" class="gallery-repo" target="_blank" rel="noopener">GitHub Org</a>
+                    <a href="https://github.com/TidyBot-Services/services_wishlist" class="gallery-wishlist" target="_blank" rel="noopener">Wishlist</a>
+                    <span class="gallery-count"></span>
+                </div>
+                <p class="gallery-blurb">How the robot does it. Noun-shaped resources&mdash;a hardware driver, a vision model, a grasp planner&mdash;behind a uniform API. Drivers live on-robot; heavier models run off-board. Swap what&rsquo;s underneath without changing anything above.</p>
+                <div class="gallery-viewport">
+                    <div class="gallery-track"></div>
+                </div>
+                <div class="gallery-nav">
+                    <div class="gallery-progress">
+                        <div class="gallery-progress-fill"></div>
+                    </div>
+                    <span class="gallery-hint">
+                        <span class="hint-icon">◈</span> scroll or drag to explore
+                    </span>
+                </div>
+            </section>
+
+            <!-- ==============================
                  INSTALL
                  ============================== -->
             <section class="install-section">
@@ -345,30 +445,6 @@
                 <div class="agents-grid" id="agents-grid"></div>
             </section>
 
-            <!-- ==============================
-                 BACKEND GALLERY
-                 ============================== -->
-            <section class="gallery-section" data-gallery="services">
-                <div class="gallery-header">
-                    <span class="gallery-label">Services</span>
-                    <a href="https://github.com/TidyBot-Services/" class="gallery-repo" target="_blank" rel="noopener">GitHub Org</a>
-                    <a href="https://github.com/TidyBot-Services/services_wishlist" class="gallery-wishlist" target="_blank" rel="noopener">Wishlist</a>
-                    <span class="gallery-count"></span>
-                </div>
-                <p class="gallery-blurb">How the robot does it. Noun-shaped resources&mdash;a hardware driver, a vision model, a grasp planner&mdash;behind a uniform API. Drivers live on-robot; heavier models run off-board. Swap what&rsquo;s underneath without changing anything above.</p>
-                <div class="gallery-viewport">
-                    <div class="gallery-track"></div>
-                </div>
-                <div class="gallery-nav">
-                    <div class="gallery-progress">
-                        <div class="gallery-progress-fill"></div>
-                    </div>
-                    <span class="gallery-hint">
-                        <span class="hint-icon">◈</span> scroll or drag to explore
-                    </span>
-                </div>
-            </section>
-
             <!-- Footer -->
             <footer class="timeline-footer">
                 <div class="footer-content">
@@ -465,5 +541,6 @@
     <script type="module" src="robot-viewer.js"></script>
     <script src="wishlist.js"></script>
     <script src="script.js"></script>
+    <script src="pipeline.js"></script>
 </body>
 </html>
