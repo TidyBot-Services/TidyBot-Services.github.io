@@ -151,54 +151,97 @@
             </section>
 
             <!-- ==============================
-                 SUPPORTED ROBOTS
+                 STORY — how it works in 3 steps
                  ============================== -->
-            <section class="robots-section">
-                <div class="gallery-header">
-                    <span class="gallery-label">Supported Robots</span>
-                </div>
-                <div class="robots-grid">
-                    <!-- TidyBot -->
-                    <div class="robot-card" data-robot="tidybot">
-                        <div class="robot-viewer">
-                            <canvas class="robot-canvas"></canvas>
-                        </div>
-                        <div class="robot-info">
-                            <span class="robot-name">TidyBot</span>
-                        </div>
-                    </div>
-                    <!-- XLeRobot -->
-                    <div class="robot-card" data-robot="xlerobot">
-                        <div class="robot-viewer">
-                            <canvas class="robot-canvas"></canvas>
-                        </div>
-                        <div class="robot-info">
-                            <span class="robot-name">XLeRobot</span>
-                        </div>
-                    </div>
-                    <!-- Fourier GR1 -->
-                    <div class="robot-card" data-robot="gr1">
-                        <div class="robot-viewer">
-                            <canvas class="robot-canvas"></canvas>
-                        </div>
-                        <div class="robot-info">
-                            <span class="robot-name">Fourier GR1</span>
-                        </div>
-                    </div>
-                    <!-- More Coming Soon -->
-                    <div class="robot-card coming-soon" data-robot="placeholder">
-                        <div class="robot-viewer">
-                            <canvas class="robot-canvas"></canvas>
-                            <div class="robot-coming-soon">
-                                <span>MORE ROBOTS COMING SOON</span>
+            <section class="story-section">
+                <div class="story-eyebrow">How it works</div>
+                <h2 class="story-headline">
+                    <span class="ph ph-1">A human asks.</span>
+                    <span class="sep">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <line x1="8"  y1="6"  x2="20" y2="14"/>
+                            <line x1="8"  y1="22" x2="20" y2="14"/>
+                            <circle cx="20" cy="14" r="1.8"/>
+                            <circle cx="8"  cy="6"  r="0.9"/>
+                            <circle cx="8"  cy="22" r="0.9"/>
+                        </svg>
+                    </span>
+                    <span class="ph ph-2">An AI writes the code.</span>
+                    <span class="sep">
+                        <svg viewBox="0 0 28 28" aria-hidden="true">
+                            <line x1="8"  y1="6"  x2="20" y2="14"/>
+                            <line x1="8"  y1="22" x2="20" y2="14"/>
+                            <circle cx="20" cy="14" r="1.8"/>
+                            <circle cx="8"  cy="6"  r="0.9"/>
+                            <circle cx="8"  cy="22" r="0.9"/>
+                        </svg>
+                    </span>
+                    <span class="ph ph-3">The robot does it.</span>
+                </h2>
+
+                <div class="story-panels">
+                    <!-- Step 1 — Human asks -->
+                    <div class="story-panel" data-step="1">
+                        <span class="story-panel-num">[01]</span>
+                        <span class="story-panel-label">Human asks</span>
+                        <div class="story-panel-body">
+                            <div class="story-bubble">
+                                "Pick up the orange and put it in the pan."
+                                <div class="story-bubble-attribution">— a person · plain English</div>
                             </div>
                         </div>
-                        <div class="robot-info">
-                            <span class="robot-name">---</span>
+                    </div>
+
+                    <div class="story-arrow">
+                        <svg viewBox="0 0 36 36" preserveAspectRatio="none">
+                            <line class="body" x1="2" y1="18" x2="28" y2="18"/>
+                            <polygon class="head" points="28,12 36,18 28,24"/>
+                        </svg>
+                    </div>
+
+                    <!-- Step 2 — AI writes code -->
+                    <div class="story-panel" data-step="2">
+                        <span class="story-panel-num">[02]</span>
+                        <span class="story-panel-label">AI writes code</span>
+                        <div class="story-panel-body">
+                            <div class="story-code">
+                                <div class="story-code-header">put_orange_in_pan.py</div>
+<pre><span class="tk-kw">from</span> robot_sdk <span class="tk-kw">import</span> arm, gripper, find_objects
+
+orange = <span class="tk-fn">find_objects</span>(<span class="tk-str">"orange"</span>)[<span class="tk-num">0</span>]
+pan    = <span class="tk-fn">find_objects</span>(<span class="tk-str">"pan"</span>)[<span class="tk-num">0</span>]
+
+arm.<span class="tk-fn">move_to</span>(orange.pose, z_offset=<span class="tk-num">0.10</span>)
+arm.<span class="tk-fn">move_delta</span>(z=-<span class="tk-num">0.10</span>); gripper.<span class="tk-fn">close</span>()
+
+arm.<span class="tk-fn">move_to</span>(pan.pose, z_offset=<span class="tk-num">0.20</span>)
+gripper.<span class="tk-fn">open</span>()</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="story-arrow">
+                        <svg viewBox="0 0 36 36" preserveAspectRatio="none">
+                            <line class="body" x1="2" y1="18" x2="28" y2="18"/>
+                            <polygon class="head" points="28,12 36,18 28,24"/>
+                        </svg>
+                    </div>
+
+                    <!-- Step 3 — Robot executes -->
+                    <div class="story-panel" data-step="3">
+                        <span class="story-panel-num">[03]</span>
+                        <span class="story-panel-label">Robot does it</span>
+                        <div class="story-panel-body">
+                            <div class="story-video">
+                                <video autoplay muted loop playsinline>
+                                    <source src="assets/robot-hero.mp4" type="video/mp4">
+                                </video>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+
 
             <!-- ==============================
                  DEMO VIDEO
@@ -443,6 +486,56 @@
                     <span class="gallery-label" style="font-size: 0.8em; opacity: 0.6;">(Our Contribution)</span>
                 </div>
                 <div class="agents-grid" id="agents-grid"></div>
+            </section>
+
+            <!-- ==============================
+                 SUPPORTED ROBOTS
+                 ============================== -->
+            <section class="robots-section">
+                <div class="gallery-header">
+                    <span class="gallery-label">Supported Robots</span>
+                </div>
+                <div class="robots-grid">
+                    <!-- TidyBot -->
+                    <div class="robot-card" data-robot="tidybot">
+                        <div class="robot-viewer">
+                            <canvas class="robot-canvas"></canvas>
+                        </div>
+                        <div class="robot-info">
+                            <span class="robot-name">TidyBot</span>
+                        </div>
+                    </div>
+                    <!-- XLeRobot -->
+                    <div class="robot-card" data-robot="xlerobot">
+                        <div class="robot-viewer">
+                            <canvas class="robot-canvas"></canvas>
+                        </div>
+                        <div class="robot-info">
+                            <span class="robot-name">XLeRobot</span>
+                        </div>
+                    </div>
+                    <!-- Fourier GR1 -->
+                    <div class="robot-card" data-robot="gr1">
+                        <div class="robot-viewer">
+                            <canvas class="robot-canvas"></canvas>
+                        </div>
+                        <div class="robot-info">
+                            <span class="robot-name">Fourier GR1</span>
+                        </div>
+                    </div>
+                    <!-- More Coming Soon -->
+                    <div class="robot-card coming-soon" data-robot="placeholder">
+                        <div class="robot-viewer">
+                            <canvas class="robot-canvas"></canvas>
+                            <div class="robot-coming-soon">
+                                <span>MORE ROBOTS COMING SOON</span>
+                            </div>
+                        </div>
+                        <div class="robot-info">
+                            <span class="robot-name">---</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- Footer -->
