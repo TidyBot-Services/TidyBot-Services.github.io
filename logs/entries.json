@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-03-02 15:22",
-    "type": "feature",
-    "title": "Merge pull request #2 from TidyBot-Services/fix/audit-2026-03-02-remove-arm-swee",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "2c999a6",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-03 15:14",
-    "type": "fix",
-    "title": "fix: README_DETAILED.md lease release behavior was incorrect",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "e9c0766",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-03 15:37",
-    "type": "feature",
-    "title": "Merge pull request #3 from TidyBot-Services/fix/audit-2026-03-03-lease-docs",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "9ba88d4",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-04 17:38",
-    "type": "feature",
-    "title": "Add depth stream support to camera bridge",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "953fc5b",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-03-04 22:00",
-    "type": "fix",
-    "title": "Fix EE frame convention, bridge protocols, and add viewer camera persistence",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "6e1e7ea",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-03-05 16:26",
     "type": "docs",
     "title": "docs: update deploy-agent references to point to TidyBot-Services/deploy-agent r",
@@ -2398,5 +2338,65 @@
     "sha": "a9da1c7",
     "repo": "Tidybot-Universe",
     "author": "Yifei Simon Shao"
+  },
+  {
+    "timestamp": "2026-04-28 19:47",
+    "type": "feature",
+    "title": "orchestrator: add --harness CLI flag + ask-user prompt in planner CLAUDE.md",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "26613d1",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-28 20:10",
+    "type": "feature",
+    "title": "Merge branch 'master' into feature/openclaw-harness-poc",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "1ef2058",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-28 20:10",
+    "type": "setup",
+    "title": "orchestrator: fix HARNESS init order + drop superseded graph artifacts",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "432c2b5",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-28 20:11",
+    "type": "feature",
+    "title": "Merge feature/openclaw-harness-poc: OpenClaw harness backend (DeepSeek via Penn ",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "07be91b",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-28 20:12",
+    "type": "feature",
+    "title": "Merge remote-tracking branch 'origin/master'",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "9839ffa",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
   }
 ]
