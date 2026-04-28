@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-03-05 16:26",
-    "type": "docs",
-    "title": "docs: update deploy-agent references to point to TidyBot-Services/deploy-agent r",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "ba0a87a",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-05 16:51",
     "type": "docs",
     "title": "docs: add simulator quick start as default entry point, reorder getting started",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "9839ffa",
     "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-04-28 21:19",
+    "type": "setup",
+    "title": "Initial commit: VLM caption service for TidyBot evaluator",
+    "description": "Commit by TruAres in vlm_caption_service",
+    "files": [
+      "vlm_caption_service/"
+    ],
+    "sha": "ec663cf",
+    "repo": "vlm_caption_service",
     "author": "TruAres"
   }
 ]
