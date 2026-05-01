@@ -1,29 +1,5 @@
 [
   {
-    "timestamp": "2026-03-05 16:51",
-    "type": "docs",
-    "title": "docs: add simulator quick start as default entry point, reorder getting started",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "bd2213a",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-05 17:39",
-    "type": "feature",
-    "title": "Add log directory info to robot-connection and run-robot-task skills",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "7e21244",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-08 04:40",
     "type": "fix",
     "title": "Fix sim convergence and camera rendering issues",
@@ -2397,6 +2373,30 @@
     ],
     "sha": "ec663cf",
     "repo": "vlm_caption_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-01 18:09",
+    "type": "setup",
+    "title": "Initial cuRobo HTTP service (Phase 1)",
+    "description": "Commit by TruAres in curobo_service",
+    "files": [
+      "curobo_service/"
+    ],
+    "sha": "9f24c0a",
+    "repo": "curobo_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-01 18:14",
+    "type": "feature",
+    "title": "Add /plan/validate_base_path endpoint",
+    "description": "Commit by TruAres in curobo_service",
+    "files": [
+      "curobo_service/"
+    ],
+    "sha": "18a5ccd",
+    "repo": "curobo_service",
     "author": "TruAres"
   }
 ]
