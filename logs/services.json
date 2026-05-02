@@ -466,5 +466,17 @@
     "stars": 0,
     "is_private": false,
     "default_branch": "master"
+  },
+  {
+    "id": "040",
+    "name": "perception_service",
+    "description": "Perception service: HTTP facade for object detection. Phase 1 forwards to sim ground-truth; future backends: GroundedSAM, YOLO, SAM2.",
+    "created_at": "2026-05-01T23:58:52Z",
+    "updated_at": "2026-05-02T00:00:21Z",
+    "html_url": "https://github.com/TidyBot-Services/perception_service",
+    "language": "Python",
+    "stars": 0,
+    "is_private": false,
+    "default_branch": "master"
   }
 ]
