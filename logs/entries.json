@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-03-08 04:40",
-    "type": "fix",
-    "title": "Fix sim convergence and camera rendering issues",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "e75b87e",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
     "timestamp": "2026-03-08 18:12",
     "type": "deploy",
     "title": "feat: add generic HTTP client to robot_sdk, update docs for deploy-agent archite",
@@ -2397,6 +2385,18 @@
     ],
     "sha": "18a5ccd",
     "repo": "curobo_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-02 00:00",
+    "type": "setup",
+    "title": "Initial perception_service (Phase 1: sim_passthrough)",
+    "description": "Commit by TruAres in perception_service",
+    "files": [
+      "perception_service/"
+    ],
+    "sha": "800c56e",
+    "repo": "perception_service",
     "author": "TruAres"
   }
 ]
