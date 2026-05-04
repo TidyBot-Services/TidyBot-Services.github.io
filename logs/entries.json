@@ -1,42 +1,6 @@
 [
   {
     "timestamp": "2026-03-08 18:12",
-    "type": "deploy",
-    "title": "feat: add generic HTTP client to robot_sdk, update docs for deploy-agent archite",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "43fbc06",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
-    "type": "docs",
-    "title": "docs: update README for local deploy-agent workflow",
-    "description": "Commit by Yifei Simon Shao in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "f074270",
-    "repo": "services_wishlist",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
-    "type": "docs",
-    "title": "docs: update README for local deploy-agent workflow",
-    "description": "Commit by Yifei Simon Shao in yolo-service",
-    "files": [
-      "yolo-service/"
-    ],
-    "sha": "c21af7b",
-    "repo": "yolo-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
     "type": "docs",
     "title": "docs: update README for local deploy-agent workflow",
     "description": "Commit by Yifei Simon Shao in grounded-sam2-service",
@@ -2397,6 +2361,42 @@
     ],
     "sha": "800c56e",
     "repo": "perception_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-03 15:20",
+    "type": "feature",
+    "title": "orch: cherry-pick v18 fixes + perception/curobo service hooks + reset script",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "4cbcbe5",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-04 02:23",
+    "type": "feature",
+    "title": "graspgen: add pose convention docs + ee_target_from_grasp / pre_grasp_pose helpe",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "ca609df",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-04 02:23",
+    "type": "feature",
+    "title": "orch: slim graspgen prompt to short pointer + canonical helper-based skeleton",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "9b784e8",
+    "repo": "Tidybot-Universe",
     "author": "TruAres"
   }
 ]
