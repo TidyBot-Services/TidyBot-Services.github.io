@@ -3,42 +3,6 @@
     "timestamp": "2026-03-08 18:12",
     "type": "docs",
     "title": "docs: update README for local deploy-agent workflow",
-    "description": "Commit by Yifei Simon Shao in grounded-sam2-service",
-    "files": [
-      "grounded-sam2-service/"
-    ],
-    "sha": "ff073e5",
-    "repo": "grounded-sam2-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
-    "type": "docs",
-    "title": "docs: update README for local deploy-agent workflow",
-    "description": "Commit by Yifei Simon Shao in graspgen-service",
-    "files": [
-      "graspgen-service/"
-    ],
-    "sha": "3ef66c5",
-    "repo": "graspgen-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
-    "type": "docs",
-    "title": "docs: update README for local deploy-agent workflow",
-    "description": "Commit by Yifei Simon Shao in foundation-stereo-service",
-    "files": [
-      "foundation-stereo-service/"
-    ],
-    "sha": "f33a379",
-    "repo": "foundation-stereo-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
-    "type": "docs",
-    "title": "docs: update README for local deploy-agent workflow",
     "description": "Commit by Yifei Simon Shao in nav-mapping-service",
     "files": [
       "nav-mapping-service/"
@@ -2398,5 +2362,41 @@
     "sha": "9b784e8",
     "repo": "Tidybot-Universe",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-05 19:57",
+    "type": "fix",
+    "title": "eval: cspace bug fix + A+B safety hardening + final report",
+    "description": "Commit by eval-harness in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "ae8bb27",
+    "repo": "Tidybot-Universe",
+    "author": "eval-harness"
+  },
+  {
+    "timestamp": "2026-05-05 20:22",
+    "type": "setup",
+    "title": "Ship cuRobo config patches inside the service",
+    "description": "Commit by eval-harness in curobo_service",
+    "files": [
+      "curobo_service/"
+    ],
+    "sha": "6614a36",
+    "repo": "curobo_service",
+    "author": "eval-harness"
+  },
+  {
+    "timestamp": "2026-05-05 20:22",
+    "type": "feature",
+    "title": "Adopt cuRobo v0.8 API for planner_core.py",
+    "description": "Commit by eval-harness in curobo_service",
+    "files": [
+      "curobo_service/"
+    ],
+    "sha": "41ac03f",
+    "repo": "curobo_service",
+    "author": "eval-harness"
   }
 ]
