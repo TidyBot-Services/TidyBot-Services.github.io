@@ -1,18 +1,6 @@
 [
   {
     "timestamp": "2026-03-08 18:12",
-    "type": "docs",
-    "title": "docs: update README for local deploy-agent workflow",
-    "description": "Commit by Yifei Simon Shao in nav-mapping-service",
-    "files": [
-      "nav-mapping-service/"
-    ],
-    "sha": "8b0d92e",
-    "repo": "nav-mapping-service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
     "type": "fix",
     "title": "fix: gripper bridge msgpack protocol, camera bridge debug logging",
     "description": "Commit by Yifei Simon Shao in sim",
@@ -2398,5 +2386,17 @@
     "sha": "41ac03f",
     "repo": "curobo_service",
     "author": "eval-harness"
+  },
+  {
+    "timestamp": "2026-05-06 18:17",
+    "type": "setup",
+    "title": "Initial: A* mobile-base path planner — stateless HTTP service",
+    "description": "Commit by TruAres in base_planner_service",
+    "files": [
+      "base_planner_service/"
+    ],
+    "sha": "0783ea2",
+    "repo": "base_planner_service",
+    "author": "TruAres"
   }
 ]
