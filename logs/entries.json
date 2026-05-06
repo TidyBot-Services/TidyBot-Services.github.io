@@ -1,101 +1,5 @@
 [
   {
-    "timestamp": "2026-03-09 03:32",
-    "type": "fix",
-    "title": "Update skill-agent templates: add sim env vars, CLI example, debug tip",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "1f3ab4e",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-09 14:50",
-    "type": "fix",
-    "title": "fix: update grounded-sam2 catalog links to point to grounded-sam2-service",
-    "description": "Commit by Yifei Simon Shao in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "14fef36",
-    "repo": "services_wishlist",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-09 16:02",
-    "type": "feature",
-    "title": "feat: add sim soft/hard reset API via HTTP bridge",
-    "description": "Commit by Yifei Simon Shao in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "63feb66",
-    "repo": "sim",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-09 16:38",
-    "type": "deploy",
-    "title": "feat: auto-reset sim scene on lease release",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "838c9e8",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-09 16:53",
-    "type": "fix",
-    "title": "fix: zero all velocities/forces on soft reset",
-    "description": "Commit by Yifei Simon Shao in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "d0d6ad1",
-    "repo": "sim",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-09 19:30",
-    "type": "feature",
-    "title": "relax arm convergence tolerances for sim compatibility",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "69de82f",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-10 03:52",
-    "type": "feature",
-    "title": "Add tidybot-sim-manager skill for MuJoCo sim lifecycle management",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "37fc89b",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-10 03:59",
-    "type": "feature",
-    "title": "Add tidybot-commit-push skill for repo audit and sync workflow",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "23f8ee3",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-10 04:05",
     "type": "feature",
     "title": "Merge pull request #7 from TidyBot-Services/fix/audit-2026-03-07-missing-gripper",
@@ -2388,6 +2292,18 @@
     "author": "TruAres"
   },
   {
+    "timestamp": "2026-05-06 21:41",
+    "type": "feature",
+    "title": "orch: teach base.plan_path() in dev prompt + fix EVAL_RESULT brace escaping",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "1ab9372",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
     "timestamp": "2026-05-06 21:42",
     "type": "feature",
     "title": "planner: bump optimizer_collision_activation_distance 0.01 → 0.05",
@@ -2397,6 +2313,90 @@
     ],
     "sha": "6fa43b1",
     "repo": "curobo_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 22:09",
+    "type": "fix",
+    "title": "robocasa_utils: WIP debug prints for gripper_obj_far + obj_inside_of",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "49a67f3",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 22:09",
+    "type": "feature",
+    "title": "PnP _check_success: drop gripper_obj_far from all 7 tasks",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "4e1b976",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 22:13",
+    "type": "fix",
+    "title": "gitignore: ignore local debug/exploration scripts + logs/",
+    "description": "Commit by TruAres in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "b397c8b",
+    "repo": "maniskill-tidyverse",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 22:17",
+    "type": "feature",
+    "title": "orch evaluator: add Evidence Hierarchy + anti-fabrication rule",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "75660e4",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 22:28",
+    "type": "setup",
+    "title": "setup: track scripts/setup_curobo.sh + sync v0.8 robot config",
+    "description": "Commit by TruAres in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "8897aa6",
+    "repo": "maniskill-tidyverse",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 22:32",
+    "type": "setup",
+    "title": "agent_server: track logging_config.py + start.sh, ignore logs/.env.bak",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "bc000a3",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 22:33",
+    "type": "setup",
+    "title": "track start_robot.sh + logging_config.py, prune parent gitignore noise",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "de46067",
+    "repo": "Tidybot-Universe",
     "author": "TruAres"
   }
 ]
