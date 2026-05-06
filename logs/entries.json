@@ -1,41 +1,5 @@
 [
   {
-    "timestamp": "2026-03-08 18:12",
-    "type": "fix",
-    "title": "fix: gripper bridge msgpack protocol, camera bridge debug logging",
-    "description": "Commit by Yifei Simon Shao in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "a761161",
-    "repo": "sim",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
-    "type": "docs",
-    "title": "docs: update CLAUDE.md for deploy-agent architecture, remove sync_catalog refere",
-    "description": "Commit by Yifei Simon Shao in common",
-    "files": [
-      "common/"
-    ],
-    "sha": "71de4d9",
-    "repo": "common",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-08 18:12",
-    "type": "docs",
-    "title": "docs: add README with API reference and architecture overview",
-    "description": "Commit by Yifei Simon Shao in deploy-agent",
-    "files": [
-      "deploy-agent/"
-    ],
-    "sha": "6bc4af9",
-    "repo": "deploy-agent",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-09 03:32",
     "type": "fix",
     "title": "Update skill-agent templates: add sim env vars, CLI example, debug tip",
@@ -2397,6 +2361,42 @@
     ],
     "sha": "0783ea2",
     "repo": "base_planner_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 21:39",
+    "type": "feature",
+    "title": "base: add plan_path() — A* base planner via sim /plan_base endpoint",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "e667da0",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 21:40",
+    "type": "feature",
+    "title": "sim: split _cmd_plan into A* base + cuRobo arm-only, drop mplib fallback",
+    "description": "Commit by TruAres in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "f73a3b2",
+    "repo": "maniskill_sim",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-06 21:42",
+    "type": "feature",
+    "title": "planner: bump optimizer_collision_activation_distance 0.01 → 0.05",
+    "description": "Commit by TruAres in curobo_service",
+    "files": [
+      "curobo_service/"
+    ],
+    "sha": "6fa43b1",
+    "repo": "curobo_service",
     "author": "TruAres"
   }
 ]
