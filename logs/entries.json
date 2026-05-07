@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-03-10 04:05",
-    "type": "feature",
-    "title": "Merge pull request #7 from TidyBot-Services/fix/audit-2026-03-07-missing-gripper",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "27264e7",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-10 04:05",
-    "type": "feature",
-    "title": "Merge pull request #8 from TidyBot-Services/fix/audit-2026-03-08-vtheta-to-wz",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "1068214",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-10 04:07",
-    "type": "feature",
-    "title": "Merge pull request #5 from TidyBot-Services/fix/audit-2026-03-06-missing-sdk-doc",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "794702c",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-10 04:07",
-    "type": "feature",
-    "title": "Merge pull request #6 from TidyBot-Services/fix/audit-2026-03-06-project-structu",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "61d4e9f",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-10 04:08",
-    "type": "feature",
-    "title": "Merge pull request #4 from TidyBot-Services/fix/audit-2026-03-04-org-name-casing",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "a002ffc",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-10 04:16",
     "type": "fix",
     "title": "Fix GitHub org name casing: tidybot-skills → Tidybot-Skills (#2)",
@@ -2396,6 +2336,66 @@
       "Tidybot-Universe/"
     ],
     "sha": "de46067",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 02:33",
+    "type": "feature",
+    "title": "orch: also route targets + agents through __main__ — generalize #108 fix",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "928224a",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 02:49",
+    "type": "feature",
+    "title": "orch: bind shared mutables to __main__ on module-import — full module-dup fix",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "9bc12cb",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 02:53",
+    "type": "feature",
+    "title": "orch: complete module-dup audit — extend bootstrap to all shared mutables",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "367eba4",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 03:08",
+    "type": "fix",
+    "title": "orch dev prompt: harden stale-arm_base_world warning with bug pattern",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "61be766",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 03:34",
+    "type": "feature",
+    "title": "orch dev prompt: explicit qpos→world warning + empirical evidence",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "9f6f371",
     "repo": "Tidybot-Universe",
     "author": "TruAres"
   }
