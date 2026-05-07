@@ -2,30 +2,6 @@
   {
     "timestamp": "2026-03-11 01:40",
     "type": "setup",
-    "title": "Initial commit: Franka arm sim service (ZMQ bridge + client)",
-    "description": "Commit by tonylitianyu in arm_franka_sim_service",
-    "files": [
-      "arm_franka_sim_service/"
-    ],
-    "sha": "a1f8808",
-    "repo": "arm_franka_sim_service",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-03-11 01:40",
-    "type": "setup",
-    "title": "Initial commit: Robotiq gripper sim service (ZMQ bridge + client)",
-    "description": "Commit by tonylitianyu in gripper_robotiq_sim_service",
-    "files": [
-      "gripper_robotiq_sim_service/"
-    ],
-    "sha": "1360f8a",
-    "repo": "gripper_robotiq_sim_service",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-03-11 01:40",
-    "type": "setup",
     "title": "Initial commit: TidyBot base sim service (RPC bridge)",
     "description": "Commit by tonylitianyu in base_tidybot_sim_service",
     "files": [
@@ -2398,5 +2374,29 @@
     "sha": "85b0d5c",
     "repo": "Tidybot-Universe",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 21:46",
+    "type": "feature",
+    "title": "robocasa_tasks: shim for cross-repo back-compat",
+    "description": "Commit by Yifei Shao in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "3c02392",
+    "repo": "maniskill-tidyverse",
+    "author": "Yifei Shao"
+  },
+  {
+    "timestamp": "2026-05-07 21:53",
+    "type": "setup",
+    "title": "setup.sh: clone via SSH so push-after-edit just works",
+    "description": "Commit by Yifei Shao in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "1739a53",
+    "repo": "Tidybot-Universe",
+    "author": "Yifei Shao"
   }
 ]
