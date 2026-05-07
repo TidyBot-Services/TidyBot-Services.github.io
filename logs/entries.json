@@ -1,41 +1,5 @@
 [
   {
-    "timestamp": "2026-03-10 04:16",
-    "type": "fix",
-    "title": "Fix GitHub org name casing: tidybot-skills → Tidybot-Skills (#2)",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "9b2a37f",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-10 04:23",
-    "type": "feature",
-    "title": "Merge pull request #5 from TidyBot-Services/fix/audit-2026-03-09-catalog-grounde",
-    "description": "Commit by Yifei Simon Shao in services_wishlist",
-    "files": [
-      "services_wishlist/"
-    ],
-    "sha": "f612b1e",
-    "repo": "services_wishlist",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-10 05:31",
-    "type": "docs",
-    "title": "Replace README with philosophy doc, move setup guide to GETTING_STARTED.md",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "0c49544",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-11 01:40",
     "type": "setup",
     "title": "Initial commit: Franka arm sim service (ZMQ bridge + client)",
@@ -2396,6 +2360,42 @@
       "Tidybot-Universe/"
     ],
     "sha": "9f6f371",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 04:45",
+    "type": "feature",
+    "title": "orch dev prompt: warn that arm.move_to_pose pitch/quat does NOT persist",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "adda5d8",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 04:49",
+    "type": "feature",
+    "title": "arm.move_to_pose: partial RPY override should preserve current axes",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "2ec94de",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-07 04:52",
+    "type": "feature",
+    "title": "orch dev prompt: rewrite section 3.5 to match SDK behavior post-fix",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "85b0d5c",
     "repo": "Tidybot-Universe",
     "author": "TruAres"
   }
