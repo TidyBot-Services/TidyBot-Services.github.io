@@ -1,113 +1,5 @@
 [
   {
-    "timestamp": "2026-03-11 01:40",
-    "type": "setup",
-    "title": "Initial commit: TidyBot base sim service (RPC bridge)",
-    "description": "Commit by tonylitianyu in base_tidybot_sim_service",
-    "files": [
-      "base_tidybot_sim_service/"
-    ],
-    "sha": "e064ad9",
-    "repo": "base_tidybot_sim_service",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-03-11 01:40",
-    "type": "setup",
-    "title": "Initial commit: RealSense camera sim service (WebSocket bridge + client)",
-    "description": "Commit by tonylitianyu in camera_realsense_sim_service",
-    "files": [
-      "camera_realsense_sim_service/"
-    ],
-    "sha": "c0e1cad",
-    "repo": "camera_realsense_sim_service",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-03-11 01:44",
-    "type": "refactor",
-    "title": "refactor: extract bridges into separate service repos",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "4674b05",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-03-11 03:24",
-    "type": "feature",
-    "title": "feat: add joint-space PD control for direct joint position tracking",
-    "description": "Commit by tonylitianyu in sim",
-    "files": [
-      "sim/"
-    ],
-    "sha": "5f98c8e",
-    "repo": "sim",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-03-11 03:24",
-    "type": "feature",
-    "title": "feat: route joint commands directly to joint PD controller",
-    "description": "Commit by tonylitianyu in arm_franka_sim_service",
-    "files": [
-      "arm_franka_sim_service/"
-    ],
-    "sha": "14b67bb",
-    "repo": "arm_franka_sim_service",
-    "author": "tonylitianyu"
-  },
-  {
-    "timestamp": "2026-03-19 01:20",
-    "type": "setup",
-    "title": "Initial commit: maniskill_server",
-    "description": "Commit by TruAres in maniskill_server",
-    "files": [
-      "maniskill_server/"
-    ],
-    "sha": "7185b37",
-    "repo": "maniskill_server",
-    "author": "TruAres"
-  },
-  {
-    "timestamp": "2026-03-19 01:20",
-    "type": "setup",
-    "title": "Initial commit: base_tidybot_maniskill_service",
-    "description": "Commit by TruAres in base_tidybot_maniskill_service",
-    "files": [
-      "base_tidybot_maniskill_service/"
-    ],
-    "sha": "f88727f",
-    "repo": "base_tidybot_maniskill_service",
-    "author": "TruAres"
-  },
-  {
-    "timestamp": "2026-03-19 01:20",
-    "type": "setup",
-    "title": "Initial commit: camera_realsense_maniskill_service",
-    "description": "Commit by TruAres in camera_realsense_maniskill_service",
-    "files": [
-      "camera_realsense_maniskill_service/"
-    ],
-    "sha": "0955d24",
-    "repo": "camera_realsense_maniskill_service",
-    "author": "TruAres"
-  },
-  {
-    "timestamp": "2026-03-19 01:20",
-    "type": "setup",
-    "title": "Initial commit: arm_franka_maniskill_service",
-    "description": "Commit by TruAres in arm_franka_maniskill_service",
-    "files": [
-      "arm_franka_maniskill_service/"
-    ],
-    "sha": "ad6503c",
-    "repo": "arm_franka_maniskill_service",
-    "author": "TruAres"
-  },
-  {
     "timestamp": "2026-03-19 01:20",
     "type": "setup",
     "title": "Initial commit: gripper_robotiq_maniskill_service",
@@ -2398,5 +2290,113 @@
     "sha": "1739a53",
     "repo": "Tidybot-Universe",
     "author": "Yifei Shao"
+  },
+  {
+    "timestamp": "2026-05-09 02:09",
+    "type": "feature",
+    "title": "orch openclaw: clear stale state.session_id before spawn so dashboard tail works",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "963a9b7",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-09 02:09",
+    "type": "docs",
+    "title": "docs+probe: openclaw harness setup guide + deploy pipeline feasibility probe",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "099b1ee",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-09 02:10",
+    "type": "feature",
+    "title": "sim: widen wb base perturbation search to 3 shells × 16 dirs (0.15/0.30/0.45m)",
+    "description": "Commit by TruAres in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "cabdb2e",
+    "repo": "maniskill_sim",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-09 02:44",
+    "type": "feature",
+    "title": "robocasa_tasks: revert back-compat shim — fresh installs broke from PathFinder s",
+    "description": "Commit by TruAres in maniskill-tidyverse",
+    "files": [
+      "maniskill-tidyverse/"
+    ],
+    "sha": "fbbac3a",
+    "repo": "maniskill-tidyverse",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-09 02:44",
+    "type": "feature",
+    "title": "sim: rewrite robocasa_tasks import to canonical (drop maniskill_tidyverse.roboca",
+    "description": "Commit by TruAres in maniskill_sim",
+    "files": [
+      "maniskill_sim/"
+    ],
+    "sha": "747f867",
+    "repo": "maniskill_sim",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-09 02:44",
+    "type": "feature",
+    "title": "imports: rewrite cross-repo imports to use canonical robocasa_tasks (drop manisk",
+    "description": "Commit by TruAres in maniskill-robocasa-tasks",
+    "files": [
+      "maniskill-robocasa-tasks/"
+    ],
+    "sha": "a0debd7",
+    "repo": "maniskill-robocasa-tasks",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-09 02:45",
+    "type": "feature",
+    "title": "orch openclaw: per-(target,skill) agent id so parallel sub-skills don't share se",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "5e4db39",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-09 03:06",
+    "type": "feature",
+    "title": "code_executor: write stdout.log + stderr.log to execution recording dir",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "03ed465",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-09 03:06",
+    "type": "feature",
+    "title": "orch evaluator: read stdout.log + stderr.log from exec dir, not metadata.json fi",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "d4ed469",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
   }
 ]
