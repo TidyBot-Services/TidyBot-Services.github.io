@@ -1,53 +1,5 @@
 [
   {
-    "timestamp": "2026-03-19 01:20",
-    "type": "setup",
-    "title": "Initial commit: gripper_robotiq_maniskill_service",
-    "description": "Commit by TruAres in gripper_robotiq_maniskill_service",
-    "files": [
-      "gripper_robotiq_maniskill_service/"
-    ],
-    "sha": "8bc2b68",
-    "repo": "gripper_robotiq_maniskill_service",
-    "author": "TruAres"
-  },
-  {
-    "timestamp": "2026-03-19 01:24",
-    "type": "feature",
-    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
-    "description": "Commit by TruAres in maniskill_server",
-    "files": [
-      "maniskill_server/"
-    ],
-    "sha": "5ff71ff",
-    "repo": "maniskill_server",
-    "author": "TruAres"
-  },
-  {
-    "timestamp": "2026-03-19 01:24",
-    "type": "feature",
-    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
-    "description": "Commit by TruAres in base_tidybot_maniskill_service",
-    "files": [
-      "base_tidybot_maniskill_service/"
-    ],
-    "sha": "5e83dab",
-    "repo": "base_tidybot_maniskill_service",
-    "author": "TruAres"
-  },
-  {
-    "timestamp": "2026-03-19 01:24",
-    "type": "feature",
-    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
-    "description": "Commit by TruAres in camera_realsense_maniskill_service",
-    "files": [
-      "camera_realsense_maniskill_service/"
-    ],
-    "sha": "983082c",
-    "repo": "camera_realsense_maniskill_service",
-    "author": "TruAres"
-  },
-  {
     "timestamp": "2026-03-19 01:24",
     "type": "feature",
     "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
@@ -2396,6 +2348,54 @@
       "Tidybot-Universe/"
     ],
     "sha": "d4ed469",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-11 16:33",
+    "type": "docs",
+    "title": "docs: introduce docs/ai-memory/ + shorten CLAUDE.md to stable rules",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "cf0be50",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-11 16:35",
+    "type": "feature",
+    "title": "gitignore + CLAUDE.md: track top-level CLAUDE.md (like subdir ones already are)",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "bd0a784",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-11 16:36",
+    "type": "feature",
+    "title": "CLAUDE.md: rewrite as short stable-rules + Memory Policy pointing at docs/ai-mem",
+    "description": "Commit by TruAres in common",
+    "files": [
+      "common/"
+    ],
+    "sha": "26566f2",
+    "repo": "common",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-11 16:39",
+    "type": "docs",
+    "title": "docs/ai-memory: end-of-session updates after memory-tree bootstrap",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "1e2b75c",
     "repo": "Tidybot-Universe",
     "author": "TruAres"
   }
