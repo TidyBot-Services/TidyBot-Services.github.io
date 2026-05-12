@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-03-19 01:24",
-    "type": "feature",
-    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
-    "description": "Commit by TruAres in arm_franka_maniskill_service",
-    "files": [
-      "arm_franka_maniskill_service/"
-    ],
-    "sha": "5314c35",
-    "repo": "arm_franka_maniskill_service",
-    "author": "TruAres"
-  },
-  {
-    "timestamp": "2026-03-19 01:24",
-    "type": "feature",
-    "title": "Add requirements.txt, update .gitignore to match TidyBot-Services convention",
-    "description": "Commit by TruAres in gripper_robotiq_maniskill_service",
-    "files": [
-      "gripper_robotiq_maniskill_service/"
-    ],
-    "sha": "a883f1a",
-    "repo": "gripper_robotiq_maniskill_service",
-    "author": "TruAres"
-  },
-  {
-    "timestamp": "2026-03-22 18:13",
-    "type": "deploy",
-    "title": "Remove defunct service agent, keep specs and deploy-agent",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "3c08b99",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-22 18:24",
-    "type": "feature",
-    "title": "Add repository map and update sim quick-start paths",
-    "description": "Commit by Yifei Simon Shao in Tidybot-Universe",
-    "files": [
-      "Tidybot-Universe/"
-    ],
-    "sha": "fd43d5e",
-    "repo": "Tidybot-Universe",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-22 19:12",
-    "type": "fix",
-    "title": "Fix code executor to use correct Python and server URL",
-    "description": "Commit by Yifei Simon Shao in agent_server",
-    "files": [
-      "agent_server/"
-    ],
-    "sha": "3f58faa",
-    "repo": "agent_server",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-22 19:12",
     "type": "fix",
     "title": "Fix MessageType IDs to match hardware camera_server protocol",
@@ -2396,6 +2336,66 @@
       "Tidybot-Universe/"
     ],
     "sha": "1e2b75c",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-12 20:11",
+    "type": "deploy",
+    "title": "profile: per-deployment robot capability gating (single-arm FR3 support)",
+    "description": "Commit by TruAres in agent_server",
+    "files": [
+      "agent_server/"
+    ],
+    "sha": "057abfd",
+    "repo": "agent_server",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-12 20:11",
+    "type": "feature",
+    "title": "start_robot: --profile flag selects arm service + per-component defaults",
+    "description": "Commit by TruAres in common",
+    "files": [
+      "common/"
+    ],
+    "sha": "017f810",
+    "repo": "common",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-12 20:11",
+    "type": "setup",
+    "title": "Initial commit: FR3 hardware service forked from arm_franka_service",
+    "description": "Commit by TruAres in arm_franka_fr3_service",
+    "files": [
+      "arm_franka_fr3_service/"
+    ],
+    "sha": "9095501",
+    "repo": "arm_franka_fr3_service",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-12 20:12",
+    "type": "docs",
+    "title": "docs+gitignore: ADR 0007 single-arm FR3 service + ignore new service dir",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "6fafaba",
+    "repo": "Tidybot-Universe",
+    "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-12 20:21",
+    "type": "docs",
+    "title": "docs/ai-memory: end-of-session updates after single-arm FR3 shipping",
+    "description": "Commit by TruAres in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "ac3fc40",
     "repo": "Tidybot-Universe",
     "author": "TruAres"
   }
