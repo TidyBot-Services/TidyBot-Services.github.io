@@ -1,29 +1,5 @@
 [
   {
-    "timestamp": "2026-03-22 19:12",
-    "type": "fix",
-    "title": "Fix MessageType IDs to match hardware camera_server protocol",
-    "description": "Commit by Yifei Simon Shao in camera_realsense_robocasa_service",
-    "files": [
-      "camera_realsense_robocasa_service/"
-    ],
-    "sha": "a5ccb1d",
-    "repo": "camera_realsense_robocasa_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-22 19:12",
-    "type": "fix",
-    "title": "Fix camera bridge protocol to match hardware camera_server",
-    "description": "Commit by Yifei Simon Shao in camera_realsense_maniskill_service",
-    "files": [
-      "camera_realsense_maniskill_service/"
-    ],
-    "sha": "8b48398",
-    "repo": "camera_realsense_maniskill_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
     "timestamp": "2026-03-22 19:23",
     "type": "feature",
     "title": "Rename package from *-sim-service to *-robocasa-service",
@@ -2398,5 +2374,29 @@
     "sha": "ac3fc40",
     "repo": "Tidybot-Universe",
     "author": "TruAres"
+  },
+  {
+    "timestamp": "2026-05-25 15:04",
+    "type": "fix",
+    "title": "fix: migrate franka_tidyverse.yml to cuRobo V2 format + auto-deploy in apply_pat",
+    "description": "Commit by truares in curobo_service",
+    "files": [
+      "curobo_service/"
+    ],
+    "sha": "0dc070f",
+    "repo": "curobo_service",
+    "author": "truares"
+  },
+  {
+    "timestamp": "2026-05-25 15:06",
+    "type": "fix",
+    "title": "fix(openclaw): per-skill evaluator agent isolation to prevent session takeover",
+    "description": "Commit by truares in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "9676364",
+    "repo": "Tidybot-Universe",
+    "author": "truares"
   }
 ]
