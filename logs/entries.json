@@ -3,18 +3,6 @@
     "timestamp": "2026-03-22 19:23",
     "type": "feature",
     "title": "Rename package from *-sim-service to *-robocasa-service",
-    "description": "Commit by Yifei Simon Shao in arm_franka_robocasa_service",
-    "files": [
-      "arm_franka_robocasa_service/"
-    ],
-    "sha": "82b20fd",
-    "repo": "arm_franka_robocasa_service",
-    "author": "Yifei Simon Shao"
-  },
-  {
-    "timestamp": "2026-03-22 19:23",
-    "type": "feature",
-    "title": "Rename package from *-sim-service to *-robocasa-service",
     "description": "Commit by Yifei Simon Shao in gripper_robotiq_robocasa_service",
     "files": [
       "gripper_robotiq_robocasa_service/"
@@ -2396,6 +2384,18 @@
       "Tidybot-Universe/"
     ],
     "sha": "9676364",
+    "repo": "Tidybot-Universe",
+    "author": "truares"
+  },
+  {
+    "timestamp": "2026-05-28 02:40",
+    "type": "fix",
+    "title": "fix: tail trajectory filter, log restore; add start_all.sh",
+    "description": "Commit by truares in Tidybot-Universe",
+    "files": [
+      "Tidybot-Universe/"
+    ],
+    "sha": "433bcef",
     "repo": "Tidybot-Universe",
     "author": "truares"
   }
